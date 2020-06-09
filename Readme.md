@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Алина](https://up.htmlacademy.ru/react/4/user/800317).
-* Наставник: `Неизвестно`.
+* Наставник: [Павел](https://htmlacademy.ru/profile/id1477929).
 
 ---
 
