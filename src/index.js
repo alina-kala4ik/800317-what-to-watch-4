@@ -8,12 +8,15 @@ const settings = {
   promotionReleaseDate: `2014`,
 };
 
+const films = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
+
 const init = () => {
   ReactDOM.render(
       <App
         promotionTitle={settings.promotionTitle}
         promotionGenre={settings.promotionGenre}
         promotionReleaseDate={settings.promotionReleaseDate}
+        films={films}
       />,
       document.querySelector(`#root`)
   );
