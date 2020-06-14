@@ -10,6 +10,8 @@ const settings = {
 
 const films = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
 
+const onFilmTitleClick = () => {};
+
 it(`render Main`, () => {
   const tree = renderer
     .create(<Main
@@ -17,6 +19,7 @@ it(`render Main`, () => {
       promotionGenre={settings.promotionGenre}
       promotionReleaseDate={settings.promotionReleaseDate}
       films={films}
+      onFilmTitleClick={onFilmTitleClick}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
