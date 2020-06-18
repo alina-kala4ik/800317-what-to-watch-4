@@ -20,9 +20,11 @@ App.propTypes = {
   promotionTitle: PropTypes.string.isRequired,
   promotionGenre: PropTypes.string.isRequired,
   promotionReleaseDate: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.string.isRequired
-  ).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default App;
