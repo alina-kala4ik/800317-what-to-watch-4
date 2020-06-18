@@ -8,7 +8,7 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {films} = this.props;
+    const {films, onFilmTitleClick} = this.props;
 
     return films.map((film) =>
       <MovieCard
@@ -17,7 +17,7 @@ class MovieList extends PureComponent {
         onCardActive={(id)=>{
           this.setState({activeCard: id});
         }}
-        onFilmTitleClick={()=>{}}
+        onFilmTitleClick={onFilmTitleClick}
       />);
   }
 }
@@ -27,7 +27,8 @@ MovieList.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
-  })).isRequired
+  })).isRequired,
+  onFilmTitleClick: PropTypes.func.isRequired,
 };
 
 export default MovieList;
