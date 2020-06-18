@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const MoveCard = (props) => {
+const MovieCard = (props) => {
   const {film, onCardActive, onFilmTitleClick} = props;
   const {id, title, src} = film;
 
@@ -24,7 +24,7 @@ const MoveCard = (props) => {
   </article>;
 };
 
-MoveCard.propTypes = {
+MovieCard.propTypes = {
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -34,4 +34,4 @@ MoveCard.propTypes = {
   onFilmTitleClick: PropTypes.func.isRequired,
 };
 
-export default MoveCard;
+export default MovieCard;
