@@ -39,4 +39,4 @@ export default [
     title: `Johnny English`,
     src: `img/johnny-english.jpg`,
   },
-]
+];
