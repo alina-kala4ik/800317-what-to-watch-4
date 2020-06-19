@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const MovieCard = (props) => {
   const {film, onCardActive, onFilmTitleClick} = props;
-  const {id, title, src} = film;
+  const {title, src} = film;
 
   return <article
-    key={id} className="small-movie-card catalog__movies-card"
+    className="small-movie-card catalog__movies-card"
     onMouseEnter={()=>{
-      onCardActive(id);
+      onCardActive(film);
     }}
   >
     <div className="small-movie-card__image">
@@ -26,7 +26,6 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
   }).isRequired,
