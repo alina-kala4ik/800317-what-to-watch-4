@@ -18,7 +18,7 @@ class MovieList extends PureComponent {
       <MovieCard
         key={film.title}
         film={film}
-        onMouseEnter={this.handleCardMouseEnter}
+        onMouseEnter={(activeFilm) => this.setState({activeCard: activeFilm})}
         onFilmTitleClick={onFilmTitleClick}
       />);
   }
@@ -28,6 +28,15 @@ MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    movieCover: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    yearRelease: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    numberVotes: PropTypes.string.isRequired,
+    producer: PropTypes.string.isRequired,
+    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   })).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
 };
