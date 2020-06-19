@@ -14,11 +14,13 @@ class MovieList extends PureComponent {
       <MovieCard
         key={film.title}
         film={film}
-        onCardActive={(activeFilm)=>{
-          this.setState({activeCard: activeFilm});
-        }}
+        onMovieCardMouseEnter={this.handleMovieCardMouseEnter}
         onFilmTitleClick={onFilmTitleClick}
       />);
+  }
+
+  handleMovieCardMouseEnter(activeFilm) {
+    this.setState({activeCard: activeFilm});
   }
 }
 

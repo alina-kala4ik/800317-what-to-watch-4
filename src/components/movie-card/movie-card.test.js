@@ -11,7 +11,7 @@ it(`render MoveCard`, () => {
   const tree = renderer
     .create(<MoveCard
       film={film}
-      onCardActive={()=>{}}
+      onMovieCardMouseEnter={()=>{}}
       onFilmTitleClick={()=>{}}
     />)
     .toJSON();
