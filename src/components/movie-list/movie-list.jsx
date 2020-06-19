@@ -7,6 +7,10 @@ class MovieList extends PureComponent {
     super(props);
   }
 
+  handleCardMouseEnter(activeFilm) {
+    this.setState({activeCard: activeFilm});
+  }
+
   render() {
     const {films, onFilmTitleClick} = this.props;
 
@@ -14,13 +18,9 @@ class MovieList extends PureComponent {
       <MovieCard
         key={film.title}
         film={film}
-        onMovieCardMouseEnter={this.handleMovieCardMouseEnter}
+        onMouseEnter={this.handleCardMouseEnter}
         onFilmTitleClick={onFilmTitleClick}
       />);
-  }
-
-  handleMovieCardMouseEnter(activeFilm) {
-    this.setState({activeCard: activeFilm});
   }
 }
 
