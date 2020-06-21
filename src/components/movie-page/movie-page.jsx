@@ -109,7 +109,7 @@ const MoviePage = (props) => {
 
             <p className="movie-card__director"><strong>Director: {producer}</strong></p>
 
-            <p className="movie-card__starring"><strong>Starring: {actors}</strong></p>
+            <p className="movie-card__starring"><strong>Starring: {actors.join(`, `)}</strong></p>
           </div>
         </div>
       </div>
