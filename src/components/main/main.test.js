@@ -122,7 +122,7 @@ it(`render Main`, () => {
       promotionGenre={settings.promotionGenre}
       promotionReleaseDate={settings.promotionReleaseDate}
       films={films}
-      onFilmTitleClick={()=>{}}
+      onFilmTitleOrImgClick={()=>{}}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

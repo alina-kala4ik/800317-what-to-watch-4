@@ -29,7 +29,7 @@ it(`When you hover over a card with a movie, information about the movie enters 
       <MovieCard
         film={film}
         onMouseEnter={onMouseEnter}
-        onFilmTitleClick={()=>{}}
+        onFilmTitleOrImgClick={()=>{}}
       />
   );
 

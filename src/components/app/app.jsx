@@ -21,7 +21,7 @@ class App extends PureComponent {
         promotionGenre={promotionGenre}
         promotionReleaseDate={promotionReleaseDate}
         films={films}
-        onFilmTitleClick={(film)=> {
+        onFilmTitleOrImgClick={(film)=> {
           this.setState({
             selectedFilm: film
           });

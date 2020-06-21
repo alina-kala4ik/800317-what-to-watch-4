@@ -21,7 +21,7 @@ it(`render MoveCard`, () => {
     .create(<MoveCard
       film={film}
       onMouseEnter={()=>{}}
-      onFilmTitleClick={()=>{}}
+      onFilmTitleOrImgClick={()=>{}}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

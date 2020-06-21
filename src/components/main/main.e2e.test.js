@@ -120,8 +120,8 @@ const films = [
   },
 ];
 
-it(`Film title click`, () => {
-  const onFilmTitleClick = jest.fn();
+it(`Film title or image click`, () => {
+  const onFilmTitleOrImgClick = jest.fn();
 
   const main = mount(
       <Main
@@ -129,16 +129,20 @@ it(`Film title click`, () => {
         promotionGenre={settings.promotionGenre}
         promotionReleaseDate={settings.promotionReleaseDate}
         films={films}
-        onFilmTitleClick={onFilmTitleClick}
+        onFilmTitleOrImgClick={onFilmTitleOrImgClick}
       />
 
   );
 
   const filmTitles = main.find(`a.small-movie-card__link`);
+  const filmImg = main.find(`div.small-movie-card__image`);
 
   filmTitles.forEach((title) =>
     title.simulate(`click`)
   );
+  filmImg.forEach((img) =>
+    img.simulate(`click`)
+  );
 
-  expect(onFilmTitleClick).toHaveBeenCalledTimes(8);
+  expect(onFilmTitleOrImgClick).toHaveBeenCalledTimes(16);
 });
