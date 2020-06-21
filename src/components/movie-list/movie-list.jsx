@@ -5,6 +5,7 @@ import MovieCard from "./../movie-card/movie-card.jsx";
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
+    this.handleCardMouseEnter = this.handleCardMouseEnter.bind(this);
   }
 
   handleCardMouseEnter(activeFilm) {
