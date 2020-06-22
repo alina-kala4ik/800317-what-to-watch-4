@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 
+
 class App extends PureComponent {
   constructor(props) {
     super(props);
