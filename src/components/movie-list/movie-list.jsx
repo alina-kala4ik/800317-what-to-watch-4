@@ -13,14 +13,15 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {films, onFilmTitleOrImgClick} = this.props;
+    const {films, onFilmTitleClick, onFilmImgClick} = this.props;
 
     return films.map((film) =>
       <MovieCard
         key={film.title}
         film={film}
         onMouseEnter={(activeFilm) => this.setState({activeCard: activeFilm})}
-        onFilmTitleOrImgClick={onFilmTitleOrImgClick}
+        onFilmTitleClick={onFilmTitleClick}
+        onFilmImgClick={onFilmImgClick}
       />);
   }
 }
@@ -39,7 +40,8 @@ MovieList.propTypes = {
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   })).isRequired,
-  onFilmTitleOrImgClick: PropTypes.func.isRequired,
+  onFilmTitleClick: PropTypes.func.isRequired,
+  onFilmImgClick: PropTypes.func.isRequired,
 };
 
 export default MovieList;

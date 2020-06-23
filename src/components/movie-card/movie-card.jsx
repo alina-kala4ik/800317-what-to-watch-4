@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 const MovieCard = (props) => {
-  const {film, onMouseEnter, onFilmTitleOrImgClick} = props;
+  const {film, onMouseEnter, onFilmTitleClick, onFilmImgClick} = props;
   const {title, src} = film;
 
   return <article
@@ -14,7 +14,7 @@ const MovieCard = (props) => {
     <div
       className="small-movie-card__image"
       onClick={()=>{
-        onFilmTitleOrImgClick(film);
+        onFilmImgClick(film);
       }}
     >
       <img src={src} alt={title} width="280" height="175" />
@@ -23,7 +23,7 @@ const MovieCard = (props) => {
       <a
         onClick={(evt)=>{
           evt.preventDefault();
-          onFilmTitleOrImgClick(film);
+          onFilmTitleClick(film);
         }}
         className="small-movie-card__link"
         href="movie-page.html"
@@ -47,7 +47,8 @@ MovieCard.propTypes = {
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   onMouseEnter: PropTypes.func.isRequired,
-  onFilmTitleOrImgClick: PropTypes.func.isRequired,
+  onFilmTitleClick: PropTypes.func.isRequired,
+  onFilmImgClick: PropTypes.func.isRequired,
 };
 
 export default MovieCard;
