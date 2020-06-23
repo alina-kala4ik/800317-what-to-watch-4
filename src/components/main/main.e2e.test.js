@@ -168,8 +168,8 @@ it(`Film image click`, () => {
   expect(onFilmImgClick).toHaveBeenCalledTimes(8);
 });
 
-it(`Validates data transmitted through props when clicked`, () => {
-  const onFilmTitleOrImgClick = jest.fn();
+it(`Validates data transmitted through props when clicked on film title`, () => {
+  const onFilmTitleClick = jest.fn();
   const expectedData = {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -190,7 +190,8 @@ it(`Validates data transmitted through props when clicked`, () => {
         promotionGenre={settings.promotionGenre}
         promotionReleaseDate={settings.promotionReleaseDate}
         films={films}
-        onFilmTitleOrImgClick={onFilmTitleOrImgClick}
+        onFilmTitleClick={onFilmTitleClick}
+        onFilmImgClick={()=>{}}
       />
 
   );
@@ -199,5 +200,5 @@ it(`Validates data transmitted through props when clicked`, () => {
 
   filmOneTitles.simulate(`click`);
 
-  expect(onFilmTitleOrImgClick.mock.calls[0][0]).toMatchObject(expectedData);
+  expect(onFilmTitleClick.mock.calls[0][0]).toMatchObject(expectedData);
 });

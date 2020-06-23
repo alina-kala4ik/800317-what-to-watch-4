@@ -113,7 +113,8 @@ it(`render MovieList`, () => {
   const tree = renderer
     .create(<MovieList
       films={films}
-      onFilmTitleOrImgClick={()=>{}}
+      onFilmTitleClick={()=>{}}
+      onFilmImgClick={()=>{}}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
