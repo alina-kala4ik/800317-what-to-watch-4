@@ -1,28 +1,31 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
+const getRatingLevel = (rating) => {
+  const formattedRating = parseFloat(rating.replace(`,`, `.`));
+
+  if (formattedRating === 0 || formattedRating < 3) {
+    return `Bad`;
+  }
+  if (formattedRating >= 3 || formattedRating < 5) {
+    return `Normal`;
+  }
+  if (formattedRating >= 5 || formattedRating < 8) {
+    return `Good`;
+  }
+  if (formattedRating >= 8 || formattedRating < 10) {
+    return `Very good`;
+  }
+  if (formattedRating >= 10) {
+    return `Awesome`;
+  }
+  return null;
+};
+
 const MoviePage = (props) => {
   const {film} = props;
   const {title, poster, movieCover, genre, yearRelease, description, rating, numberVotes, producer, actors} = film;
-
-  const ratingLevel = () => {
-    if (rating === 0 || rating < 3) {
-      return `Bad`;
-    }
-    if (rating >= 3 || rating < 5) {
-      return `Normal`;
-    }
-    if (rating >= 5 || rating < 8) {
-      return `Good`;
-    }
-    if (rating >= 8 || rating < 10) {
-      return `Very good`;
-    }
-    if (rating >= 10) {
-      return `Awesome`;
-    }
-    return null;
-  };
+  const ratingLevel = getRatingLevel(rating);
 
   return <section className="movie-card movie-card--full">
     <div className="movie-card__hero">
@@ -99,7 +102,7 @@ const MoviePage = (props) => {
           <div className="movie-rating">
             <div className="movie-rating__score">{rating}</div>
             <p className="movie-rating__meta">
-              <span className="movie-rating__level">{ratingLevel()}</span>
+              <span className="movie-rating__level">{ratingLevel}</span>
               <span className="movie-rating__count">{numberVotes} ratings</span>
             </p>
           </div>

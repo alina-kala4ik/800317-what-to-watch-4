@@ -204,7 +204,9 @@ exports[`render MoviePage 1`] = `
           >
             <span
               className="movie-rating__level"
-            />
+            >
+              Normal
+            </span>
             <span
               className="movie-rating__count"
             >
