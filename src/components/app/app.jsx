@@ -30,11 +30,7 @@ class App extends PureComponent {
       />;
     }
 
-    if (this.state.selectedFilm !== null) {
-      return <MoviePage film={this.state.selectedFilm}/>;
-    }
-
-    return null;
+    return <MoviePage film={this.state.selectedFilm}/>;
   }
 
   render() {
