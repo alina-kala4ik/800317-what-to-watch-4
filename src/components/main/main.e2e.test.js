@@ -25,7 +25,8 @@ const films = [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -38,7 +39,8 @@ const films = [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Macbeth`,
@@ -51,7 +53,8 @@ const films = [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Aviator`,
@@ -64,7 +67,8 @@ const films = [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `We need to talk about Kevin`,
@@ -77,7 +81,8 @@ const films = [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -90,7 +95,8 @@ const films = [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Revenant`,
@@ -103,7 +109,8 @@ const films = [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Johnny English`,
@@ -116,7 +123,8 @@ const films = [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
 ];
 

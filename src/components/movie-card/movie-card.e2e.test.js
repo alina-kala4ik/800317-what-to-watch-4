@@ -19,18 +19,22 @@ const film = {
   numberVotes: `278`,
   producer: `Wes Andreson`,
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 
-it(`When you hover over a card with a movie, information about the movie enters the handlerr`, () => {
+it(`When you hover over a card with a movie, information about the movie enters the handler`, () => {
   const onMouseEnter = jest.fn();
+  const expectedAnswer = `Fantastic Beasts: The Crimes of Grindelwald`;
 
   const movieCard = shallow(
       <MovieCard
         film={film}
         onMouseEnter={onMouseEnter}
+        onMouseLeave={()=>{}}
         onFilmTitleClick={()=>{}}
         onFilmImgClick={()=>{}}
+        isPlaying={false}
       />
   );
 
@@ -39,6 +43,6 @@ it(`When you hover over a card with a movie, information about the movie enters 
   card.simulate(`mouseenter`);
 
   expect(onMouseEnter).toHaveBeenCalledTimes(1);
-  expect(onMouseEnter.mock.calls[0][0]).toMatchObject(film);
+  expect(onMouseEnter.mock.calls[0][0]).toEqual(expectedAnswer);
 });
 
