@@ -7,26 +7,34 @@ class MovieList extends PureComponent {
     super(props);
 
     this.state = {
-      activeFilm: null
+      activeFilmTitle: null
     };
 
     this.handleCardMouseEnter = this.handleCardMouseEnter.bind(this);
+    this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
   }
 
-  handleCardMouseEnter(film) {
-    this.setState({activeFilm: film});
+  handleCardMouseEnter(filmTitle) {
+    this.setState({activeFilmTitle: filmTitle});
+  }
+
+  handleCardMouseLeave() {
+    this.setState({activeFilmTitle: null});
   }
 
   render() {
     const {films, onFilmTitleClick, onFilmImgClick} = this.props;
+    const {activeFilmTitle} = this.state;
 
     return films.map((film) =>
       <MovieCard
         key={film.title}
         film={film}
         onMouseEnter={this.handleCardMouseEnter}
+        onMouseLeave={this.handleCardMouseLeave}
         onFilmTitleClick={onFilmTitleClick}
         onFilmImgClick={onFilmImgClick}
+        isPlaying={film.title === activeFilmTitle}
       />);
   }
 }
@@ -44,6 +52,7 @@ MovieList.propTypes = {
     numberVotes: PropTypes.string.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    videoPreview: PropTypes.string.isRequired,
   })).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
