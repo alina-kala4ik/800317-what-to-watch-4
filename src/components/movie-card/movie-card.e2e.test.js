@@ -46,3 +46,24 @@ it(`When you hover over a card with a movie, information about the movie enters 
   expect(onMouseEnter.mock.calls[0][0]).toEqual(expectedAnswer);
 });
 
+
+it(`Tests onMouseLeave function call`, () => {
+  const onMouseLeave = jest.fn();
+
+  const movieCard = shallow(
+      <MovieCard
+        film={film}
+        onMouseEnter={()=>{}}
+        onMouseLeave={onMouseLeave}
+        onFilmTitleClick={()=>{}}
+        onFilmImgClick={()=>{}}
+        isPlaying={false}
+      />
+  );
+
+  const card = movieCard.find(`article.small-movie-card`);
+
+  card.simulate(`mouseleave`);
+
+  expect(onMouseLeave).toHaveBeenCalledTimes(1);
+});
