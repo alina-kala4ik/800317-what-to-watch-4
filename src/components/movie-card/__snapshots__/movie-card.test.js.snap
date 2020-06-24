@@ -4,16 +4,21 @@ exports[`render MoveCard 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
     onClick={[Function]}
   >
-    <img
-      alt="Fantastic Beasts: The Crimes of Grindelwald"
-      height="175"
-      src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-      width="280"
+    <video
+      autoPlay={false}
+      height={175}
+      loop={true}
+      muted="muted"
+      poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+      preload="none"
+      src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+      width={280}
     />
   </div>
   <h3

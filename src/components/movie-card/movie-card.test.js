@@ -14,6 +14,7 @@ const film = {
   numberVotes: `278`,
   producer: `Wes Andreson`,
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+  videoPreview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 it(`render MoveCard`, () => {
@@ -21,8 +22,10 @@ it(`render MoveCard`, () => {
     .create(<MoveCard
       film={film}
       onMouseEnter={()=>{}}
+      onMouseLeave={()=>{}}
       onFilmTitleClick={()=>{}}
       onFilmImgClick={()=>{}}
+      isPlaying={false}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
