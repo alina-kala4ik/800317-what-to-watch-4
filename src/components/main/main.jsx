@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MovieList from "./../movie-list/movie-list.jsx";
 
 const Main = (props) => {
-  const {promotionTitle, promotionGenre, promotionReleaseDate, films, onFilmTitleClick} = props;
+  const {promotionTitle, promotionGenre, promotionReleaseDate, films, onFilmTitleClick, onFilmImgClick} = props;
 
   return <React.Fragment>
     <section className="movie-card">
@@ -102,6 +102,7 @@ const Main = (props) => {
           {<MovieList
             films={films}
             onFilmTitleClick={onFilmTitleClick}
+            onFilmImgClick={onFilmImgClick}
           />}
         </div>
 
@@ -134,8 +135,18 @@ Main.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    movieCover: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    yearRelease: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    numberVotes: PropTypes.string.isRequired,
+    producer: PropTypes.string.isRequired,
+    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
   })).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
+  onFilmImgClick: PropTypes.func.isRequired,
 };
 
 export default Main;
