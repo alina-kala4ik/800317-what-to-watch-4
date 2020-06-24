@@ -13,13 +13,13 @@ Array [
     >
       <video
         autoPlay={false}
-        height={175}
+        height="175"
         loop={true}
         muted="muted"
         poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         preload="none"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-        width={280}
+        width="280"
       />
     </div>
     <h3
@@ -45,13 +45,13 @@ Array [
     >
       <video
         autoPlay={false}
-        height={175}
+        height="175"
         loop={true}
         muted="muted"
         poster="img/bohemian-rhapsody.jpg"
         preload="none"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-        width={280}
+        width="280"
       />
     </div>
     <h3
@@ -77,13 +77,13 @@ Array [
     >
       <video
         autoPlay={false}
-        height={175}
+        height="175"
         loop={true}
         muted="muted"
         poster="img/macbeth.jpg"
         preload="none"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-        width={280}
+        width="280"
       />
     </div>
     <h3
@@ -109,13 +109,13 @@ Array [
     >
       <video
         autoPlay={false}
-        height={175}
+        height="175"
         loop={true}
         muted="muted"
         poster="img/aviator.jpg"
         preload="none"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-        width={280}
+        width="280"
       />
     </div>
     <h3
@@ -141,13 +141,13 @@ Array [
     >
       <video
         autoPlay={false}
-        height={175}
+        height="175"
         loop={true}
         muted="muted"
         poster="img/we-need-to-talk-about-kevin.jpg"
         preload="none"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-        width={280}
+        width="280"
       />
     </div>
     <h3
@@ -173,13 +173,13 @@ Array [
     >
       <video
         autoPlay={false}
-        height={175}
+        height="175"
         loop={true}
         muted="muted"
         poster="img/what-we-do-in-the-shadows.jpg"
         preload="none"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-        width={280}
+        width="280"
       />
     </div>
     <h3
@@ -205,13 +205,13 @@ Array [
     >
       <video
         autoPlay={false}
-        height={175}
+        height="175"
         loop={true}
         muted="muted"
         poster="img/revenant.jpg"
         preload="none"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-        width={280}
+        width="280"
       />
     </div>
     <h3
@@ -237,13 +237,13 @@ Array [
     >
       <video
         autoPlay={false}
-        height={175}
+        height="175"
         loop={true}
         muted="muted"
         poster="img/johnny-english.jpg"
         preload="none"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-        width={280}
+        width="280"
       />
     </div>
     <h3
