@@ -8,9 +8,25 @@ import MoviePage from "./../movie-page/movie-page.jsx";
 class App extends PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
       selectedFilm: null,
     };
+
+    this.handleFilmTitleClick = this.handleFilmTitleClick.bind(this);
+    this.handleFilmImgClick = this.handleFilmImgClick.bind(this);
+  }
+
+  handleFilmTitleClick(film) {
+    this.setState({
+      selectedFilm: film
+    });
+  }
+
+  handleFilmImgClick(film) {
+    this.setState({
+      selectedFilm: film
+    });
   }
 
   _renderApp() {
@@ -22,20 +38,17 @@ class App extends PureComponent {
         promotionGenre={promotionGenre}
         promotionReleaseDate={promotionReleaseDate}
         films={films}
-        onFilmTitleClick={(film)=> {
-          this.setState({
-            selectedFilm: film
-          });
-        }}
-        onFilmImgClick={(film)=> {
-          this.setState({
-            selectedFilm: film
-          });
-        }}
+        onFilmTitleClick={this.handleFilmTitleClick}
+        onFilmImgClick={this.handleFilmImgClick}
       />;
     }
 
-    return <MoviePage film={this.state.selectedFilm}/>;
+    return <MoviePage
+      film={this.state.selectedFilm}
+      films={films}
+      onFilmTitleClick={this.handleFilmTitleClick}
+      onFilmImgClick={this.handleFilmImgClick}
+    />;
   }
 
   render() {
@@ -47,7 +60,12 @@ class App extends PureComponent {
           {this._renderApp()}
         </Route>
         <Route exact path="/movie-page">
-          <MoviePage film={films[0]}/>
+          <MoviePage
+            film={films[0]}
+            films={films}
+            onFilmTitleClick={this.handleFilmTitleClick}
+            onFilmImgClick={this.handleFilmImgClick}
+          />
         </Route>
       </Switch>
     </BrowserRouter>;
