@@ -44,3 +44,52 @@ it(`When you hover over a card with a movie, information about the movie enters 
   expect(onMouseEnter.mock.calls[0][0]).toEqual(expectedAnswer);
 });
 
+it(`testing handleCardMouseEnter function`, ()=>{
+  const expectedState = {isPlaying: true};
+
+  const movieCard = shallow(
+      <MovieCard
+        film={film}
+        onMouseEnter={()=>{}}
+        onFilmTitleClick={()=>{}}
+        onFilmImgClick={()=>{}}
+      />
+  );
+
+  movieCard.setState({
+    isPlaying: false
+  });
+
+  const card = movieCard.find(`article.small-movie-card`);
+
+  card.simulate(`mouseenter`);
+
+  const state = movieCard.state();
+
+  expect(state).toMatchObject(expectedState);
+});
+
+it(`testing handleCardMouseLeave function`, ()=>{
+  const expectedState = {isPlaying: false};
+
+  const movieCard = shallow(
+      <MovieCard
+        film={film}
+        onMouseEnter={()=>{}}
+        onFilmTitleClick={()=>{}}
+        onFilmImgClick={()=>{}}
+      />
+  );
+
+  movieCard.setState({
+    isPlaying: true
+  });
+
+  const card = movieCard.find(`article.small-movie-card`);
+
+  card.simulate(`mouseleave`);
+
+  const state = movieCard.state();
+
+  expect(state).toMatchObject(expectedState);
+});
