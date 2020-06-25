@@ -29,7 +29,7 @@ class MovieCard extends PureComponent {
   render() {
     const {film, onMouseEnter, onFilmTitleClick, onFilmImgClick} = this.props;
     const {title, src, videoPreview} = film;
-    const isPlaying = this.state.isPlaying;
+    const {isPlaying} = this.state;
 
     return <article
       className="small-movie-card catalog__movies-card"
