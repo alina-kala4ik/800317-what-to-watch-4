@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Tabs from "./../tabs/tabs.jsx";
 import MovieList from "./../movie-list/movie-list.jsx";
 
+const DISPLAYED_NUMBER_SIMILAR_FILMS = 4;
+
 const getRatingLevel = (rating) => {
   const formattedRating = parseFloat(rating.replace(`,`, `.`));
 
@@ -49,7 +51,7 @@ class MoviePage extends PureComponent {
 
   getRelatedMovies(genre) {
     const {films} = this.props;
-    return films.filter((film)=>film.genre === genre).slice(4);
+    return films.filter((film)=>film.genre === genre).slice(DISPLAYED_NUMBER_SIMILAR_FILMS);
   }
 
   render() {
