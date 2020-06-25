@@ -45,11 +45,11 @@ class MovieCard extends PureComponent {
           onFilmImgClick(film);
         }}
       >
-        {<VideoPlayer
+        <VideoPlayer
           videoPreview={videoPreview}
           src={src}
           isPlaying={isPlaying}
-        />}
+        />
       </div>
       <h3 className="small-movie-card__title">
         <a
