@@ -10,7 +10,8 @@ export default [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`
   },
   {
     title: `Bohemian Rhapsody`,
@@ -23,7 +24,8 @@ export default [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`
   },
   {
     title: `Macbeth`,
@@ -36,7 +38,8 @@ export default [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`
   },
   {
     title: `Aviator`,
@@ -49,7 +52,8 @@ export default [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`
   },
   {
     title: `We need to talk about Kevin`,
@@ -62,7 +66,8 @@ export default [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`
   },
   {
     title: `What We Do in the Shadows`,
@@ -75,7 +80,8 @@ export default [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`
   },
   {
     title: `Revenant`,
@@ -88,7 +94,8 @@ export default [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`
   },
   {
     title: `Johnny English`,
@@ -101,6 +108,7 @@ export default [
     rating: `5,6`,
     numberVotes: `278`,
     producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`
   },
 ];
