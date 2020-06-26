@@ -1,7 +1,7 @@
 export default [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -15,7 +15,7 @@ export default [
   },
   {
     title: `Bohemian Rhapsody`,
-    src: `img/bohemian-rhapsody.jpg`,
+    screenshotSrc: `img/bohemian-rhapsody.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -29,7 +29,7 @@ export default [
   },
   {
     title: `Macbeth`,
-    src: `img/macbeth.jpg`,
+    screenshotSrc: `img/macbeth.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -43,7 +43,7 @@ export default [
   },
   {
     title: `Aviator`,
-    src: `img/aviator.jpg`,
+    screenshotSrc: `img/aviator.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -57,7 +57,7 @@ export default [
   },
   {
     title: `We need to talk about Kevin`,
-    src: `img/we-need-to-talk-about-kevin.jpg`,
+    screenshotSrc: `img/we-need-to-talk-about-kevin.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -71,7 +71,7 @@ export default [
   },
   {
     title: `What We Do in the Shadows`,
-    src: `img/what-we-do-in-the-shadows.jpg`,
+    screenshotSrc: `img/what-we-do-in-the-shadows.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -85,7 +85,7 @@ export default [
   },
   {
     title: `Revenant`,
-    src: `img/revenant.jpg`,
+    screenshotSrc: `img/revenant.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -99,7 +99,7 @@ export default [
   },
   {
     title: `Johnny English`,
-    src: `img/johnny-english.jpg`,
+    screenshotSrc: `img/johnny-english.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
