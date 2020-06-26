@@ -12,8 +12,8 @@ it(`The component has a playback state`, () => {
 
   const videoPlayer = mount(
       <VideoPlayer
-        videoPreviewSrc={`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`}
-        screenshotSrc={`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`}
+        src={`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`}
+        poster={`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`}
         isPlaying={true}
       />
   );
@@ -28,8 +28,8 @@ it(`The component has a pause state`, () => {
 
   const videoPlayer = mount(
       <VideoPlayer
-        videoPreviewSrc={`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`}
-        screenshotSrc={`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`}
+        src={`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`}
+        poster={`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`}
         isPlaying={false}
       />
   );
