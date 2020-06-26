@@ -26,7 +26,11 @@ it(`render MoveCard`, () => {
       onFilmTitleClick={()=>{}}
       onFilmImgClick={()=>{}}
       isPlaying={false}
-    />)
+    />, {
+      createNodeMock: ()=>{
+        return {};
+      }
+    })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

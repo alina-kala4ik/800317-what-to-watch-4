@@ -123,7 +123,11 @@ it(`render MovieList`, () => {
       films={films}
       onFilmTitleClick={()=>{}}
       onFilmImgClick={()=>{}}
-    />)
+    />, {
+      createNodeMock: ()=>{
+        return {};
+      }
+    })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

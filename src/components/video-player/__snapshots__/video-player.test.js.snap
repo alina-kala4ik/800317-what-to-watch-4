@@ -5,7 +5,6 @@ exports[`render VideoPlayer 1`] = `
   autoPlay={false}
   height="175"
   loop={true}
-  muted="muted"
   poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
   preload="none"
   src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
