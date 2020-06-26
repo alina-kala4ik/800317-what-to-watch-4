@@ -56,7 +56,7 @@ class MoviePage extends PureComponent {
 
   render() {
     const {film, onFilmTitleClick, onFilmImgClick} = this.props;
-    const {title, poster, movieCover, genre, yearRelease, description, rating, numberVotes, producer, actors, runTime} = film;
+    const {title, posterSrc, movieCoverSrc, genre, yearRelease, description, rating, numberVotes, producer, actors, runTime} = film;
     const ratingLevel = getRatingLevel(rating);
     const listTabs = Object.values(TABS);
     const relatedMovies = this.getRelatedMovies(genre);
@@ -65,7 +65,7 @@ class MoviePage extends PureComponent {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={poster} alt={title} />
+            <img src={posterSrc} alt={title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -116,7 +116,7 @@ class MoviePage extends PureComponent {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={movieCover} alt={title} width="218" height="327" />
+              <img src={movieCoverSrc} alt={title} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -280,6 +280,7 @@ class MoviePage extends PureComponent {
 MoviePage.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    screenshotSrc: PropTypes.string.isRequired,
     posterSrc: PropTypes.string.isRequired,
     movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
@@ -293,9 +294,9 @@ MoviePage.propTypes = {
   }).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    movieCover: PropTypes.string.isRequired,
+    screenshotSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -303,6 +304,7 @@ MoviePage.propTypes = {
     numberVotes: PropTypes.string.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.string.isRequired,
   })).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
