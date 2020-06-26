@@ -24,13 +24,13 @@ const getRatingLevel = (rating) => {
 
 const MoviePage = (props) => {
   const {film} = props;
-  const {title, poster, movieCover, genre, yearRelease, description, rating, numberVotes, producer, actors} = film;
+  const {title, posterSrc, movieCover, genre, yearRelease, description, rating, numberVotes, producer, actors} = film;
   const ratingLevel = getRatingLevel(rating);
 
   return <section className="movie-card movie-card--full">
     <div className="movie-card__hero">
       <div className="movie-card__bg">
-        <img src={poster} alt={title} />
+        <img src={posterSrc} alt={title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -123,7 +123,7 @@ const MoviePage = (props) => {
 MoviePage.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
     movieCover: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.string.isRequired,

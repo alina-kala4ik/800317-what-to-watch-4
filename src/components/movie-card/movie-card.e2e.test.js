@@ -10,7 +10,7 @@ Enzyme.configure({
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
   screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  poster: `img/bg-the-grand-budapest-hotel.jpg`,
+  posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
   movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
   yearRelease: `2017`,
