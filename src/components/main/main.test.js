@@ -12,7 +12,7 @@ const films = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    poster: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
     yearRelease: `2017`,
@@ -26,7 +26,7 @@ const films = [
   {
     title: `Bohemian Rhapsody`,
     screenshotSrc: `img/bohemian-rhapsody.jpg`,
-    poster: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
     yearRelease: `2017`,
@@ -40,7 +40,7 @@ const films = [
   {
     title: `Macbeth`,
     screenshotSrc: `img/macbeth.jpg`,
-    poster: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
     yearRelease: `2017`,
@@ -54,7 +54,7 @@ const films = [
   {
     title: `Aviator`,
     screenshotSrc: `img/aviator.jpg`,
-    poster: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
     yearRelease: `2017`,
@@ -68,7 +68,7 @@ const films = [
   {
     title: `We need to talk about Kevin`,
     screenshotSrc: `img/we-need-to-talk-about-kevin.jpg`,
-    poster: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
     yearRelease: `2017`,
@@ -82,7 +82,7 @@ const films = [
   {
     title: `What We Do in the Shadows`,
     screenshotSrc: `img/what-we-do-in-the-shadows.jpg`,
-    poster: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
     yearRelease: `2017`,
@@ -96,7 +96,7 @@ const films = [
   {
     title: `Revenant`,
     screenshotSrc: `img/revenant.jpg`,
-    poster: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
     yearRelease: `2017`,
@@ -110,7 +110,7 @@ const films = [
   {
     title: `Johnny English`,
     screenshotSrc: `img/johnny-english.jpg`,
-    poster: `img/bg-the-grand-budapest-hotel.jpg`,
+    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
     yearRelease: `2017`,
