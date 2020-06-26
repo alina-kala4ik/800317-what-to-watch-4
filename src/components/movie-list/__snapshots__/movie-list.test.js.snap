@@ -5,15 +5,19 @@ Array [
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Fantastic Beasts: The Crimes of Grindelwald"
+      <video
+        autoPlay={false}
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        loop={true}
+        poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        preload="none"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -32,15 +36,19 @@ Array [
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Bohemian Rhapsody"
+      <video
+        autoPlay={false}
         height="175"
-        src="img/bohemian-rhapsody.jpg"
+        loop={true}
+        poster="img/bohemian-rhapsody.jpg"
+        preload="none"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -59,15 +67,19 @@ Array [
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Macbeth"
+      <video
+        autoPlay={false}
         height="175"
-        src="img/macbeth.jpg"
+        loop={true}
+        poster="img/macbeth.jpg"
+        preload="none"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -86,15 +98,19 @@ Array [
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Aviator"
+      <video
+        autoPlay={false}
         height="175"
-        src="img/aviator.jpg"
+        loop={true}
+        poster="img/aviator.jpg"
+        preload="none"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -113,15 +129,19 @@ Array [
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="We need to talk about Kevin"
+      <video
+        autoPlay={false}
         height="175"
-        src="img/we-need-to-talk-about-kevin.jpg"
+        loop={true}
+        poster="img/we-need-to-talk-about-kevin.jpg"
+        preload="none"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -140,15 +160,19 @@ Array [
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="What We Do in the Shadows"
+      <video
+        autoPlay={false}
         height="175"
-        src="img/what-we-do-in-the-shadows.jpg"
+        loop={true}
+        poster="img/what-we-do-in-the-shadows.jpg"
+        preload="none"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -167,15 +191,19 @@ Array [
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Revenant"
+      <video
+        autoPlay={false}
         height="175"
-        src="img/revenant.jpg"
+        loop={true}
+        poster="img/revenant.jpg"
+        preload="none"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -194,15 +222,19 @@ Array [
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Johnny English"
+      <video
+        autoPlay={false}
         height="175"
-        src="img/johnny-english.jpg"
+        loop={true}
+        poster="img/johnny-english.jpg"
+        preload="none"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>

@@ -7,14 +7,14 @@ class MovieList extends PureComponent {
     super(props);
 
     this.state = {
-      activeFilm: null
+      activeFilmTitle: null
     };
 
     this.handleCardMouseEnter = this.handleCardMouseEnter.bind(this);
   }
 
-  handleCardMouseEnter(film) {
-    this.setState({activeFilm: film});
+  handleCardMouseEnter(filmTitle) {
+    this.setState({activeFilmTitle: filmTitle});
   }
 
   render() {
@@ -25,6 +25,7 @@ class MovieList extends PureComponent {
         key={film.title}
         film={film}
         onMouseEnter={this.handleCardMouseEnter}
+        onMouseLeave={this.handleCardMouseLeave}
         onFilmTitleClick={onFilmTitleClick}
         onFilmImgClick={onFilmImgClick}
       />);
@@ -34,9 +35,9 @@ class MovieList extends PureComponent {
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    movieCover: PropTypes.string.isRequired,
+    screenshotSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -44,6 +45,7 @@ MovieList.propTypes = {
     numberVotes: PropTypes.string.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    videoSrc: PropTypes.string.isRequired,
   })).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,

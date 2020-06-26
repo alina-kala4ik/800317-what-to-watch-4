@@ -78,9 +78,9 @@ App.propTypes = {
   promotionReleaseDate: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    movieCover: PropTypes.string.isRequired,
+    screenshotSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

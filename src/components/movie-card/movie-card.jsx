@@ -1,43 +1,76 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
+import VideoPlayer from "./../video-player/video-player.jsx";
 
-const MovieCard = (props) => {
-  const {film, onMouseEnter, onFilmTitleClick, onFilmImgClick} = props;
-  const {title, src} = film;
+class MovieCard extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  return <article
-    className="small-movie-card catalog__movies-card"
-    onMouseEnter={()=>{
-      onMouseEnter(film);
-    }}
-  >
-    <div
-      className="small-movie-card__image"
-      onClick={()=>{
-        onFilmImgClick(film);
+    this.state = {
+      isPlaying: false
+    };
+
+    this.handleCardMouseEnter = this.handleCardMouseEnter.bind(this);
+    this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
+  }
+
+  handleCardMouseEnter() {
+    this.setState({
+      isPlaying: true
+    });
+  }
+
+  handleCardMouseLeave() {
+    this.setState({
+      isPlaying: false
+    });
+  }
+
+  render() {
+    const {film, onMouseEnter, onFilmTitleClick, onFilmImgClick} = this.props;
+    const {title, screenshotSrc, videoSrc} = film;
+    const {isPlaying} = this.state;
+
+    return <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={()=>{
+        onMouseEnter(title);
+        this.handleCardMouseEnter();
       }}
+      onMouseLeave={this.handleCardMouseLeave}
     >
-      <img src={src} alt={title} width="280" height="175" />
-    </div>
-    <h3 className="small-movie-card__title">
-      <a
-        onClick={(evt)=>{
-          evt.preventDefault();
-          onFilmTitleClick(film);
+      <div
+        className="small-movie-card__image"
+        onClick={()=>{
+          onFilmImgClick(film);
         }}
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >{title}</a>
-    </h3>
-  </article>;
-};
+      >
+        <VideoPlayer
+          src={videoSrc}
+          poster={screenshotSrc}
+          isPlaying={isPlaying}
+        />
+      </div>
+      <h3 className="small-movie-card__title">
+        <a
+          onClick={(evt)=>{
+            evt.preventDefault();
+            onFilmTitleClick(film);
+          }}
+          className="small-movie-card__link"
+          href="movie-page.html"
+        >{title}</a>
+      </h3>
+    </article>;
+  }
+}
 
 MovieCard.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    movieCover: PropTypes.string.isRequired,
+    screenshotSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -45,6 +78,7 @@ MovieCard.propTypes = {
     numberVotes: PropTypes.string.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    videoSrc: PropTypes.string.isRequired
   }).isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,

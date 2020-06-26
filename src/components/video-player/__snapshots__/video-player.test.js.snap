@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render VideoPlayer 1`] = `
+<video
+  autoPlay={false}
+  height="175"
+  loop={true}
+  poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+  preload="none"
+  src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+  width="280"
+/>
+`;
