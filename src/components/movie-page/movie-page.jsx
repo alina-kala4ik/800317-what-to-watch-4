@@ -60,6 +60,7 @@ class MoviePage extends PureComponent {
     const ratingLevel = getRatingLevel(rating);
     const listTabs = Object.values(TABS);
     const relatedMovies = this.getRelatedMovies(genre);
+    const {activeTab} = this.state;
 
     return <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -121,14 +122,14 @@ class MoviePage extends PureComponent {
 
             <div className="movie-card__desc">
               <nav className="movie-nav movie-card__nav">
-                {<Tabs
-                  activeTab={this.state.activeTab}
+                <Tabs
+                  activeTab={activeTab}
                   listTabs={listTabs}
                   onTabClick={this.handleTabClick}
-                />}
+                />
               </nav>
 
-              {this.state.activeTab === TABS.overview &&
+              {activeTab === TABS.overview &&
               <React.Fragment>
                 <div className="movie-rating">
                   <div className="movie-rating__score">{rating}</div>
@@ -146,7 +147,7 @@ class MoviePage extends PureComponent {
                 </div>
               </React.Fragment>}
 
-              {this.state.activeTab === TABS.details &&
+              {activeTab === TABS.details &&
                 <div className="movie-card__text movie-card__row">
                   <div className="movie-card__text-col">
                     <p className="movie-card__details-item">
@@ -182,7 +183,7 @@ class MoviePage extends PureComponent {
                   </div>
                 </div>}
 
-              {this.state.activeTab === TABS.reviews &&
+              {activeTab === TABS.reviews &&
                 <div className="movie-card__reviews movie-card__row">
                   <div className="movie-card__reviews-col">
                     <div className="review">
@@ -251,11 +252,11 @@ class MoviePage extends PureComponent {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__movies-list">
-            {<MovieList
+            <MovieList
               films={relatedMovies}
               onFilmTitleClick={onFilmTitleClick}
               onFilmImgClick={onFilmImgClick}
-            />}
+            />
           </div>
         </section>
 
