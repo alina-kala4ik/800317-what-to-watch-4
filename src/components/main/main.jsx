@@ -136,7 +136,7 @@ Main.propTypes = {
     title: PropTypes.string.isRequired,
     screenshotSrc: PropTypes.string.isRequired,
     posterSrc: PropTypes.string.isRequired,
-    movieCover: PropTypes.string.isRequired,
+    movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
