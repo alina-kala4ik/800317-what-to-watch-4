@@ -13,6 +13,11 @@ class VideoPlayer extends PureComponent {
     };
   }
 
+  componentDidMount() {
+    const video = this._videoRef.current;
+    video.muted = true;
+  }
+
   componentDidUpdate() {
     const video = this._videoRef.current;
 
@@ -35,7 +40,6 @@ class VideoPlayer extends PureComponent {
       preload="none"
       width="280"
       height="175"
-      muted="muted"
       loop={true}
       autoPlay={false}
       src={videoPreview}

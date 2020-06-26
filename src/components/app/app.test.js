@@ -130,7 +130,11 @@ it(`render App`, () => {
       promotionGenre={settings.promotionGenre}
       promotionReleaseDate={settings.promotionReleaseDate}
       films={films}
-    />)
+    />, {
+      createNodeMock: ()=>{
+        return {};
+      }
+    })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
