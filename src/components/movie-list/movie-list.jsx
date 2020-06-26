@@ -45,7 +45,7 @@ MovieList.propTypes = {
     numberVotes: PropTypes.string.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    videoPreview: PropTypes.string.isRequired,
+    videoPreviewSrc: PropTypes.string.isRequired,
   })).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,

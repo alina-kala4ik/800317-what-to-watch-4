@@ -34,7 +34,7 @@ class VideoPlayer extends PureComponent {
   }
 
   render() {
-    const {videoPreview, screenshotSrc} = this.props;
+    const {videoPreviewSrc, screenshotSrc} = this.props;
 
     return <video
       preload="none"
@@ -42,7 +42,7 @@ class VideoPlayer extends PureComponent {
       height="175"
       loop={true}
       autoPlay={false}
-      src={videoPreview}
+      src={videoPreviewSrc}
       poster={screenshotSrc}
       ref={this._videoRef}
     />;
@@ -50,7 +50,7 @@ class VideoPlayer extends PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  videoPreview: PropTypes.string.isRequired,
+  videoPreviewSrc: PropTypes.string.isRequired,
   screenshotSrc: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
 };

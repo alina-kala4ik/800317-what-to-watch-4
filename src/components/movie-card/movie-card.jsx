@@ -28,7 +28,7 @@ class MovieCard extends PureComponent {
 
   render() {
     const {film, onMouseEnter, onFilmTitleClick, onFilmImgClick} = this.props;
-    const {title, screenshotSrc, videoPreview} = film;
+    const {title, screenshotSrc, videoPreviewSrc} = film;
     const {isPlaying} = this.state;
 
     return <article
@@ -46,7 +46,7 @@ class MovieCard extends PureComponent {
         }}
       >
         <VideoPlayer
-          videoPreview={videoPreview}
+          videoPreviewSrc={videoPreviewSrc}
           screenshotSrc={screenshotSrc}
           isPlaying={isPlaying}
         />
@@ -78,7 +78,7 @@ MovieCard.propTypes = {
     numberVotes: PropTypes.string.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    videoPreview: PropTypes.string.isRequired
+    videoPreviewSrc: PropTypes.string.isRequired
   }).isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
