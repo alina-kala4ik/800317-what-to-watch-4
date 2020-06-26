@@ -5,7 +5,7 @@ import MovieList from "./movie-list.jsx";
 const films = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -19,7 +19,7 @@ const films = [
   },
   {
     title: `Bohemian Rhapsody`,
-    src: `img/bohemian-rhapsody.jpg`,
+    screenshotSrc: `img/bohemian-rhapsody.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -33,7 +33,7 @@ const films = [
   },
   {
     title: `Macbeth`,
-    src: `img/macbeth.jpg`,
+    screenshotSrc: `img/macbeth.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -47,7 +47,7 @@ const films = [
   },
   {
     title: `Aviator`,
-    src: `img/aviator.jpg`,
+    screenshotSrc: `img/aviator.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -61,7 +61,7 @@ const films = [
   },
   {
     title: `We need to talk about Kevin`,
-    src: `img/we-need-to-talk-about-kevin.jpg`,
+    screenshotSrc: `img/we-need-to-talk-about-kevin.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -75,7 +75,7 @@ const films = [
   },
   {
     title: `What We Do in the Shadows`,
-    src: `img/what-we-do-in-the-shadows.jpg`,
+    screenshotSrc: `img/what-we-do-in-the-shadows.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -89,7 +89,7 @@ const films = [
   },
   {
     title: `Revenant`,
-    src: `img/revenant.jpg`,
+    screenshotSrc: `img/revenant.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,
@@ -103,7 +103,7 @@ const films = [
   },
   {
     title: `Johnny English`,
-    src: `img/johnny-english.jpg`,
+    screenshotSrc: `img/johnny-english.jpg`,
     poster: `img/bg-the-grand-budapest-hotel.jpg`,
     movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
     genre: `Drama`,

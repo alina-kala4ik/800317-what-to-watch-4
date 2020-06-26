@@ -4,7 +4,7 @@ import MoveCard from "./movie-card.jsx";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   poster: `img/bg-the-grand-budapest-hotel.jpg`,
   movieCover: `img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
