@@ -155,6 +155,7 @@ Array [
       >
         <li
           className="catalog__genres-item catalog__genres-item--active"
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -164,7 +165,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -174,7 +176,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -184,7 +187,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -194,7 +198,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -204,7 +209,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -214,7 +220,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -224,7 +231,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -234,7 +242,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -244,7 +253,8 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"

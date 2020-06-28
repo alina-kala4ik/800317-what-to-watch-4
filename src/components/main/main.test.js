@@ -1,6 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {Genres} from "./../../utils.js";
 
 const settings = {
   promotionTitle: `The Grand Budapest Hotel`,
@@ -123,20 +126,30 @@ const films = [
   },
 ];
 
+const mockStore = configureStore([]);
+
 it(`render Main`, () => {
+  const store = mockStore({
+    genre: Genres.ALL,
+    films
+  });
+
   const tree = renderer
-    .create(<Main
-      promotionTitle={settings.promotionTitle}
-      promotionGenre={settings.promotionGenre}
-      promotionReleaseDate={settings.promotionReleaseDate}
-      films={films}
-      onFilmTitleClick={()=>{}}
-      onFilmImgClick={()=>{}}
-    />, {
-      createNodeMock: ()=>{
-        return {};
-      }
-    })
+    .create(
+        <Provider store={store}>
+          <Main
+            promotionTitle={settings.promotionTitle}
+            promotionGenre={settings.promotionGenre}
+            promotionReleaseDate={settings.promotionReleaseDate}
+            films={films}
+            onFilmTitleClick={()=>{}}
+            onFilmImgClick={()=>{}}
+          />
+        </Provider>, {
+          createNodeMock: ()=>{
+            return {};
+          }
+        })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
