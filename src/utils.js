@@ -7,7 +7,7 @@ const Genres = {
   COMEDIES: `Comedies`,
   CRIME: `Crime`,
   DOCUMENTARY: `Documentary`,
-  DRAMAS: `Dramas`,
+  DRAMA: `Drama`,
   HORROR: `Horror`,
   KIDS_FAMILY: `Kids & Family`,
   ROMANCE: `Romance`,
