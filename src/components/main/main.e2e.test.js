@@ -2,6 +2,9 @@ import React from "react";
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Main from "./main.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {Genres} from "./../../utils.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -128,18 +131,27 @@ const films = [
   },
 ];
 
+const mockStore = configureStore([]);
+
 it(`Film title click`, () => {
+  const store = mockStore({
+    genre: Genres.ALL,
+    films
+  });
+
   const onFilmTitleClick = jest.fn();
 
   const main = mount(
-      <Main
-        promotionTitle={settings.promotionTitle}
-        promotionGenre={settings.promotionGenre}
-        promotionReleaseDate={settings.promotionReleaseDate}
-        films={films}
-        onFilmTitleClick={onFilmTitleClick}
-        onFilmImgClick={()=>{}}
-      />
+      <Provider store={store}>
+        <Main
+          promotionTitle={settings.promotionTitle}
+          promotionGenre={settings.promotionGenre}
+          promotionReleaseDate={settings.promotionReleaseDate}
+          films={films}
+          onFilmTitleClick={onFilmTitleClick}
+          onFilmImgClick={()=>{}}
+        />
+      </Provider>
 
   );
 
@@ -153,17 +165,24 @@ it(`Film title click`, () => {
 });
 
 it(`Film image click`, () => {
+  const store = mockStore({
+    genre: Genres.ALL,
+    films
+  });
+
   const onFilmImgClick = jest.fn();
 
   const main = mount(
-      <Main
-        promotionTitle={settings.promotionTitle}
-        promotionGenre={settings.promotionGenre}
-        promotionReleaseDate={settings.promotionReleaseDate}
-        films={films}
-        onFilmTitleClick={()=>{}}
-        onFilmImgClick={onFilmImgClick}
-      />
+      <Provider store={store}>
+        <Main
+          promotionTitle={settings.promotionTitle}
+          promotionGenre={settings.promotionGenre}
+          promotionReleaseDate={settings.promotionReleaseDate}
+          films={films}
+          onFilmTitleClick={()=>{}}
+          onFilmImgClick={onFilmImgClick}
+        />
+      </Provider>
 
   );
 
@@ -177,6 +196,11 @@ it(`Film image click`, () => {
 });
 
 it(`Validates data transmitted through props when clicked on film title`, () => {
+  const store = mockStore({
+    genre: Genres.ALL,
+    films
+  });
+
   const onFilmTitleClick = jest.fn();
   const expectedData = {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -193,14 +217,16 @@ it(`Validates data transmitted through props when clicked on film title`, () => 
   };
 
   const main = mount(
-      <Main
-        promotionTitle={settings.promotionTitle}
-        promotionGenre={settings.promotionGenre}
-        promotionReleaseDate={settings.promotionReleaseDate}
-        films={films}
-        onFilmTitleClick={onFilmTitleClick}
-        onFilmImgClick={()=>{}}
-      />
+      <Provider store={store}>
+        <Main
+          promotionTitle={settings.promotionTitle}
+          promotionGenre={settings.promotionGenre}
+          promotionReleaseDate={settings.promotionReleaseDate}
+          films={films}
+          onFilmTitleClick={onFilmTitleClick}
+          onFilmImgClick={()=>{}}
+        />
+      </Provider>
 
   );
 
