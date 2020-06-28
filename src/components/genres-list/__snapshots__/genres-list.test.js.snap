@@ -23,18 +23,7 @@ exports[`render GenresList 1`] = `
       className="catalog__genres-link"
       href="#"
     >
-      Comedies
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Crime
+      Drama
     </a>
   </li>
   <li
@@ -56,17 +45,6 @@ exports[`render GenresList 1`] = `
       className="catalog__genres-link"
       href="#"
     >
-      Dramas
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
       Horror
     </a>
   </li>
@@ -78,18 +56,7 @@ exports[`render GenresList 1`] = `
       className="catalog__genres-link"
       href="#"
     >
-      Kids & Family
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Romance
+      Comedies
     </a>
   </li>
   <li
