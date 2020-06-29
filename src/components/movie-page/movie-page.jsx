@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import Tabs from "./../tabs/tabs.jsx";
 import MovieList from "./../movie-list/movie-list.jsx";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 const DISPLAYED_NUMBER_SIMILAR_FILMS = 4;
 
