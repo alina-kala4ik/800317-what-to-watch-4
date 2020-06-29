@@ -51,7 +51,8 @@ class MoviePage extends PureComponent {
 
   getRelatedMovies(genre) {
     const {films} = this.props;
-    return films.filter((film)=>film.genre === genre).slice(DISPLAYED_NUMBER_SIMILAR_FILMS);
+    const relatedMovies = films.filter((film)=>film.genre === genre).slice(0, DISPLAYED_NUMBER_SIMILAR_FILMS);
+    return relatedMovies;
   }
 
   render() {
