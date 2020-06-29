@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import MovieList from "./../movie-list/movie-list.jsx";
 import GenresList from "./../genres-list/genres-list.jsx";
+import {connect} from "react-redux";
 
 const Main = (props) => {
   const {promotionTitle, promotionGenre, promotionReleaseDate, films, onFilmTitleClick, onFilmImgClick} = props;
@@ -120,4 +121,10 @@ Main.propTypes = {
   onFilmImgClick: PropTypes.func.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  films: state.films
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);
+

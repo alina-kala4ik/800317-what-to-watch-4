@@ -3,7 +3,7 @@ import Main from "../main/main.jsx";
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
-import {connect} from "react-redux";
+import films from "./../../mocks/films.js";
 
 
 class App extends PureComponent {
@@ -31,14 +31,13 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promotionTitle, promotionGenre, promotionReleaseDate, films} = this.props;
+    const {promotionTitle, promotionGenre, promotionReleaseDate} = this.props;
 
     if (this.state.selectedFilm === null) {
       return <Main
         promotionTitle={promotionTitle}
         promotionGenre={promotionGenre}
         promotionReleaseDate={promotionReleaseDate}
-        films={films}
         onFilmTitleClick={this.handleFilmTitleClick}
         onFilmImgClick={this.handleFilmImgClick}
       />;
@@ -46,15 +45,12 @@ class App extends PureComponent {
 
     return <MoviePage
       film={this.state.selectedFilm}
-      films={films}
       onFilmTitleClick={this.handleFilmTitleClick}
       onFilmImgClick={this.handleFilmImgClick}
     />;
   }
 
   render() {
-    const {films} = this.props;
-
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
@@ -63,7 +59,6 @@ class App extends PureComponent {
         <Route exact path="/movie-page">
           <MoviePage
             film={films[0]}
-            films={films}
             onFilmTitleClick={this.handleFilmTitleClick}
             onFilmImgClick={this.handleFilmImgClick}
           />
@@ -77,24 +72,6 @@ App.propTypes = {
   promotionTitle: PropTypes.string.isRequired,
   promotionGenre: PropTypes.string.isRequired,
   promotionReleaseDate: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  })).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  films: state.films
-});
-
-export {App};
-export default connect(mapStateToProps)(App);
+export default App;

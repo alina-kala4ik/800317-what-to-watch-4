@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import Tabs from "./../tabs/tabs.jsx";
 import MovieList from "./../movie-list/movie-list.jsx";
+import { connect } from "react-redux";
 
 const DISPLAYED_NUMBER_SIMILAR_FILMS = 4;
 
@@ -312,4 +313,10 @@ MoviePage.propTypes = {
   onFilmImgClick: PropTypes.func.isRequired,
 };
 
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  films: state.films
+});
+
+export {MoviePage};
+export default connect(mapStateToProps)(MoviePage);
+
