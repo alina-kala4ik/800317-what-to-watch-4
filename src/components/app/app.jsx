@@ -43,7 +43,12 @@ class App extends PureComponent {
       />;
     }
 
-    return <MoviePage film={this.state.selectedFilm}/>;
+    return <MoviePage
+      film={this.state.selectedFilm}
+      films={films}
+      onFilmTitleClick={this.handleFilmTitleClick}
+      onFilmImgClick={this.handleFilmImgClick}
+    />;
   }
 
   render() {
@@ -55,7 +60,12 @@ class App extends PureComponent {
           {this._renderApp()}
         </Route>
         <Route exact path="/movie-page">
-          <MoviePage film={films[0]}/>
+          <MoviePage
+            film={films[0]}
+            films={films}
+            onFilmTitleClick={this.handleFilmTitleClick}
+            onFilmImgClick={this.handleFilmImgClick}
+          />
         </Route>
       </Switch>
     </BrowserRouter>;

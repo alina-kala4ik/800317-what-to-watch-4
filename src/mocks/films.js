@@ -11,6 +11,7 @@ export default [
     numberVotes: `278`,
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
@@ -25,6 +26,7 @@ export default [
     numberVotes: `278`,
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
@@ -39,6 +41,7 @@ export default [
     numberVotes: `278`,
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
@@ -53,6 +56,7 @@ export default [
     numberVotes: `278`,
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
@@ -67,6 +71,7 @@ export default [
     numberVotes: `278`,
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
@@ -81,6 +86,7 @@ export default [
     numberVotes: `278`,
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
   {
@@ -95,6 +101,7 @@ export default [
     numberVotes: `278`,
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
   {
@@ -109,6 +116,7 @@ export default [
     numberVotes: `278`,
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    runTime: `1h 39m`,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
 ];
