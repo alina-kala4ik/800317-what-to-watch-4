@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Tabs from "./../tabs/tabs.jsx";
 import MovieList from "./../movie-list/movie-list.jsx";
 
+const DISPLAYED_NUMBER_OF_FILMS = 4;
+
 const getRatingLevel = (rating) => {
   const formattedRating = parseFloat(rating.replace(`,`, `.`));
 
@@ -248,6 +250,7 @@ class MoviePage extends Component {
               onFilmTitleClick={onFilmTitleClick}
               onFilmImgClick={onFilmImgClick}
               genre={genre}
+              countFilms={DISPLAYED_NUMBER_OF_FILMS}
             />
           </div>
         </section>

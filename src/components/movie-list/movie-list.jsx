@@ -21,9 +21,11 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {films, onFilmTitleClick, onFilmImgClick} = this.props;
+    const {films, countFilms, onFilmTitleClick, onFilmImgClick} = this.props;
 
-    return films.map((film) =>
+    const displayedNumberOfFilms = films.slice(0, countFilms);
+
+    return displayedNumberOfFilms.map((film) =>
       <MovieCard
         key={film.title}
         film={film}
@@ -51,6 +53,7 @@ MovieList.propTypes = {
     videoSrc: PropTypes.string.isRequired,
   })).isRequired,
   genre: PropTypes.string,
+  countFilms: PropTypes.number.isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
 };
