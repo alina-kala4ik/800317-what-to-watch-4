@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from 'prop-types';
 import MovieList from "./../movie-list/movie-list.jsx";
 import GenresList from "./../genres-list/genres-list.jsx";
-import {connect} from "react-redux";
 
 const Main = (props) => {
-  const {promotionTitle, promotionGenre, promotionReleaseDate, films, onFilmTitleClick, onFilmImgClick} = props;
+  const {promotionTitle, promotionGenre, promotionReleaseDate, onFilmTitleClick, onFilmImgClick} = props;
 
   return <React.Fragment>
     <section className="movie-card">
@@ -71,7 +70,6 @@ const Main = (props) => {
 
         <div className="catalog__movies-list">
           {<MovieList
-            films={films}
             onFilmTitleClick={onFilmTitleClick}
             onFilmImgClick={onFilmImgClick}
           />}
@@ -103,28 +101,10 @@ Main.propTypes = {
   promotionTitle: PropTypes.string.isRequired,
   promotionGenre: PropTypes.string.isRequired,
   promotionReleaseDate: PropTypes.string.isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    videoSrc: PropTypes.string.isRequired,
-  })).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  films: state.films
-});
 
-export {Main};
-export default connect(mapStateToProps)(Main);
+export default Main;
 
