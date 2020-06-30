@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
         genre: action.payload
       });
     case ActionTypes.FILTERED_FILMS:
-      const filteredFilms = getFilteredFilms(state.genre, initialState.films);
+      const filteredFilms = getFilteredFilms(state.genre);
       return extend(state, {
         films: filteredFilms
       });
@@ -49,4 +49,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionTypes, ActionCreator};
+export {reducer, ActionTypes, ActionCreator, getFilteredFilms};
