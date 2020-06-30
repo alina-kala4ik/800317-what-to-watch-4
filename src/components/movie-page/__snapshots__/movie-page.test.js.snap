@@ -304,7 +304,7 @@ Array [
               autoPlay={false}
               height="175"
               loop={true}
-              poster="img/bohemian-rhapsody.jpg"
+              poster="img/we-need-to-talk-about-kevin.jpg"
               preload="none"
               src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
               width="280"
@@ -318,7 +318,7 @@ Array [
               href="movie-page.html"
               onClick={[Function]}
             >
-              Bohemian Rhapsody
+              We need to talk about Kevin
             </a>
           </h3>
         </article>
@@ -335,9 +335,9 @@ Array [
               autoPlay={false}
               height="175"
               loop={true}
-              poster="img/macbeth.jpg"
+              poster="img/revenant.jpg"
               preload="none"
-              src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
               width="280"
             />
           </div>
@@ -349,38 +349,7 @@ Array [
               href="movie-page.html"
               onClick={[Function]}
             >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <video
-              autoPlay={false}
-              height="175"
-              loop={true}
-              poster="img/aviator.jpg"
-              preload="none"
-              src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              Aviator
+              Revenant
             </a>
           </h3>
         </article>
