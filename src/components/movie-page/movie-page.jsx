@@ -1,7 +1,10 @@
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import Tabs from "./../tabs/tabs.jsx";
 import MovieList from "./../movie-list/movie-list.jsx";
+import {connect} from "react-redux";
+
+const DISPLAYED_NUMBER_SIMILAR_FILMS = 4;
 
 const getRatingLevel = (rating) => {
   const formattedRating = parseFloat(rating.replace(`,`, `.`));
@@ -30,7 +33,7 @@ const TABS = {
   reviews: `Reviews`,
 };
 
-class MoviePage extends Component {
+class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -47,11 +50,18 @@ class MoviePage extends Component {
     });
   }
 
+  getRelatedMovies(genre) {
+    const {films} = this.props;
+    const relatedMovies = films.filter((film)=>film.genre === genre).slice(0, DISPLAYED_NUMBER_SIMILAR_FILMS);
+    return relatedMovies;
+  }
+
   render() {
     const {film, onFilmTitleClick, onFilmImgClick} = this.props;
     const {title, posterSrc, movieCoverSrc, genre, yearRelease, description, rating, numberVotes, producer, actors, runTime} = film;
     const ratingLevel = getRatingLevel(rating);
     const listTabs = Object.values(TABS);
+    const relatedMovies = this.getRelatedMovies(genre);
     const {activeTab} = this.state;
 
     return <React.Fragment>
@@ -245,9 +255,9 @@ class MoviePage extends Component {
 
           <div className="catalog__movies-list">
             <MovieList
+              films={relatedMovies}
               onFilmTitleClick={onFilmTitleClick}
               onFilmImgClick={onFilmImgClick}
-              genre={genre}
             />
           </div>
         </section>
@@ -285,9 +295,28 @@ MoviePage.propTypes = {
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
     runTime: PropTypes.string.isRequired,
   }).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    screenshotSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    movieCoverSrc: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    yearRelease: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    numberVotes: PropTypes.string.isRequired,
+    producer: PropTypes.string.isRequired,
+    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.string.isRequired,
+  })).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
 };
 
-export default MoviePage;
+const mapStateToProps = (state) => ({
+  films: state.films
+});
+
+export {MoviePage};
+export default connect(mapStateToProps)(MoviePage);
 
