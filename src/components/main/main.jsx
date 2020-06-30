@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import MovieList from "./../movie-list/movie-list.jsx";
 import GenresList from "./../genres-list/genres-list.jsx";
 
+const DISPLAYED_NUMBER_OF_FILMS = 8;
+
 const Main = (props) => {
   const {promotionTitle, promotionGenre, promotionReleaseDate, onFilmTitleClick, onFilmImgClick} = props;
 
@@ -72,6 +74,7 @@ const Main = (props) => {
           {<MovieList
             onFilmTitleClick={onFilmTitleClick}
             onFilmImgClick={onFilmImgClick}
+            countFilms={DISPLAYED_NUMBER_OF_FILMS}
           />}
         </div>
 
