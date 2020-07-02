@@ -1,6 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import withPlayingCard from "./with-playing-card.jsx";
+
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -22,15 +27,21 @@ const mockComponent = () => <div />;
 
 const MockComponentWrapped = withPlayingCard(mockComponent);
 
-it(`render withPlayingCard`, ()=>{
-  const tree = renderer.create(
+it(`Should change prop isPlaying`, ()=>{
+  const wrapper = shallow(
       <MockComponentWrapped
         key={film.title}
         film={film}
         onFilmTitleClick={()=>{}}
         onFilmImgClick={()=>{}}
       />
-  ).toJSON();
+  );
 
-  expect(tree).toMatchSnapshot();
-});
+  expect(wrapper.props().isPlaying).toEqual(false);
+
+  wrapper.props().onMouseEnter();
+  expect(wrapper.props().isPlaying).toEqual(true);
+
+  wrapper.props().onMouseLeave();
+  expect(wrapper.props().isPlaying).toEqual(false);
+})
