@@ -28,7 +28,7 @@ const mockComponent = () => <div />;
 
 const MockComponentWrapped = withActiveTabs(mockComponent);
 
-it(`render withActiveTabs`, ()=>{
+it(`Should change activeTab`, ()=>{
   const wrapper = shallow(
       <MockComponentWrapped
         film={film}
