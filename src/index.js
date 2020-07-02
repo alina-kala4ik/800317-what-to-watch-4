@@ -4,6 +4,7 @@ import App from "./components/app/app.jsx";
 import {createStore} from "redux";
 import {reducer} from "./reducer.js";
 import {Provider} from "react-redux";
+import withActiveItem from "./hocs/with-active-item/with-active-item.jsx";
 
 const settings = {
   promotionTitle: `The Grand Budapest Hotel`,
@@ -16,10 +17,12 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );
 
+const AppWrapped = withActiveItem(App);
+
 const init = () => {
   ReactDOM.render(
       <Provider store={store}>
-        <App
+        <AppWrapped
           promotionTitle={settings.promotionTitle}
           promotionGenre={settings.promotionGenre}
           promotionReleaseDate={settings.promotionReleaseDate}

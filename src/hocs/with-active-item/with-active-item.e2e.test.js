@@ -26,9 +26,10 @@ const film = {
 
 const mockComponent = () => <div />;
 
-const MockComponentWrapped = withActiveItem(mockComponent, TABS.overview);
 
-it(`Should change activeTab`, ()=>{
+it(`Should change active tab`, ()=>{
+  const MockComponentWrapped = withActiveItem(mockComponent, TABS.overview);
+
   const wrapper = shallow(
       <MockComponentWrapped
         film={film}
@@ -44,4 +45,23 @@ it(`Should change activeTab`, ()=>{
 
   wrapper.props().onClick(TABS.reviews);
   expect(wrapper.props().activeItem).toEqual(TABS.reviews);
+});
+
+it(`Should change active film`, ()=>{
+  const MockComponentWrapped = withActiveItem(mockComponent);
+
+  const wrapper = shallow(
+      <MockComponentWrapped
+        promotionTitle={``}
+        promotionGenre={``}
+        promotionReleaseDate={``}
+        activeItem={false}
+        onClick={()=>{}}
+      />
+  );
+
+  expect(wrapper.props().activeItem).toEqual(false);
+
+  wrapper.props().onClick(film);
+  expect(wrapper.props().activeItem).toEqual(film);
 });
