@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import Tabs from "./../tabs/tabs.jsx";
 import MovieList from "./../movie-list/movie-list.jsx";
+import {TABS} from "./../../utils.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 
@@ -26,35 +27,16 @@ const getRatingLevel = (rating) => {
   return null;
 };
 
-const TABS = {
-  overview: `Overview`,
-  details: `Details`,
-  reviews: `Reviews`,
-};
-
 class MoviePage extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeTab: TABS.overview
-    };
-
-    this.handleTabClick = this.handleTabClick.bind(this);
-  }
-
-  handleTabClick(tab) {
-    this.setState({
-      activeTab: tab
-    });
   }
 
   render() {
-    const {film, onFilmTitleClick, onFilmImgClick} = this.props;
+    const {film, onFilmTitleClick, onFilmImgClick, activeTab, onTabClick} = this.props;
     const {title, posterSrc, movieCoverSrc, genre, yearRelease, description, rating, numberVotes, producer, actors, runTime} = film;
     const ratingLevel = getRatingLevel(rating);
     const listTabs = Object.values(TABS);
-    const {activeTab} = this.state;
 
     return <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -119,7 +101,7 @@ class MoviePage extends Component {
                 <Tabs
                   activeTab={activeTab}
                   listTabs={listTabs}
-                  onTabClick={this.handleTabClick}
+                  onTabClick={onTabClick}
                 />
               </nav>
 
@@ -290,6 +272,8 @@ MoviePage.propTypes = {
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
+  activeTab: PropTypes.string.isRequired,
+  onTabClick: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

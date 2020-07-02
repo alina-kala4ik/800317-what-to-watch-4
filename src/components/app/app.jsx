@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 import films from "./../../mocks/films.js";
+import withActiveTabs from "./../../hocs/with-active-tabs/with-active-tabs.jsx";
 
+const MoviePageWrapped = withActiveTabs(MoviePage);
 
 class App extends PureComponent {
   constructor(props) {
@@ -43,7 +45,7 @@ class App extends PureComponent {
       />;
     }
 
-    return <MoviePage
+    return <MoviePageWrapped
       film={this.state.selectedFilm}
       onFilmTitleClick={this.handleFilmTitleClick}
       onFilmImgClick={this.handleFilmImgClick}
@@ -57,7 +59,7 @@ class App extends PureComponent {
           {this._renderApp()}
         </Route>
         <Route exact path="/movie-page">
-          <MoviePage
+          <MoviePageWrapped
             film={films[0]}
             onFilmTitleClick={this.handleFilmTitleClick}
             onFilmImgClick={this.handleFilmImgClick}

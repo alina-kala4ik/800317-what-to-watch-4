@@ -4,6 +4,7 @@ import MoviePage from "./movie-page.jsx";
 import configureStore from "redux-mock-store";
 import {Genres} from "./../../utils.js";
 import {Provider} from "react-redux";
+import {TABS} from "./../../utils.js";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -160,6 +161,8 @@ it(`render MoviePage`, () => {
             films={films}
             onFilmTitleClick={()=>{}}
             onFilmImgClick={()=>{}}
+            activeTab={TABS.overview}
+            onTabClick={()=>{}}
           />
         </Provider>, {
           createNodeMock: ()=>{
