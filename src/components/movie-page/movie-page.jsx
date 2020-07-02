@@ -11,7 +11,7 @@ const DISPLAYED_NUMBER_OF_FILMS = 4;
 
 const MoviePage = (props) => {
   const {film, onFilmTitleClick, onFilmImgClick, activeItem, onClick} = props;
-  const {title, posterSrc, movieCoverSrc, genre, yearRelease, description, rating, numberVotes, producer, actors, runTime} = film;
+  const {title, posterSrc, movieCoverSrc, genre, yearRelease} = film;
   const listTabs = Object.values(Tabs);
 
   return <React.Fragment>
