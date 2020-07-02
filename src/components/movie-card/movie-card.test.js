@@ -21,11 +21,8 @@ it(`render MoveCard`, () => {
   const tree = renderer
     .create(<MoveCard
       film={film}
-      onMouseEnter={()=>{}}
-      onMouseLeave={()=>{}}
       onFilmTitleClick={()=>{}}
       onFilmImgClick={()=>{}}
-      isPlaying={false}
     />, {
       createNodeMock: ()=>{
         return {};

@@ -135,6 +135,7 @@ it(`render MovieList`, () => {
             films={films}
             onFilmTitleClick={()=>{}}
             onFilmImgClick={()=>{}}
+            countFilms={8}
           />
         </Provider>, {
           createNodeMock: ()=>{

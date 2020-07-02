@@ -22,28 +22,6 @@ const film = {
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
-
-it(`When you hover over a card with a movie, information about the movie enters the handler`, () => {
-  const onMouseEnter = jest.fn();
-  const expectedAnswer = `Fantastic Beasts: The Crimes of Grindelwald`;
-
-  const movieCard = shallow(
-      <MovieCard
-        film={film}
-        onMouseEnter={onMouseEnter}
-        onFilmTitleClick={()=>{}}
-        onFilmImgClick={()=>{}}
-      />
-  );
-
-  const card = movieCard.find(`article.small-movie-card`);
-
-  card.simulate(`mouseenter`);
-
-  expect(onMouseEnter).toHaveBeenCalledTimes(1);
-  expect(onMouseEnter.mock.calls[0][0]).toEqual(expectedAnswer);
-});
-
 it(`testing handleCardMouseEnter function`, ()=>{
   const expectedState = {isPlaying: true};
 
