@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Tabs from "./tabs.jsx";
+import Tabs from "./Tabs.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -9,7 +9,7 @@ Enzyme.configure({
 
 const listTabs = [`Overview`, `Details`, `Reviews`];
 
-it(`All tabs are clickable`, () => {
+it(`All Tabs are clickable`, () => {
   const onTabClick = jest.fn();
 
   const tabs = shallow(
@@ -20,9 +20,9 @@ it(`All tabs are clickable`, () => {
       />
   );
 
-  const tabsLinks = tabs.find(`a.movie-nav__link`);
+  const TabsLinks = tabs.find(`a.movie-nav__link`);
 
-  tabsLinks.forEach((tab)=>{
+  TabsLinks.forEach((tab)=>{
     tab.simulate(`click`);
   });
 

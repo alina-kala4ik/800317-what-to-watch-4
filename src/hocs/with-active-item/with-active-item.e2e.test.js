@@ -2,7 +2,7 @@ import React from "react";
 import withActiveItem from "./with-active-item.jsx";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {TABS} from "../../utils.js";
+import {Tabs} from "../../utils.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -28,7 +28,7 @@ const mockComponent = () => <div />;
 
 
 it(`Should change active tab`, ()=>{
-  const MockComponentWrapped = withActiveItem(mockComponent, TABS.overview);
+  const MockComponentWrapped = withActiveItem(mockComponent, Tabs.OVERVIEW);
 
   const wrapper = shallow(
       <MockComponentWrapped
@@ -38,13 +38,13 @@ it(`Should change active tab`, ()=>{
       />
   );
 
-  expect(wrapper.props().activeItem).toEqual(TABS.overview);
+  expect(wrapper.props().activeItem).toEqual(Tabs.OVERVIEW);
 
-  wrapper.props().onClick(TABS.details);
-  expect(wrapper.props().activeItem).toEqual(TABS.details);
+  wrapper.props().onClick(Tabs.DETAILS);
+  expect(wrapper.props().activeItem).toEqual(Tabs.DETAILS);
 
-  wrapper.props().onClick(TABS.reviews);
-  expect(wrapper.props().activeItem).toEqual(TABS.reviews);
+  wrapper.props().onClick(Tabs.REVIEWS);
+  expect(wrapper.props().activeItem).toEqual(Tabs.REVIEWS);
 });
 
 it(`Should change active film`, ()=>{
