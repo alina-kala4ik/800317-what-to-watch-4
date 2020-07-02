@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Tabs from "./Tabs.jsx";
+import Tabs from "./tabs.jsx";
 
 const listTabs = [`Overview`, `Details`, `Reviews`];
 
