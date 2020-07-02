@@ -5,7 +5,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 import films from "./../../mocks/films.js";
 import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
-import {Tabs} from "./../../utils.js"
+import {Tabs} from "./../../utils.js";
 
 const MoviePageWrapped = withActiveItem(MoviePage, Tabs.OVERVIEW);
 
