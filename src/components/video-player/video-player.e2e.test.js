@@ -7,24 +7,8 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`The component has a playback state`, () => {
-  const expectedState = {isPlaying: true};
 
-  const videoPlayer = mount(
-      <VideoPlayer
-        src={`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`}
-        poster={`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`}
-        isPlaying={true}
-      />
-  );
-
-  const state = videoPlayer.state();
-
-  expect(state).toMatchObject(expectedState);
-});
-
-it(`The component has a pause state`, () => {
-  const expectedState = {isPlaying: false};
+it(`Testing play`, () => {
 
   const videoPlayer = mount(
       <VideoPlayer
@@ -34,7 +18,31 @@ it(`The component has a pause state`, () => {
       />
   );
 
-  const state = videoPlayer.state();
+  jest.spyOn(videoPlayer.instance(), `onPlay`);
+  videoPlayer.instance().componentDidMount();
 
-  expect(state).toMatchObject(expectedState);
+  videoPlayer.setProps({isPlaying: true});
+
+  expect(videoPlayer.instance().onPlay).toHaveBeenCalledTimes(1);
+});
+
+it(`Testing load`, () => {
+
+  window.HTMLMediaElement.prototype.load = () => {};
+
+  const videoPlayer = mount(
+      <VideoPlayer
+        src={`https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`}
+        poster={`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`}
+        isPlaying={true}
+      />
+  );
+
+  const {_videoRef} = videoPlayer.instance();
+  jest.spyOn(_videoRef.current, `load`);
+  videoPlayer.instance().componentDidMount();
+
+  videoPlayer.setProps({isPlaying: false});
+
+  expect(_videoRef.current.load).toHaveBeenCalledTimes(1);
 });
