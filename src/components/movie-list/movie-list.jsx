@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import MovieCard from "./../movie-card/movie-card.jsx";
 import {connect} from "react-redux";
@@ -8,23 +8,17 @@ import withPlayingCard from "./../../hocs/with-playing-card/with-playing-card.js
 
 const MovieCardWrapped = withPlayingCard(MovieCard);
 
-class MovieList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MovieList = (props) => {
+  const {films, onFilmTitleClick, onFilmImgClick} = props;
 
-  render() {
-    const {films, onFilmTitleClick, onFilmImgClick} = this.props;
-
-    return films.map((film) =>
-      <MovieCardWrapped
-        key={film.title}
-        film={film}
-        onFilmTitleClick={onFilmTitleClick}
-        onFilmImgClick={onFilmImgClick}
-      />);
-  }
-}
+  return films.map((film) =>
+    <MovieCardWrapped
+      key={film.title}
+      film={film}
+      onFilmTitleClick={onFilmTitleClick}
+      onFilmImgClick={onFilmImgClick}
+    />);
+};
 
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({

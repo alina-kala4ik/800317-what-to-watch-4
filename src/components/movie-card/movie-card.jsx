@@ -1,46 +1,40 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import VideoPlayer from "./../video-player/video-player.jsx";
 
-class MovieCard extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MovieCard = (props) => {
+  const {film, onFilmTitleClick, onFilmImgClick, isPlaying, onMouseEnter, onMouseLeave} = props;
+  const {title, screenshotSrc, videoSrc} = film;
 
-  render() {
-    const {film, onFilmTitleClick, onFilmImgClick, isPlaying, onMouseEnter, onMouseLeave} = this.props;
-    const {title, screenshotSrc, videoSrc} = film;
-
-    return <article
-      className="small-movie-card catalog__movies-card"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+  return <article
+    className="small-movie-card catalog__movies-card"
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+  >
+    <div
+      className="small-movie-card__image"
+      onClick={()=>{
+        onFilmImgClick(film);
+      }}
     >
-      <div
-        className="small-movie-card__image"
-        onClick={()=>{
-          onFilmImgClick(film);
+      <VideoPlayer
+        src={videoSrc}
+        poster={screenshotSrc}
+        isPlaying={isPlaying}
+      />
+    </div>
+    <h3 className="small-movie-card__title">
+      <a
+        onClick={(evt)=>{
+          evt.preventDefault();
+          onFilmTitleClick(film);
         }}
-      >
-        <VideoPlayer
-          src={videoSrc}
-          poster={screenshotSrc}
-          isPlaying={isPlaying}
-        />
-      </div>
-      <h3 className="small-movie-card__title">
-        <a
-          onClick={(evt)=>{
-            evt.preventDefault();
-            onFilmTitleClick(film);
-          }}
-          className="small-movie-card__link"
-          href="movie-page.html"
-        >{title}</a>
-      </h3>
-    </article>;
-  }
-}
+        className="small-movie-card__link"
+        href="movie-page.html"
+      >{title}</a>
+    </h3>
+  </article>;
+};
 
 MovieCard.propTypes = {
   film: PropTypes.shape({
