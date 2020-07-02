@@ -23,6 +23,9 @@ it(`render MoveCard`, () => {
       film={film}
       onFilmTitleClick={()=>{}}
       onFilmImgClick={()=>{}}
+      isPlaying={false}
+      onMouseEnter={()=>{}}
+      onMouseLeave={()=>{}}
     />, {
       createNodeMock: ()=>{
         return {};

@@ -22,52 +22,43 @@ const film = {
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
-it(`testing handleCardMouseEnter function`, ()=>{
-  const expectedState = {isPlaying: true};
+it(`testing MouseEnter`, ()=>{
+  const onMouseEnter = jest.fn();
 
   const movieCard = shallow(
       <MovieCard
         film={film}
-        onMouseEnter={()=>{}}
         onFilmTitleClick={()=>{}}
         onFilmImgClick={()=>{}}
+        isPlaying={false}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={()=>{}}
       />
   );
-
-  movieCard.setState({
-    isPlaying: false
-  });
 
   const card = movieCard.find(`article.small-movie-card`);
 
   card.simulate(`mouseenter`);
 
-  const state = movieCard.state();
-
-  expect(state).toMatchObject(expectedState);
+  expect(onMouseEnter).toHaveBeenCalledTimes(1);
 });
 
-it(`testing handleCardMouseLeave function`, ()=>{
-  const expectedState = {isPlaying: false};
+it(`testing MouseLeave`, ()=>{
+  const onMouseLeave = jest.fn();
 
   const movieCard = shallow(
       <MovieCard
         film={film}
-        onMouseEnter={()=>{}}
         onFilmTitleClick={()=>{}}
         onFilmImgClick={()=>{}}
+        isPlaying={false}
+        onMouseEnter={()=>{}}
+        onMouseLeave={onMouseLeave}
       />
   );
 
-  movieCard.setState({
-    isPlaying: true
-  });
-
   const card = movieCard.find(`article.small-movie-card`);
-
   card.simulate(`mouseleave`);
 
-  const state = movieCard.state();
-
-  expect(state).toMatchObject(expectedState);
+  expect(onMouseLeave).toHaveBeenCalledTimes(1);
 });

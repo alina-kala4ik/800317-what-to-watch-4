@@ -5,38 +5,16 @@ import VideoPlayer from "./../video-player/video-player.jsx";
 class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isPlaying: false
-    };
-
-    this.handleCardMouseEnter = this.handleCardMouseEnter.bind(this);
-    this.handleCardMouseLeave = this.handleCardMouseLeave.bind(this);
-  }
-
-  handleCardMouseEnter() {
-    this.setState({
-      isPlaying: true
-    });
-  }
-
-  handleCardMouseLeave() {
-    this.setState({
-      isPlaying: false
-    });
   }
 
   render() {
-    const {film, onFilmTitleClick, onFilmImgClick} = this.props;
+    const {film, onFilmTitleClick, onFilmImgClick, isPlaying, onMouseEnter, onMouseLeave} = this.props;
     const {title, screenshotSrc, videoSrc} = film;
-    const {isPlaying} = this.state;
 
     return <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={()=>{
-        this.handleCardMouseEnter();
-      }}
-      onMouseLeave={this.handleCardMouseLeave}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div
         className="small-movie-card__image"
@@ -81,6 +59,9 @@ MovieCard.propTypes = {
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 export default MovieCard;

@@ -4,6 +4,9 @@ import MovieCard from "./../movie-card/movie-card.jsx";
 import {connect} from "react-redux";
 import {Genres} from "./../../utils.js";
 import {getFilteredFilms} from "./../../reducer.js";
+import withPlayingCard from "./../../hocs/with-playing-card/with-playing-card.jsx";
+
+const MovieCardWrapped = withPlayingCard(MovieCard);
 
 class MovieList extends PureComponent {
   constructor(props) {
@@ -14,7 +17,7 @@ class MovieList extends PureComponent {
     const {films, onFilmTitleClick, onFilmImgClick} = this.props;
 
     return films.map((film) =>
-      <MovieCard
+      <MovieCardWrapped
         key={film.title}
         film={film}
         onFilmTitleClick={onFilmTitleClick}
