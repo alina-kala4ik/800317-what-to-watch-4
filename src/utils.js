@@ -15,4 +15,10 @@ const Genres = {
   THRILLERS: `Thrillers`,
 };
 
-export {extend, Genres};
+const TABS = {
+  overview: `Overview`,
+  details: `Details`,
+  reviews: `Reviews`,
+};
+
+export {extend, Genres, TABS};
