@@ -10,50 +10,30 @@ import {TABS} from "./../../utils.js"
 const MoviePageWrapped = withActiveItem(MoviePage, TABS.overview);
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedFilm: null,
-    };
-
-    this.handleFilmTitleClick = this.handleFilmTitleClick.bind(this);
-    this.handleFilmImgClick = this.handleFilmImgClick.bind(this);
-  }
-
-  handleFilmTitleClick(film) {
-    this.setState({
-      selectedFilm: film
-    });
-  }
-
-  handleFilmImgClick(film) {
-    this.setState({
-      selectedFilm: film
-    });
-  }
 
   _renderApp() {
-    const {promotionTitle, promotionGenre, promotionReleaseDate} = this.props;
+    const {promotionTitle, promotionGenre, promotionReleaseDate, activeItem, onClick} = this.props;
 
-    if (this.state.selectedFilm === null) {
+    if (activeItem === false) {
       return <Main
         promotionTitle={promotionTitle}
         promotionGenre={promotionGenre}
         promotionReleaseDate={promotionReleaseDate}
-        onFilmTitleClick={this.handleFilmTitleClick}
-        onFilmImgClick={this.handleFilmImgClick}
+        onFilmTitleClick={onClick}
+        onFilmImgClick={onClick}
       />;
     }
 
     return <MoviePageWrapped
-      film={this.state.selectedFilm}
-      onFilmTitleClick={this.handleFilmTitleClick}
-      onFilmImgClick={this.handleFilmImgClick}
+      film={activeItem}
+      onFilmTitleClick={onClick}
+      onFilmImgClick={onClick}
     />;
   }
 
   render() {
+    const {onClick} = this.props;
+
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
@@ -62,8 +42,8 @@ class App extends PureComponent {
         <Route exact path="/movie-page">
           <MoviePageWrapped
             film={films[0]}
-            onFilmTitleClick={this.handleFilmTitleClick}
-            onFilmImgClick={this.handleFilmImgClick}
+            onFilmTitleClick={onClick}
+            onFilmImgClick={onClick}
           />
         </Route>
       </Switch>
@@ -75,6 +55,26 @@ App.propTypes = {
   promotionTitle: PropTypes.string.isRequired,
   promotionGenre: PropTypes.string.isRequired,
   promotionReleaseDate: PropTypes.string.isRequired,
+  activeItem: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      screenshotSrc: PropTypes.string.isRequired,
+      posterSrc: PropTypes.string.isRequired,
+      movieCoverSrc: PropTypes.string.isRequired,
+      genre: PropTypes.string.isRequired,
+      yearRelease: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      rating: PropTypes.string.isRequired,
+      numberVotes: PropTypes.string.isRequired,
+      producer: PropTypes.string.isRequired,
+      actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+      runTime: PropTypes.string.isRequired,
+    }),
+  ]).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default App;
+
+

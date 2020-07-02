@@ -22,12 +22,26 @@ const mockComponent = () => <div />;
 
 const MockComponentWrapped = withActiveItem(mockComponent);
 
-it(`render withActiveItem`, ()=>{
+it(`render movie page`, ()=>{
   const tree = renderer.create(
       <MockComponentWrapped
         film={film}
         onFilmTitleClick={()=>{}}
         onFilmImgClick={()=>{}}
+      />
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`render main`, ()=>{
+  const tree = renderer.create(
+      <MockComponentWrapped
+        promotionTitle={``}
+        promotionGenre={``}
+        promotionReleaseDate={``}
+        activeItem={false}
+        onClick={()=>{}}
       />
   ).toJSON();
 
