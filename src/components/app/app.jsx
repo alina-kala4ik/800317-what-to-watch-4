@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 import films from "./../../mocks/films.js";
-import withActiveTabs from "./../../hocs/with-active-tabs/with-active-tabs.jsx";
+import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
+import {TABS} from "./../../utils.js"
 
-const MoviePageWrapped = withActiveTabs(MoviePage);
+const MoviePageWrapped = withActiveItem(MoviePage, TABS.overview);
 
 class App extends PureComponent {
   constructor(props) {

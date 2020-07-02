@@ -1,5 +1,5 @@
 import React from "react";
-import withActiveTabs from "./with-active-tabs.jsx";
+import withActiveItem from "./with-active-item.jsx";
 import renderer from "react-test-renderer";
 
 const film = {
@@ -20,9 +20,9 @@ const film = {
 
 const mockComponent = () => <div />;
 
-const MockComponentWrapped = withActiveTabs(mockComponent);
+const MockComponentWrapped = withActiveItem(mockComponent);
 
-it(`render withActiveTabs`, ()=>{
+it(`render withActiveItem`, ()=>{
   const tree = renderer.create(
       <MockComponentWrapped
         film={film}
