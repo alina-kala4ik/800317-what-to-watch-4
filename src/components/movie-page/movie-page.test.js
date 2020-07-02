@@ -161,8 +161,8 @@ it(`render MoviePage`, () => {
             films={films}
             onFilmTitleClick={()=>{}}
             onFilmImgClick={()=>{}}
-            activeTab={TABS.overview}
-            onTabClick={()=>{}}
+            activeItem={TABS.overview}
+            onClick={()=>{}}
           />
         </Provider>, {
           createNodeMock: ()=>{

@@ -33,7 +33,7 @@ class MoviePage extends Component {
   }
 
   render() {
-    const {film, onFilmTitleClick, onFilmImgClick, activeTab, onTabClick} = this.props;
+    const {film, onFilmTitleClick, onFilmImgClick, activeItem, onClick} = this.props;
     const {title, posterSrc, movieCoverSrc, genre, yearRelease, description, rating, numberVotes, producer, actors, runTime} = film;
     const ratingLevel = getRatingLevel(rating);
     const listTabs = Object.values(TABS);
@@ -99,13 +99,13 @@ class MoviePage extends Component {
             <div className="movie-card__desc">
               <nav className="movie-nav movie-card__nav">
                 <Tabs
-                  activeTab={activeTab}
+                  activeTab={activeItem}
                   listTabs={listTabs}
-                  onTabClick={onTabClick}
+                  onTabClick={onClick}
                 />
               </nav>
 
-              {activeTab === TABS.overview &&
+              {activeItem === TABS.overview &&
               <React.Fragment>
                 <div className="movie-rating">
                   <div className="movie-rating__score">{rating}</div>
@@ -123,7 +123,7 @@ class MoviePage extends Component {
                 </div>
               </React.Fragment>}
 
-              {activeTab === TABS.details &&
+              {activeItem === TABS.details &&
                 <div className="movie-card__text movie-card__row">
                   <div className="movie-card__text-col">
                     <p className="movie-card__details-item">
@@ -159,7 +159,7 @@ class MoviePage extends Component {
                   </div>
                 </div>}
 
-              {activeTab === TABS.reviews &&
+              {activeItem === TABS.reviews &&
                 <div className="movie-card__reviews movie-card__row">
                   <div className="movie-card__reviews-col">
                     <div className="review">
@@ -272,8 +272,8 @@ MoviePage.propTypes = {
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
-  activeTab: PropTypes.string.isRequired,
-  onTabClick: PropTypes.func.isRequired,
+  activeItem: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default MoviePage;
