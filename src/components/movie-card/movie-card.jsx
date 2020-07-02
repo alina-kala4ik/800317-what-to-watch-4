@@ -27,14 +27,13 @@ class MovieCard extends PureComponent {
   }
 
   render() {
-    const {film, onMouseEnter, onFilmTitleClick, onFilmImgClick} = this.props;
+    const {film, onFilmTitleClick, onFilmImgClick} = this.props;
     const {title, screenshotSrc, videoSrc} = film;
     const {isPlaying} = this.state;
 
     return <article
       className="small-movie-card catalog__movies-card"
       onMouseEnter={()=>{
-        onMouseEnter(title);
         this.handleCardMouseEnter();
       }}
       onMouseLeave={this.handleCardMouseLeave}
@@ -80,7 +79,6 @@ MovieCard.propTypes = {
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
     videoSrc: PropTypes.string.isRequired
   }).isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
 };

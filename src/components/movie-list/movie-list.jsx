@@ -8,16 +8,6 @@ import {getFilteredFilms} from "./../../reducer.js";
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeFilmTitle: null
-    };
-
-    this.handleCardMouseEnter = this.handleCardMouseEnter.bind(this);
-  }
-
-  handleCardMouseEnter(filmTitle) {
-    this.setState({activeFilmTitle: filmTitle});
   }
 
   render() {
@@ -27,8 +17,6 @@ class MovieList extends PureComponent {
       <MovieCard
         key={film.title}
         film={film}
-        onMouseEnter={this.handleCardMouseEnter}
-        onMouseLeave={this.handleCardMouseLeave}
         onFilmTitleClick={onFilmTitleClick}
         onFilmImgClick={onFilmImgClick}
       />);
