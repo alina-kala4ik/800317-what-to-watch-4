@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import Tabs from "./../tabs/tabs.jsx";
+import TabsComponent from "./../tabs/tabs.jsx";
 import MovieList from "./../movie-list/movie-list.jsx";
-import {TABS} from "./../../utils.js";
+import {Tabs} from "./../../utils.js";
 import TabOverview from "./../tab-overview/tab-overview.jsx";
 import TabDetails from "./../tab-details/tab-details.jsx";
 import TabReviews from "./../tab-reviews/tab-reviews.jsx";
@@ -12,7 +12,7 @@ const DISPLAYED_NUMBER_OF_FILMS = 4;
 const MoviePage = (props) => {
   const {film, onFilmTitleClick, onFilmImgClick, activeItem, onClick} = props;
   const {title, posterSrc, movieCoverSrc, genre, yearRelease, description, rating, numberVotes, producer, actors, runTime} = film;
-  const listTabs = Object.values(TABS);
+  const listTabs = Object.values(Tabs);
 
   return <React.Fragment>
     <section className="movie-card movie-card--full">
@@ -74,22 +74,22 @@ const MoviePage = (props) => {
 
           <div className="movie-card__desc">
             <nav className="movie-nav movie-card__nav">
-              <Tabs
+              <TabsComponent
                 activeTab={activeItem}
                 listTabs={listTabs}
                 onTabClick={onClick}
               />
             </nav>
 
-            {activeItem === TABS.overview &&
+            {activeItem === Tabs.OVERVIEW &&
             <TabOverview film={film}/>
             }
 
-            {activeItem === TABS.details &&
+            {activeItem === Tabs.DETAILS &&
             <TabDetails film={film} />
             }
 
-            {activeItem === TABS.reviews &&
+            {activeItem === Tabs.REVIEWS &&
             <TabReviews />
             }
 

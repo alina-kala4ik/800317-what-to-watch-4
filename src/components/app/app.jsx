@@ -5,9 +5,9 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 import films from "./../../mocks/films.js";
 import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
-import {TABS} from "./../../utils.js"
+import {Tabs} from "./../../utils.js"
 
-const MoviePageWrapped = withActiveItem(MoviePage, TABS.overview);
+const MoviePageWrapped = withActiveItem(MoviePage, Tabs.OVERVIEW);
 
 class App extends PureComponent {
 
