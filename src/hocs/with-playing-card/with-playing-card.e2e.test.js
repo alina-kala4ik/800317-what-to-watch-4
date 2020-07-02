@@ -44,4 +44,5 @@ it(`Should change prop isPlaying`, ()=>{
 
   wrapper.props().onMouseLeave();
   expect(wrapper.props().isPlaying).toEqual(false);
-})
+});
+
