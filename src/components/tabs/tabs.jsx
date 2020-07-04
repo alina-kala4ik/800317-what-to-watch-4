@@ -12,7 +12,8 @@ const Tabs = (props) => {
         <a
           href="#"
           className="movie-nav__link"
-          onClick={()=>{
+          onClick={(evt)=>{
+            evt.preventDefault();
             onTabClick(tab);
           }}
         >
