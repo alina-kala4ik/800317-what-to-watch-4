@@ -150,7 +150,7 @@ it(`render App`, () => {
             promotionGenre={settings.promotionGenre}
             promotionReleaseDate={settings.promotionReleaseDate}
             activeItem={false}
-            onClick={()=>{}}
+            setActiveItem={()=>{}}
           />
         </Provider>, {
           createNodeMock: ()=>{
