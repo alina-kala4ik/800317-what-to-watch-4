@@ -9,8 +9,9 @@ Enzyme.configure({
 
 const listTabs = [`Overview`, `Details`, `Reviews`];
 
-it(`All Tabs are clickable`, () => {
+it(`All Tabs are clickable width PreventDefault`, () => {
   const onTabClick = jest.fn();
+  const formPreventDefault = jest.fn();
 
   const tabs = shallow(
       <Tabs
@@ -23,7 +24,9 @@ it(`All Tabs are clickable`, () => {
   const TabsLinks = tabs.find(`a.movie-nav__link`);
 
   TabsLinks.forEach((tab)=>{
-    tab.simulate(`click`);
+    tab.simulate(`click`, {
+      preventDefault: formPreventDefault
+    });
   });
 
   expect(onTabClick).toHaveBeenCalledTimes(3);
@@ -44,7 +47,7 @@ it(`When you click on the tab, the expected information is transmitted`, ()=>{
 
   const tabLink = tabs.find(`a.movie-nav__link`).at(0);
 
-  tabLink.simulate(`click`);
+  tabLink.simulate(`click`, {preventDefault() {}});
 
   expect(onTabClick.mock.calls[0][0]).toEqual(expectedAnswer);
 });
