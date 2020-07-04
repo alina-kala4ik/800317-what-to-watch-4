@@ -1,18 +1,17 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import TabsComponent from "./../tabs/tabs.jsx";
 import MovieList from "./../movie-list/movie-list.jsx";
+import AboutFilm from "./../about-film/about-film.jsx";
+import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
 import {Tabs} from "./../../utils.js";
-import TabOverview from "./../tab-overview/tab-overview.jsx";
-import TabDetails from "./../tab-details/tab-details.jsx";
-import TabReviews from "./../tab-reviews/tab-reviews.jsx";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 
+const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
+
 const MoviePage = (props) => {
-  const {film, onFilmTitleClick, onFilmImgClick, activeItem: activeTab, setActiveItem: onTabClick} = props;
+  const {film, onFilmTitleClick, onFilmImgClick} = props;
   const {title, posterSrc, movieCoverSrc, genre, yearRelease} = film;
-  const listTabs = Object.values(Tabs);
 
   return <React.Fragment>
     <section className="movie-card movie-card--full">
@@ -72,28 +71,9 @@ const MoviePage = (props) => {
             <img src={movieCoverSrc} alt={title} width="218" height="327" />
           </div>
 
-          <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <TabsComponent
-                activeTab={activeTab}
-                listTabs={listTabs}
-                onTabClick={onTabClick}
-              />
-            </nav>
-
-            {activeTab === Tabs.OVERVIEW &&
-            <TabOverview film={film}/>
-            }
-
-            {activeTab === Tabs.DETAILS &&
-            <TabDetails film={film} />
-            }
-
-            {activeTab === Tabs.REVIEWS &&
-            <TabReviews />
-            }
-
-          </div>
+          <AboutFilmWrapped
+            film={film}
+          />
         </div>
       </div>
     </section>
@@ -145,8 +125,6 @@ MoviePage.propTypes = {
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
-  activeItem: PropTypes.string.isRequired,
-  setActiveItem: PropTypes.func.isRequired,
 };
 
 export default MoviePage;
