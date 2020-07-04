@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 import films from "./../../mocks/films.js";
-import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
-import {Tabs} from "./../../utils.js";
-
-const MoviePageWrapped = withActiveItem(MoviePage, Tabs.OVERVIEW);
 
 class App extends PureComponent {
 
@@ -24,7 +20,7 @@ class App extends PureComponent {
       />;
     }
 
-    return <MoviePageWrapped
+    return <MoviePage
       film={activeFilm}
       onFilmTitleClick={onFilmOrImgClick}
       onFilmImgClick={onFilmOrImgClick}
@@ -32,7 +28,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {onFilmOrImgClick} = this.props;
+    const {setActiveItem: onFilmOrImgClick} = this.props;
 
     return <BrowserRouter>
       <Switch>
@@ -40,7 +36,7 @@ class App extends PureComponent {
           {this._renderApp()}
         </Route>
         <Route exact path="/movie-page">
-          <MoviePageWrapped
+          <MoviePage
             film={films[0]}
             onFilmTitleClick={onFilmOrImgClick}
             onFilmImgClick={onFilmOrImgClick}
