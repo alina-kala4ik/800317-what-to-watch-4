@@ -9,10 +9,10 @@ const withActiveItem = (Component, startingItemValue = false) => {
         activeItem: startingItemValue
       };
 
-      this.handleClick = this.handleClick.bind(this);
+      this.setActiveItem = this.setActiveItem.bind(this);
     }
 
-    handleClick(item) {
+    setActiveItem(item) {
       this.setState({
         activeItem: item
       });
@@ -24,7 +24,7 @@ const withActiveItem = (Component, startingItemValue = false) => {
       return <Component
         {...this.props}
         activeItem={activeItem}
-        onClick={this.handleClick}
+        setActiveItem={this.setActiveItem}
       />;
     }
   }

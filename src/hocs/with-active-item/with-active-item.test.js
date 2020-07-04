@@ -41,7 +41,7 @@ it(`render main`, ()=>{
         promotionGenre={``}
         promotionReleaseDate={``}
         activeItem={false}
-        onClick={()=>{}}
+        setActiveItem={()=>{}}
       />
   ).toJSON();
 

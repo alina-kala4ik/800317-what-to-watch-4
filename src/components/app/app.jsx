@@ -12,27 +12,27 @@ const MoviePageWrapped = withActiveItem(MoviePage, Tabs.OVERVIEW);
 class App extends PureComponent {
 
   _renderApp() {
-    const {promotionTitle, promotionGenre, promotionReleaseDate, activeItem, onClick} = this.props;
+    const {promotionTitle, promotionGenre, promotionReleaseDate, activeItem: activeFilm, setActiveItem: onFilmOrImgClick} = this.props;
 
-    if (activeItem === false) {
+    if (activeFilm === false) {
       return <Main
         promotionTitle={promotionTitle}
         promotionGenre={promotionGenre}
         promotionReleaseDate={promotionReleaseDate}
-        onFilmTitleClick={onClick}
-        onFilmImgClick={onClick}
+        onFilmTitleClick={onFilmOrImgClick}
+        onFilmImgClick={onFilmOrImgClick}
       />;
     }
 
     return <MoviePageWrapped
-      film={activeItem}
-      onFilmTitleClick={onClick}
-      onFilmImgClick={onClick}
+      film={activeFilm}
+      onFilmTitleClick={onFilmOrImgClick}
+      onFilmImgClick={onFilmOrImgClick}
     />;
   }
 
   render() {
-    const {onClick} = this.props;
+    const {onFilmOrImgClick} = this.props;
 
     return <BrowserRouter>
       <Switch>
@@ -42,8 +42,8 @@ class App extends PureComponent {
         <Route exact path="/movie-page">
           <MoviePageWrapped
             film={films[0]}
-            onFilmTitleClick={onClick}
-            onFilmImgClick={onClick}
+            onFilmTitleClick={onFilmOrImgClick}
+            onFilmImgClick={onFilmOrImgClick}
           />
         </Route>
       </Switch>
@@ -72,7 +72,7 @@ App.propTypes = {
       runTime: PropTypes.string.isRequired,
     }),
   ]).isRequired,
-  onClick: PropTypes.func.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
 };
 
 export default App;

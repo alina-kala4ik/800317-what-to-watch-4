@@ -40,10 +40,10 @@ it(`Should change active tab`, ()=>{
 
   expect(wrapper.props().activeItem).toEqual(Tabs.OVERVIEW);
 
-  wrapper.props().onClick(Tabs.DETAILS);
+  wrapper.props().setActiveItem(Tabs.DETAILS);
   expect(wrapper.props().activeItem).toEqual(Tabs.DETAILS);
 
-  wrapper.props().onClick(Tabs.REVIEWS);
+  wrapper.props().setActiveItem(Tabs.REVIEWS);
   expect(wrapper.props().activeItem).toEqual(Tabs.REVIEWS);
 });
 
@@ -56,12 +56,12 @@ it(`Should change active film`, ()=>{
         promotionGenre={``}
         promotionReleaseDate={``}
         activeItem={false}
-        onClick={()=>{}}
+        setActiveItem={()=>{}}
       />
   );
 
   expect(wrapper.props().activeItem).toEqual(false);
 
-  wrapper.props().onClick(film);
+  wrapper.props().setActiveItem(film);
   expect(wrapper.props().activeItem).toEqual(film);
 });

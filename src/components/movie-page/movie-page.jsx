@@ -10,7 +10,7 @@ import TabReviews from "./../tab-reviews/tab-reviews.jsx";
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 
 const MoviePage = (props) => {
-  const {film, onFilmTitleClick, onFilmImgClick, activeItem, onClick} = props;
+  const {film, onFilmTitleClick, onFilmImgClick, activeItem: activeTab, setActiveItem: onTabClick} = props;
   const {title, posterSrc, movieCoverSrc, genre, yearRelease} = film;
   const listTabs = Object.values(Tabs);
 
@@ -75,21 +75,21 @@ const MoviePage = (props) => {
           <div className="movie-card__desc">
             <nav className="movie-nav movie-card__nav">
               <TabsComponent
-                activeTab={activeItem}
+                activeTab={activeTab}
                 listTabs={listTabs}
-                onTabClick={onClick}
+                onTabClick={onTabClick}
               />
             </nav>
 
-            {activeItem === Tabs.OVERVIEW &&
+            {activeTab === Tabs.OVERVIEW &&
             <TabOverview film={film}/>
             }
 
-            {activeItem === Tabs.DETAILS &&
+            {activeTab === Tabs.DETAILS &&
             <TabDetails film={film} />
             }
 
-            {activeItem === Tabs.REVIEWS &&
+            {activeTab === Tabs.REVIEWS &&
             <TabReviews />
             }
 
@@ -146,7 +146,7 @@ MoviePage.propTypes = {
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
   activeItem: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
 };
 
 export default MoviePage;
