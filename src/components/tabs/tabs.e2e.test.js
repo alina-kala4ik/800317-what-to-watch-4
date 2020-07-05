@@ -11,7 +11,7 @@ const listTabs = [`Overview`, `Details`, `Reviews`];
 
 it(`All Tabs are clickable width PreventDefault`, () => {
   const onTabClick = jest.fn();
-  const formPreventDefault = jest.fn();
+  const tabPreventDefault = jest.fn();
 
   const tabs = shallow(
       <Tabs
@@ -25,11 +25,12 @@ it(`All Tabs are clickable width PreventDefault`, () => {
 
   TabsLinks.forEach((tab)=>{
     tab.simulate(`click`, {
-      preventDefault: formPreventDefault
+      preventDefault: tabPreventDefault
     });
   });
 
   expect(onTabClick).toHaveBeenCalledTimes(3);
+  expect(tabPreventDefault).toHaveBeenCalledTimes(3);
 });
 
 
