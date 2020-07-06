@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 import films from "./../../mocks/films.js";
+import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 
 class App extends PureComponent {
 
@@ -18,6 +19,10 @@ class App extends PureComponent {
         onFilmTitleClick={onFilmOrImgClick}
         onFilmImgClick={onFilmOrImgClick}
       />;
+    }
+
+    if (isPlaying) {
+      return <MovieViewingPage />;
     }
 
     return <MoviePage
@@ -41,6 +46,9 @@ class App extends PureComponent {
             onFilmTitleClick={onFilmOrImgClick}
             onFilmImgClick={onFilmOrImgClick}
           />
+        </Route>
+        <Route exact path="/movie">
+          <MovieViewingPage />
         </Route>
       </Switch>
     </BrowserRouter>;
