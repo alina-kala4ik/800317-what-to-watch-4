@@ -4,13 +4,15 @@ import MovieList from "./../movie-list/movie-list.jsx";
 import AboutFilm from "./../about-film/about-film.jsx";
 import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
 import {Tabs} from "./../../utils.js";
+import {connect} from "react-redux";
+import {ActionCreator} from "./../../reducer.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 
 const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
 
 const MoviePage = (props) => {
-  const {film, onFilmTitleClick, onFilmImgClick} = props;
+  const {film, onFilmTitleClick, onFilmImgClick, onPlayClick} = props;
   const {title, posterSrc, movieCoverSrc, genre, yearRelease} = film;
 
   return <React.Fragment>
@@ -50,6 +52,9 @@ const MoviePage = (props) => {
               <button
                 className="btn btn--play movie-card__button"
                 type="button"
+                onClick={()=>{
+                  onPlayClick(film);
+                }}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
@@ -128,7 +133,15 @@ MoviePage.propTypes = {
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
+  onPlayClick: PropTypes.func.isRequired,
 };
 
-export default MoviePage;
+const mapDispatchToProps = (dispatch) => ({
+  onPlayClick(film) {
+    dispatch(ActionCreator.chooseMovieToWatch(film));
+  }
+});
+
+export {MoviePage};
+export default connect(null, mapDispatchToProps)(MoviePage);
 
