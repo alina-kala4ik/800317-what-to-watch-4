@@ -1,12 +1,11 @@
 import React from "react";
-import films from "./../../mocks/films.js";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer.js";
+import PropTypes from "prop-types";
 
 const Promo = (props) => {
-  const film = films[0];
+  const {onPlayClick, film} = props;
   const {title, posterSrc, movieCoverSrc, genre, yearRelease} = film;
-  const {onPlayClick} = props;
 
   return <section className="movie-card">
     <div className="movie-card__bg">
@@ -70,6 +69,32 @@ const Promo = (props) => {
   </section>;
 };
 
+Promo.propTypes = {
+  onPlayClick: PropTypes.func.isRequired,
+  film: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    screenshotSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    movieCoverSrc: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    yearRelease: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    numberVotes: PropTypes.string.isRequired,
+    producer: PropTypes.string.isRequired,
+    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.string.isRequired,
+  }),
+};
+
+const mapStateToProps = (state) => {
+  const film = state.films[0];
+
+  return {
+    film
+  };
+};
+
 const mapDispatchToProps = (dispatch) => ({
   onPlayClick(film) {
     dispatch(ActionCreator.chooseMovieToWatch(film));
@@ -77,4 +102,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {Promo};
-export default connect(null, mapDispatchToProps)(Promo);
+export default connect(mapStateToProps, mapDispatchToProps)(Promo);
