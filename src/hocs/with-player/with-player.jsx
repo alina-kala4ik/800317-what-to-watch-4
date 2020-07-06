@@ -84,7 +84,7 @@ const withPlayer = (Component) =>{
       const {isPlaying} = this.state;
       const video = this._videoRef.current;
 
-      if (isPlaying) {
+      if (isPlaying && !video.ended) {
         video.play();
       } else {
         video.pause();
