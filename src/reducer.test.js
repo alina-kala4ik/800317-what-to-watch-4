@@ -126,77 +126,101 @@ const films = [
   },
 ];
 
-it(`Returns initial state at application start`, ()=>{
-  expect(reducer(undefined, {})).toEqual({
-    genre: Genres.ALL,
-    films,
-    countDisplayedFilms: 8
+describe(`testing reducer`, ()=>{
+  it(`Returns initial state at application start`, ()=>{
+    expect(reducer(undefined, {})).toEqual({
+      genre: Genres.ALL,
+      films,
+      countDisplayedFilms: 8,
+      playableMovie: null,
+    });
+  });
+
+  it(`Change genre`, ()=>{
+    expect(reducer({
+      genre: Genres.ALL,
+      films,
+    }, {
+      type: ActionTypes.CHANGE_GENRE,
+      payload: Genres.CRIME
+    })).toEqual({
+      genre: Genres.CRIME,
+      films,
+    });
+  });
+
+  it(`Filtered films`, ()=>{
+    expect(reducer({
+      genre: Genres.COMEDIES,
+      films,
+    }, {
+      type: ActionTypes.FILTERED_FILMS,
+      payload: null
+    })).toEqual({
+      genre: Genres.COMEDIES,
+      films: [{
+        title: `Aviator`,
+        screenshotSrc: `img/aviator.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Comedies`,
+        yearRelease: `2017`,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: `5,6`,
+        numberVotes: `278`,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        runTime: `1h 39m`,
+      }],
+    });
+  });
+
+  it(`Increase count displayed films`, ()=>{
+    expect(reducer({
+      countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
+    }, {
+      type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
+      payload: DISPLAYED_NUMBER_OF_FILMS
+    })).toEqual({
+      countDisplayedFilms: 16
+    });
+  });
+
+  it(`reset count displayed films`, ()=>{
+    expect(reducer({
+      countDisplayedFilms: 16
+    },
+    {
+      type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
+      payload: DISPLAYED_NUMBER_OF_FILMS
+    })).toEqual({
+      countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS
+    });
+  });
+
+  it(`adds a movie to watch`, ()=>{
+    expect(reducer({
+      playableMovie: null,
+    }, {
+      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
+      payload: films[0],
+    })).toEqual({
+      playableMovie: films[0]
+    });
+  });
+
+  it(`deletes the viewed movie`, ()=>{
+    expect(reducer({
+      playableMovie: films[0],
+    }, {
+      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
+      payload: null,
+    })).toEqual({
+      playableMovie: null
+    });
   });
 });
-
-it(`Change genre`, ()=>{
-  expect(reducer({
-    genre: Genres.ALL,
-    films,
-  }, {
-    type: ActionTypes.CHANGE_GENRE,
-    payload: Genres.CRIME
-  })).toEqual({
-    genre: Genres.CRIME,
-    films,
-  });
-});
-
-it(`Filtered films`, ()=>{
-  expect(reducer({
-    genre: Genres.COMEDIES,
-    films,
-  }, {
-    type: ActionTypes.FILTERED_FILMS,
-    payload: null
-  })).toEqual({
-    genre: Genres.COMEDIES,
-    films: [{
-      title: `Aviator`,
-      screenshotSrc: `img/aviator.jpg`,
-      posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
-      movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
-      genre: `Comedies`,
-      yearRelease: `2017`,
-      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-      rating: `5,6`,
-      numberVotes: `278`,
-      producer: `Wes Andreson`,
-      actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
-      videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-      runTime: `1h 39m`,
-    }],
-  });
-});
-
-it(`Increase count displayed films`, ()=>{
-  expect(reducer({
-    countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
-  }, {
-    type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
-    payload: DISPLAYED_NUMBER_OF_FILMS
-  })).toEqual({
-    countDisplayedFilms: 16
-  });
-});
-
-it(`reset count displayed films`, ()=>{
-  expect(reducer({
-    countDisplayedFilms: 16
-  },
-  {
-    type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
-    payload: DISPLAYED_NUMBER_OF_FILMS
-  })).toEqual({
-    countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS
-  });
-});
-
 
 describe(`Action creators work correctly`, ()=>{
   it(`Action creators change genre`, ()=>{
@@ -224,6 +248,13 @@ describe(`Action creators work correctly`, ()=>{
     expect(ActionCreator.resetCountDisplayedFilms()).toEqual({
       type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
       payload: DISPLAYED_NUMBER_OF_FILMS
+    });
+  });
+
+  it(`Action creators choose movie to watch`, ()=>{
+    expect(ActionCreator.chooseMovieToWatch(films[0])).toEqual({
+      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
+      payload: films[0]
     });
   });
 

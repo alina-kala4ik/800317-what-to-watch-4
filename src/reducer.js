@@ -6,14 +6,16 @@ const DISPLAYED_NUMBER_OF_FILMS = 8;
 const initialState = {
   genre: Genres.ALL,
   films,
-  countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS
+  countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
+  playableMovie: null,
 };
 
 const ActionTypes = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   FILTERED_FILMS: `FILTERED_FILMS`,
   INCREASE_COUNT_DISPLAYED_FILMS: `INCREASE_COUNT_DISPLAYED_FILMS`,
-  RESET_COUNT_DISPLAYED_FILMS: `RESET_COUNT_DISPLAYED_FILMS`
+  RESET_COUNT_DISPLAYED_FILMS: `RESET_COUNT_DISPLAYED_FILMS`,
+  CHOOSE_MOVIE_TO_WATCH: `CHOOSE_MOVIE_TO_WATCH`
 };
 
 const ActionCreator = {
@@ -33,6 +35,10 @@ const ActionCreator = {
     type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
     payload: DISPLAYED_NUMBER_OF_FILMS
   }),
+  chooseMovieToWatch: (film)=>({
+    type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
+    payload: film
+  })
 };
 
 const getFilteredFilms = (genre) => {
@@ -65,6 +71,10 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.RESET_COUNT_DISPLAYED_FILMS:
       return extend(state, {
         countDisplayedFilms: action.payload
+      });
+    case ActionTypes.CHOOSE_MOVIE_TO_WATCH:
+      return extend(state, {
+        playableMovie: action.payload
       });
   }
   return state;
