@@ -1,37 +1,75 @@
 import React from "react";
+import {ActionCreator} from "./../../reducer.js";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
-const MovieViewingPage = () => {
+const MovieViewingPage = (props) => {
+  const {onExitClick, isPlaying, progress, timeLeft, isControllersVisible, children, onPlayClick, onPauseClick, onFullScreenClick, onMouseEnterControls, onMouseLeaveControls} = props;
+
+  const opacity = isControllersVisible ? `1` : `0`;
 
   return <div className="player">
-    <video
-      src="http://data01-cdn.datalock.ru/fi2lm/a72af25b64b3af2131ec43ec89adf5e4/7f_Altered.Carbon.S01E01.720p.WEB.rus.LostFilm.TV.a1.06.02.18.mp4"
-      className="player__video"
-      poster="img/player-poster.jpg"
-      autoPlay={true}
+    {children}
+
+    <button
+      type="button"
+      className="player__exit"
+      style={{opacity: `${opacity}`}}
+      onMouseEnter={onMouseEnterControls}
+      onMouseLeave={onMouseLeaveControls}
+      onClick={onExitClick}
     >
-    </video>
+      Exit
+    </button>
 
-    <button type="button" className="player__exit">Exit</button>
-
-    <div className="player__controls">
+    <div
+      className="player__controls"
+      style={{opacity: `${opacity}`}}
+      onMouseEnter={onMouseEnterControls}
+      onMouseLeave={onMouseLeaveControls}
+    >
       <div className="player__controls-row">
         <div className="player__time">
-          <progress className="player__progress" value="30" max="100"></progress>
-          <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
+          <progress className="player__progress" value={progress} max="100"></progress>
+          <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
         </div>
-        <div className="player__time-value">1:30:29</div>
+        <div className="player__time-value">{timeLeft}</div>
       </div>
 
       <div className="player__controls-row">
-        <button type="button" className="player__play">
-          <svg viewBox="0 0 19 19" width="19" height="19">
-            <use xlinkHref="#play-s"></use>
-          </svg>
-          <span>Play</span>
-        </button>
+        {isPlaying === false &&
+          <button
+            type="button"
+            className="player__play"
+            onClick={onPlayClick}
+          >
+            <svg viewBox="0 0 19 19" width="19" height="19">
+              <use xlinkHref="#play-s"></use>
+            </svg>
+            <span>Play</span>
+          </button>
+        }
+
+        {isPlaying === true &&
+          <button
+            type="button"
+            className="player__play"
+            onClick={onPauseClick}
+          >
+            <svg viewBox="0 0 14 21" width="14" height="21">
+              <use xlinkHref="#pause"></use>
+            </svg>
+            <span>Pause</span>
+          </button>
+        }
+
         <div className="player__name">Transpotting</div>
 
-        <button type="button" className="player__full-screen">
+        <button
+          type="button"
+          className="player__full-screen"
+          onClick={onFullScreenClick}
+        >
           <svg viewBox="0 0 27 27" width="27" height="27">
             <use xlinkHref="#full-screen"></use>
           </svg>
@@ -39,8 +77,31 @@ const MovieViewingPage = () => {
         </button>
       </div>
     </div>
+
   </div>;
 };
 
-export default MovieViewingPage;
+MovieViewingPage.propTypes = {
+  onExitClick: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  progress: PropTypes.number.isRequired,
+  timeLeft: PropTypes.string,
+  isControllersVisible: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  onPlayClick: PropTypes.func.isRequired,
+  onPauseClick: PropTypes.func.isRequired,
+  onFullScreenClick: PropTypes.func.isRequired,
+  onMouseEnterControls: PropTypes.func.isRequired,
+  onMouseLeaveControls: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onExitClick() {
+    dispatch(ActionCreator.chooseMovieToWatch(null));
+  }
+});
+
+export {MovieViewingPage};
+export default connect(null, mapDispatchToProps)(MovieViewingPage);
+
 
