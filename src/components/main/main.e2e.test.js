@@ -10,11 +10,6 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-const settings = {
-  promotionTitle: `The Grand Budapest Hotel`,
-  promotionGenre: `Drama`,
-  promotionReleaseDate: `2014`,
-};
 
 const films = [
   {
@@ -135,7 +130,8 @@ const mockStore = configureStore([]);
 const store = mockStore({
   genre: Genres.ALL,
   films,
-  countDisplayedFilms: 8
+  countDisplayedFilms: 8,
+  playableMovie: null
 });
 
 it(`Film title click`, () => {
@@ -145,9 +141,6 @@ it(`Film title click`, () => {
   const main = mount(
       <Provider store={store}>
         <Main
-          promotionTitle={settings.promotionTitle}
-          promotionGenre={settings.promotionGenre}
-          promotionReleaseDate={settings.promotionReleaseDate}
           films={films}
           onFilmTitleClick={onFilmTitleClick}
           onFilmImgClick={()=>{}}
@@ -172,9 +165,6 @@ it(`Film image click`, () => {
   const main = mount(
       <Provider store={store}>
         <Main
-          promotionTitle={settings.promotionTitle}
-          promotionGenre={settings.promotionGenre}
-          promotionReleaseDate={settings.promotionReleaseDate}
           films={films}
           onFilmTitleClick={()=>{}}
           onFilmImgClick={onFilmImgClick}
@@ -212,9 +202,6 @@ it(`Validates data transmitted through props when clicked on film title`, () => 
   const main = mount(
       <Provider store={store}>
         <Main
-          promotionTitle={settings.promotionTitle}
-          promotionGenre={settings.promotionGenre}
-          promotionReleaseDate={settings.promotionReleaseDate}
           films={films}
           onFilmTitleClick={onFilmTitleClick}
           onFilmImgClick={()=>{}}

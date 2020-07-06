@@ -5,11 +5,6 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
 
-const settings = {
-  promotionTitle: `The Grand Budapest Hotel`,
-  promotionGenre: `Drama`,
-  promotionReleaseDate: `2014`,
-};
 
 const films = [
   {
@@ -132,16 +127,14 @@ it(`render Main`, () => {
   const store = mockStore({
     genre: Genres.ALL,
     films,
-    countDisplayedFilms: 8
+    countDisplayedFilms: 8,
+    playableMovie: null
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <Main
-            promotionTitle={settings.promotionTitle}
-            promotionGenre={settings.promotionGenre}
-            promotionReleaseDate={settings.promotionReleaseDate}
             films={films}
             onFilmTitleClick={()=>{}}
             onFilmImgClick={()=>{}}
