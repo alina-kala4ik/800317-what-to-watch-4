@@ -25,6 +25,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -39,6 +40,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Macbeth`,
@@ -53,6 +55,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Aviator`,
@@ -67,6 +70,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `We need to talk about Kevin`,
@@ -81,6 +85,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -95,6 +100,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Revenant`,
@@ -109,6 +115,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Johnny English`,
@@ -123,6 +130,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
 ];
 
