@@ -1,8 +1,14 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
 import {MovieViewingPage} from "./movie-viewing-page.jsx";
 
+
 describe(`render MovieViewingPage`, ()=>{
+
+  global.document.body.innerHTML = `<div id="modal-root"></div>`;
+  ReactDOM.createPortal = (node) => node;
+
   it(`render MovieViewingPage with player controls and during play`, ()=>{
     const tree = renderer.create(
         <MovieViewingPage

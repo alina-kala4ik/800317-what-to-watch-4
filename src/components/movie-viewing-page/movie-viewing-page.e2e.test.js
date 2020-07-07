@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {MovieViewingPage} from "./movie-viewing-page.jsx";
@@ -8,6 +9,9 @@ Enzyme.configure({
 });
 
 describe(`All callbacks are working`, ()=>{
+
+  global.document.body.innerHTML = `<div id="modal-root"></div>`;
+
   it(`Some callbacks are working`, ()=>{
     const onExitClick = jest.fn();
     const onPauseClick = jest.fn();
