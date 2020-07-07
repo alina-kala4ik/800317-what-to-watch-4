@@ -1,85 +1,103 @@
-import React from "react";
+import React, {Component} from "react";
+import ReactDOM from "react-dom";
 import {ActionCreator} from "./../../reducer.js";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-const MovieViewingPage = (props) => {
-  const {onExitClick, isPlaying, progress, timeLeft, isControllersVisible, children, onPlayClick, onPauseClick, onFullScreenClick, onMouseEnterControls, onMouseLeaveControls} = props;
+class MovieViewingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.element = document.createElement(`div`);
+    this.modalRoot = document.getElementById(`modal-root`);
+  }
 
-  const opacity = isControllersVisible ? `1` : `0`;
+  componentDidMount() {
+    this.modalRoot.appendChild(this.element);
+  }
 
-  return <div className="player">
-    {children}
+  componentWillUnmount() {
+    this.modalRoot.removeChild(this.element);
+  }
 
-    <button
-      type="button"
-      className="player__exit"
-      style={{opacity: `${opacity}`}}
-      onMouseEnter={onMouseEnterControls}
-      onMouseLeave={onMouseLeaveControls}
-      onClick={onExitClick}
-    >
-      Exit
-    </button>
+  render() {
+    const {onExitClick, isPlaying, progress, timeLeft, isControllersVisible, children, onPlayClick, onPauseClick, onFullScreenClick, onMouseEnterControls, onMouseLeaveControls} = this.props;
 
-    <div
-      className="player__controls"
-      style={{opacity: `${opacity}`}}
-      onMouseEnter={onMouseEnterControls}
-      onMouseLeave={onMouseLeaveControls}
-    >
-      <div className="player__controls-row">
-        <div className="player__time">
-          <progress className="player__progress" value={progress} max="100"></progress>
-          <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
+    const opacity = isControllersVisible ? `1` : `0`;
+
+    return ReactDOM.createPortal(<div className="player">
+      {children}
+
+      <button
+        type="button"
+        className="player__exit"
+        style={{opacity: `${opacity}`}}
+        onMouseEnter={onMouseEnterControls}
+        onMouseLeave={onMouseLeaveControls}
+        onClick={onExitClick}
+      >
+        Exit
+      </button>
+
+      <div
+        className="player__controls"
+        style={{opacity: `${opacity}`}}
+        onMouseEnter={onMouseEnterControls}
+        onMouseLeave={onMouseLeaveControls}
+      >
+        <div className="player__controls-row">
+          <div className="player__time">
+            <progress className="player__progress" value={progress} max="100"></progress>
+            <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
+          </div>
+          <div className="player__time-value">{timeLeft}</div>
         </div>
-        <div className="player__time-value">{timeLeft}</div>
-      </div>
 
-      <div className="player__controls-row">
-        {isPlaying === false &&
+        <div className="player__controls-row">
+          {isPlaying === false &&
+            <button
+              type="button"
+              className="player__play"
+              onClick={onPlayClick}
+            >
+              <svg viewBox="0 0 19 19" width="19" height="19">
+                <use xlinkHref="#play-s"></use>
+              </svg>
+              <span>Play</span>
+            </button>
+          }
+
+          {isPlaying === true &&
+            <button
+              type="button"
+              className="player__play"
+              onClick={onPauseClick}
+            >
+              <svg viewBox="0 0 14 21" width="14" height="21">
+                <use xlinkHref="#pause"></use>
+              </svg>
+              <span>Pause</span>
+            </button>
+          }
+
+          <div className="player__name">Transpotting</div>
+
           <button
             type="button"
-            className="player__play"
-            onClick={onPlayClick}
+            className="player__full-screen"
+            onClick={onFullScreenClick}
           >
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+            <svg viewBox="0 0 27 27" width="27" height="27">
+              <use xlinkHref="#full-screen"></use>
             </svg>
-            <span>Play</span>
+            <span>Full screen</span>
           </button>
-        }
-
-        {isPlaying === true &&
-          <button
-            type="button"
-            className="player__play"
-            onClick={onPauseClick}
-          >
-            <svg viewBox="0 0 14 21" width="14" height="21">
-              <use xlinkHref="#pause"></use>
-            </svg>
-            <span>Pause</span>
-          </button>
-        }
-
-        <div className="player__name">Transpotting</div>
-
-        <button
-          type="button"
-          className="player__full-screen"
-          onClick={onFullScreenClick}
-        >
-          <svg viewBox="0 0 27 27" width="27" height="27">
-            <use xlinkHref="#full-screen"></use>
-          </svg>
-          <span>Full screen</span>
-        </button>
+        </div>
       </div>
-    </div>
 
-  </div>;
-};
+    </div>,
+    this.element);
+  }
+}
 
 MovieViewingPage.propTypes = {
   onExitClick: PropTypes.func.isRequired,

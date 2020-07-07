@@ -15,22 +15,26 @@ class App extends PureComponent {
   _renderApp() {
     const {activeItem: activeFilm, setActiveItem: onFilmOrImgClick, playableMovie} = this.props;
 
-    if (playableMovie) {
-      return <MovieViewingPageWrapped film={playableMovie}/>;
-    }
+    const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
 
     if (activeFilm === false) {
-      return <Main
-        onFilmTitleClick={onFilmOrImgClick}
-        onFilmImgClick={onFilmOrImgClick}
-      />;
+      return <React.Fragment>
+        {modal}
+        <Main
+          onFilmTitleClick={onFilmOrImgClick}
+          onFilmImgClick={onFilmOrImgClick}
+        />
+      </React.Fragment>;
     }
 
-    return <MoviePage
-      film={activeFilm}
-      onFilmTitleClick={onFilmOrImgClick}
-      onFilmImgClick={onFilmOrImgClick}
-    />;
+    return <React.Fragment>
+      {modal}
+      <MoviePage
+        film={activeFilm}
+        onFilmTitleClick={onFilmOrImgClick}
+        onFilmImgClick={onFilmOrImgClick}
+      />
+    </React.Fragment>;
   }
 
   render() {
