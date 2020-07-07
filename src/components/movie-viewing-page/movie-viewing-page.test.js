@@ -7,7 +7,12 @@ import {MovieViewingPage} from "./movie-viewing-page.jsx";
 describe(`render MovieViewingPage`, ()=>{
 
   global.document.body.innerHTML = `<div id="modal-root"></div>`;
-  ReactDOM.createPortal = (node) => node;
+
+  const defaultCreatePortal = ReactDOM.createPortal;
+
+  beforeAll(()=>{
+    ReactDOM.createPortal = (node) => node;
+  });
 
   it(`render MovieViewingPage with player controls and during play`, ()=>{
     const tree = renderer.create(
@@ -70,5 +75,9 @@ describe(`render MovieViewingPage`, ()=>{
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
+  });
+
+  afterAll(() => {
+    ReactDOM.createPortal = defaultCreatePortal;
   });
 });
