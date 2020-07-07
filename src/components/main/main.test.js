@@ -131,7 +131,8 @@ const mockStore = configureStore([]);
 it(`render Main`, () => {
   const store = mockStore({
     genre: Genres.ALL,
-    films
+    films,
+    countDisplayedFilms: 8
   });
 
   const tree = renderer

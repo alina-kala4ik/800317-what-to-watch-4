@@ -1,6 +1,8 @@
 import {reducer, ActionCreator, ActionTypes} from "./reducer.js";
 import {Genres} from "./utils.js";
 
+const DISPLAYED_NUMBER_OF_FILMS = 8;
+
 const films = [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -128,6 +130,7 @@ it(`Returns initial state at application start`, ()=>{
   expect(reducer(undefined, {})).toEqual({
     genre: Genres.ALL,
     films,
+    countDisplayedFilms: 8
   });
 });
 
@@ -171,6 +174,29 @@ it(`Filtered films`, ()=>{
   });
 });
 
+it(`Increase count displayed films`, ()=>{
+  expect(reducer({
+    countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
+  }, {
+    type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
+    payload: DISPLAYED_NUMBER_OF_FILMS
+  })).toEqual({
+    countDisplayedFilms: 16
+  });
+});
+
+it(`reset count displayed films`, ()=>{
+  expect(reducer({
+    countDisplayedFilms: 16
+  },
+  {
+    type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
+    payload: DISPLAYED_NUMBER_OF_FILMS
+  })).toEqual({
+    countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS
+  });
+});
+
 
 describe(`Action creators work correctly`, ()=>{
   it(`Action creators change genre`, ()=>{
@@ -184,6 +210,20 @@ describe(`Action creators work correctly`, ()=>{
     expect(ActionCreator.filteredFilms()).toEqual({
       type: ActionTypes.FILTERED_FILMS,
       payload: null,
+    });
+  });
+
+  it(`Action creators increase count displayed films`, ()=>{
+    expect(ActionCreator.increaseCountDisplayedFilms()).toEqual({
+      type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
+      payload: DISPLAYED_NUMBER_OF_FILMS
+    });
+  });
+
+  it(`Action creators reset count displayed films`, ()=>{
+    expect(ActionCreator.resetCountDisplayedFilms()).toEqual({
+      type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
+      payload: DISPLAYED_NUMBER_OF_FILMS
     });
   });
 

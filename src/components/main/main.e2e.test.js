@@ -132,12 +132,13 @@ const films = [
 ];
 
 const mockStore = configureStore([]);
+const store = mockStore({
+  genre: Genres.ALL,
+  films,
+  countDisplayedFilms: 8
+});
 
 it(`Film title click`, () => {
-  const store = mockStore({
-    genre: Genres.ALL,
-    films
-  });
 
   const onFilmTitleClick = jest.fn();
 
@@ -165,10 +166,6 @@ it(`Film title click`, () => {
 });
 
 it(`Film image click`, () => {
-  const store = mockStore({
-    genre: Genres.ALL,
-    films
-  });
 
   const onFilmImgClick = jest.fn();
 
@@ -196,10 +193,6 @@ it(`Film image click`, () => {
 });
 
 it(`Validates data transmitted through props when clicked on film title`, () => {
-  const store = mockStore({
-    genre: Genres.ALL,
-    films
-  });
 
   const onFilmTitleClick = jest.fn();
   const expectedData = {

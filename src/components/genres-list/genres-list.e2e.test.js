@@ -126,6 +126,7 @@ const films = [
 
 it(`Genre items are clickable`, () => {
   const onClick = jest.fn();
+  const itemPreventDefoult = jest.fn();
 
   const genresList = shallow(
       <GenresList
@@ -138,10 +139,13 @@ it(`Genre items are clickable`, () => {
   const genreItems = genresList.find(`li.catalog__genres-item`);
 
   genreItems.forEach((item) => {
-    item.simulate(`click`);
+    item.simulate(`click`, ({
+      preventDefault: itemPreventDefoult
+    }));
   });
 
   expect(onClick).toHaveBeenCalledTimes(7);
+  expect(itemPreventDefoult).toHaveBeenCalledTimes(7);
 });
 
 it(`When clicked, a function with the correct answer is called`, () => {
@@ -158,7 +162,7 @@ it(`When clicked, a function with the correct answer is called`, () => {
 
   const dramaItem = genresList.find(`li.catalog__genres-item`).at(1);
 
-  dramaItem.simulate(`click`);
+  dramaItem.simulate(`click`, {preventDefault() {}});
 
   expect(onClick).toHaveBeenCalledTimes(1);
   expect(onClick.mock.calls[0][0]).toEqual(expectedAnswer);
