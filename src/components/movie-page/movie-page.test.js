@@ -4,7 +4,6 @@ import MoviePage from "./movie-page.jsx";
 import configureStore from "redux-mock-store";
 import {Genres} from "./../../utils.js";
 import {Provider} from "react-redux";
-import {Tabs} from "./../../utils.js";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -150,7 +149,9 @@ const mockStore = configureStore([]);
 it(`render MoviePage`, () => {
   const store = mockStore({
     genre: Genres.ALL,
-    films
+    films,
+    countDisplayedFilms: 4,
+    playableMovie: null,
   });
 
   const tree = renderer
@@ -158,11 +159,9 @@ it(`render MoviePage`, () => {
         <Provider store={store}>
           <MoviePage
             film={film}
-            films={films}
             onFilmTitleClick={()=>{}}
             onFilmImgClick={()=>{}}
-            activeItem={Tabs.OVERVIEW}
-            setActiveItem={()=>{}}
+            onPlayClick={()=>{}}
           />
         </Provider>, {
           createNodeMock: ()=>{

@@ -4,27 +4,37 @@ import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 import films from "./../../mocks/films.js";
+import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
+import {connect} from "react-redux";
+import withPlayer from "./../../hocs/with-player/with-player.jsx";
+
+const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {promotionTitle, promotionGenre, promotionReleaseDate, activeItem: activeFilm, setActiveItem: onFilmOrImgClick} = this.props;
+    const {activeItem: activeFilm, setActiveItem: onFilmOrImgClick, playableMovie} = this.props;
+
+    const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
 
     if (activeFilm === false) {
-      return <Main
-        promotionTitle={promotionTitle}
-        promotionGenre={promotionGenre}
-        promotionReleaseDate={promotionReleaseDate}
-        onFilmTitleClick={onFilmOrImgClick}
-        onFilmImgClick={onFilmOrImgClick}
-      />;
+      return <React.Fragment>
+        {modal}
+        <Main
+          onFilmTitleClick={onFilmOrImgClick}
+          onFilmImgClick={onFilmOrImgClick}
+        />
+      </React.Fragment>;
     }
 
-    return <MoviePage
-      film={activeFilm}
-      onFilmTitleClick={onFilmOrImgClick}
-      onFilmImgClick={onFilmOrImgClick}
-    />;
+    return <React.Fragment>
+      {modal}
+      <MoviePage
+        film={activeFilm}
+        onFilmTitleClick={onFilmOrImgClick}
+        onFilmImgClick={onFilmOrImgClick}
+      />
+    </React.Fragment>;
   }
 
   render() {
@@ -42,15 +52,15 @@ class App extends PureComponent {
             onFilmImgClick={onFilmOrImgClick}
           />
         </Route>
+        <Route exact path="/movie">
+          <MovieViewingPageWrapped film={films[0]} />
+        </Route>
       </Switch>
     </BrowserRouter>;
   }
 }
 
 App.propTypes = {
-  promotionTitle: PropTypes.string.isRequired,
-  promotionGenre: PropTypes.string.isRequired,
-  promotionReleaseDate: PropTypes.string.isRequired,
   activeItem: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
@@ -69,8 +79,27 @@ App.propTypes = {
     }),
   ]).isRequired,
   setActiveItem: PropTypes.func.isRequired,
+  playableMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    screenshotSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    movieCoverSrc: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    yearRelease: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    numberVotes: PropTypes.string.isRequired,
+    producer: PropTypes.string.isRequired,
+    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    runTime: PropTypes.string.isRequired,
+  }),
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  playableMovie: state.playableMovie,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);
 
 

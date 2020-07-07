@@ -10,11 +10,6 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-const settings = {
-  promotionTitle: `The Grand Budapest Hotel`,
-  promotionGenre: `Drama`,
-  promotionReleaseDate: `2014`,
-};
 
 const films = [
   {
@@ -30,6 +25,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -44,6 +40,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Macbeth`,
@@ -58,6 +55,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Aviator`,
@@ -72,6 +70,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `We need to talk about Kevin`,
@@ -86,6 +85,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -100,6 +100,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Revenant`,
@@ -114,6 +115,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
   {
     title: `Johnny English`,
@@ -128,6 +130,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: `1h 39m`,
   },
 ];
 
@@ -135,7 +138,8 @@ const mockStore = configureStore([]);
 const store = mockStore({
   genre: Genres.ALL,
   films,
-  countDisplayedFilms: 8
+  countDisplayedFilms: 8,
+  playableMovie: null
 });
 
 it(`Film title click`, () => {
@@ -145,9 +149,6 @@ it(`Film title click`, () => {
   const main = mount(
       <Provider store={store}>
         <Main
-          promotionTitle={settings.promotionTitle}
-          promotionGenre={settings.promotionGenre}
-          promotionReleaseDate={settings.promotionReleaseDate}
           films={films}
           onFilmTitleClick={onFilmTitleClick}
           onFilmImgClick={()=>{}}
@@ -172,9 +173,6 @@ it(`Film image click`, () => {
   const main = mount(
       <Provider store={store}>
         <Main
-          promotionTitle={settings.promotionTitle}
-          promotionGenre={settings.promotionGenre}
-          promotionReleaseDate={settings.promotionReleaseDate}
           films={films}
           onFilmTitleClick={()=>{}}
           onFilmImgClick={onFilmImgClick}
@@ -212,9 +210,6 @@ it(`Validates data transmitted through props when clicked on film title`, () => 
   const main = mount(
       <Provider store={store}>
         <Main
-          promotionTitle={settings.promotionTitle}
-          promotionGenre={settings.promotionGenre}
-          promotionReleaseDate={settings.promotionReleaseDate}
           films={films}
           onFilmTitleClick={onFilmTitleClick}
           onFilmImgClick={()=>{}}
