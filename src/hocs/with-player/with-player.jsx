@@ -11,7 +11,7 @@ const withPlayer = (Component) =>{
       this.state = {
         isPlaying: true,
         progress: 0,
-        timeLeft: null,
+        timeLeft: `00:00:00`,
         isFullScreenMode: false,
         isControllersVisible: true,
       };
