@@ -2,21 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const getRatingLevel = (rating) => {
-  const formattedRating = parseFloat(rating.replace(`,`, `.`));
-
-  if (formattedRating === 0 || formattedRating < 3) {
+  if (rating === 0 || rating < 3) {
     return `Bad`;
   }
-  if (formattedRating >= 3 || formattedRating < 5) {
+  if (rating >= 3 || rating < 5) {
     return `Normal`;
   }
-  if (formattedRating >= 5 || formattedRating < 8) {
+  if (rating >= 5 || rating < 8) {
     return `Good`;
   }
-  if (formattedRating >= 8 || formattedRating < 10) {
+  if (rating >= 8 || rating < 10) {
     return `Very good`;
   }
-  if (formattedRating >= 10) {
+  if (rating >= 10) {
     return `Awesome`;
   }
   return null;
@@ -26,10 +24,11 @@ const TabOverview = (props) => {
   const {film} = props;
   const {rating, numberVotes, description, producer, actors} = film;
   const ratingLevel = getRatingLevel(rating);
+  const ratingStr = rating.toString().replace(`.`, `,`);
 
   return <React.Fragment>
     <div className="movie-rating">
-      <div className="movie-rating__score">{rating}</div>
+      <div className="movie-rating__score">{ratingStr}</div>
       <p className="movie-rating__meta">
         <span className="movie-rating__level">{ratingLevel}</span>
         <span className="movie-rating__count">{numberVotes} ratings</span>
@@ -52,13 +51,13 @@ TabOverview.propTypes = {
     posterSrc: PropTypes.string.isRequired,
     movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
+    yearRelease: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    numberVotes: PropTypes.number.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
   }).isRequired,
 };
 

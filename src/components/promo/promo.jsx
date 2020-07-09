@@ -77,18 +77,18 @@ Promo.propTypes = {
     posterSrc: PropTypes.string.isRequired,
     movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
+    yearRelease: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    numberVotes: PropTypes.number.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
   }),
 };
 
 const mapStateToProps = (state) => {
-  const film = state.films[0];
+  const film = state.promoFilm;
 
   return {
     film

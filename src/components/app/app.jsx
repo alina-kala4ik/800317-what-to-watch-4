@@ -3,7 +3,7 @@ import Main from "../main/main.jsx";
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
-import films from "./../../mocks/films.js";
+import films from "../../mocks/films.js";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
 import withPlayer from "./../../hocs/with-player/with-player.jsx";
@@ -69,13 +69,13 @@ App.propTypes = {
       posterSrc: PropTypes.string.isRequired,
       movieCoverSrc: PropTypes.string.isRequired,
       genre: PropTypes.string.isRequired,
-      yearRelease: PropTypes.string.isRequired,
+      yearRelease: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
-      rating: PropTypes.string.isRequired,
-      numberVotes: PropTypes.string.isRequired,
+      rating: PropTypes.number.isRequired,
+      numberVotes: PropTypes.number.isRequired,
       producer: PropTypes.string.isRequired,
       actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-      runTime: PropTypes.string.isRequired,
+      runTime: PropTypes.number.isRequired,
     }),
   ]).isRequired,
   setActiveItem: PropTypes.func.isRequired,
@@ -85,13 +85,13 @@ App.propTypes = {
     posterSrc: PropTypes.string.isRequired,
     movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
+    yearRelease: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    numberVotes: PropTypes.number.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
   }),
 };
 
