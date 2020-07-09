@@ -1,7 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer.js";
+import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import PropTypes from "prop-types";
+import {getPromoFilm} from "./../../reducer/data/selector.js";
 
 const Promo = (props) => {
   const {onPlayClick, film} = props;
@@ -88,7 +89,7 @@ Promo.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const film = state.promoFilm;
+  const film = getPromoFilm(state);
 
   return {
     film

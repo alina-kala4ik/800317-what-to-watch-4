@@ -5,7 +5,7 @@ import AboutFilm from "./../about-film/about-film.jsx";
 import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
 import {Tabs} from "./../../utils.js";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer.js";
+import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 

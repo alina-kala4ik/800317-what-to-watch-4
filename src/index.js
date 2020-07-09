@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 import {createStore, applyMiddleware, compose} from "redux";
-import {reducer} from "./reducer.js";
+import reducer from "./reducer/reducer.js";
 import {Provider} from "react-redux";
 import withActiveItem from "./hocs/with-active-item/with-active-item.jsx";
 import thunk from "redux-thunk";
 import {createAPI} from "./api.js";
-import {Operation} from "./reducer.js";
+import {Operation} from "./reducer/data/data.js";
 
 const api = createAPI();
 

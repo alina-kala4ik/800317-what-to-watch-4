@@ -5,6 +5,7 @@ import Main from "./main.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
+import {NameSpace} from "./../../reducer/name-space.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -136,11 +137,15 @@ const films = [
 
 const mockStore = configureStore([]);
 const store = mockStore({
-  genre: Genres.ALL,
-  films,
-  countDisplayedFilms: 8,
-  playableMovie: null,
-  promoFilm: films[0],
+  [NameSpace.APP_STATE]: {
+    genre: Genres.ALL,
+    countDisplayedFilms: 8,
+    playableMovie: null,
+  },
+  [NameSpace.DATA]: {
+    films,
+    promoFilm: films[0],
+  }
 });
 
 it(`Film title click`, () => {

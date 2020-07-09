@@ -4,6 +4,7 @@ import MoviePage from "./movie-page.jsx";
 import configureStore from "redux-mock-store";
 import {Genres} from "./../../utils.js";
 import {Provider} from "react-redux";
+import {NameSpace} from "./../../reducer/name-space.js";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -148,10 +149,14 @@ const mockStore = configureStore([]);
 
 it(`render MoviePage`, () => {
   const store = mockStore({
-    genre: Genres.ALL,
-    films,
-    countDisplayedFilms: 4,
-    playableMovie: null,
+    [NameSpace.APP_STATE]: {
+      genre: Genres.ALL,
+      countDisplayedFilms: 4,
+      playableMovie: null,
+    },
+    [NameSpace.DATA]: {
+      films,
+    }
   });
 
   const tree = renderer

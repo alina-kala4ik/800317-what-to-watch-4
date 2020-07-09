@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import MovieCard from "./../movie-card/movie-card.jsx";
 import {connect} from "react-redux";
 import {Genres} from "./../../utils.js";
-import {getFilteredFilms} from "./../../reducer.js";
+import {getFilteredFilms} from "./../../reducer/data/data.js";
 import withPlayingCard from "./../../hocs/with-playing-card/with-playing-card.jsx";
+import {getFilms} from "./../../reducer/data/selector.js";
 
 const MovieCardWrapped = withPlayingCard(MovieCard);
 
@@ -44,7 +45,7 @@ MovieList.propTypes = {
 const mapStateToProps = (state, props) => {
   const {genre = Genres.ALL, countFilms} = props;
 
-  let films = state.films;
+  let films = getFilms(state);
 
   if (genre !== Genres.ALL) {
     films = getFilteredFilms(genre, films);

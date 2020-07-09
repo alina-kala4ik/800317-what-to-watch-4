@@ -7,6 +7,7 @@ import films from "../../mocks/films.js";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
 import withPlayer from "./../../hocs/with-player/with-player.jsx";
+import {getPlayableMovie} from "./../../reducer/app-state/selector.js";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
@@ -96,7 +97,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  playableMovie: state.playableMovie,
+  playableMovie: getPlayableMovie(state)
 });
 
 export {App};

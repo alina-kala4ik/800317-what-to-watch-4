@@ -4,6 +4,7 @@ import Catalog from "./catalog.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
+import {NameSpace} from "./../../reducer/name-space.js";
 
 const countFilms8 = [
   {
@@ -270,9 +271,13 @@ const mockStore = configureStore([]);
 
 it(`render Catalog without button`, ()=>{
   const store = mockStore({
-    films: countFilms8,
-    countDisplayedFilms: 8,
-    genre: Genres.ALL
+    [NameSpace.APP_STATE]: {
+      countDisplayedFilms: 8,
+      genre: Genres.ALL
+    },
+    [NameSpace.DATA]: {
+      films: countFilms8,
+    }
   });
 
   const tree = renderer.create(
@@ -296,8 +301,13 @@ it(`render Catalog without button`, ()=>{
 
 it(`render Catalog with button`, ()=>{
   const store = mockStore({
-    films: countFilms9,
-    countDisplayedFilms: 8
+    [NameSpace.APP_STATE]: {
+      countDisplayedFilms: 8,
+      genre: Genres.ALL
+    },
+    [NameSpace.DATA]: {
+      films: countFilms9,
+    }
   });
 
   const tree = renderer.create(
