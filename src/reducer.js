@@ -58,9 +58,7 @@ const Operation = {
   }
 };
 
-const getFilteredFilms = (genre) => {
-  const allFilms = initialState.films;
-
+const getFilteredFilms = (genre, allFilms) => {
   if (genre === Genres.ALL) {
     return allFilms;
   }
@@ -77,7 +75,7 @@ const reducer = (state = initialState, action) => {
         genre: action.payload
       });
     case ActionTypes.FILTERED_FILMS:
-      const filteredFilms = getFilteredFilms(state.genre);
+      const filteredFilms = getFilteredFilms(state.genre, state.films);
       return extend(state, {
         films: filteredFilms
       });

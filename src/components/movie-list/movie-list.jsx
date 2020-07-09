@@ -47,7 +47,7 @@ const mapStateToProps = (state, props) => {
   let films = state.films;
 
   if (genre !== Genres.ALL) {
-    films = getFilteredFilms(genre);
+    films = getFilteredFilms(genre, films);
   }
 
   const displayedNumberOfFilms = films.slice(0, countFilms);
