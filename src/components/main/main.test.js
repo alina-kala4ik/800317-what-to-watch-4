@@ -136,7 +136,8 @@ it(`render Main`, () => {
     genre: Genres.ALL,
     films,
     countDisplayedFilms: 8,
-    playableMovie: null
+    playableMovie: null,
+    promoFilm: films[0],
   });
 
   const tree = renderer

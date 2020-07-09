@@ -130,9 +130,10 @@ describe(`testing reducer`, ()=>{
   it(`Returns initial state at application start`, ()=>{
     expect(reducer(undefined, {})).toEqual({
       genre: Genres.ALL,
-      films,
+      films: [],
       countDisplayedFilms: 8,
       playableMovie: null,
+      promoFilm: films[0]
     });
   });
 

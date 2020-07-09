@@ -139,7 +139,8 @@ const store = mockStore({
   genre: Genres.ALL,
   films,
   countDisplayedFilms: 8,
-  playableMovie: null
+  playableMovie: null,
+  promoFilm: films[0],
 });
 
 it(`Film title click`, () => {
