@@ -1,5 +1,7 @@
-import {reducer, ActionCreator, ActionTypes} from "./reducer.js";
+import {reducer, ActionCreator, ActionTypes, Operation} from "./reducer.js";
 import {Genres} from "./utils.js";
+import MockAdapter from "axios-mock-adapter";
+import {createAPI} from "./api.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 8;
 
@@ -221,6 +223,18 @@ describe(`testing reducer`, ()=>{
       playableMovie: null
     });
   });
+
+  it(`uploads films`, ()=>{
+    expect(reducer({
+      films: []
+    }, {
+      type: ActionTypes.LOAD_FILMS,
+      payload: films
+    })).toEqual({
+      films
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, ()=>{
@@ -259,4 +273,56 @@ describe(`Action creators work correctly`, ()=>{
     });
   });
 
+  it(`Action creators load films`, ()=>{
+    expect(ActionCreator.loadFilms(films)).toEqual({
+      type: ActionTypes.LOAD_FILMS,
+      payload: films
+    });
+  });
+
 });
+
+const adaptedFilms = [
+  {
+    "actors": undefined,
+    "backgroundColor": undefined,
+    "description": undefined,
+    "genre": undefined,
+    "id": undefined,
+    "isFavorite": undefined,
+    "movieCoverSrc": undefined,
+    "numberVotes": undefined,
+    "posterSrc": undefined,
+    "previewVideoLink": undefined,
+    "producer": undefined,
+    "rating": undefined,
+    "runTime": undefined,
+    "screenshotSrc": undefined,
+    "title": undefined,
+    "videoSrc": undefined,
+    "yearRelease": undefined,
+  },
+];
+
+
+it(`Operation work correctly`, ()=>{
+  const api = createAPI();
+
+  const apiMock = new MockAdapter(api);
+  apiMock
+    .onGet(`/films`)
+    .reply(`200`, [{fake: true}]);
+
+  const dispatch = jest.fn();
+  const filmsLoader = Operation.loadFilms();
+
+  return filmsLoader(dispatch, ()=>{}, api)
+    .then(()=>{
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionTypes.LOAD_FILMS,
+        payload: adaptedFilms
+      });
+    });
+});
+
