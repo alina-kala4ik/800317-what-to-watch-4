@@ -1,9 +1,7 @@
-import {reducer, ActionCreator, ActionTypes, Operation} from "./reducer.js";
-import {Genres} from "./utils.js";
+import {reducer, ActionCreator, ActionTypes, Operation} from "./data.js";
+import {Genres} from "./../../utils.js";
 import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "./api.js";
-
-const DISPLAYED_NUMBER_OF_FILMS = 8;
+import {createAPI} from "./../../api.js";
 
 const films = [
   {
@@ -131,24 +129,8 @@ const films = [
 describe(`testing reducer`, ()=>{
   it(`Returns initial state at application start`, ()=>{
     expect(reducer(undefined, {})).toEqual({
-      genre: Genres.ALL,
       films: [],
-      countDisplayedFilms: 8,
-      playableMovie: null,
       promoFilm: films[0]
-    });
-  });
-
-  it(`Change genre`, ()=>{
-    expect(reducer({
-      genre: Genres.ALL,
-      films,
-    }, {
-      type: ActionTypes.CHANGE_GENRE,
-      payload: Genres.CRIME
-    })).toEqual({
-      genre: Genres.CRIME,
-      films,
     });
   });
 
@@ -179,51 +161,6 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`Increase count displayed films`, ()=>{
-    expect(reducer({
-      countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
-    }, {
-      type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
-      payload: DISPLAYED_NUMBER_OF_FILMS
-    })).toEqual({
-      countDisplayedFilms: 16
-    });
-  });
-
-  it(`reset count displayed films`, ()=>{
-    expect(reducer({
-      countDisplayedFilms: 16
-    },
-    {
-      type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
-      payload: DISPLAYED_NUMBER_OF_FILMS
-    })).toEqual({
-      countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS
-    });
-  });
-
-  it(`adds a movie to watch`, ()=>{
-    expect(reducer({
-      playableMovie: null,
-    }, {
-      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
-      payload: films[0],
-    })).toEqual({
-      playableMovie: films[0]
-    });
-  });
-
-  it(`deletes the viewed movie`, ()=>{
-    expect(reducer({
-      playableMovie: films[0],
-    }, {
-      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
-      payload: null,
-    })).toEqual({
-      playableMovie: null
-    });
-  });
-
   it(`uploads films`, ()=>{
     expect(reducer({
       films: []
@@ -238,38 +175,11 @@ describe(`testing reducer`, ()=>{
 });
 
 describe(`Action creators work correctly`, ()=>{
-  it(`Action creators change genre`, ()=>{
-    expect(ActionCreator.changeGenre(Genres.COMEDIES)).toEqual({
-      type: ActionTypes.CHANGE_GENRE,
-      payload: Genres.COMEDIES,
-    });
-  });
 
   it(`Action creators filterd films`, ()=>{
     expect(ActionCreator.filteredFilms()).toEqual({
       type: ActionTypes.FILTERED_FILMS,
       payload: null,
-    });
-  });
-
-  it(`Action creators increase count displayed films`, ()=>{
-    expect(ActionCreator.increaseCountDisplayedFilms()).toEqual({
-      type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
-      payload: DISPLAYED_NUMBER_OF_FILMS
-    });
-  });
-
-  it(`Action creators reset count displayed films`, ()=>{
-    expect(ActionCreator.resetCountDisplayedFilms()).toEqual({
-      type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
-      payload: DISPLAYED_NUMBER_OF_FILMS
-    });
-  });
-
-  it(`Action creators choose movie to watch`, ()=>{
-    expect(ActionCreator.chooseMovieToWatch(films[0])).toEqual({
-      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
-      payload: films[0]
     });
   });
 
