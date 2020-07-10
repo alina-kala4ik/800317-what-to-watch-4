@@ -1,5 +1,6 @@
 import {reducer, ActionCreator, ActionTypes} from "./app-state.js";
-import {Genres} from "./../../utils.js";
+import {Genres, extend} from "./../../utils.js";
+import {ServerStatus} from "./app-state.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 8;
 
@@ -132,6 +133,7 @@ describe(`testing reducer`, ()=>{
       genre: Genres.ALL,
       countDisplayedFilms: 8,
       playableMovie: null,
+      serverStatus: ServerStatus.OK,
     });
   });
 
@@ -193,6 +195,17 @@ describe(`testing reducer`, ()=>{
     });
   });
 
+  it(`change server status on error`, ()=>{
+    expect(reducer({
+      serverStatus: ServerStatus.OK
+    }, {
+      type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
+      payload: ServerStatus.ERROR
+    })).toEqual({
+      serverStatus: ServerStatus.ERROR
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, ()=>{
@@ -221,6 +234,13 @@ describe(`Action creators work correctly`, ()=>{
     expect(ActionCreator.chooseMovieToWatch(films[0])).toEqual({
       type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
       payload: films[0]
+    });
+  });
+
+  it(`Action creators change server status on error`, ()=>{
+    expect(ActionCreator.changeServerStatusOnError()).toEqual({
+      type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
+      payload: ServerStatus.ERROR
     });
   });
 

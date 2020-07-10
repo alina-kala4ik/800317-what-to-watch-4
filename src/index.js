@@ -8,8 +8,13 @@ import withActiveItem from "./hocs/with-active-item/with-active-item.jsx";
 import thunk from "redux-thunk";
 import {createAPI} from "./api.js";
 import {Operation} from "./reducer/data/data.js";
+import {ActionCreator} from "./reducer/app-state/app-state.js";
 
-const api = createAPI();
+const onNotFound = () => {
+  store.dispatch(ActionCreator.changeServerStatusOnError());
+};
+
+const api = createAPI(onNotFound);
 
 const store = createStore(
     reducer,

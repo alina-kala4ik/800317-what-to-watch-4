@@ -7,7 +7,8 @@ import films from "../../mocks/films.js";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
 import withPlayer from "./../../hocs/with-player/with-player.jsx";
-import {getPlayableMovie} from "./../../reducer/app-state/selector.js";
+import {getPlayableMovie, gerServerStatus} from "./../../reducer/app-state/selector.js";
+import {ServerStatus} from "./../../reducer/app-state/app-state.js";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
@@ -39,12 +40,13 @@ class App extends PureComponent {
   }
 
   render() {
-    const {setActiveItem: onFilmOrImgClick} = this.props;
+    const {setActiveItem: onFilmOrImgClick, serverStatus} = this.props;
+    const app = (serverStatus === ServerStatus.ERROR) ? <div style={{backgroundColor: `red`}}>Сервер не доступен</div> : this._renderApp();
 
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {this._renderApp()}
+          {app}
         </Route>
         <Route exact path="/movie-page">
           <MoviePage
@@ -94,10 +96,12 @@ App.propTypes = {
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
     runTime: PropTypes.number.isRequired,
   }),
+  serverStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  playableMovie: getPlayableMovie(state)
+  playableMovie: getPlayableMovie(state),
+  serverStatus: gerServerStatus(state),
 });
 
 export {App};

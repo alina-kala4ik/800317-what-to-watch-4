@@ -2,10 +2,16 @@ import {extend, Genres} from "./../../utils.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 8;
 
+const ServerStatus = {
+  ERROR: `ERROR`,
+  OK: `OK`
+};
+
 const initialState = {
   genre: Genres.ALL,
   countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
   playableMovie: null,
+  serverStatus: ServerStatus.OK,
 };
 
 const ActionTypes = {
@@ -13,6 +19,7 @@ const ActionTypes = {
   INCREASE_COUNT_DISPLAYED_FILMS: `INCREASE_COUNT_DISPLAYED_FILMS`,
   RESET_COUNT_DISPLAYED_FILMS: `RESET_COUNT_DISPLAYED_FILMS`,
   CHOOSE_MOVIE_TO_WATCH: `CHOOSE_MOVIE_TO_WATCH`,
+  CHANGE_SERVER_STATUS_ON_ERROR: `CHANGE_SERVER_STATUS_ON_ERROR`,
 };
 
 const ActionCreator = {
@@ -31,6 +38,10 @@ const ActionCreator = {
   chooseMovieToWatch: (film)=>({
     type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
     payload: film
+  }),
+  changeServerStatusOnError: ()=>({
+    type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
+    payload: ServerStatus.ERROR
   }),
 };
 
@@ -52,8 +63,12 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         playableMovie: action.payload
       });
+    case ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR:
+      return extend(state, {
+        serverStatus: action.payload
+      });
   }
   return state;
 };
 
-export {reducer, ActionTypes, ActionCreator};
+export {reducer, ActionTypes, ActionCreator, ServerStatus};

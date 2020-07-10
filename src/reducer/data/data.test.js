@@ -187,6 +187,8 @@ describe(`Action creators work correctly`, ()=>{
 
 describe(`Operation work correctly`, ()=>{
 
+  const onNotFound = () => {};
+
   it(`load films`, ()=>{
     const adaptedFilms = [
       {
@@ -210,7 +212,7 @@ describe(`Operation work correctly`, ()=>{
       },
     ];
 
-    const api = createAPI();
+    const api = createAPI(onNotFound);
 
     const apiMock = new MockAdapter(api);
     apiMock
@@ -251,7 +253,7 @@ describe(`Operation work correctly`, ()=>{
       "yearRelease": undefined,
     };
 
-    const api = createAPI();
+    const api = createAPI(onNotFound);
 
     const apiMock = new MockAdapter(api);
     apiMock

@@ -5,7 +5,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
 import {NameSpace} from "./../../reducer/name-space.js";
-
+import {ServerStatus} from "./../../reducer/app-state/app-state.js";
 
 const films = [
   {
@@ -140,12 +140,13 @@ const films = [
 
 const mockStore = configureStore([]);
 
-it(`render App`, () => {
+it(`render App witout server error`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
       playableMovie: null,
+      serverStatus: ServerStatus.OK
     },
     [NameSpace.DATA]: {
       films,
@@ -161,6 +162,40 @@ it(`render App`, () => {
             activeItem={false}
             setActiveItem={()=>{}}
             playableMovie={null}
+            serverStatus={ServerStatus.OK}
+          />
+        </Provider>, {
+          createNodeMock: ()=>{
+            return {};
+          }
+        })
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it(`render App with server error`, () => {
+  const store = mockStore({
+    [NameSpace.APP_STATE]: {
+      genre: Genres.ALL,
+      countDisplayedFilms: 8,
+      playableMovie: null,
+      serverStatus: ServerStatus.ERROR
+    },
+    [NameSpace.DATA]: {
+      films,
+      promoFilm: films[0],
+      allFilms: films
+    }
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App
+            activeItem={false}
+            setActiveItem={()=>{}}
+            playableMovie={null}
+            serverStatus={ServerStatus.ERROR}
           />
         </Provider>, {
           createNodeMock: ()=>{

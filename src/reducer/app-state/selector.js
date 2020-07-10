@@ -12,5 +12,9 @@ const getGenre = (state) => {
   return state[NameSpace.APP_STATE].genre;
 };
 
-export {getPlayableMovie, getCountDisplayedFilms, getGenre};
+const gerServerStatus = (state) => {
+  return state[NameSpace.APP_STATE].serverStatus;
+};
+
+export {getPlayableMovie, getCountDisplayedFilms, getGenre, gerServerStatus};
 

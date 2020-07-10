@@ -1,6 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render App 1`] = `
+exports[`render App with server error 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "red",
+    }
+  }
+>
+  Сервер не доступен
+</div>
+`;
+
+exports[`render App witout server error 1`] = `
 Array [
   <section
     className="movie-card"
