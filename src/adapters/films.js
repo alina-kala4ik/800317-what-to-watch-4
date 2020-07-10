@@ -1,5 +1,5 @@
-const adapter = (backendData) => {
-  return backendData.map((film) => ({
+const adapter = (film) => {
+  return {
     id: film.id,
     title: film.name,
     screenshotSrc: film.preview_image,
@@ -17,7 +17,13 @@ const adapter = (backendData) => {
     previewVideoLink: film.preview_video_link,
     backgroundColor: film.background_color,
     isFavorite: film.is_favorite,
-  }));
+  };
 };
 
-export {adapter};
+const adapterForArray = (backendData) => {
+  return backendData.map((film) => {
+    return adapter(film);
+  });
+};
+
+export {adapter, adapterForArray};

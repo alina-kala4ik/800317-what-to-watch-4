@@ -130,7 +130,7 @@ describe(`testing reducer`, ()=>{
   it(`Returns initial state at application start`, ()=>{
     expect(reducer(undefined, {})).toEqual({
       films: [],
-      promoFilm: films[0],
+      promoFilm: null,
       allFilms: [],
     });
   });
@@ -144,6 +144,17 @@ describe(`testing reducer`, ()=>{
     })).toEqual({
       films,
       allFilms: films,
+    });
+  });
+
+  it(`uploads promo film`, ()=>{
+    expect(reducer({
+      promoFilm: null
+    }, {
+      type: ActionTypes.LOAD_PROMO_FILM,
+      payload: films[0]
+    })).toEqual({
+      promoFilm: films[0]
     });
   });
 
@@ -165,50 +176,99 @@ describe(`Action creators work correctly`, ()=>{
     });
   });
 
-});
-
-const adaptedFilms = [
-  {
-    "actors": undefined,
-    "backgroundColor": undefined,
-    "description": undefined,
-    "genre": undefined,
-    "id": undefined,
-    "isFavorite": undefined,
-    "movieCoverSrc": undefined,
-    "numberVotes": undefined,
-    "posterSrc": undefined,
-    "previewVideoLink": undefined,
-    "producer": undefined,
-    "rating": undefined,
-    "runTime": undefined,
-    "screenshotSrc": undefined,
-    "title": undefined,
-    "videoSrc": undefined,
-    "yearRelease": undefined,
-  },
-];
-
-
-it(`Operation work correctly`, ()=>{
-  const api = createAPI();
-
-  const apiMock = new MockAdapter(api);
-  apiMock
-    .onGet(`/films`)
-    .reply(`200`, [{fake: true}]);
-
-  const dispatch = jest.fn();
-  const filmsLoader = Operation.loadFilms();
-
-  return filmsLoader(dispatch, ()=>{}, api)
-    .then(()=>{
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionTypes.LOAD_FILMS,
-        payload: adaptedFilms
-      });
+  it(`Action creators load promo films`, ()=>{
+    expect(ActionCreator.loadPromoFilm(films[0])).toEqual({
+      type: ActionTypes.LOAD_PROMO_FILM,
+      payload: films[0]
     });
+  });
+
 });
 
+describe(`Operation work correctly`, ()=>{
 
+  it(`load films`, ()=>{
+    const adaptedFilms = [
+      {
+        "actors": undefined,
+        "backgroundColor": undefined,
+        "description": undefined,
+        "genre": undefined,
+        "id": undefined,
+        "isFavorite": undefined,
+        "movieCoverSrc": undefined,
+        "numberVotes": undefined,
+        "posterSrc": undefined,
+        "previewVideoLink": undefined,
+        "producer": undefined,
+        "rating": undefined,
+        "runTime": undefined,
+        "screenshotSrc": undefined,
+        "title": undefined,
+        "videoSrc": undefined,
+        "yearRelease": undefined,
+      },
+    ];
+
+    const api = createAPI();
+
+    const apiMock = new MockAdapter(api);
+    apiMock
+      .onGet(`/films`)
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const filmsLoader = Operation.loadFilms();
+
+    return filmsLoader(dispatch, ()=>{}, api)
+      .then(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionTypes.LOAD_FILMS,
+          payload: adaptedFilms
+        });
+      });
+  });
+
+  it(`load promoFilm`, ()=>{
+    const adaptedFilm = {
+      "actors": undefined,
+      "backgroundColor": undefined,
+      "description": undefined,
+      "genre": undefined,
+      "id": undefined,
+      "isFavorite": undefined,
+      "movieCoverSrc": undefined,
+      "numberVotes": undefined,
+      "posterSrc": undefined,
+      "previewVideoLink": undefined,
+      "producer": undefined,
+      "rating": undefined,
+      "runTime": undefined,
+      "screenshotSrc": undefined,
+      "title": undefined,
+      "videoSrc": undefined,
+      "yearRelease": undefined,
+    };
+
+    const api = createAPI();
+
+    const apiMock = new MockAdapter(api);
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const promoFilmLoader = Operation.loadPromoFilm();
+
+    return promoFilmLoader(dispatch, ()=>{}, api)
+      .then(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionTypes.LOAD_PROMO_FILM,
+          payload: adaptedFilm
+        });
+      });
+  });
+
+});

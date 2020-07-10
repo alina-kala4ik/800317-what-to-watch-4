@@ -20,6 +20,7 @@ const store = createStore(
 );
 
 store.dispatch(Operation.loadFilms());
+store.dispatch(Operation.loadPromoFilm());
 
 const AppWrapped = withActiveItem(App);
 

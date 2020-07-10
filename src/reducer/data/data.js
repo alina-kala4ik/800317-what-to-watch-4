@@ -1,17 +1,17 @@
-import {extend, Genres} from "./../../utils.js";
-import {adapter as filmsAdapter} from "./../../adapters/films.js";
-import mockFilms from "./../../mocks/films.js";
+import {extend} from "./../../utils.js";
+import {adapter, adapterForArray} from "./../../adapters/films.js";
 import {getFilteredFilms} from "./selector.js";
 
 const initialState = {
   allFilms: [],
   films: [],
-  promoFilm: mockFilms[0],
+  promoFilm: null,
 };
 
 const ActionTypes = {
   FILTERED_FILMS: `FILTERED_FILMS`,
   LOAD_FILMS: `LOAD_FILMS`,
+  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
 };
 
 const ActionCreator = {
@@ -23,14 +23,25 @@ const ActionCreator = {
     type: ActionTypes.LOAD_FILMS,
     payload: films
   }),
+  loadPromoFilm: (film)=>({
+    type: ActionTypes.LOAD_PROMO_FILM,
+    payload: film
+  })
 };
 
 const Operation = {
-  loadFilms: ()=>(dispatch, getState, api)=> {
+  loadFilms: ()=>(dispatch, getState, api) => {
     return api.get(`/films`)
       .then((response)=>{
-        const films = filmsAdapter(response.data);
+        const films = adapterForArray(response.data);
         dispatch(ActionCreator.loadFilms(films));
+      });
+  },
+  loadPromoFilm: ()=>(dispatch, getState, api) => {
+    return api.get(`/films/promo`)
+      .then((response)=>{
+        const promoFilm = adapter(response.data);
+        dispatch(ActionCreator.loadPromoFilm(promoFilm));
       });
   }
 };
@@ -47,6 +58,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         films: action.payload,
         allFilms: action.payload
+      });
+    case ActionTypes.LOAD_PROMO_FILM:
+      return extend(state, {
+        promoFilm: action.payload
       });
   }
   return state;
