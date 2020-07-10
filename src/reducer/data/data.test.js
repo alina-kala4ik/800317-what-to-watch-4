@@ -130,34 +130,8 @@ describe(`testing reducer`, ()=>{
   it(`Returns initial state at application start`, ()=>{
     expect(reducer(undefined, {})).toEqual({
       films: [],
-      promoFilm: films[0]
-    });
-  });
-
-  it(`Filtered films`, ()=>{
-    expect(reducer({
-      genre: Genres.COMEDIES,
-      films,
-    }, {
-      type: ActionTypes.FILTERED_FILMS,
-      payload: null
-    })).toEqual({
-      genre: Genres.COMEDIES,
-      films: [{
-        title: `Aviator`,
-        screenshotSrc: `img/aviator.jpg`,
-        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
-        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
-        genre: `Comedies`,
-        yearRelease: 2017,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-        rating: 5.6,
-        numberVotes: 278,
-        producer: `Wes Andreson`,
-        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
-        videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-        runTime: 99,
-      }],
+      promoFilm: films[0],
+      allFilms: [],
     });
   });
 
@@ -168,7 +142,8 @@ describe(`testing reducer`, ()=>{
       type: ActionTypes.LOAD_FILMS,
       payload: films
     })).toEqual({
-      films
+      films,
+      allFilms: films,
     });
   });
 
@@ -177,9 +152,9 @@ describe(`testing reducer`, ()=>{
 describe(`Action creators work correctly`, ()=>{
 
   it(`Action creators filterd films`, ()=>{
-    expect(ActionCreator.filteredFilms()).toEqual({
+    expect(ActionCreator.filteredFilms(Genres.COMEDIES)).toEqual({
       type: ActionTypes.FILTERED_FILMS,
-      payload: null,
+      payload: Genres.COMEDIES,
     });
   });
 
@@ -235,4 +210,5 @@ it(`Operation work correctly`, ()=>{
       });
     });
 });
+
 

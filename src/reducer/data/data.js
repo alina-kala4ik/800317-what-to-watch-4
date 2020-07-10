@@ -1,8 +1,10 @@
 import {extend, Genres} from "./../../utils.js";
 import {adapter as filmsAdapter} from "./../../adapters/films.js";
 import mockFilms from "./../../mocks/films.js";
+import {getFilteredFilms} from "./selector.js";
 
 const initialState = {
+  allFilms: [],
   films: [],
   promoFilm: mockFilms[0],
 };
@@ -13,9 +15,9 @@ const ActionTypes = {
 };
 
 const ActionCreator = {
-  filteredFilms: ()=>({
+  filteredFilms: (genre)=>({
     type: ActionTypes.FILTERED_FILMS,
-    payload: null
+    payload: genre
   }),
   loadFilms: (films)=>({
     type: ActionTypes.LOAD_FILMS,
@@ -33,29 +35,21 @@ const Operation = {
   }
 };
 
-const getFilteredFilms = (genre, allFilms) => {
-  if (genre === Genres.ALL) {
-    return allFilms;
-  }
-
-  const filteredFilms = allFilms.filter((film) => film.genre === genre);
-
-  return filteredFilms;
-};
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.FILTERED_FILMS:
-      const filteredFilms = getFilteredFilms(state.genre, state.films);
+      const genre = action.payload;
+      const filteredFilms = getFilteredFilms(state, genre);
       return extend(state, {
         films: filteredFilms
       });
     case ActionTypes.LOAD_FILMS:
       return extend(state, {
-        films: action.payload
+        films: action.payload,
+        allFilms: action.payload
       });
   }
   return state;
 };
 
-export {reducer, ActionTypes, ActionCreator, getFilteredFilms, Operation};
+export {reducer, ActionTypes, ActionCreator, Operation};

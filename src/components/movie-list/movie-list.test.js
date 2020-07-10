@@ -130,6 +130,7 @@ it(`render MovieList`, () => {
     },
     [NameSpace.DATA]: {
       films,
+      allFilms: films
     }
   });
 

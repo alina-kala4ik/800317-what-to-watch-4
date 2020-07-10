@@ -77,7 +77,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
     dispatch(appStateActionCreator.changeGenre(genre));
-    dispatch(dataActionCreator.filteredFilms());
+    dispatch(dataActionCreator.filteredFilms(genre));
     dispatch(appStateActionCreator.resetCountDisplayedFilms());
   }
 });

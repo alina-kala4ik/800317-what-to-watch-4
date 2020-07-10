@@ -156,6 +156,7 @@ it(`render MoviePage`, () => {
     },
     [NameSpace.DATA]: {
       films,
+      allFilms: films
     }
   });
 
