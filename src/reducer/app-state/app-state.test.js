@@ -1,5 +1,5 @@
 import {reducer, ActionCreator, ActionTypes} from "./app-state.js";
-import {Genres, extend} from "./../../utils.js";
+import {Genres} from "./../../utils.js";
 import {ServerStatus} from "./app-state.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 8;
