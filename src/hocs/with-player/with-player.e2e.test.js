@@ -22,6 +22,7 @@ const film = {
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
   runTime: 99,
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 const MockComponent = (props) => {

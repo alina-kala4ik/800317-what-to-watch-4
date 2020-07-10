@@ -21,6 +21,7 @@ const film = {
   runTime: 99,
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   backgroundColor: `#ffffff`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 const films = [
@@ -39,6 +40,7 @@ const films = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -55,6 +57,7 @@ const films = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Macbeth`,
@@ -71,6 +74,7 @@ const films = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Aviator`,
@@ -87,6 +91,7 @@ const films = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `We need to talk about Kevin`,
@@ -103,6 +108,7 @@ const films = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -119,6 +125,7 @@ const films = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     backgroundColor: `#ffffff`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Revenant`,
@@ -135,6 +142,7 @@ const films = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     backgroundColor: `#ffffff`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Johnny English`,
@@ -151,6 +159,7 @@ const films = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     backgroundColor: `#ffffff`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
 ];
 

@@ -4,7 +4,7 @@ import VideoPlayer from "./../video-player/video-player.jsx";
 
 const MovieCard = (props) => {
   const {film, onFilmTitleClick, onFilmImgClick, isPlaying, onMouseEnter, onMouseLeave} = props;
-  const {title, screenshotSrc, videoSrc} = film;
+  const {title, screenshotSrc, previewVideoLink} = film;
 
   return <article
     className="small-movie-card catalog__movies-card"
@@ -18,7 +18,7 @@ const MovieCard = (props) => {
       }}
     >
       <VideoPlayer
-        src={videoSrc}
+        src={previewVideoLink}
         poster={screenshotSrc}
         isPlaying={isPlaying}
       />
@@ -49,7 +49,8 @@ MovieCard.propTypes = {
     numberVotes: PropTypes.number.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    videoSrc: PropTypes.string.isRequired
+    videoSrc: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,

@@ -21,6 +21,7 @@ const countFilms8 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -36,6 +37,7 @@ const countFilms8 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Macbeth`,
@@ -51,6 +53,7 @@ const countFilms8 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Aviator`,
@@ -66,6 +69,7 @@ const countFilms8 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `We need to talk about Kevin`,
@@ -81,6 +85,7 @@ const countFilms8 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -96,6 +101,7 @@ const countFilms8 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Revenant`,
@@ -111,6 +117,7 @@ const countFilms8 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Johnny English`,
@@ -126,6 +133,7 @@ const countFilms8 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
 ];
 
@@ -144,6 +152,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -159,6 +168,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Macbeth`,
@@ -174,6 +184,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Aviator`,
@@ -189,6 +200,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `We need to talk about Kevin`,
@@ -204,6 +216,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -219,6 +232,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Revenant`,
@@ -234,6 +248,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Johnny English`,
@@ -249,6 +264,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Mindhunter`,
@@ -264,6 +280,7 @@ const countFilms9 = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   }
 ];
 

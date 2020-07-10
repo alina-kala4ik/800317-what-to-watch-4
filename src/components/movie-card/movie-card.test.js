@@ -15,6 +15,7 @@ const film = {
   producer: `Wes Andreson`,
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 it(`render MoveCard`, () => {
