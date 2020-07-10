@@ -20,6 +20,7 @@ const film = {
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
   runTime: 99,
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  backgroundColor: `#ffffff`,
 };
 
 const films = [
@@ -37,6 +38,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    backgroundColor: `#ffffff`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -52,6 +54,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    backgroundColor: `#ffffff`,
   },
   {
     title: `Macbeth`,
@@ -67,6 +70,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    backgroundColor: `#ffffff`,
   },
   {
     title: `Aviator`,
@@ -82,6 +86,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    backgroundColor: `#ffffff`,
   },
   {
     title: `We need to talk about Kevin`,
@@ -97,6 +102,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    backgroundColor: `#ffffff`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -112,6 +118,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    backgroundColor: `#ffffff`,
   },
   {
     title: `Revenant`,
@@ -127,6 +134,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    backgroundColor: `#ffffff`,
   },
   {
     title: `Johnny English`,
@@ -142,6 +150,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    backgroundColor: `#ffffff`,
   },
 ];
 

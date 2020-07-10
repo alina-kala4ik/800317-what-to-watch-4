@@ -13,10 +13,13 @@ const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
 
 const MoviePage = (props) => {
   const {film, onFilmTitleClick, onFilmImgClick, onPlayClick} = props;
-  const {title, posterSrc, movieCoverSrc, genre, yearRelease} = film;
+  const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor} = film;
 
   return <React.Fragment>
-    <section className="movie-card movie-card--full">
+    <section
+      className="movie-card movie-card--full"
+      style={{backgroundColor: `${backgroundColor}`}}
+    >
       <div className="movie-card__hero">
         <div className="movie-card__bg">
           <img src={posterSrc} alt={title} />
@@ -130,6 +133,7 @@ MoviePage.propTypes = {
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
     runTime: PropTypes.number.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
