@@ -53,20 +53,7 @@ class GenresList extends PureComponent {
 GenresList.propTypes = {
   genre: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    numberVotes: PropTypes.number.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    videoSrc: PropTypes.string.isRequired,
-  })),
+  films: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
