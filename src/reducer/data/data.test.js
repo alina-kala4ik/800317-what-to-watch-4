@@ -134,6 +134,7 @@ describe(`testing reducer`, ()=>{
       allFilms: [],
       isFilmsFetching: true,
       isPromoFilmFetching: true,
+      genreForFilter: Genres.ALL,
     });
   });
 
@@ -162,6 +163,17 @@ describe(`testing reducer`, ()=>{
     });
   });
 
+  it(`set genre for filter`, ()=>{
+    expect(reducer({
+      genreForFilter: Genres.ALL,
+    }, {
+      type: ActionTypes.SET_GENRE_FOR_FILTER,
+      payload: Genres.COMEDIES
+    })).toEqual({
+      genreForFilter: Genres.COMEDIES
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, ()=>{
@@ -184,6 +196,13 @@ describe(`Action creators work correctly`, ()=>{
     expect(ActionCreator.loadPromoFilm(films[0])).toEqual({
       type: ActionTypes.LOAD_PROMO_FILM,
       payload: films[0]
+    });
+  });
+
+  it(`Action creators set genre for filter`, ()=>{
+    expect(ActionCreator.setGenreForFilter(Genres.DOCUMENTARY)).toEqual({
+      type: ActionTypes.SET_GENRE_FOR_FILTER,
+      payload: Genres.DOCUMENTARY
     });
   });
 

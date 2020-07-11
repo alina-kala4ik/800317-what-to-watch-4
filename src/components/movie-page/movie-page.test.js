@@ -174,7 +174,8 @@ it(`render MoviePage`, () => {
     },
     [NameSpace.DATA]: {
       films,
-      allFilms: films
+      allFilms: films,
+      genreForFilter: Genres.ALL
     }
   });
 

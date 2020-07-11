@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MoveCard from "./movie-card.jsx";
+import {MovieCard} from "./movie-card.jsx";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -20,13 +20,14 @@ const film = {
 
 it(`render MoveCard`, () => {
   const tree = renderer
-    .create(<MoveCard
+    .create(<MovieCard
       film={film}
       onFilmTitleClick={()=>{}}
       onFilmImgClick={()=>{}}
       isPlaying={false}
       onMouseEnter={()=>{}}
       onMouseLeave={()=>{}}
+      setGenreForFilter={()=>{}}
     />, {
       createNodeMock: ()=>{
         return {};

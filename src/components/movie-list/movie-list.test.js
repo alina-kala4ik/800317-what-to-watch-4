@@ -138,7 +138,8 @@ it(`render MovieList`, () => {
     },
     [NameSpace.DATA]: {
       films,
-      allFilms: films
+      allFilms: films,
+      genreForFilter: Genres.ALL
     }
   });
 

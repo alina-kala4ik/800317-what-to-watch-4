@@ -294,7 +294,8 @@ it(`render Catalog without button`, ()=>{
     },
     [NameSpace.DATA]: {
       films: countFilms8,
-      allFilms: countFilms8
+      allFilms: countFilms8,
+      genreForFilter: Genres.ALL,
     }
   });
 
@@ -325,7 +326,8 @@ it(`render Catalog with button`, ()=>{
     },
     [NameSpace.DATA]: {
       films: countFilms9,
-      allFilms: countFilms9
+      allFilms: countFilms9,
+      genreForFilter: Genres.ALL
     }
   });
 

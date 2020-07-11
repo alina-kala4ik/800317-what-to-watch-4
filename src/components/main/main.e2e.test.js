@@ -153,7 +153,8 @@ const store = mockStore({
   [NameSpace.DATA]: {
     films,
     promoFilm: films[0],
-    allFilms: films
+    allFilms: films,
+    genreForFilter: Genres.ALL
   }
 });
 

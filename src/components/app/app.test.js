@@ -154,6 +154,7 @@ it(`render App without server error`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
+      genreForFilter: Genres.ALL
     }
   });
 
@@ -193,6 +194,7 @@ it(`render App with server error`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
+      genreForFilter: Genres.ALL
     }
   });
 
@@ -232,6 +234,7 @@ it(`render App when films null`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
+      genreForFilter: Genres.ALL
     }
   });
 
@@ -271,6 +274,7 @@ it(`render App when promoFilm null`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
+      genreForFilter: Genres.ALL
     }
   });
 
