@@ -31,5 +31,13 @@ const getFilteredFilms = (state, genre) => {
   return filtration(state);
 };
 
+const getIsFilmsFetching = (state) => {
+  return state[NameSpace.DATA].isFilmsFetching;
+};
 
-export {getFilms, getPromoFilm, getFilteredFilms};
+const getIsPromoFilmFetching = (state) => {
+  return state[NameSpace.DATA].isPromoFilmFetching;
+};
+
+
+export {getFilms, getPromoFilm, getFilteredFilms, getIsFilmsFetching, getIsPromoFilmFetching};

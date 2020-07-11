@@ -38,6 +38,4 @@ const init = () => {
   );
 };
 
-
-setTimeout(init, 1000);
-
+init();

@@ -132,6 +132,8 @@ describe(`testing reducer`, ()=>{
       films: [],
       promoFilm: null,
       allFilms: [],
+      isFilmsFetching: true,
+      isPromoFilmFetching: true,
     });
   });
 
@@ -144,6 +146,7 @@ describe(`testing reducer`, ()=>{
     })).toEqual({
       films,
       allFilms: films,
+      isFilmsFetching: false,
     });
   });
 
@@ -154,7 +157,8 @@ describe(`testing reducer`, ()=>{
       type: ActionTypes.LOAD_PROMO_FILM,
       payload: films[0]
     })).toEqual({
-      promoFilm: films[0]
+      promoFilm: films[0],
+      isPromoFilmFetching: false,
     });
   });
 

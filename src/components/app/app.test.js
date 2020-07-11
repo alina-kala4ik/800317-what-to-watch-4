@@ -140,7 +140,7 @@ const films = [
 
 const mockStore = configureStore([]);
 
-it(`render App witout server error`, () => {
+it(`render App without server error`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       genre: Genres.ALL,
@@ -151,7 +151,9 @@ it(`render App witout server error`, () => {
     [NameSpace.DATA]: {
       films,
       promoFilm: films[0],
-      allFilms: films
+      allFilms: films,
+      isFilmsFetching: false,
+      isPromoFilmFetching: false,
     }
   });
 
@@ -163,6 +165,10 @@ it(`render App witout server error`, () => {
             setActiveItem={()=>{}}
             playableMovie={null}
             serverStatus={ServerStatus.OK}
+            isFilmsFetching={false}
+            isPromoFilmFetching={false}
+            films={films}
+            promoFilm={films[0]}
           />
         </Provider>, {
           createNodeMock: ()=>{
@@ -179,12 +185,14 @@ it(`render App with server error`, () => {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
       playableMovie: null,
-      serverStatus: ServerStatus.ERROR
+      serverStatus: ServerStatus.ERROR,
     },
     [NameSpace.DATA]: {
       films,
       promoFilm: films[0],
-      allFilms: films
+      allFilms: films,
+      isFilmsFetching: false,
+      isPromoFilmFetching: false,
     }
   });
 
@@ -196,6 +204,88 @@ it(`render App with server error`, () => {
             setActiveItem={()=>{}}
             playableMovie={null}
             serverStatus={ServerStatus.ERROR}
+            isFilmsFetching={false}
+            isPromoFilmFetching={false}
+            films={films}
+            promoFilm={films[0]}
+          />
+        </Provider>, {
+          createNodeMock: ()=>{
+            return {};
+          }
+        })
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it(`render App when films null`, () => {
+  const store = mockStore({
+    [NameSpace.APP_STATE]: {
+      genre: Genres.ALL,
+      countDisplayedFilms: 8,
+      playableMovie: null,
+      serverStatus: ServerStatus.OK
+    },
+    [NameSpace.DATA]: {
+      films: null,
+      promoFilm: films[0],
+      allFilms: films,
+      isFilmsFetching: false,
+      isPromoFilmFetching: false,
+    }
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App
+            activeItem={false}
+            setActiveItem={()=>{}}
+            playableMovie={null}
+            serverStatus={ServerStatus.OK}
+            isFilmsFetching={false}
+            isPromoFilmFetching={false}
+            films={null}
+            promoFilm={films[0]}
+          />
+        </Provider>, {
+          createNodeMock: ()=>{
+            return {};
+          }
+        })
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it(`render App when promoFilm null`, () => {
+  const store = mockStore({
+    [NameSpace.APP_STATE]: {
+      genre: Genres.ALL,
+      countDisplayedFilms: 8,
+      playableMovie: null,
+      serverStatus: ServerStatus.OK
+    },
+    [NameSpace.DATA]: {
+      films,
+      promoFilm: null,
+      allFilms: films,
+      isFilmsFetching: false,
+      isPromoFilmFetching: false,
+    }
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App
+            activeItem={false}
+            setActiveItem={()=>{}}
+            playableMovie={null}
+            serverStatus={ServerStatus.OK}
+            isFilmsFetching={false}
+            isPromoFilmFetching={false}
+            films={films}
+            promoFilm={null}
           />
         </Provider>, {
           createNodeMock: ()=>{

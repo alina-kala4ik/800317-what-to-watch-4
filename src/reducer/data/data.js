@@ -6,6 +6,8 @@ const initialState = {
   allFilms: [],
   films: [],
   promoFilm: null,
+  isFilmsFetching: true,
+  isPromoFilmFetching: true,
 };
 
 const ActionTypes = {
@@ -57,11 +59,13 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.LOAD_FILMS:
       return extend(state, {
         films: action.payload,
-        allFilms: action.payload
+        allFilms: action.payload,
+        isFilmsFetching: false,
       });
     case ActionTypes.LOAD_PROMO_FILM:
       return extend(state, {
-        promoFilm: action.payload
+        promoFilm: action.payload,
+        isPromoFilmFetching: false
       });
   }
   return state;
