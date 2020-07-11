@@ -31,7 +31,7 @@ MovieList.propTypes = {
 const mapStateToProps = (state, props) => {
   const {genre = getGenre(state), countFilms} = props;
 
-  const films = getFilteredFilms(state, genre);
+  const films = getFilteredFilms(state);
 
   const displayedNumberOfFilms = films.slice(0, countFilms);
 

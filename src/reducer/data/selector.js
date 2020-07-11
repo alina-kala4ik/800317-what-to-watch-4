@@ -17,19 +17,23 @@ const getAllFilms = (state) => {
   return state.allFilms;
 };
 
-const getFilteredFilms = (state, genre) => {
-  const filtration = createSelector(
-      getAllFilms,
-      (films)=>{
-        if (genre === Genres.ALL) {
-          return films;
-        }
-        return films.filter((film) => film.genre === genre);
-      }
-  );
-
-  return filtration(state);
+const getGenreForFilter = (state) => {
+  if (state[NameSpace.DATA]) {
+    return state[NameSpace.DATA].genreForFilter;
+  }
+  return state.genreForFilter;
 };
+
+const getFilteredFilms = createSelector(
+    getAllFilms,
+    getGenreForFilter,
+    (films, genre) => {
+      if (genre === Genres.ALL) {
+        return films;
+      }
+      return films.filter((film) => film.genre === genre);
+    }
+);
 
 const getIsFilmsFetching = (state) => {
   return state[NameSpace.DATA].isFilmsFetching;

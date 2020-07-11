@@ -1,4 +1,4 @@
-import {extend} from "./../../utils.js";
+import {extend, Genres} from "./../../utils.js";
 import {adapter, adapterForArray} from "./../../adapters/films.js";
 import {getFilteredFilms} from "./selector.js";
 
@@ -8,12 +8,14 @@ const initialState = {
   promoFilm: null,
   isFilmsFetching: true,
   isPromoFilmFetching: true,
+  genreForFilter: Genres.ALL
 };
 
 const ActionTypes = {
   FILTERED_FILMS: `FILTERED_FILMS`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  SET_GENRE_FOR_FILTER: `SET_GENRE_FOR_FILTER`,
 };
 
 const ActionCreator = {
@@ -28,6 +30,10 @@ const ActionCreator = {
   loadPromoFilm: (film)=>({
     type: ActionTypes.LOAD_PROMO_FILM,
     payload: film
+  }),
+  setGenreForFilter: (genre)=>({
+    type: ActionTypes.SET_GENRE_FOR_FILTER,
+    payload: genre
   })
 };
 
@@ -51,8 +57,7 @@ const Operation = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.FILTERED_FILMS:
-      const genre = action.payload;
-      const filteredFilms = getFilteredFilms(state, genre);
+      const filteredFilms = getFilteredFilms(state);
       return extend(state, {
         films: filteredFilms
       });
@@ -66,6 +71,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         promoFilm: action.payload,
         isPromoFilmFetching: false
+      });
+    case ActionTypes.SET_GENRE_FOR_FILTER:
+      return extend(state, {
+        genreForFilter: action.payload
       });
   }
   return state;
