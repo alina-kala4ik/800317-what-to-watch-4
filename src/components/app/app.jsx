@@ -72,7 +72,7 @@ class App extends PureComponent {
 App.propTypes = {
   activeItem: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.array,
+    PropTypes.object,
   ]).isRequired,
   setActiveItem: PropTypes.func.isRequired,
   playableMovie: PropTypes.object,
