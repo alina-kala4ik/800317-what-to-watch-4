@@ -52,8 +52,7 @@ class App extends PureComponent {
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {isNoFetching &&
-          app}
+          {isNoFetching && app}
         </Route>
         <Route exact path="/movie-page">
           <MoviePage
