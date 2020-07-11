@@ -36,7 +36,7 @@ exports[`render App with server error 1`] = `
 </div>
 `;
 
-exports[`render App witout server error 1`] = `
+exports[`render App without server error 1`] = `
 Array [
   <section
     className="movie-card"
