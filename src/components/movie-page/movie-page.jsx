@@ -96,7 +96,6 @@ const MoviePage = (props) => {
           <MovieList
             onFilmTitleClick={onFilmTitleClick}
             onFilmImgClick={onFilmImgClick}
-            genre={genre}
             countFilms={DISPLAYED_NUMBER_OF_FILMS}
           />
         </div>
