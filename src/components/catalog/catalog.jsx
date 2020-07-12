@@ -4,7 +4,7 @@ import MovieList from "./../movie-list/movie-list.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import {getCountDisplayedFilms} from "./../../reducer/app-state/selector.js";
-import {getFilms} from "./../../reducer/data/selector.js";
+import {getFilteredFilms} from "./../../reducer/data/selector.js";
 
 
 const Catalog = (props) => {
@@ -43,7 +43,7 @@ Catalog.propTypes = {
 
 const mapStateToProps = (state) => {
   const countDisplayedFilms = getCountDisplayedFilms(state);
-  const films = getFilms(state);
+  const films = getFilteredFilms(state);
 
   const isButtonDisplayed = films.length > countDisplayedFilms ? true : false;
 
