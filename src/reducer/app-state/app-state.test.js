@@ -134,6 +134,7 @@ describe(`testing reducer`, ()=>{
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.OK,
+      logIn: false,
     });
   });
 
@@ -206,6 +207,17 @@ describe(`testing reducer`, ()=>{
     });
   });
 
+  it(`change logIn flag`, ()=>{
+    expect(reducer({
+      logIn: false
+    }, {
+      type: ActionTypes.LOG_IN,
+      payload: true
+    })).toEqual({
+      logIn: true
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, ()=>{
@@ -241,6 +253,13 @@ describe(`Action creators work correctly`, ()=>{
     expect(ActionCreator.changeServerStatusOnError()).toEqual({
       type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
       payload: ServerStatus.ERROR
+    });
+  });
+
+  it(`Action creators change server status on error`, ()=>{
+    expect(ActionCreator.logIn(true)).toEqual({
+      type: ActionTypes.LOG_IN,
+      payload: true
     });
   });
 

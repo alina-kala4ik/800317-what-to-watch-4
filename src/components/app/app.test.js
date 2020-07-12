@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
 import {NameSpace} from "./../../reducer/name-space.js";
 import {ServerStatus} from "./../../reducer/app-state/app-state.js";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 const films = [
   {
@@ -146,7 +147,8 @@ it(`render App without server error`, () => {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
       playableMovie: null,
-      serverStatus: ServerStatus.OK
+      serverStatus: ServerStatus.OK,
+      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -155,6 +157,10 @@ it(`render App without server error`, () => {
       isFilmsFetching: false,
       isPromoFilmFetching: false,
       genreForFilter: Genres.ALL
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      avatar: `img/avatar.jpg`
     }
   });
 
@@ -187,6 +193,7 @@ it(`render App with server error`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.ERROR,
+      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -195,6 +202,10 @@ it(`render App with server error`, () => {
       isFilmsFetching: false,
       isPromoFilmFetching: false,
       genreForFilter: Genres.ALL
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      avatar: `img/avatar.jpg`
     }
   });
 
@@ -226,7 +237,8 @@ it(`render App when films null`, () => {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
       playableMovie: null,
-      serverStatus: ServerStatus.OK
+      serverStatus: ServerStatus.OK,
+      logIn: false
     },
     [NameSpace.DATA]: {
       films: null,
@@ -235,6 +247,10 @@ it(`render App when films null`, () => {
       isFilmsFetching: false,
       isPromoFilmFetching: false,
       genreForFilter: Genres.ALL
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      avatar: `img/avatar.jpg`
     }
   });
 
@@ -266,7 +282,8 @@ it(`render App when promoFilm null`, () => {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
       playableMovie: null,
-      serverStatus: ServerStatus.OK
+      serverStatus: ServerStatus.OK,
+      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -275,6 +292,10 @@ it(`render App when promoFilm null`, () => {
       isFilmsFetching: false,
       isPromoFilmFetching: false,
       genreForFilter: Genres.ALL
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      avatar: `img/avatar.jpg`
     }
   });
 

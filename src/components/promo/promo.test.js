@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Promo} from "./promo.jsx";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -23,6 +24,9 @@ it(`render Promo`, ()=>{
       <Promo
         onPlayClick={()=>{}}
         film={film}
+        authorizationStatus={AuthorizationStatus.AUTH}
+        avatar={`img/avatar.jpg`}
+        onSignInClick={()=>{}}
       />
   ).toJSON();
 

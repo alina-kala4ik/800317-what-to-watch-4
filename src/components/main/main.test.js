@@ -5,6 +5,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
 import {NameSpace} from "./../../reducer/name-space.js";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 
 const films = [
@@ -152,6 +153,10 @@ it(`render Main`, () => {
       promoFilm: films[0],
       allFilms: films,
       genreForFilter: Genres.ALL
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      avatar: `img/avatar.jpg`
     }
   });
 
