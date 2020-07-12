@@ -71,4 +71,4 @@ const Operation = {
   }
 };
 
-export {ActionCreator, reducer, Operation, AuthorizationStatus};
+export {ActionCreator, reducer, Operation, AuthorizationStatus, ActionTypes};
