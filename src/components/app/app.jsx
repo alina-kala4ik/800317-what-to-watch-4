@@ -16,15 +16,21 @@ const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 class App extends PureComponent {
 
   _renderApp() {
-    const {activeItem: activeFilm, setActiveItem: onFilmOrImgClick, playableMovie, films, promoFilm} = this.props;
+    const {activeItem: activeFilm, setActiveItem: onFilmOrImgClick, playableMovie, films, promoFilm, serverStatus, isFilmsFetching, isPromoFilmFetching} = this.props;
 
     const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
 
-    if (!films || !promoFilm) {
+    const isNoFetching = (isFilmsFetching === false && isPromoFilmFetching === false);
+
+    if (!films || !promoFilm && isNoFetching) {
       return <div style={{backgroundColor: `red`}}>У нашего сервера лапки</div>;
     }
 
-    if (activeFilm === false) {
+    if (serverStatus === ServerStatus.ERROR) {
+      return <div style={{backgroundColor: `red`}}>Сервер не доступен</div>;
+    }
+
+    if (activeFilm === false && isNoFetching) {
       return <React.Fragment>
         {modal}
         <Main
@@ -34,25 +40,27 @@ class App extends PureComponent {
       </React.Fragment>;
     }
 
-    return <React.Fragment>
-      {modal}
-      <MoviePage
-        film={activeFilm}
-        onFilmTitleClick={onFilmOrImgClick}
-        onFilmImgClick={onFilmOrImgClick}
-      />
-    </React.Fragment>;
+    if (isFilmsFetching === false) {
+      return <React.Fragment>
+        {modal}
+        <MoviePage
+          film={activeFilm}
+          onFilmTitleClick={onFilmOrImgClick}
+          onFilmImgClick={onFilmOrImgClick}
+        />
+      </React.Fragment>;
+    }
+
+    return null;
   }
 
   render() {
-    const {setActiveItem: onFilmOrImgClick, serverStatus, isFilmsFetching, isPromoFilmFetching} = this.props;
-    const app = (serverStatus === ServerStatus.ERROR) ? <div style={{backgroundColor: `red`}}>Сервер не доступен</div> : this._renderApp();
-    const isNoFetching = (isFilmsFetching === false && isPromoFilmFetching === false);
+    const {setActiveItem: onFilmOrImgClick} = this.props;
 
     return <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          {isNoFetching && app}
+          {this._renderApp()}
         </Route>
         <Route exact path="/movie-page">
           <MoviePage
