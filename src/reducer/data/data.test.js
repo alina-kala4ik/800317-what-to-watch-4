@@ -131,7 +131,6 @@ describe(`testing reducer`, ()=>{
     expect(reducer(undefined, {})).toEqual({
       films: [],
       promoFilm: null,
-      allFilms: [],
       isFilmsFetching: true,
       isPromoFilmFetching: true,
       genreForFilter: Genres.ALL,
@@ -146,7 +145,6 @@ describe(`testing reducer`, ()=>{
       payload: films
     })).toEqual({
       films,
-      allFilms: films,
       isFilmsFetching: false,
     });
   });
@@ -177,13 +175,6 @@ describe(`testing reducer`, ()=>{
 });
 
 describe(`Action creators work correctly`, ()=>{
-
-  it(`Action creators filterd films`, ()=>{
-    expect(ActionCreator.filteredFilms(Genres.COMEDIES)).toEqual({
-      type: ActionTypes.FILTERED_FILMS,
-      payload: Genres.COMEDIES,
-    });
-  });
 
   it(`Action creators load films`, ()=>{
     expect(ActionCreator.loadFilms(films)).toEqual({

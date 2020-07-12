@@ -10,22 +10,13 @@ const getPromoFilm = (state) => {
   return state[NameSpace.DATA].promoFilm;
 };
 
-const getAllFilms = (state) => {
-  if (state[NameSpace.DATA]) {
-    return state[NameSpace.DATA].allFilms;
-  }
-  return state.allFilms;
-};
 
 const getGenreForFilter = (state) => {
-  if (state[NameSpace.DATA]) {
-    return state[NameSpace.DATA].genreForFilter;
-  }
-  return state.genreForFilter;
+  return state[NameSpace.DATA].genreForFilter;
 };
 
 const getFilteredFilms = createSelector(
-    getAllFilms,
+    getFilms,
     getGenreForFilter,
     (films, genre) => {
       if (genre === Genres.ALL) {

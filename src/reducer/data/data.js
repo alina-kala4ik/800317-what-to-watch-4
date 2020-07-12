@@ -1,9 +1,7 @@
 import {extend, Genres} from "./../../utils.js";
 import {adapter, adapterForArray} from "./../../adapters/films.js";
-import {getFilteredFilms} from "./selector.js";
 
 const initialState = {
-  allFilms: [],
   films: [],
   promoFilm: null,
   isFilmsFetching: true,
@@ -12,17 +10,12 @@ const initialState = {
 };
 
 const ActionTypes = {
-  FILTERED_FILMS: `FILTERED_FILMS`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   SET_GENRE_FOR_FILTER: `SET_GENRE_FOR_FILTER`,
 };
 
 const ActionCreator = {
-  filteredFilms: ()=>({
-    type: ActionTypes.FILTERED_FILMS,
-    payload: null
-  }),
   loadFilms: (films)=>({
     type: ActionTypes.LOAD_FILMS,
     payload: films
@@ -56,15 +49,9 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.FILTERED_FILMS:
-      const filteredFilms = getFilteredFilms(state);
-      return extend(state, {
-        films: filteredFilms
-      });
     case ActionTypes.LOAD_FILMS:
       return extend(state, {
         films: action.payload,
-        allFilms: action.payload,
         isFilmsFetching: false,
       });
     case ActionTypes.LOAD_PROMO_FILM:
