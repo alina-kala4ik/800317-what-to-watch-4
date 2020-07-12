@@ -19,9 +19,9 @@ const ActionTypes = {
 };
 
 const ActionCreator = {
-  filteredFilms: (genre)=>({
+  filteredFilms: ()=>({
     type: ActionTypes.FILTERED_FILMS,
-    payload: genre
+    payload: null
   }),
   loadFilms: (films)=>({
     type: ActionTypes.LOAD_FILMS,
