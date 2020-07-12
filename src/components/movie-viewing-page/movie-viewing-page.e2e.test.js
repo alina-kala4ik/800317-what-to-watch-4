@@ -22,12 +22,9 @@ describe(`All callbacks are working`, ()=>{
           isPlaying={true}
           progress={0}
           timeLeft={`01:00:00`}
-          isControllersVisible={true}
           onPlayClick={()=>{}}
           onPauseClick={onPauseClick}
           onFullScreenClick={onFullScreenClick}
-          onMouseEnterControls={()=>{}}
-          onMouseLeaveControls={()=>{}}
         >
           <video />
         </MovieViewingPage>
@@ -51,12 +48,9 @@ describe(`All callbacks are working`, ()=>{
           isPlaying={false}
           progress={0}
           timeLeft={`01:00:00`}
-          isControllersVisible={true}
           onPlayClick={onPlayClick}
           onPauseClick={()=>{}}
           onFullScreenClick={()=>{}}
-          onMouseEnterControls={()=>{}}
-          onMouseLeaveControls={()=>{}}
         >
           <video />
         </MovieViewingPage>
@@ -66,32 +60,6 @@ describe(`All callbacks are working`, ()=>{
     expect(onPlayClick).toHaveBeenCalledTimes(1);
   });
 
-  it(`Callbacks react on mouse event are works`, ()=>{
-    const onMouseEnterControls = jest.fn();
-    const onMouseLeaveControls = jest.fn();
 
-    const movieViewingPage = mount(
-        <MovieViewingPage
-          onExitClick={()=>{}}
-          isPlaying={false}
-          progress={0}
-          timeLeft={`01:00:00`}
-          isControllersVisible={false}
-          onPlayClick={()=>{}}
-          onPauseClick={()=>{}}
-          onFullScreenClick={()=>{}}
-          onMouseEnterControls={onMouseEnterControls}
-          onMouseLeaveControls={onMouseLeaveControls}
-        >
-          <video />
-        </MovieViewingPage>
-    );
-
-    movieViewingPage.find(`div.player__controls`).simulate(`mouseenter`);
-    expect(onMouseEnterControls).toHaveBeenCalledTimes(1);
-
-    movieViewingPage.find(`div.player__controls`).simulate(`mouseleave`);
-    expect(onMouseLeaveControls).toHaveBeenCalledTimes(1);
-  });
 });
 

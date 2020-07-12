@@ -20,9 +20,7 @@ class MovieViewingPage extends Component {
   }
 
   render() {
-    const {onExitClick, isPlaying, progress, timeLeft, isControllersVisible, children, onPlayClick, onPauseClick, onFullScreenClick, onMouseEnterControls, onMouseLeaveControls} = this.props;
-
-    const opacity = isControllersVisible ? `1` : `0`;
+    const {onExitClick, isPlaying, progress, timeLeft, children, onPlayClick, onPauseClick, onFullScreenClick} = this.props;
 
     return ReactDOM.createPortal(<div className="player">
       {children}
@@ -30,9 +28,6 @@ class MovieViewingPage extends Component {
       <button
         type="button"
         className="player__exit"
-        style={{opacity: `${opacity}`}}
-        onMouseEnter={onMouseEnterControls}
-        onMouseLeave={onMouseLeaveControls}
         onClick={onExitClick}
       >
         Exit
@@ -40,9 +35,6 @@ class MovieViewingPage extends Component {
 
       <div
         className="player__controls"
-        style={{opacity: `${opacity}`}}
-        onMouseEnter={onMouseEnterControls}
-        onMouseLeave={onMouseLeaveControls}
       >
         <div className="player__controls-row">
           <div className="player__time">
@@ -104,13 +96,10 @@ MovieViewingPage.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   progress: PropTypes.number.isRequired,
   timeLeft: PropTypes.string,
-  isControllersVisible: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   onPauseClick: PropTypes.func.isRequired,
   onFullScreenClick: PropTypes.func.isRequired,
-  onMouseEnterControls: PropTypes.func.isRequired,
-  onMouseLeaveControls: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -26,11 +26,12 @@ const film = {
 };
 
 const MockComponent = (props) => {
-  const {children, onPauseClick, onPlayClick} = props;
+  const {children, onPauseClick, onPlayClick, onFullScreenClick} = props;
 
   return <div>
     <button className="pause" onClick={onPauseClick} />
     <button className="play" onClick={onPlayClick} />
+    <button className="fullScreen" onClick={onFullScreenClick} />
     {children}
   </div>;
 };
@@ -39,6 +40,7 @@ MockComponent.propTypes = {
   children: PropTypes.node.isRequired,
   onPauseClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
+  onFullScreenClick: PropTypes.func.isRequired,
 };
 
 const MockComponentWrapped = withPlayer(MockComponent);
@@ -84,47 +86,3 @@ it(`Testing play`, ()=>{
   expect(_videoRef.current.play).toHaveBeenCalledTimes(1);
 });
 
-it(`Should change state isFullScreenMode and isControllersVisible when the player opens in full screen`, ()=>{
-
-  const wrapper = mount(
-      <MockComponentWrapped
-        film={film}
-      />
-  );
-
-  wrapper.instance().handleFullScreenClick();
-  expect(wrapper.state().isFullScreenMode).toEqual(true);
-  expect(wrapper.state().isControllersVisible).toEqual(false);
-});
-
-it(`Should change state isControllersVisible when you mouse over the control panel`, ()=>{
-
-  const wrapper = mount(
-      <MockComponentWrapped
-        film={film}
-      />
-  );
-
-  wrapper.setState({
-    isFullScreenMode: true
-  });
-
-  wrapper.instance().handleMouseEnterControls();
-  expect(wrapper.state().isControllersVisible).toEqual(true);
-});
-
-it(`Should change state isControllersVisible when the mouse is removed from the control panel`, ()=>{
-
-  const wrapper = mount(
-      <MockComponentWrapped
-        film={film}
-      />
-  );
-
-  wrapper.setState({
-    isFullScreenMode: true
-  });
-
-  wrapper.instance().handleMouseLeaveControls();
-  expect(wrapper.state().isControllersVisible).toEqual(false);
-});
