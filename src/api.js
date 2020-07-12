@@ -5,7 +5,7 @@ const Error = {
   NOT_FOUND: 404
 };
 
-const createAPI = (onNotFound) => {
+const createAPI = (onNotFound, onUnauthorized) => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/wtw`,
     timeout: 5000,
@@ -19,9 +19,13 @@ const createAPI = (onNotFound) => {
   const onError = (err) => {
     const {response} = err;
 
-    if (response.status === Error.NOT_FOUND) {
-      onNotFound();
-      throw err;
+    switch (response.status) {
+      case Error.NOT_FOUND:
+        onNotFound();
+        throw err;
+      case Error.UNAUTHORIZED:
+        onUnauthorized();
+        throw err;
     }
 
     throw err;

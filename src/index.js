@@ -7,14 +7,20 @@ import {Provider} from "react-redux";
 import withActiveItem from "./hocs/with-active-item/with-active-item.jsx";
 import thunk from "redux-thunk";
 import {createAPI} from "./api.js";
-import {Operation} from "./reducer/data/data.js";
-import {ActionCreator} from "./reducer/app-state/app-state.js";
+import {Operation as DataOperation} from "./reducer/data/data.js";
+import {ActionCreator as AppStateActionCreator} from "./reducer/app-state/app-state.js";
+import {ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
+import {Operation as UserOperation} from "./reducer/user/user.js";
 
 const onNotFound = () => {
-  store.dispatch(ActionCreator.changeServerStatusOnError());
+  store.dispatch(AppStateActionCreator.changeServerStatusOnError());
 };
 
-const api = createAPI(onNotFound);
+const onUnauthorized = () => {
+  store.dispatch(UserActionCreator.requiredAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onNotFound, onUnauthorized);
 
 const store = createStore(
     reducer,
@@ -24,8 +30,10 @@ const store = createStore(
     )
 );
 
-store.dispatch(Operation.loadFilms());
-store.dispatch(Operation.loadPromoFilm());
+
+store.dispatch(DataOperation.loadFilms());
+store.dispatch(DataOperation.loadPromoFilm());
+store.dispatch(UserOperation.checkAuth());
 
 const AppWrapped = withActiveItem(App);
 
