@@ -175,7 +175,7 @@ Array [
           loop={true}
           poster="img/what-we-do-in-the-shadows.jpg"
           preload="none"
-          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+          src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
           width="280"
         />
       </div>
@@ -206,7 +206,7 @@ Array [
           loop={true}
           poster="img/revenant.jpg"
           preload="none"
-          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+          src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
           width="280"
         />
       </div>
@@ -237,7 +237,7 @@ Array [
           loop={true}
           poster="img/johnny-english.jpg"
           preload="none"
-          src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+          src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
           width="280"
         />
       </div>
@@ -442,7 +442,7 @@ exports[`render Catalog without button 1`] = `
         loop={true}
         poster="img/what-we-do-in-the-shadows.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -473,7 +473,7 @@ exports[`render Catalog without button 1`] = `
         loop={true}
         poster="img/revenant.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>
@@ -504,7 +504,7 @@ exports[`render Catalog without button 1`] = `
         loop={true}
         poster="img/johnny-english.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
     </div>

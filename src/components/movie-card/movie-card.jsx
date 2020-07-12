@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import VideoPlayer from "./../video-player/video-player.jsx";
+import {connect} from "react-redux";
+import {ActionCreator} from "./../../reducer/data/data.js";
 
 const MovieCard = (props) => {
-  const {film, onFilmTitleClick, onFilmImgClick, isPlaying, onMouseEnter, onMouseLeave} = props;
-  const {title, screenshotSrc, videoSrc} = film;
+  const {film, onFilmTitleClick, onFilmImgClick, isPlaying, onMouseEnter, onMouseLeave, setGenreForFilter} = props;
+  const {title, screenshotSrc, previewVideoLink, genre} = film;
 
   return <article
     className="small-movie-card catalog__movies-card"
@@ -15,10 +17,11 @@ const MovieCard = (props) => {
       className="small-movie-card__image"
       onClick={()=>{
         onFilmImgClick(film);
+        setGenreForFilter(genre);
       }}
     >
       <VideoPlayer
-        src={videoSrc}
+        src={previewVideoLink}
         poster={screenshotSrc}
         isPlaying={isPlaying}
       />
@@ -28,6 +31,7 @@ const MovieCard = (props) => {
         onClick={(evt)=>{
           evt.preventDefault();
           onFilmTitleClick(film);
+          setGenreForFilter(genre);
         }}
         className="small-movie-card__link"
         href="movie-page.html"
@@ -40,22 +44,22 @@ MovieCard.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string.isRequired,
     screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    videoSrc: PropTypes.string.isRequired
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
+  setGenreForFilter: PropTypes.func.isRequired,
 };
 
-export default MovieCard;
+const mapDispatchToProps = (dispatch) => ({
+  setGenreForFilter(genre) {
+    dispatch(ActionCreator.setGenreForFilter(genre));
+  }
+});
+
+export {MovieCard};
+export default connect(null, mapDispatchToProps)(MovieCard);

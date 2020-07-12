@@ -1,9 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const getTimeFromMins = (mins) => {
+  let hours = Math.trunc(mins / 60);
+  let minutes = mins % 60;
+  const minutesStr = minutes.toString().padStart(2, `0`);
+
+  return `${hours}h ${minutesStr}m`;
+};
+
 const TabDetails = (props) => {
   const {film} = props;
-  const {producer, actors, runTime, yearRelease, genre} = film;
+  const {producer, actors, runTime: runTimeInMin, yearRelease, genre} = film;
+  const runTime = getTimeFromMins(runTimeInMin);
 
   return <div className="movie-card__text movie-card__row">
     <div className="movie-card__text-col">
@@ -43,18 +52,11 @@ const TabDetails = (props) => {
 
 TabDetails.propTypes = {
   film: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
+    yearRelease: PropTypes.number.isRequired,
     producer: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
   }).isRequired,
 };
 

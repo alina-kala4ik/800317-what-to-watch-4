@@ -1,12 +1,7 @@
-import React from "react";
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import {GenresList} from "./genres-list.jsx";
+import {reducer, ActionCreator, ActionTypes, Operation} from "./data.js";
 import {Genres} from "./../../utils.js";
-
-Enzyme.configure({
-  adapter: new Adapter()
-});
+import MockAdapter from "axios-mock-adapter";
+import {createAPI} from "./../../api.js";
 
 const films = [
   {
@@ -22,6 +17,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: 99,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -36,6 +32,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: 99,
   },
   {
     title: `Macbeth`,
@@ -50,6 +47,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: 99,
   },
   {
     title: `Aviator`,
@@ -64,6 +62,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: 99,
   },
   {
     title: `We need to talk about Kevin`,
@@ -78,6 +77,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    runTime: 99,
   },
   {
     title: `What We Do in the Shadows`,
@@ -92,6 +92,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    runTime: 99,
   },
   {
     title: `Revenant`,
@@ -106,6 +107,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    runTime: 99,
   },
   {
     title: `Johnny English`,
@@ -120,51 +122,169 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    runTime: 99,
   },
 ];
 
-
-it(`Genre items are clickable`, () => {
-  const onClick = jest.fn();
-  const itemPreventDefoult = jest.fn();
-
-  const genresList = shallow(
-      <GenresList
-        genre={Genres.ALL}
-        onClick={onClick}
-        films={films}
-      />
-  );
-
-  const genreItems = genresList.find(`li.catalog__genres-item`);
-
-  genreItems.forEach((item) => {
-    item.simulate(`click`, ({
-      preventDefault: itemPreventDefoult
-    }));
+describe(`testing reducer`, ()=>{
+  it(`Returns initial state at application start`, ()=>{
+    expect(reducer(undefined, {})).toEqual({
+      films: [],
+      promoFilm: null,
+      isFilmsFetching: true,
+      isPromoFilmFetching: true,
+      genreForFilter: Genres.ALL,
+    });
   });
 
-  expect(onClick).toHaveBeenCalledTimes(7);
-  expect(itemPreventDefoult).toHaveBeenCalledTimes(7);
+  it(`uploads films`, ()=>{
+    expect(reducer({
+      films: []
+    }, {
+      type: ActionTypes.LOAD_FILMS,
+      payload: films
+    })).toEqual({
+      films,
+      isFilmsFetching: false,
+    });
+  });
+
+  it(`uploads promo film`, ()=>{
+    expect(reducer({
+      promoFilm: null
+    }, {
+      type: ActionTypes.LOAD_PROMO_FILM,
+      payload: films[0]
+    })).toEqual({
+      promoFilm: films[0],
+      isPromoFilmFetching: false,
+    });
+  });
+
+  it(`set genre for filter`, ()=>{
+    expect(reducer({
+      genreForFilter: Genres.ALL,
+    }, {
+      type: ActionTypes.SET_GENRE_FOR_FILTER,
+      payload: Genres.COMEDIES
+    })).toEqual({
+      genreForFilter: Genres.COMEDIES
+    });
+  });
+
 });
 
-it(`When clicked, a function with the correct answer is called`, () => {
-  const onClick = jest.fn();
-  const expectedAnswer = Genres.DRAMA;
+describe(`Action creators work correctly`, ()=>{
 
-  const genresList = shallow(
-      <GenresList
-        genre={Genres.ALL}
-        onClick={onClick}
-        films={films}
-      />
-  );
+  it(`Action creators load films`, ()=>{
+    expect(ActionCreator.loadFilms(films)).toEqual({
+      type: ActionTypes.LOAD_FILMS,
+      payload: films
+    });
+  });
 
-  const dramaItem = genresList.find(`li.catalog__genres-item`).at(1);
+  it(`Action creators load promo films`, ()=>{
+    expect(ActionCreator.loadPromoFilm(films[0])).toEqual({
+      type: ActionTypes.LOAD_PROMO_FILM,
+      payload: films[0]
+    });
+  });
 
-  dramaItem.simulate(`click`, {preventDefault() {}});
+  it(`Action creators set genre for filter`, ()=>{
+    expect(ActionCreator.setGenreForFilter(Genres.DOCUMENTARY)).toEqual({
+      type: ActionTypes.SET_GENRE_FOR_FILTER,
+      payload: Genres.DOCUMENTARY
+    });
+  });
 
-  expect(onClick).toHaveBeenCalledTimes(1);
-  expect(onClick.mock.calls[0][0]).toEqual(expectedAnswer);
 });
 
+describe(`Operation work correctly`, ()=>{
+
+  const onNotFound = () => {};
+
+  it(`load films`, ()=>{
+    const adaptedFilms = [
+      {
+        "actors": undefined,
+        "backgroundColor": undefined,
+        "description": undefined,
+        "genre": undefined,
+        "id": undefined,
+        "isFavorite": undefined,
+        "movieCoverSrc": undefined,
+        "numberVotes": undefined,
+        "posterSrc": undefined,
+        "previewVideoLink": undefined,
+        "producer": undefined,
+        "rating": undefined,
+        "runTime": undefined,
+        "screenshotSrc": undefined,
+        "title": undefined,
+        "videoSrc": undefined,
+        "yearRelease": undefined,
+      },
+    ];
+
+    const api = createAPI(onNotFound);
+
+    const apiMock = new MockAdapter(api);
+    apiMock
+      .onGet(`/films`)
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const filmsLoader = Operation.loadFilms();
+
+    return filmsLoader(dispatch, ()=>{}, api)
+      .then(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionTypes.LOAD_FILMS,
+          payload: adaptedFilms
+        });
+      });
+  });
+
+  it(`load promoFilm`, ()=>{
+    const adaptedFilm = {
+      "actors": undefined,
+      "backgroundColor": undefined,
+      "description": undefined,
+      "genre": undefined,
+      "id": undefined,
+      "isFavorite": undefined,
+      "movieCoverSrc": undefined,
+      "numberVotes": undefined,
+      "posterSrc": undefined,
+      "previewVideoLink": undefined,
+      "producer": undefined,
+      "rating": undefined,
+      "runTime": undefined,
+      "screenshotSrc": undefined,
+      "title": undefined,
+      "videoSrc": undefined,
+      "yearRelease": undefined,
+    };
+
+    const api = createAPI(onNotFound);
+
+    const apiMock = new MockAdapter(api);
+    apiMock
+      .onGet(`/films/promo`)
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const promoFilmLoader = Operation.loadPromoFilm();
+
+    return promoFilmLoader(dispatch, ()=>{}, api)
+      .then(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionTypes.LOAD_PROMO_FILM,
+          payload: adaptedFilm
+        });
+      });
+  });
+
+});

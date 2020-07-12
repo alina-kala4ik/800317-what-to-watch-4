@@ -5,7 +5,7 @@ import AboutFilm from "./../about-film/about-film.jsx";
 import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
 import {Tabs} from "./../../utils.js";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer.js";
+import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 
@@ -13,10 +13,13 @@ const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
 
 const MoviePage = (props) => {
   const {film, onFilmTitleClick, onFilmImgClick, onPlayClick} = props;
-  const {title, posterSrc, movieCoverSrc, genre, yearRelease} = film;
+  const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor} = film;
 
   return <React.Fragment>
-    <section className="movie-card movie-card--full">
+    <section
+      className="movie-card movie-card--full"
+      style={{backgroundColor: `${backgroundColor}`}}
+    >
       <div className="movie-card__hero">
         <div className="movie-card__bg">
           <img src={posterSrc} alt={title} />
@@ -93,7 +96,6 @@ const MoviePage = (props) => {
           <MovieList
             onFilmTitleClick={onFilmTitleClick}
             onFilmImgClick={onFilmImgClick}
-            genre={genre}
             countFilms={DISPLAYED_NUMBER_OF_FILMS}
           />
         </div>
@@ -116,20 +118,15 @@ const MoviePage = (props) => {
   </React.Fragment>;
 };
 
+
 MoviePage.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
     posterSrc: PropTypes.string.isRequired,
     movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runTime: PropTypes.string.isRequired,
+    yearRelease: PropTypes.number.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
   }).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmImgClick: PropTypes.func.isRequired,

@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import MovieCard from "./../movie-card/movie-card.jsx";
 import {connect} from "react-redux";
-import {Genres} from "./../../utils.js";
-import {getFilteredFilms} from "./../../reducer.js";
+import {getFilteredFilms} from "./../../reducer/data/selector.js";
 import withPlayingCard from "./../../hocs/with-playing-card/with-playing-card.jsx";
 
 const MovieCardWrapped = withPlayingCard(MovieCard);
@@ -21,20 +20,7 @@ const MovieList = (props) => {
 };
 
 MovieList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    videoSrc: PropTypes.string.isRequired,
-  })).isRequired,
+  films: PropTypes.array.isRequired,
   genre: PropTypes.string,
   countFilms: PropTypes.number.isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
@@ -42,13 +28,9 @@ MovieList.propTypes = {
 };
 
 const mapStateToProps = (state, props) => {
-  const {genre = Genres.ALL, countFilms} = props;
+  const {countFilms} = props;
 
-  let films = state.films;
-
-  if (genre !== Genres.ALL) {
-    films = getFilteredFilms(genre);
-  }
+  const films = getFilteredFilms(state);
 
   const displayedNumberOfFilms = films.slice(0, countFilms);
 

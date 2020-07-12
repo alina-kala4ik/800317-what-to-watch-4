@@ -37,20 +37,7 @@ const AboutFilm = (props) => {
 AboutFilm.propTypes = {
   activeItem: PropTypes.string.isRequired,
   setActiveItem: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runTime: PropTypes.string.isRequired,
-  }).isRequired,
+  film: PropTypes.object.isRequired,
 };
 
 export default AboutFilm;

@@ -3,19 +3,36 @@ import Main from "../main/main.jsx";
 import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
-import films from "./../../mocks/films.js";
+import mockFilms from "../../mocks/films.js";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
 import withPlayer from "./../../hocs/with-player/with-player.jsx";
+import {getPlayableMovie, gerServerStatus} from "./../../reducer/app-state/selector.js";
+import {ServerStatus} from "./../../reducer/app-state/app-state.js";
+import {getIsFilmsFetching, getIsPromoFilmFetching, getFilms, getPromoFilm} from "./../../reducer/data/selector.js";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {activeItem: activeFilm, setActiveItem: onFilmOrImgClick, playableMovie} = this.props;
+    const {activeItem: activeFilm, setActiveItem: onFilmOrImgClick, playableMovie, films, promoFilm, serverStatus, isFilmsFetching, isPromoFilmFetching} = this.props;
 
     const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
+
+    const isFetching = (isFilmsFetching && isPromoFilmFetching);
+
+    if (isFetching) {
+      return null;
+    }
+
+    if (!films || !promoFilm) {
+      return <div style={{backgroundColor: `red`}}>У нашего сервера лапки</div>;
+    }
+
+    if (serverStatus === ServerStatus.ERROR) {
+      return <div style={{backgroundColor: `red`}}>Сервер не доступен</div>;
+    }
 
     if (activeFilm === false) {
       return <React.Fragment>
@@ -35,6 +52,7 @@ class App extends PureComponent {
         onFilmImgClick={onFilmOrImgClick}
       />
     </React.Fragment>;
+
   }
 
   render() {
@@ -47,13 +65,13 @@ class App extends PureComponent {
         </Route>
         <Route exact path="/movie-page">
           <MoviePage
-            film={films[0]}
+            film={mockFilms[0]}
             onFilmTitleClick={onFilmOrImgClick}
             onFilmImgClick={onFilmOrImgClick}
           />
         </Route>
         <Route exact path="/movie">
-          <MovieViewingPageWrapped film={films[0]} />
+          <MovieViewingPageWrapped film={mockFilms[0]} />
         </Route>
       </Switch>
     </BrowserRouter>;
@@ -63,40 +81,24 @@ class App extends PureComponent {
 App.propTypes = {
   activeItem: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      screenshotSrc: PropTypes.string.isRequired,
-      posterSrc: PropTypes.string.isRequired,
-      movieCoverSrc: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-      yearRelease: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      rating: PropTypes.string.isRequired,
-      numberVotes: PropTypes.string.isRequired,
-      producer: PropTypes.string.isRequired,
-      actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-      runTime: PropTypes.string.isRequired,
-    }),
+    PropTypes.object,
   ]).isRequired,
   setActiveItem: PropTypes.func.isRequired,
-  playableMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    runTime: PropTypes.string.isRequired,
-  }),
+  playableMovie: PropTypes.object,
+  serverStatus: PropTypes.string.isRequired,
+  isFilmsFetching: PropTypes.bool.isRequired,
+  isPromoFilmFetching: PropTypes.bool.isRequired,
+  films: PropTypes.array,
+  promoFilm: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  playableMovie: state.playableMovie,
+  playableMovie: getPlayableMovie(state),
+  serverStatus: gerServerStatus(state),
+  isFilmsFetching: getIsFilmsFetching(state),
+  isPromoFilmFetching: getIsPromoFilmFetching(state),
+  films: getFilms(state),
+  promoFilm: getPromoFilm(state),
 });
 
 export {App};

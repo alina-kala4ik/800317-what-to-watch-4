@@ -1,7 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer.js";
+import {ActionCreator as appStateActionCreator} from "./../../reducer/app-state/app-state.js";
+import {ActionCreator as dataActionCreator} from "./../../reducer/data/data.js";
+import {getGenre} from "./../../reducer/app-state/selector.js";
+import {getFilms} from "./../../reducer/data/selector.js";
 
 const MAX_NUMBER_GENRES = 10;
 
@@ -50,32 +53,19 @@ class GenresList extends PureComponent {
 GenresList.propTypes = {
   genre: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    screenshotSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    movieCoverSrc: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    yearRelease: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    numberVotes: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string).isRequired,
-    videoSrc: PropTypes.string.isRequired,
-  })),
+  films: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
-  genre: state.genre,
-  films: state.films,
+  genre: getGenre(state),
+  films: getFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.filteredFilms());
-    dispatch(ActionCreator.resetCountDisplayedFilms());
+    dispatch(appStateActionCreator.changeGenre(genre));
+    dispatch(appStateActionCreator.resetCountDisplayedFilms());
+    dispatch(dataActionCreator.setGenreForFilter(genre));
   }
 });
 
