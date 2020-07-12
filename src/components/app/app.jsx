@@ -31,9 +31,13 @@ class App extends PureComponent {
 
     const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
 
-    const isNoFetching = (isFilmsFetching === false && isPromoFilmFetching === false);
+    const isFetching = (isFilmsFetching && isPromoFilmFetching);
 
-    if (!films || !promoFilm && isNoFetching) {
+    if (isFetching) {
+      return null;
+    }
+
+    if (!films || !promoFilm) {
       return <div style={{backgroundColor: `red`}}>У нашего сервера лапки</div>;
     }
 
@@ -45,7 +49,7 @@ class App extends PureComponent {
       return <SignIn />;
     }
 
-    if (activeFilm === false && isNoFetching) {
+    if (activeFilm === false) {
       return <React.Fragment>
         {modal}
         <Main
@@ -55,18 +59,15 @@ class App extends PureComponent {
       </React.Fragment>;
     }
 
-    if (isNoFetching) {
-      return <React.Fragment>
-        {modal}
-        <MoviePage
-          film={activeFilm}
-          onFilmTitleClick={onFilmOrImgClick}
-          onFilmImgClick={onFilmOrImgClick}
-        />
-      </React.Fragment>;
-    }
+    return <React.Fragment>
+      {modal}
+      <MoviePage
+        film={activeFilm}
+        onFilmTitleClick={onFilmOrImgClick}
+        onFilmImgClick={onFilmOrImgClick}
+      />
+    </React.Fragment>;
 
-    return null;
   }
 
   render() {
