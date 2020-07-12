@@ -40,7 +40,7 @@ class App extends PureComponent {
       </React.Fragment>;
     }
 
-    if (isFilmsFetching === false) {
+    if (isNoFetching) {
       return <React.Fragment>
         {modal}
         <MoviePage
