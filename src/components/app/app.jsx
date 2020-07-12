@@ -7,16 +7,27 @@ import mockFilms from "../../mocks/films.js";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
 import withPlayer from "./../../hocs/with-player/with-player.jsx";
-import {getPlayableMovie, gerServerStatus} from "./../../reducer/app-state/selector.js";
+import {getPlayableMovie, gerServerStatus, getLogIn} from "./../../reducer/app-state/selector.js";
 import {ServerStatus} from "./../../reducer/app-state/app-state.js";
 import {getIsFilmsFetching, getIsPromoFilmFetching, getFilms, getPromoFilm} from "./../../reducer/data/selector.js";
+import SignIn from "./../sign-in/sign-in.jsx";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
 class App extends PureComponent {
 
   _renderApp() {
-    const {activeItem: activeFilm, setActiveItem: onFilmOrImgClick, playableMovie, films, promoFilm, serverStatus, isFilmsFetching, isPromoFilmFetching} = this.props;
+    const {
+      activeItem: activeFilm,
+      setActiveItem: onFilmOrImgClick,
+      playableMovie,
+      films,
+      promoFilm,
+      serverStatus,
+      isFilmsFetching,
+      isPromoFilmFetching,
+      logIn
+    } = this.props;
 
     const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
 
@@ -28,6 +39,10 @@ class App extends PureComponent {
 
     if (serverStatus === ServerStatus.ERROR) {
       return <div style={{backgroundColor: `red`}}>Сервер не доступен</div>;
+    }
+
+    if (logIn) {
+      return <SignIn />;
     }
 
     if (activeFilm === false && isNoFetching) {
@@ -72,6 +87,9 @@ class App extends PureComponent {
         <Route exact path="/movie">
           <MovieViewingPageWrapped film={mockFilms[0]} />
         </Route>
+        <Route exact path="/login">
+          <SignIn />
+        </Route>
       </Switch>
     </BrowserRouter>;
   }
@@ -89,6 +107,7 @@ App.propTypes = {
   isPromoFilmFetching: PropTypes.bool.isRequired,
   films: PropTypes.array,
   promoFilm: PropTypes.object,
+  logIn: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -98,6 +117,7 @@ const mapStateToProps = (state) => ({
   isPromoFilmFetching: getIsPromoFilmFetching(state),
   films: getFilms(state),
   promoFilm: getPromoFilm(state),
+  logIn: getLogIn(state),
 });
 
 export {App};
