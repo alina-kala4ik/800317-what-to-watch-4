@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, createRef} from "react";
 import ReactDOM from "react-dom";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import {connect} from "react-redux";
@@ -9,6 +9,10 @@ class MovieViewingPage extends Component {
     super(props);
     this.element = document.createElement(`div`);
     this.modalRoot = document.getElementById(`modal-root`);
+
+    this.playerRef = createRef();
+
+    this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
   }
 
   componentDidMount() {
@@ -19,10 +23,23 @@ class MovieViewingPage extends Component {
     this.modalRoot.removeChild(this.element);
   }
 
-  render() {
-    const {onExitClick, isPlaying, progress, timeLeft, children, onPlayClick, onPauseClick, onFullScreenClick} = this.props;
+  handleFullScreenClick(isFullScreenMode) {
+    const player = this.playerRef.current;
 
-    return ReactDOM.createPortal(<div className="player">
+    if (isFullScreenMode) {
+      player.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  }
+
+  render() {
+    const {onExitClick, isPlaying, progress, timeLeft, children, onPlayClick, onPauseClick, onFullScreenClick, isFullScreenMode} = this.props;
+
+    return ReactDOM.createPortal(<div
+      className="player"
+      ref={this.playerRef}
+    >
       {children}
 
       <button
@@ -76,7 +93,10 @@ class MovieViewingPage extends Component {
           <button
             type="button"
             className="player__full-screen"
-            onClick={onFullScreenClick}
+            onClick={()=>{
+              onFullScreenClick(!isFullScreenMode);
+              this.handleFullScreenClick(!isFullScreenMode);
+            }}
           >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
@@ -100,6 +120,7 @@ MovieViewingPage.propTypes = {
   onPlayClick: PropTypes.func.isRequired,
   onPauseClick: PropTypes.func.isRequired,
   onFullScreenClick: PropTypes.func.isRequired,
+  isFullScreenMode: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

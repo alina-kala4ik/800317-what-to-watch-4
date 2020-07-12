@@ -86,3 +86,15 @@ it(`Testing play`, ()=>{
   expect(_videoRef.current.play).toHaveBeenCalledTimes(1);
 });
 
+it(`Should change state isFullScreenMode when the player opens in full screen`, ()=>{
+
+  const wrapper = mount(
+      <MockComponentWrapped
+        film={film}
+      />
+  );
+
+  wrapper.instance().handleFullScreenClick(true);
+  expect(wrapper.state().isFullScreenMode).toEqual(true);
+});
+

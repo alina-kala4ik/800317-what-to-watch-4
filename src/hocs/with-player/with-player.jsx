@@ -12,6 +12,7 @@ const withPlayer = (Component) =>{
         isPlaying: true,
         progress: 0,
         timeLeft: `00:00:00`,
+        isFullScreenMode: false
       };
 
       this.handlePlayClick = this.handlePlayClick.bind(this);
@@ -31,9 +32,10 @@ const withPlayer = (Component) =>{
       });
     }
 
-    handleFullScreenClick() {
-      const video = this._videoRef.current;
-      video.requestFullscreen();
+    handleFullScreenClick(value) {
+      this.setState({
+        isFullScreenMode: value,
+      });
     }
 
     componentDidMount() {
@@ -73,7 +75,7 @@ const withPlayer = (Component) =>{
     }
 
     render() {
-      const {isPlaying, progress, timeLeft} = this.state;
+      const {isPlaying, progress, timeLeft, isFullScreenMode} = this.state;
       const {film} = this.props;
       const {videoSrc, screenshotSrc} = film;
 
@@ -85,6 +87,7 @@ const withPlayer = (Component) =>{
         onPlayClick={this.handlePlayClick}
         onPauseClick={this.handlePauseClick}
         onFullScreenClick={this.handleFullScreenClick}
+        isFullScreenMode={isFullScreenMode}
       >
         <video
           src={videoSrc}

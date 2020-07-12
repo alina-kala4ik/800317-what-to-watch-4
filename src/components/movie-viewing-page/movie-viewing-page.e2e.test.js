@@ -14,7 +14,6 @@ describe(`All callbacks are working`, ()=>{
   it(`Some callbacks are working`, ()=>{
     const onExitClick = jest.fn();
     const onPauseClick = jest.fn();
-    const onFullScreenClick = jest.fn();
 
     const movieViewingPage = mount(
         <MovieViewingPage
@@ -24,7 +23,8 @@ describe(`All callbacks are working`, ()=>{
           timeLeft={`01:00:00`}
           onPlayClick={()=>{}}
           onPauseClick={onPauseClick}
-          onFullScreenClick={onFullScreenClick}
+          onFullScreenClick={()=>{}}
+          isFullScreenMode={false}
         >
           <video />
         </MovieViewingPage>
@@ -32,11 +32,9 @@ describe(`All callbacks are working`, ()=>{
 
     movieViewingPage.find(`button.player__exit`).simulate(`click`);
     movieViewingPage.find(`button.player__play`).simulate(`click`);
-    movieViewingPage.find(`button.player__full-screen`).simulate(`click`);
 
     expect(onExitClick).toHaveBeenCalledTimes(1);
     expect(onPauseClick).toHaveBeenCalledTimes(1);
-    expect(onFullScreenClick).toHaveBeenCalledTimes(1);
   });
 
   it(`Callback onPauseClick are working`, ()=>{
@@ -51,6 +49,7 @@ describe(`All callbacks are working`, ()=>{
           onPlayClick={onPlayClick}
           onPauseClick={()=>{}}
           onFullScreenClick={()=>{}}
+          isFullScreenMode={false}
         >
           <video />
         </MovieViewingPage>

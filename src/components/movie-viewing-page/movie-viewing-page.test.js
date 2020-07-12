@@ -24,6 +24,7 @@ describe(`render MovieViewingPage`, ()=>{
           onPlayClick={()=>{}}
           onPauseClick={()=>{}}
           onFullScreenClick={()=>{}}
+          isFullScreenMode={false}
         >
           <video />
         </MovieViewingPage>
@@ -42,6 +43,7 @@ describe(`render MovieViewingPage`, ()=>{
           onPlayClick={()=>{}}
           onPauseClick={()=>{}}
           onFullScreenClick={()=>{}}
+          isFullScreenMode={false}
         >
           <video />
         </MovieViewingPage>
