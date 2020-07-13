@@ -12,15 +12,12 @@ const withPlayer = (Component) =>{
         isPlaying: true,
         progress: 0,
         timeLeft: `00:00:00`,
-        isFullScreenMode: false,
-        isControllersVisible: true,
+        isFullScreenMode: false
       };
 
       this.handlePlayClick = this.handlePlayClick.bind(this);
       this.handlePauseClick = this.handlePauseClick.bind(this);
       this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
-      this.handleMouseEnterControls = this.handleMouseEnterControls.bind(this);
-      this.handleMouseLeaveControls = this.handleMouseLeaveControls.bind(this);
     }
 
     handlePlayClick() {
@@ -35,31 +32,10 @@ const withPlayer = (Component) =>{
       });
     }
 
-    handleFullScreenClick() {
-      this.setState((prevState)=>({
-        isFullScreenMode: !prevState.isFullScreenMode,
-        isControllersVisible: prevState.isFullScreenMode,
-      }));
-    }
-
-    handleMouseEnterControls() {
-      const {isFullScreenMode} = this.state;
-
-      if (isFullScreenMode) {
-        this.setState({
-          isControllersVisible: true
-        });
-      }
-    }
-
-    handleMouseLeaveControls() {
-      const {isFullScreenMode} = this.state;
-
-      if (isFullScreenMode) {
-        this.setState({
-          isControllersVisible: false
-        });
-      }
+    handleFullScreenClick(value) {
+      this.setState({
+        isFullScreenMode: value,
+      });
     }
 
     componentDidMount() {
@@ -99,7 +75,7 @@ const withPlayer = (Component) =>{
     }
 
     render() {
-      const {isPlaying, progress, timeLeft, isControllersVisible} = this.state;
+      const {isPlaying, progress, timeLeft, isFullScreenMode} = this.state;
       const {film} = this.props;
       const {videoSrc, screenshotSrc} = film;
 
@@ -108,12 +84,10 @@ const withPlayer = (Component) =>{
         isPlaying={isPlaying}
         progress={progress}
         timeLeft={timeLeft}
-        isControllersVisible={isControllersVisible}
         onPlayClick={this.handlePlayClick}
         onPauseClick={this.handlePauseClick}
         onFullScreenClick={this.handleFullScreenClick}
-        onMouseEnterControls={this.handleMouseEnterControls}
-        onMouseLeaveControls={this.handleMouseLeaveControls}
+        isFullScreenMode={isFullScreenMode}
       >
         <video
           src={videoSrc}

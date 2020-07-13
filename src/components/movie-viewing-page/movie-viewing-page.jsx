@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, createRef} from "react";
 import ReactDOM from "react-dom";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import {connect} from "react-redux";
@@ -9,6 +9,10 @@ class MovieViewingPage extends Component {
     super(props);
     this.element = document.createElement(`div`);
     this.modalRoot = document.getElementById(`modal-root`);
+
+    this.playerRef = createRef();
+
+    this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
   }
 
   componentDidMount() {
@@ -19,20 +23,31 @@ class MovieViewingPage extends Component {
     this.modalRoot.removeChild(this.element);
   }
 
+  handleFullScreenClick() {
+    const {onFullScreenClick, isFullScreenMode} = this.props;
+    const player = this.playerRef.current;
+
+    if (!isFullScreenMode) {
+      player.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+
+    onFullScreenClick(!isFullScreenMode);
+  }
+
   render() {
-    const {onExitClick, isPlaying, progress, timeLeft, isControllersVisible, children, onPlayClick, onPauseClick, onFullScreenClick, onMouseEnterControls, onMouseLeaveControls} = this.props;
+    const {onExitClick, isPlaying, progress, timeLeft, children, onPlayClick, onPauseClick} = this.props;
 
-    const opacity = isControllersVisible ? `1` : `0`;
-
-    return ReactDOM.createPortal(<div className="player">
+    return ReactDOM.createPortal(<div
+      className="player"
+      ref={this.playerRef}
+    >
       {children}
 
       <button
         type="button"
         className="player__exit"
-        style={{opacity: `${opacity}`}}
-        onMouseEnter={onMouseEnterControls}
-        onMouseLeave={onMouseLeaveControls}
         onClick={onExitClick}
       >
         Exit
@@ -40,9 +55,6 @@ class MovieViewingPage extends Component {
 
       <div
         className="player__controls"
-        style={{opacity: `${opacity}`}}
-        onMouseEnter={onMouseEnterControls}
-        onMouseLeave={onMouseLeaveControls}
       >
         <div className="player__controls-row">
           <div className="player__time">
@@ -84,7 +96,7 @@ class MovieViewingPage extends Component {
           <button
             type="button"
             className="player__full-screen"
-            onClick={onFullScreenClick}
+            onClick={this.handleFullScreenClick}
           >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
@@ -104,13 +116,11 @@ MovieViewingPage.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   progress: PropTypes.number.isRequired,
   timeLeft: PropTypes.string,
-  isControllersVisible: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   onPauseClick: PropTypes.func.isRequired,
   onFullScreenClick: PropTypes.func.isRequired,
-  onMouseEnterControls: PropTypes.func.isRequired,
-  onMouseLeaveControls: PropTypes.func.isRequired,
+  isFullScreenMode: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
