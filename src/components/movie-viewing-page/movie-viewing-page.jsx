@@ -23,18 +23,21 @@ class MovieViewingPage extends Component {
     this.modalRoot.removeChild(this.element);
   }
 
-  handleFullScreenClick(isFullScreenMode) {
+  handleFullScreenClick() {
+    const {onFullScreenClick, isFullScreenMode} = this.props;
     const player = this.playerRef.current;
 
-    if (isFullScreenMode) {
+    if (!isFullScreenMode) {
       player.requestFullscreen();
     } else {
       document.exitFullscreen();
     }
+
+    onFullScreenClick(!isFullScreenMode);
   }
 
   render() {
-    const {onExitClick, isPlaying, progress, timeLeft, children, onPlayClick, onPauseClick, onFullScreenClick, isFullScreenMode} = this.props;
+    const {onExitClick, isPlaying, progress, timeLeft, children, onPlayClick, onPauseClick} = this.props;
 
     return ReactDOM.createPortal(<div
       className="player"
@@ -93,10 +96,7 @@ class MovieViewingPage extends Component {
           <button
             type="button"
             className="player__full-screen"
-            onClick={()=>{
-              onFullScreenClick(!isFullScreenMode);
-              this.handleFullScreenClick(!isFullScreenMode);
-            }}
+            onClick={this.handleFullScreenClick}
           >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
