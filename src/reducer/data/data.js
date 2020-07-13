@@ -33,7 +33,7 @@ const ActionCreator = {
     payload: genre
   }),
   changeFlagCommentPublishing: (status)=>({
-    type: ActionTypes.CHANGE_FLAG_IS_COMMENT_PUBLISHING,
+    type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
     payload: status
   }),
   changeFlagCommentSendingError: (status)=>({
@@ -63,11 +63,11 @@ const Operation = {
       comment: commentData.comment
     })
       .then(()=>{
-        dispatch(ActionCreator.changeFlagIsCommentPublishing(false));
+        dispatch(ActionCreator.changeFlagCommentPublishing(false));
         dispatch(ActionCreator.changeFlagCommentSendingError(false));
       })
       .catch(()=>{
-        dispatch(ActionCreator.changeFlagIsCommentPublishing(false));
+        dispatch(ActionCreator.changeFlagCommentPublishing(false));
         dispatch(ActionCreator.changeFlagCommentSendingError(true));
       });
   }

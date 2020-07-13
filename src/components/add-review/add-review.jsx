@@ -204,7 +204,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(commentData) {
-    dispatch(ActionCreator.changeFlagIsCommentPublishing(true));
+    dispatch(ActionCreator.changeFlagCommentPublishing(true));
     dispatch(Operation.commentPost(1, commentData));
   }
 });
