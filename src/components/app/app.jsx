@@ -11,6 +11,7 @@ import {getPlayableMovie, gerServerStatus, getLogIn} from "./../../reducer/app-s
 import {ServerStatus} from "./../../reducer/app-state/app-state.js";
 import {getIsFilmsFetching, getIsPromoFilmFetching, getFilms, getPromoFilm} from "./../../reducer/data/selector.js";
 import SignIn from "./../sign-in/sign-in.jsx";
+import AddReview from "./../add-review/add-review.jsx";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
@@ -90,6 +91,9 @@ class App extends PureComponent {
         </Route>
         <Route exact path="/login">
           <SignIn />
+        </Route>
+        <Route exact path="/dev-review">
+          <AddReview />
         </Route>
       </Switch>
     </BrowserRouter>;
