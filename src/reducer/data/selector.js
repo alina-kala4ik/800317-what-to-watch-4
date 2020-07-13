@@ -34,5 +34,13 @@ const getIsPromoFilmFetching = (state) => {
   return state[NameSpace.DATA].isPromoFilmFetching;
 };
 
+const getFlagCommentPublishing = (state) => {
+  return state[NameSpace.DATA].isCommentPublishing;
+};
 
-export {getFilms, getPromoFilm, getFilteredFilms, getIsFilmsFetching, getIsPromoFilmFetching};
+const getFlagCommentSendingError = (state) => {
+  return state[NameSpace.DATA].isCommentSendingError;
+};
+
+
+export {getFilms, getPromoFilm, getFilteredFilms, getIsFilmsFetching, getIsPromoFilmFetching, getFlagCommentPublishing, getFlagCommentSendingError};
