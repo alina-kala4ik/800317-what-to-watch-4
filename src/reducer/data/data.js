@@ -44,6 +44,15 @@ const Operation = {
         const promoFilm = adapter(response.data);
         dispatch(ActionCreator.loadPromoFilm(promoFilm));
       });
+  },
+  commentPost: (filmId, commentData)=>(dispatch, getState, api)=> {
+    return api.post(`comments/${filmId}`, {
+      rating: commentData.rating,
+      comment: commentData.comment
+    })
+      .then(()=>{
+        console.log(`коммент отправлен`);
+      });
   }
 };
 
