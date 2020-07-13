@@ -32,10 +32,10 @@ const withPlayer = (Component) =>{
       });
     }
 
-    handleFullScreenClick(value) {
-      this.setState({
-        isFullScreenMode: value,
-      });
+    handleFullScreenClick() {
+      this.setState((prevState)=>({
+        isFullScreenMode: !prevState.isFullScreenMode
+      }));
     }
 
     componentDidMount() {

@@ -24,16 +24,21 @@ class MovieViewingPage extends Component {
   }
 
   handleFullScreenClick() {
-    const {onFullScreenClick, isFullScreenMode} = this.props;
+    const {onFullScreenClick} = this.props;
+    onFullScreenClick();
+  }
+
+  componentDidUpdate(prevProps) {
+    const {isFullScreenMode} = this.props;
     const player = this.playerRef.current;
 
-    if (!isFullScreenMode) {
-      player.requestFullscreen();
-    } else {
-      document.exitFullscreen();
+    if (this.props.isFullScreenMode !== prevProps.isFullScreenMode) {
+      if (isFullScreenMode) {
+        player.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
     }
-
-    onFullScreenClick(!isFullScreenMode);
   }
 
   render() {
