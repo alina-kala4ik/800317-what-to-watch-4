@@ -43,11 +43,6 @@ class AddReview extends PureComponent {
     }
   }
 
-  componentDidMount() {
-    const submitButton = this.submitRef.current;
-    submitButton.setAttribute(`disabled`, `disabled`);
-  }
-
   render() {
     const {isCommentPublishing, isCommentSendingError} = this.props;
     const disabledFormFlag = isCommentPublishing ? `disabled` : false;
