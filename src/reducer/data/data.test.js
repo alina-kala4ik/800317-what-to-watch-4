@@ -134,6 +134,8 @@ describe(`testing reducer`, ()=>{
       isFilmsFetching: true,
       isPromoFilmFetching: true,
       genreForFilter: Genres.ALL,
+      isCommentPublishing: false,
+      isCommentSendingError: false,
     });
   });
 
@@ -172,6 +174,28 @@ describe(`testing reducer`, ()=>{
     });
   });
 
+  it(`change flag comment publishing`, ()=>{
+    expect(reducer({
+      isCommentPublishing: false
+    }, {
+      type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
+      payload: true
+    })).toEqual({
+      isCommentPublishing: true
+    });
+  });
+
+  it(`change flag comment sending error`, ()=>{
+    expect(reducer({
+      isCommentSendingError: false
+    }, {
+      type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
+      payload: true
+    })).toEqual({
+      isCommentSendingError: true
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, ()=>{
@@ -194,6 +218,20 @@ describe(`Action creators work correctly`, ()=>{
     expect(ActionCreator.setGenreForFilter(Genres.DOCUMENTARY)).toEqual({
       type: ActionTypes.SET_GENRE_FOR_FILTER,
       payload: Genres.DOCUMENTARY
+    });
+  });
+
+  it(`Action creators change flag comment publishing`, ()=>{
+    expect(ActionCreator.changeFlagCommentPublishing(true)).toEqual({
+      type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
+      payload: true
+    });
+  });
+
+  it(`Action creators change flag comment sending error`, ()=>{
+    expect(ActionCreator.changeFlagCommentSendingError(true)).toEqual({
+      type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
+      payload: true
     });
   });
 
@@ -284,6 +322,62 @@ describe(`Operation work correctly`, ()=>{
           type: ActionTypes.LOAD_PROMO_FILM,
           payload: adaptedFilm
         });
+      });
+  });
+
+  it(`comment post success`, ()=>{
+    const api = createAPI(onNotFound);
+    const apiMock = new MockAdapter(api);
+
+    const commentData = {
+      rating: ``,
+      comment: ``
+    };
+
+    apiMock
+      .onPost(`comments/1`, {
+        rating: ``,
+        comment: ``
+      })
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const commentPost = Operation.commentPost(1, commentData);
+
+    return commentPost(dispatch, ()=>{}, api)
+      .then(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(2);
+      })
+      .catch(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(0);
+      });
+  });
+
+  it(`comment post error`, ()=>{
+    const api = createAPI(onNotFound);
+    const apiMock = new MockAdapter(api);
+
+    const commentData = {
+      rating: ``,
+      comment: ``
+    };
+
+    apiMock
+      .onPost(`comments/1`, {
+        rating: ``,
+        comment: ``
+      })
+      .reply(`400`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const commentPost = Operation.commentPost(1, commentData);
+
+    return commentPost(dispatch, ()=>{}, api)
+      .then(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(0);
+      })
+      .catch(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(2);
       });
   });
 

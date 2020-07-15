@@ -6,13 +6,17 @@ const initialState = {
   promoFilm: null,
   isFilmsFetching: true,
   isPromoFilmFetching: true,
-  genreForFilter: Genres.ALL
+  genreForFilter: Genres.ALL,
+  isCommentPublishing: false,
+  isCommentSendingError: false,
 };
 
 const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   SET_GENRE_FOR_FILTER: `SET_GENRE_FOR_FILTER`,
+  CHANGE_FLAG_COMMENT_PUBLISHING: `CHANGE_FLAG_IS_COMMENT_PUBLISHING`,
+  CHANGE_FLAG_COMMENT_SENDING_ERROR: `CHANGE_FLAG_COMMENT_SENDING_ERROR`,
 };
 
 const ActionCreator = {
@@ -27,6 +31,14 @@ const ActionCreator = {
   setGenreForFilter: (genre)=>({
     type: ActionTypes.SET_GENRE_FOR_FILTER,
     payload: genre
+  }),
+  changeFlagCommentPublishing: (status)=>({
+    type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
+    payload: status
+  }),
+  changeFlagCommentSendingError: (status)=>({
+    type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
+    payload: status
   })
 };
 
@@ -43,6 +55,20 @@ const Operation = {
       .then((response)=>{
         const promoFilm = adapter(response.data);
         dispatch(ActionCreator.loadPromoFilm(promoFilm));
+      });
+  },
+  commentPost: (filmId, commentData)=>(dispatch, getState, api)=> {
+    return api.post(`comments/${filmId}`, {
+      rating: commentData.rating,
+      comment: commentData.comment
+    })
+      .then(()=>{
+        dispatch(ActionCreator.changeFlagCommentPublishing(false));
+        dispatch(ActionCreator.changeFlagCommentSendingError(false));
+      })
+      .catch(()=>{
+        dispatch(ActionCreator.changeFlagCommentPublishing(false));
+        dispatch(ActionCreator.changeFlagCommentSendingError(true));
       });
   }
 };
@@ -62,6 +88,14 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.SET_GENRE_FOR_FILTER:
       return extend(state, {
         genreForFilter: action.payload
+      });
+    case ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING:
+      return extend(state, {
+        isCommentPublishing: action.payload
+      });
+    case ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR:
+      return extend(state, {
+        isCommentSendingError: action.payload
       });
   }
   return state;
