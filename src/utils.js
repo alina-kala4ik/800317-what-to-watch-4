@@ -21,4 +21,10 @@ const Tabs = {
   REVIEWS: `Reviews`,
 };
 
-export {extend, Genres, Tabs};
+const Pages = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+};
+
+export {extend, Genres, Tabs, Pages};

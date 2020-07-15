@@ -5,20 +5,12 @@ import PropTypes from "prop-types";
 import {getPromoFilm} from "./../../reducer/data/selector.js";
 import {getAuthorizationStatus, getAvatar} from "./../../reducer/user/selector.js";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import {Link} from "react-router-dom";
+import {Pages} from "./../../utils.js";
 
 class Promo extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.handleSignInClick = this.handleSignInClick.bind(this);
-  }
-
-  handleSignInClick(evt) {
-    const {onSignInClick} = this.props;
-
-    evt.preventDefault();
-
-    onSignInClick();
   }
 
   render() {
@@ -28,17 +20,19 @@ class Promo extends PureComponent {
     let userBlock;
 
     if (authorizationStatus === AuthorizationStatus.AUTH) {
-      userBlock = <div className="user-block__avatar">
+      userBlock = <Link
+        className="user-block__avatar"
+        to={Pages.MY_LIST}
+      >
         <img src={avatar} alt="User avatar" width="63" height="63" />
-      </div>;
+      </Link>;
     } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      userBlock = <a
-        href="sign-in.html"
+      userBlock = <Link
+        to={Pages.LOGIN}
         className="user-block__link"
-        onClick={this.handleSignInClick}
       >
         Sign in
-      </a>;
+      </Link>;
     }
 
     return <section className="movie-card">
@@ -114,7 +108,6 @@ Promo.propTypes = {
     yearRelease: PropTypes.number.isRequired,
   }),
   authorizationStatus: PropTypes.string.isRequired,
-  onSignInClick: PropTypes.func.isRequired,
   avatar: PropTypes.string
 };
 
@@ -134,9 +127,6 @@ const mapDispatchToProps = (dispatch) => ({
   onPlayClick(film) {
     dispatch(ActionCreator.chooseMovieToWatch(film));
   },
-  onSignInClick() {
-    dispatch(ActionCreator.logIn(true));
-  }
 });
 
 export {Promo};
