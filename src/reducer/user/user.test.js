@@ -94,7 +94,7 @@ describe(`user operation work correctly`, ()=>{
 
     return login(dispatch, ()=>{}, api)
       .then(()=>{
-        expect(dispatch).toHaveBeenCalledTimes(3);
+        expect(dispatch).toHaveBeenCalledTimes(2);
       });
   });
 

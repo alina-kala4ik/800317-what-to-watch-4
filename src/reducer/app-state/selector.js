@@ -16,9 +16,6 @@ const gerServerStatus = (state) => {
   return state[NameSpace.APP_STATE].serverStatus;
 };
 
-const getLogIn = (state) => {
-  return state[NameSpace.APP_STATE].logIn;
-};
 
-export {getPlayableMovie, getCountDisplayedFilms, getGenre, gerServerStatus, getLogIn};
+export {getPlayableMovie, getCountDisplayedFilms, getGenre, gerServerStatus};
 

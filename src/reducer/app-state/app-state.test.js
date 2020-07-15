@@ -127,14 +127,13 @@ const films = [
   },
 ];
 
-describe(`testing reducer`, ()=>{
+describe(`testing app-state reducer`, ()=>{
   it(`Returns initial state at application start`, ()=>{
     expect(reducer(undefined, {})).toEqual({
       genre: Genres.ALL,
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.OK,
-      logIn: false,
     });
   });
 
@@ -207,20 +206,9 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`change logIn flag`, ()=>{
-    expect(reducer({
-      logIn: false
-    }, {
-      type: ActionTypes.LOG_IN,
-      payload: true
-    })).toEqual({
-      logIn: true
-    });
-  });
-
 });
 
-describe(`Action creators work correctly`, ()=>{
+describe(`Action creators in app-state work correctly`, ()=>{
   it(`Action creators change genre`, ()=>{
     expect(ActionCreator.changeGenre(Genres.COMEDIES)).toEqual({
       type: ActionTypes.CHANGE_GENRE,
@@ -253,13 +241,6 @@ describe(`Action creators work correctly`, ()=>{
     expect(ActionCreator.changeServerStatusOnError()).toEqual({
       type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
       payload: ServerStatus.ERROR
-    });
-  });
-
-  it(`Action creators change server status on error`, ()=>{
-    expect(ActionCreator.logIn(true)).toEqual({
-      type: ActionTypes.LOG_IN,
-      payload: true
     });
   });
 
