@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {Promo} from "./promo.jsx";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -30,6 +31,9 @@ it(`The onPlayClick function is called when a user clicks on play and transmits 
       <Promo
         onPlayClick={onPlayClick}
         film={film}
+        authorizationStatus={AuthorizationStatus.AUTH}
+        avatar={`img/avatar.jpg`}
+        onSignInClick={()=>{}}
       />
   );
 

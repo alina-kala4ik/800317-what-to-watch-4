@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Promo} from "./promo.jsx";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -18,11 +19,28 @@ const film = {
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
-it(`render Promo`, ()=>{
+it(`render Promo when user authorized`, ()=>{
   const tree = renderer.create(
       <Promo
         onPlayClick={()=>{}}
         film={film}
+        authorizationStatus={AuthorizationStatus.AUTH}
+        avatar={`img/avatar.jpg`}
+        onSignInClick={()=>{}}
+      />
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`render Promo when user unauthorized`, ()=>{
+  const tree = renderer.create(
+      <Promo
+        onPlayClick={()=>{}}
+        film={film}
+        authorizationStatus={AuthorizationStatus.NO_AUTH}
+        avatar={`img/avatar.jpg`}
+        onSignInClick={()=>{}}
       />
   ).toJSON();
 
