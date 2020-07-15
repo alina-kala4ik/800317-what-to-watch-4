@@ -148,7 +148,6 @@ it(`render App without server error`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.OK,
-      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -193,7 +192,6 @@ it(`render App with server error`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.ERROR,
-      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -238,7 +236,6 @@ it(`render App when films null`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.OK,
-      logIn: false
     },
     [NameSpace.DATA]: {
       films: null,
@@ -283,7 +280,6 @@ it(`render App when promoFilm null`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.OK,
-      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -311,52 +307,6 @@ it(`render App when promoFilm null`, () => {
             isPromoFilmFetching={false}
             films={films}
             promoFilm={null}
-          />
-        </Provider>, {
-          createNodeMock: ()=>{
-            return {};
-          }
-        })
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it(`render logIn`, () => {
-  const store = mockStore({
-    [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
-      countDisplayedFilms: 8,
-      playableMovie: null,
-      serverStatus: ServerStatus.OK,
-      logIn: true
-    },
-    [NameSpace.DATA]: {
-      films,
-      promoFilm: films[0],
-      allFilms: films,
-      isFilmsFetching: false,
-      isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
-    },
-    [NameSpace.USER]: {
-      authorizationStatus: AuthorizationStatus.AUTH,
-      avatar: `img/avatar.jpg`
-    }
-  });
-
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App
-            activeItem={false}
-            setActiveItem={()=>{}}
-            playableMovie={null}
-            serverStatus={ServerStatus.OK}
-            isFilmsFetching={false}
-            isPromoFilmFetching={false}
-            films={films}
-            promoFilm={null}
-            logIn={true}
           />
         </Provider>, {
           createNodeMock: ()=>{

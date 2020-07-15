@@ -33,7 +33,6 @@ it(`The onPlayClick function is called when a user clicks on play and transmits 
         film={film}
         authorizationStatus={AuthorizationStatus.AUTH}
         avatar={`img/avatar.jpg`}
-        onSignInClick={()=>{}}
       />
   );
 

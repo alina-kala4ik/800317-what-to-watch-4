@@ -7,6 +7,8 @@ import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
 import {NameSpace} from "./../../reducer/name-space.js";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import history from "./../../history.js";
+import {Router} from "react-router-dom";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -168,14 +170,15 @@ it(`Film title click`, () => {
   const onFilmTitleClick = jest.fn();
 
   const main = mount(
-      <Provider store={store}>
-        <Main
-          films={films}
-          onFilmTitleClick={onFilmTitleClick}
-          onFilmImgClick={()=>{}}
-        />
-      </Provider>
-
+      <Router history={history}>
+        <Provider store={store}>
+          <Main
+            films={films}
+            onFilmTitleClick={onFilmTitleClick}
+            onFilmImgClick={()=>{}}
+          />
+        </Provider>
+      </Router>
   );
 
   const filmTitles = main.find(`a.small-movie-card__link`);
@@ -192,14 +195,15 @@ it(`Film image click`, () => {
   const onFilmImgClick = jest.fn();
 
   const main = mount(
-      <Provider store={store}>
-        <Main
-          films={films}
-          onFilmTitleClick={()=>{}}
-          onFilmImgClick={onFilmImgClick}
-        />
-      </Provider>
-
+      <Router history={history}>
+        <Provider store={store}>
+          <Main
+            films={films}
+            onFilmTitleClick={()=>{}}
+            onFilmImgClick={onFilmImgClick}
+          />
+        </Provider>
+      </Router>
   );
 
   const filmImg = main.find(`div.small-movie-card__image`);
@@ -229,14 +233,15 @@ it(`Validates data transmitted through props when clicked on film title`, () => 
   };
 
   const main = mount(
-      <Provider store={store}>
-        <Main
-          films={films}
-          onFilmTitleClick={onFilmTitleClick}
-          onFilmImgClick={()=>{}}
-        />
-      </Provider>
-
+      <Router history={history}>
+        <Provider store={store}>
+          <Main
+            films={films}
+            onFilmTitleClick={onFilmTitleClick}
+            onFilmImgClick={()=>{}}
+          />
+        </Provider>
+      </Router>
   );
 
   const filmOneTitles = main.find(`a.small-movie-card__link`).at(0);

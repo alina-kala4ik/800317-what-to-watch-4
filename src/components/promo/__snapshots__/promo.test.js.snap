@@ -46,8 +46,10 @@ exports[`render Promo when user authorized 1`] = `
     <div
       className="user-block"
     >
-      <div
+      <a
         className="user-block__avatar"
+        href="/mylist"
+        onClick={[Function]}
       >
         <img
           alt="User avatar"
@@ -55,7 +57,7 @@ exports[`render Promo when user authorized 1`] = `
           src="img/avatar.jpg"
           width="63"
         />
-      </div>
+      </a>
     </div>
   </header>
   <div
@@ -189,7 +191,7 @@ exports[`render Promo when user unauthorized 1`] = `
     >
       <a
         className="user-block__link"
-        href="sign-in.html"
+        href="/login"
         onClick={[Function]}
       >
         Sign in

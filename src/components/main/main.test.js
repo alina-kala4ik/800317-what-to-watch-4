@@ -6,6 +6,8 @@ import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
 import {NameSpace} from "./../../reducer/name-space.js";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import history from "./../../history.js";
+import {Router} from "react-router-dom";
 
 
 const films = [
@@ -162,13 +164,15 @@ it(`render Main`, () => {
 
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <Main
-            films={films}
-            onFilmTitleClick={()=>{}}
-            onFilmImgClick={()=>{}}
-          />
-        </Provider>, {
+        <Router history={history}>
+          <Provider store={store}>
+            <Main
+              films={films}
+              onFilmTitleClick={()=>{}}
+              onFilmImgClick={()=>{}}
+            />
+          </Provider>
+        </Router>, {
           createNodeMock: ()=>{
             return {};
           }

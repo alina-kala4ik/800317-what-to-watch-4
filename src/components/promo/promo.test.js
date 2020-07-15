@@ -2,6 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Promo} from "./promo.jsx";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import history from "./../../history.js";
+import {Router} from "react-router-dom";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -21,13 +23,14 @@ const film = {
 
 it(`render Promo when user authorized`, ()=>{
   const tree = renderer.create(
-      <Promo
-        onPlayClick={()=>{}}
-        film={film}
-        authorizationStatus={AuthorizationStatus.AUTH}
-        avatar={`img/avatar.jpg`}
-        onSignInClick={()=>{}}
-      />
+      <Router history={history}>
+        <Promo
+          onPlayClick={()=>{}}
+          film={film}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          avatar={`img/avatar.jpg`}
+        />
+      </Router>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -35,13 +38,14 @@ it(`render Promo when user authorized`, ()=>{
 
 it(`render Promo when user unauthorized`, ()=>{
   const tree = renderer.create(
-      <Promo
-        onPlayClick={()=>{}}
-        film={film}
-        authorizationStatus={AuthorizationStatus.NO_AUTH}
-        avatar={`img/avatar.jpg`}
-        onSignInClick={()=>{}}
-      />
+      <Router history={history}>
+        <Promo
+          onPlayClick={()=>{}}
+          film={film}
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          avatar={`img/avatar.jpg`}
+        />
+      </Router>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
