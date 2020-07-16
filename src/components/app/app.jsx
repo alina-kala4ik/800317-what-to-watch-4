@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
 import PropTypes from 'prop-types';
-import {Switch, Route, Router} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
@@ -12,6 +12,8 @@ import {getIsFilmsFetching, getIsPromoFilmFetching, getFilms, getPromoFilm} from
 import SignIn from "./../sign-in/sign-in.jsx";
 import {Pages} from "./../../utils.js";
 import history from "./../../history.js";
+import {getAuthorizationStatus} from "./../../reducer/user/selector.js";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
@@ -67,14 +69,27 @@ class App extends PureComponent {
   }
 
   render() {
+    const {authorizationStatus, setActiveItem: onFilmOrImgClick} = this.props;
+
     return <Router history={history}>
       <Switch>
         <Route exact path={Pages.ROOT}>
           {this._renderApp()}
         </Route>
-        <Route exact path={Pages.LOGIN}>
-          <SignIn />
-        </Route>
+        <Route
+          exact
+          path={Pages.LOGIN}
+          render={()=>{
+            return authorizationStatus === AuthorizationStatus.NO_AUTH ?
+              <SignIn /> :
+              <Redirect to={
+                <Main
+                  onFilmTitleClick={onFilmOrImgClick}
+                  onFilmImgClick={onFilmOrImgClick}
+                />
+              } />;
+          }}
+        />
         <Route exact path={Pages.MY_LIST}>
           <div>WIP</div>
         </Route>
@@ -95,6 +110,7 @@ App.propTypes = {
   isPromoFilmFetching: PropTypes.bool.isRequired,
   films: PropTypes.array,
   promoFilm: PropTypes.object,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -104,6 +120,7 @@ const mapStateToProps = (state) => ({
   isPromoFilmFetching: getIsPromoFilmFetching(state),
   films: getFilms(state),
   promoFilm: getPromoFilm(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export {App};
