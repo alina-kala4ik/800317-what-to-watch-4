@@ -241,6 +241,29 @@ describe(`Operation work correctly`, ()=>{
 
   const onNotFound = () => {};
 
+  const api = createAPI(onNotFound);
+  const apiMock = new MockAdapter(api);
+
+  const adaptedFilm = {
+    "actors": undefined,
+    "backgroundColor": undefined,
+    "description": undefined,
+    "genre": undefined,
+    "id": undefined,
+    "isFavorite": undefined,
+    "movieCoverSrc": undefined,
+    "numberVotes": undefined,
+    "posterSrc": undefined,
+    "previewVideoLink": undefined,
+    "producer": undefined,
+    "rating": undefined,
+    "runTime": undefined,
+    "screenshotSrc": undefined,
+    "title": undefined,
+    "videoSrc": undefined,
+    "yearRelease": undefined,
+  };
+
   it(`load films`, ()=>{
     const adaptedFilms = [
       {
@@ -264,9 +287,6 @@ describe(`Operation work correctly`, ()=>{
       },
     ];
 
-    const api = createAPI(onNotFound);
-
-    const apiMock = new MockAdapter(api);
     apiMock
       .onGet(`/films`)
       .reply(`200`, [{fake: true}]);
@@ -285,29 +305,7 @@ describe(`Operation work correctly`, ()=>{
   });
 
   it(`load promoFilm`, ()=>{
-    const adaptedFilm = {
-      "actors": undefined,
-      "backgroundColor": undefined,
-      "description": undefined,
-      "genre": undefined,
-      "id": undefined,
-      "isFavorite": undefined,
-      "movieCoverSrc": undefined,
-      "numberVotes": undefined,
-      "posterSrc": undefined,
-      "previewVideoLink": undefined,
-      "producer": undefined,
-      "rating": undefined,
-      "runTime": undefined,
-      "screenshotSrc": undefined,
-      "title": undefined,
-      "videoSrc": undefined,
-      "yearRelease": undefined,
-    };
 
-    const api = createAPI(onNotFound);
-
-    const apiMock = new MockAdapter(api);
     apiMock
       .onGet(`/films/promo`)
       .reply(`200`, [{fake: true}]);
@@ -326,8 +324,6 @@ describe(`Operation work correctly`, ()=>{
   });
 
   it(`comment post success`, ()=>{
-    const api = createAPI(onNotFound);
-    const apiMock = new MockAdapter(api);
 
     const commentData = {
       rating: ``,
@@ -354,8 +350,6 @@ describe(`Operation work correctly`, ()=>{
   });
 
   it(`comment post error`, ()=>{
-    const api = createAPI(onNotFound);
-    const apiMock = new MockAdapter(api);
 
     const commentData = {
       rating: ``,
@@ -378,6 +372,24 @@ describe(`Operation work correctly`, ()=>{
       })
       .catch(()=>{
         expect(dispatch).toHaveBeenCalledTimes(2);
+      });
+  });
+
+  it(`change flag is favorite`, ()=>{
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const changeFlagIsFavorite = Operation.changeFlagIsFavorite(1, 1);
+
+    return changeFlagIsFavorite(dispatch, ()=>{}, api)
+      .then(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionTypes.LOAD_PROMO_FILM,
+          payload: adaptedFilm
+        });
       });
   });
 

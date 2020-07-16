@@ -70,6 +70,13 @@ const Operation = {
         dispatch(ActionCreator.changeFlagCommentPublishing(false));
         dispatch(ActionCreator.changeFlagCommentSendingError(true));
       });
+  },
+  changeFlagIsFavorite: (filmId, status)=>(dispatch, getState, api)=>{
+    return api.post(`/favorite/${filmId}/${status}`)
+      .then((response)=>{
+        const promoFilm = adapter(response.data);
+        dispatch(ActionCreator.loadPromoFilm(promoFilm));
+      });
   }
 };
 
