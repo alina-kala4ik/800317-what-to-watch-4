@@ -1,4 +1,6 @@
 import axios from "axios";
+import history from "./history.js";
+import {Pages} from "./utils.js";
 
 const Error = {
   UNAUTHORIZED: 401,
@@ -18,6 +20,9 @@ const createAPI = (onNotFound, onUnauthorized) => {
 
   const onError = (err) => {
     const {response} = err;
+    const {url} = response.config;
+    const PostFavoriteURL = /\/favorite\/\d+\/\d/;
+    const isPostFavoriteRequest = PostFavoriteURL.test(url);
 
     switch (response.status) {
       case Error.NOT_FOUND:
@@ -25,6 +30,9 @@ const createAPI = (onNotFound, onUnauthorized) => {
         throw err;
       case Error.UNAUTHORIZED:
         onUnauthorized();
+        if (isPostFavoriteRequest) {
+          history.push(Pages.LOGIN);
+        }
         throw err;
     }
 
