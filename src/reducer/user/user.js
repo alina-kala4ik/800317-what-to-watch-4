@@ -1,4 +1,5 @@
 import {extend} from "./../../utils.js";
+import history from "./../../history.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -62,6 +63,7 @@ const Operation = {
 
         dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.addAvatar(avatarUrl));
+        history.goBack();
       })
       .catch((err)=>{
         throw err;
