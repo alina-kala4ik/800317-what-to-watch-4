@@ -121,6 +121,295 @@ exports[`render Promo when user authorized 1`] = `
           </button>
           <button
             className="btn btn--list movie-card__button"
+            onClick={[Function]}
+            type="button"
+          >
+            <svg
+              height="20"
+              viewBox="0 0 19 20"
+              width="19"
+            >
+              <use
+                xlinkHref="#add"
+              />
+            </svg>
+            <span>
+              My list
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`render Promo when user authorized and promo film checked as favorite 1`] = `
+<section
+  className="movie-card"
+>
+  <div
+    className="movie-card__bg"
+  >
+    <img
+      alt="Fantastic Beasts: The Crimes of Grindelwald"
+      src="img/bg-the-grand-budapest-hotel.jpg"
+    />
+  </div>
+  <h1
+    className="visually-hidden"
+  >
+    WTW
+  </h1>
+  <header
+    className="page-header movie-card__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="user-block"
+    >
+      <a
+        className="user-block__avatar"
+        href="/mylist"
+        onClick={[Function]}
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="img/avatar.jpg"
+          width="63"
+        />
+      </a>
+    </div>
+  </header>
+  <div
+    className="movie-card__wrap"
+  >
+    <div
+      className="movie-card__info"
+    >
+      <div
+        className="movie-card__poster"
+      >
+        <img
+          alt="Fantastic Beasts: The Crimes of Grindelwald poster"
+          height="327"
+          src="img/the-grand-budapest-hotel-poster.jpg"
+          width="218"
+        />
+      </div>
+      <div
+        className="movie-card__desc"
+      >
+        <h2
+          className="movie-card__title"
+        >
+          Fantastic Beasts: The Crimes of Grindelwald
+        </h2>
+        <p
+          className="movie-card__meta"
+        >
+          <span
+            className="movie-card__genre"
+          >
+            Drama
+          </span>
+          <span
+            className="movie-card__year"
+          >
+            2017
+          </span>
+        </p>
+        <div
+          className="movie-card__buttons"
+        >
+          <button
+            className="btn btn--play movie-card__button"
+            onClick={[Function]}
+            type="button"
+          >
+            <svg
+              height="19"
+              viewBox="0 0 19 19"
+              width="19"
+            >
+              <use
+                xlinkHref="#play-s"
+              />
+            </svg>
+            <span>
+              Play
+            </span>
+          </button>
+          <button
+            className="btn btn--list movie-card__button"
+            onClick={[Function]}
+            type="button"
+          >
+            <svg
+              height="14"
+              viewBox="0 0 18 14"
+              width="18"
+            >
+              <use
+                xlinkHref="#in-list"
+              />
+            </svg>
+            <span>
+              My list
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`render Promo when user authorized and promo film checked as unfavored 1`] = `
+<section
+  className="movie-card"
+>
+  <div
+    className="movie-card__bg"
+  >
+    <img
+      alt="Fantastic Beasts: The Crimes of Grindelwald"
+      src="img/bg-the-grand-budapest-hotel.jpg"
+    />
+  </div>
+  <h1
+    className="visually-hidden"
+  >
+    WTW
+  </h1>
+  <header
+    className="page-header movie-card__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link"
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="user-block"
+    >
+      <a
+        className="user-block__avatar"
+        href="/mylist"
+        onClick={[Function]}
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="img/avatar.jpg"
+          width="63"
+        />
+      </a>
+    </div>
+  </header>
+  <div
+    className="movie-card__wrap"
+  >
+    <div
+      className="movie-card__info"
+    >
+      <div
+        className="movie-card__poster"
+      >
+        <img
+          alt="Fantastic Beasts: The Crimes of Grindelwald poster"
+          height="327"
+          src="img/the-grand-budapest-hotel-poster.jpg"
+          width="218"
+        />
+      </div>
+      <div
+        className="movie-card__desc"
+      >
+        <h2
+          className="movie-card__title"
+        >
+          Fantastic Beasts: The Crimes of Grindelwald
+        </h2>
+        <p
+          className="movie-card__meta"
+        >
+          <span
+            className="movie-card__genre"
+          >
+            Drama
+          </span>
+          <span
+            className="movie-card__year"
+          >
+            2017
+          </span>
+        </p>
+        <div
+          className="movie-card__buttons"
+        >
+          <button
+            className="btn btn--play movie-card__button"
+            onClick={[Function]}
+            type="button"
+          >
+            <svg
+              height="19"
+              viewBox="0 0 19 19"
+              width="19"
+            >
+              <use
+                xlinkHref="#play-s"
+              />
+            </svg>
+            <span>
+              Play
+            </span>
+          </button>
+          <button
+            className="btn btn--list movie-card__button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -259,6 +548,7 @@ exports[`render Promo when user unauthorized 1`] = `
           </button>
           <button
             className="btn btn--list movie-card__button"
+            onClick={[Function]}
             type="button"
           >
             <svg

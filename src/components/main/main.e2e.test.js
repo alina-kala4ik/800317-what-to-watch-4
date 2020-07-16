@@ -31,6 +31,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 1,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -47,6 +49,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 2,
   },
   {
     title: `Macbeth`,
@@ -63,6 +67,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 3,
   },
   {
     title: `Aviator`,
@@ -79,6 +85,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 4,
   },
   {
     title: `We need to talk about Kevin`,
@@ -95,6 +103,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 5,
   },
   {
     title: `What We Do in the Shadows`,
@@ -111,6 +121,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 6,
   },
   {
     title: `Revenant`,
@@ -127,6 +139,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 7,
   },
   {
     title: `Johnny English`,
@@ -143,6 +157,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 8,
   },
 ];
 

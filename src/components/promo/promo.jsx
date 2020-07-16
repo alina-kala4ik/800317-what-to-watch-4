@@ -7,6 +7,10 @@ import {getAuthorizationStatus, getAvatar} from "./../../reducer/user/selector.j
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import {Pages} from "./../../utils.js";
+import {Operation} from "./../../reducer/data/data.js";
+
+const REMOVE_FROM_MY_LIST = 0;
+const ADD_TO_MY_LIST = 1;
 
 class Promo extends PureComponent {
   constructor(props) {
@@ -14,26 +18,36 @@ class Promo extends PureComponent {
   }
 
   render() {
-    const {onPlayClick, film, authorizationStatus, avatar} = this.props;
-    const {title, posterSrc, movieCoverSrc, genre, yearRelease} = film;
+    const {onPlayClick, film, authorizationStatus, avatar, onMyListClick} = this.props;
+    const {title, posterSrc, movieCoverSrc, genre, yearRelease, isFavorite, id} = film;
 
-    let userBlock;
-
-    if (authorizationStatus === AuthorizationStatus.AUTH) {
-      userBlock = <Link
+    const userBlock = authorizationStatus === AuthorizationStatus.AUTH ?
+      <Link
         className="user-block__avatar"
-        to={Pages.MY_LIST}
-      >
-        <img src={avatar} alt="User avatar" width="63" height="63" />
-      </Link>;
-    } else if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      userBlock = <Link
+        to={Pages.MY_LIST}>
+        <img src={avatar} alt="User avatar" width="63" height="63"/>
+      </Link> :
+      <Link
         to={Pages.LOGIN}
-        className="user-block__link"
-      >
+        className="user-block__link">
         Sign in
       </Link>;
-    }
+
+    const myListButton = isFavorite ?
+      <button
+        className="btn btn--list movie-card__button"
+        type="button"
+        onClick={()=>onMyListClick(id, REMOVE_FROM_MY_LIST)}>
+        <svg viewBox="0 0 18 14" width="18" height="14"><use xlinkHref="#in-list"></use></svg>
+        <span>My list</span>
+      </button> :
+      <button
+        className="btn btn--list movie-card__button"
+        type="button"
+        onClick={()=>onMyListClick(id, ADD_TO_MY_LIST)}>
+        <svg viewBox="0 0 19 20" width="19" height="20"><use xlinkHref="#add" /></svg>
+        <span>My list</span>
+      </button>;
 
     return <section className="movie-card">
       <div className="movie-card__bg">
@@ -82,12 +96,7 @@ class Promo extends PureComponent {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add" />
-                </svg>
-                <span>My list</span>
-              </button>
+              {myListButton}
             </div>
           </div>
         </div>
@@ -106,9 +115,12 @@ Promo.propTypes = {
     movieCoverSrc: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
   }),
   authorizationStatus: PropTypes.string.isRequired,
-  avatar: PropTypes.string
+  avatar: PropTypes.string,
+  onMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -127,6 +139,9 @@ const mapDispatchToProps = (dispatch) => ({
   onPlayClick(film) {
     dispatch(ActionCreator.chooseMovieToWatch(film));
   },
+  onMyListClick(filmId, status) {
+    dispatch(Operation.changeFlagIsFavorite(filmId, status));
+  }
 });
 
 export {Promo};
