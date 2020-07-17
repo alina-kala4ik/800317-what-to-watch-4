@@ -79,9 +79,7 @@ class App extends PureComponent {
           exact
           path={`${Pages.FILM}:id?`}
           render={(props)=>{
-            return <MoviePage
-              historyProps={props}
-            />;
+            return <MoviePage historyProps={props} />;
           }}
         />
         <Route>
