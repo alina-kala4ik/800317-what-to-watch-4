@@ -15,11 +15,21 @@ const ADD_TO_MY_LIST = 1;
 class Promo extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.handleMyListClick = this.handleMyListClick.bind(this);
+  }
+
+  handleMyListClick() {
+    const {film, onMyListClick} = this.props;
+    const {isFavorite, id} = film;
+    const status = isFavorite ? REMOVE_FROM_MY_LIST : ADD_TO_MY_LIST;
+
+    onMyListClick(id, status);
   }
 
   render() {
-    const {onPlayClick, film, authorizationStatus, avatar, onMyListClick} = this.props;
-    const {title, posterSrc, movieCoverSrc, genre, yearRelease, isFavorite, id} = film;
+    const {onPlayClick, film, authorizationStatus, avatar} = this.props;
+    const {title, posterSrc, movieCoverSrc, genre, yearRelease, isFavorite} = film;
 
     const userBlock = authorizationStatus === AuthorizationStatus.AUTH ?
       <Link
@@ -33,21 +43,9 @@ class Promo extends PureComponent {
         Sign in
       </Link>;
 
-    const myListButton = isFavorite ?
-      <button
-        className="btn btn--list movie-card__button"
-        type="button"
-        onClick={()=>onMyListClick(id, REMOVE_FROM_MY_LIST)}>
-        <svg viewBox="0 0 18 14" width="18" height="14"><use xlinkHref="#in-list"></use></svg>
-        <span>My list</span>
-      </button> :
-      <button
-        className="btn btn--list movie-card__button"
-        type="button"
-        onClick={()=>onMyListClick(id, ADD_TO_MY_LIST)}>
-        <svg viewBox="0 0 19 20" width="19" height="20"><use xlinkHref="#add" /></svg>
-        <span>My list</span>
-      </button>;
+    const myListIcon = isFavorite ?
+      <svg viewBox="0 0 18 14" width="18" height="14"><use xlinkHref="#in-list"></use></svg> :
+      <svg viewBox="0 0 19 20" width="19" height="20"><use xlinkHref="#add"/></svg>;
 
     return <section className="movie-card">
       <div className="movie-card__bg">
@@ -96,7 +94,13 @@ class Promo extends PureComponent {
                 </svg>
                 <span>Play</span>
               </button>
-              {myListButton}
+              <button
+                className="btn btn--list movie-card__button"
+                type="button"
+                onClick={this.handleMyListClick}>
+                {myListIcon}
+                <span>My list</span>
+              </button>
             </div>
           </div>
         </div>
