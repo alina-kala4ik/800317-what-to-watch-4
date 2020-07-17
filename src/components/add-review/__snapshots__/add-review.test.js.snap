@@ -3,6 +3,11 @@
 exports[`render AddReview with sending error and disabled form 1`] = `
 <section
   className="movie-card movie-card--full"
+  style={
+    Object {
+      "backgroundColor": "111111",
+    }
+  }
 >
   <div
     className="movie-card__header"
@@ -11,7 +16,7 @@ exports[`render AddReview with sending error and disabled form 1`] = `
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
         src="img/bg-the-grand-budapest-hotel.jpg"
       />
     </div>
@@ -58,9 +63,10 @@ exports[`render AddReview with sending error and disabled form 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="movie-page.html"
+              href="/films/1"
+              onClick={[Function]}
             >
-              The Grand Budapest Hotel
+              Fantastic Beasts: The Crimes of Grindelwald
             </a>
           </li>
           <li
@@ -93,7 +99,7 @@ exports[`render AddReview with sending error and disabled form 1`] = `
       className="movie-card__poster movie-card__poster--small"
     >
       <img
-        alt="The Grand Budapest Hotel poster"
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
         height="327"
         src="img/the-grand-budapest-hotel-poster.jpg"
         width="218"
@@ -229,6 +235,11 @@ exports[`render AddReview with sending error and disabled form 1`] = `
 exports[`render AddReview without sending error and disabled form 1`] = `
 <section
   className="movie-card movie-card--full"
+  style={
+    Object {
+      "backgroundColor": "111111",
+    }
+  }
 >
   <div
     className="movie-card__header"
@@ -237,7 +248,7 @@ exports[`render AddReview without sending error and disabled form 1`] = `
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
         src="img/bg-the-grand-budapest-hotel.jpg"
       />
     </div>
@@ -284,9 +295,10 @@ exports[`render AddReview without sending error and disabled form 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="movie-page.html"
+              href="/films/1"
+              onClick={[Function]}
             >
-              The Grand Budapest Hotel
+              Fantastic Beasts: The Crimes of Grindelwald
             </a>
           </li>
           <li
@@ -319,7 +331,7 @@ exports[`render AddReview without sending error and disabled form 1`] = `
       className="movie-card__poster movie-card__poster--small"
     >
       <img
-        alt="The Grand Budapest Hotel poster"
+        alt="Fantastic Beasts: The Crimes of Grindelwald"
         height="327"
         src="img/the-grand-budapest-hotel-poster.jpg"
         width="218"

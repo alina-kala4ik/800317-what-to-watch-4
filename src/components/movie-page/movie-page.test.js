@@ -24,6 +24,7 @@ const film = {
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   backgroundColor: `#ffffff`,
   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  id: 1,
 };
 
 const films = [
