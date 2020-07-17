@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render Header when user authorized 1`] = `
+<header
+  className="page-header undefined"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <div
+    className="user-block"
+  >
+    <a
+      className="user-block__avatar"
+      href="/mylist"
+      onClick={[Function]}
+    >
+      <img
+        alt="User avatar"
+        height="63"
+        src=""
+        width="63"
+      />
+    </a>
+  </div>
+</header>
+`;
+
+exports[`render Header when user unauthorized 1`] = `
+<header
+  className="page-header undefined"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <div
+    className="user-block"
+  >
+    <a
+      className="user-block__link"
+      href="/login"
+      onClick={[Function]}
+    >
+      Sign in
+    </a>
+  </div>
+</header>
+`;
+
+exports[`render Header with active logo and unique classes from header 1`] = `
+<header
+  className="page-header uniqueClasses"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+      href="/"
+      onClick={[Function]}
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <div />
+  <div
+    className="user-block"
+  >
+    <a
+      className="user-block__link"
+      href="/login"
+      onClick={[Function]}
+    >
+      Sign in
+    </a>
+  </div>
+</header>
+`;
+
+exports[`render Header with children 1`] = `
+<header
+  className="page-header undefined"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <div />
+  <div
+    className="user-block"
+  >
+    <a
+      className="user-block__link"
+      href="/login"
+      onClick={[Function]}
+    >
+      Sign in
+    </a>
+  </div>
+</header>
+`;

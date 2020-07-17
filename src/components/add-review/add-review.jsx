@@ -5,6 +5,7 @@ import {Operation, ActionCreator} from "./../../reducer/data/data.js";
 import {getFlagCommentPublishing, getFlagCommentSendingError, getFilmById} from "./../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import {Pages} from "./../../utils.js";
+import Header from "./../header/header.jsx";
 
 const minCommentLength = 50;
 const maxCommentLength = 400;
@@ -67,15 +68,9 @@ class AddReview extends PureComponent {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
+        <Header
+          isActiveLogoLink={true}
+        >
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
@@ -91,13 +86,7 @@ class AddReview extends PureComponent {
               </li>
             </ul>
           </nav>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        </Header>
 
         <div className="movie-card__poster movie-card__poster--small">
           <img src={movieCoverSrc} alt={title} width="218" height="327" />

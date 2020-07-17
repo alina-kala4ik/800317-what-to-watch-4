@@ -8,8 +8,10 @@ import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import {getFilmById} from "./../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
+import Header from "./../header/header.jsx";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
+const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
 
 const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
 
@@ -34,21 +36,10 @@ const MoviePage = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <Header
+          uniqueClasses={UNIQUE_CLASSES_FROM_HEADER}
+          isActiveLogoLink={true}
+        />
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">

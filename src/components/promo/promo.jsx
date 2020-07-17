@@ -3,14 +3,12 @@ import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import PropTypes from "prop-types";
 import {getPromoFilm} from "./../../reducer/data/selector.js";
-import {getAuthorizationStatus, getAvatar} from "./../../reducer/user/selector.js";
-import {AuthorizationStatus} from "./../../reducer/user/user.js";
-import {Link} from "react-router-dom";
-import {Pages} from "./../../utils.js";
 import {Operation} from "./../../reducer/data/data.js";
+import Header from "./../header/header.jsx";
 
 const REMOVE_FROM_MY_LIST = 0;
 const ADD_TO_MY_LIST = 1;
+const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
 
 class Promo extends PureComponent {
   constructor(props) {
@@ -28,20 +26,8 @@ class Promo extends PureComponent {
   }
 
   render() {
-    const {onPlayClick, film, authorizationStatus, avatar} = this.props;
+    const {onPlayClick, film} = this.props;
     const {title, posterSrc, movieCoverSrc, genre, yearRelease, isFavorite} = film;
-
-    const userBlock = authorizationStatus === AuthorizationStatus.AUTH ?
-      <Link
-        className="user-block__avatar"
-        to={Pages.MY_LIST}>
-        <img src={avatar} alt="User avatar" width="63" height="63"/>
-      </Link> :
-      <Link
-        to={Pages.LOGIN}
-        className="user-block__link">
-        Sign in
-      </Link>;
 
     const myListIcon = isFavorite ?
       <svg viewBox="0 0 18 14" width="18" height="14"><use xlinkHref="#in-list"></use></svg> :
@@ -54,19 +40,10 @@ class Promo extends PureComponent {
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <header className="page-header movie-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="user-block">
-          {userBlock}
-        </div>
-      </header>
+      <Header
+        uniqueClasses={UNIQUE_CLASSES_FROM_HEADER}
+        isActiveLogoLink={false}
+      />
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -123,20 +100,14 @@ Promo.propTypes = {
     isFavorite: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired,
   }),
-  authorizationStatus: PropTypes.string.isRequired,
-  avatar: PropTypes.string,
   onMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   const film = getPromoFilm(state);
-  const authorizationStatus = getAuthorizationStatus(state);
-  const avatar = getAvatar(state);
 
   return {
     film,
-    authorizationStatus,
-    avatar,
   };
 };
 
