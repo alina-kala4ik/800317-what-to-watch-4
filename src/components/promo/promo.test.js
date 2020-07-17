@@ -1,9 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Promo} from "./promo.jsx";
-import {AuthorizationStatus} from "./../../reducer/user/user.js";
 import history from "./../../history.js";
 import {Router} from "react-router-dom";
+import configureStore from "redux-mock-store";
+import {NameSpace} from "./../../reducer/name-space.js";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import {Provider} from "react-redux";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -23,23 +26,32 @@ const film = {
   id: 1,
 };
 
-it(`render Promo when user authorized and promo film checked as unfavored`, ()=>{
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+    avatar: `img/avatar.jpg`
+  }
+});
+
+it(`render Promo when promo film checked as unfavored`, ()=>{
   const tree = renderer.create(
-      <Router history={history}>
-        <Promo
-          onPlayClick={()=>{}}
-          film={film}
-          authorizationStatus={AuthorizationStatus.AUTH}
-          avatar={`img/avatar.jpg`}
-          onMyListClick={()=>{}}
-        />
-      </Router>
+      <Provider store={store}>
+        <Router history={history}>
+          <Promo
+            onPlayClick={()=>{}}
+            film={film}
+            onMyListClick={()=>{}}
+          />
+        </Router>
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-it(`render Promo when user authorized and promo film checked as favorite`, ()=>{
+it(`render Promo when promo film checked as favorite`, ()=>{
   const favoriteFilm = {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -59,48 +71,17 @@ it(`render Promo when user authorized and promo film checked as favorite`, ()=>{
   };
 
   const tree = renderer.create(
-      <Router history={history}>
-        <Promo
-          onPlayClick={()=>{}}
-          film={favoriteFilm}
-          authorizationStatus={AuthorizationStatus.AUTH}
-          avatar={`img/avatar.jpg`}
-          onMyListClick={()=>{}}
-        />
-      </Router>
+      <Provider store={store}>
+        <Router history={history}>
+          <Promo
+            onPlayClick={()=>{}}
+            film={favoriteFilm}
+            onMyListClick={()=>{}}
+          />
+        </Router>
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-it(`render Promo when user authorized`, ()=>{
-  const tree = renderer.create(
-      <Router history={history}>
-        <Promo
-          onPlayClick={()=>{}}
-          film={film}
-          authorizationStatus={AuthorizationStatus.AUTH}
-          avatar={`img/avatar.jpg`}
-          onMyListClick={()=>{}}
-        />
-      </Router>
-  ).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-it(`render Promo when user unauthorized`, ()=>{
-  const tree = renderer.create(
-      <Router history={history}>
-        <Promo
-          onPlayClick={()=>{}}
-          film={film}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
-          avatar={`img/avatar.jpg`}
-          onMyListClick={()=>{}}
-        />
-      </Router>
-  ).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});

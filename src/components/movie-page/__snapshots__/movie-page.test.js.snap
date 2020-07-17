@@ -34,7 +34,8 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -56,16 +57,18 @@ Array [
         <div
           className="user-block"
         >
-          <div
+          <a
             className="user-block__avatar"
+            href="/mylist"
+            onClick={[Function]}
           >
             <img
               alt="User avatar"
               height="63"
-              src="img/avatar.jpg"
+              src=""
               width="63"
             />
-          </div>
+          </a>
         </div>
       </header>
       <div

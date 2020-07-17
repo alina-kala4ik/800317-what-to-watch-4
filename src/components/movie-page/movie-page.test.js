@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import {NameSpace} from "./../../reducer/name-space.js";
 import {Router} from "react-router-dom";
 import history from "./../../history.js";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -193,6 +194,10 @@ it(`render MoviePage`, () => {
       films,
       allFilms: films,
       genreForFilter: Genres.ALL
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      avatar: ``,
     }
   });
 

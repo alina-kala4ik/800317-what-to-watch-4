@@ -4,6 +4,10 @@ import Adapter from "enzyme-adapter-react-16";
 import {AddReview} from "./add-review.jsx";
 import {Router} from "react-router-dom";
 import history from "./../../history.js";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import {NameSpace} from "./../../reducer/name-space.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -33,20 +37,31 @@ const film = {
   backgroundColor: `111111`
 };
 
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+    avatar: ``,
+  }
+});
+
 it(`callbacks are working`, ()=>{
 
   const onSubmit = jest.fn();
 
   const addReview = mount(
-      <Router history={history}>
-        <AddReview
-          isCommentPublishing={false}
-          onSubmit={onSubmit}
-          isCommentSendingError={false}
-          historyProps={historyProps}
-          film={film}
-        />
-      </Router>
+      <Provider store={store}>
+        <Router history={history}>
+          <AddReview
+            isCommentPublishing={false}
+            onSubmit={onSubmit}
+            isCommentSendingError={false}
+            historyProps={historyProps}
+            film={film}
+          />
+        </Router>
+      </Provider>
   );
 
 

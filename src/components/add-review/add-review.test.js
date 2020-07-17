@@ -3,6 +3,10 @@ import renderer from "react-test-renderer";
 import {AddReview} from "./add-review.jsx";
 import {Router} from "react-router-dom";
 import history from "./../../history.js";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import {NameSpace} from "./../../reducer/name-space.js";
 
 beforeAll(()=>{
   jest.setAttribute = () => {};
@@ -32,17 +36,28 @@ const film = {
   backgroundColor: `111111`
 };
 
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+    avatar: ``,
+  }
+});
+
 it(`render AddReview without sending error and disabled form`, ()=>{
   const tree = renderer.create(
-      <Router history={history}>
-        <AddReview
-          isCommentPublishing={false}
-          onSubmit={()=>{}}
-          isCommentSendingError={false}
-          historyProps={historyProps}
-          film={film}
-        />
-      </Router>, {
+      <Provider store={store}>
+        <Router history={history}>
+          <AddReview
+            isCommentPublishing={false}
+            onSubmit={()=>{}}
+            isCommentSendingError={false}
+            historyProps={historyProps}
+            film={film}
+          />
+        </Router>
+      </Provider>, {
         createNodeMock: ()=>{
           return {};
         }
@@ -54,15 +69,17 @@ it(`render AddReview without sending error and disabled form`, ()=>{
 
 it(`render AddReview with sending error and disabled form`, ()=>{
   const tree = renderer.create(
-      <Router history={history}>
-        <AddReview
-          isCommentPublishing={true}
-          onSubmit={()=>{}}
-          isCommentSendingError={true}
-          historyProps={historyProps}
-          film={film}
-        />
-      </Router>, {
+      <Provider store={store}>
+        <Router history={history}>
+          <AddReview
+            isCommentPublishing={true}
+            onSubmit={()=>{}}
+            isCommentSendingError={true}
+            historyProps={historyProps}
+            film={film}
+          />
+        </Router>
+      </Provider>, {
         createNodeMock: ()=>{
           return {};
         }
