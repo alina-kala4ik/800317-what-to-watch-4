@@ -5,6 +5,8 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
 import {NameSpace} from "./../../reducer/name-space.js";
+import {Router} from "react-router-dom";
+import history from "./../../history.js";
 
 const countFilms8 = [
   {
@@ -22,6 +24,7 @@ const countFilms8 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 1,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -38,6 +41,7 @@ const countFilms8 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 2,
   },
   {
     title: `Macbeth`,
@@ -54,6 +58,7 @@ const countFilms8 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 3,
   },
   {
     title: `Aviator`,
@@ -70,6 +75,7 @@ const countFilms8 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 4,
   },
   {
     title: `We need to talk about Kevin`,
@@ -86,6 +92,7 @@ const countFilms8 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 5,
   },
   {
     title: `What We Do in the Shadows`,
@@ -102,6 +109,7 @@ const countFilms8 = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 6,
   },
   {
     title: `Revenant`,
@@ -118,6 +126,7 @@ const countFilms8 = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 7,
   },
   {
     title: `Johnny English`,
@@ -134,6 +143,7 @@ const countFilms8 = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 8,
   },
 ];
 
@@ -153,6 +163,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 1,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -169,6 +180,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 2,
   },
   {
     title: `Macbeth`,
@@ -185,6 +197,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 3,
   },
   {
     title: `Aviator`,
@@ -201,6 +214,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 4,
   },
   {
     title: `We need to talk about Kevin`,
@@ -217,6 +231,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 5,
   },
   {
     title: `What We Do in the Shadows`,
@@ -233,6 +248,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 6,
   },
   {
     title: `Revenant`,
@@ -249,6 +265,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 7,
   },
   {
     title: `Johnny English`,
@@ -265,6 +282,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 8,
   },
   {
     title: `Mindhunter`,
@@ -281,6 +299,7 @@ const countFilms9 = [
     runTime: 99,
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 9,
   }
 ];
 
@@ -301,13 +320,13 @@ it(`render Catalog without button`, ()=>{
 
   const tree = renderer.create(
       <Provider store={store}>
-        <Catalog
-          onFilmTitleClick={()=>{}}
-          onFilmImgClick={()=>{}}
-          countFilms={8}
-          onShowMoreClick={()=>{}}
-          isButtonDisplayed={false}
-        />
+        <Router history={history}>
+          <Catalog
+            countFilms={8}
+            onShowMoreClick={()=>{}}
+            isButtonDisplayed={false}
+          />
+        </Router>
       </Provider>, {
         createNodeMock: ()=>{
           return {};
@@ -333,13 +352,13 @@ it(`render Catalog with button`, ()=>{
 
   const tree = renderer.create(
       <Provider store={store}>
-        <Catalog
-          onFilmTitleClick={()=>{}}
-          onFilmImgClick={()=>{}}
-          countFilms={8}
-          onShowMoreClick={()=>{}}
-          isButtonDisplayed={true}
-        />
+        <Router history={history}>
+          <Catalog
+            countFilms={8}
+            onShowMoreClick={()=>{}}
+            isButtonDisplayed={true}
+          />
+        </Router>
       </Provider>, {
         createNodeMock: ()=>{
           return {};

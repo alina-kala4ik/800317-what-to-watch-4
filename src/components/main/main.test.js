@@ -182,11 +182,7 @@ it(`render Main`, () => {
     .create(
         <Router history={history}>
           <Provider store={store}>
-            <Main
-              films={films}
-              onFilmTitleClick={()=>{}}
-              onFilmImgClick={()=>{}}
-            />
+            <Main />
           </Provider>
         </Router>, {
           createNodeMock: ()=>{

@@ -21,6 +21,7 @@ const film = {
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  id: 1,
 };
 
 it(`testing MouseEnter`, ()=>{
@@ -51,8 +52,6 @@ it(`testing MouseLeave`, ()=>{
   const movieCard = shallow(
       <MovieCard
         film={film}
-        onFilmTitleClick={()=>{}}
-        onFilmImgClick={()=>{}}
         isPlaying={false}
         onMouseEnter={()=>{}}
         onMouseLeave={onMouseLeave}
@@ -64,4 +63,42 @@ it(`testing MouseLeave`, ()=>{
   card.simulate(`mouseleave`);
 
   expect(onMouseLeave).toHaveBeenCalledTimes(1);
+});
+
+it(`Film title click`, () => {
+
+  const setGenreForFilter = jest.fn();
+
+  const movieCard = shallow(
+      <MovieCard
+        film={film}
+        isPlaying={false}
+        onMouseEnter={()=>{}}
+        onMouseLeave={()=>{}}
+        setGenreForFilter={setGenreForFilter}
+      />
+  );
+
+  movieCard.find(`.small-movie-card__link`).simulate(`click`);
+
+  expect(setGenreForFilter).toHaveBeenCalledTimes(1);
+});
+
+it(`Film image click`, () => {
+
+  const setGenreForFilter = jest.fn();
+
+  const movieCard = shallow(
+      <MovieCard
+        film={film}
+        isPlaying={false}
+        onMouseEnter={()=>{}}
+        onMouseLeave={()=>{}}
+        setGenreForFilter={setGenreForFilter}
+      />
+  );
+
+  movieCard.find(`.small-movie-card__image`).simulate(`click`);
+
+  expect(setGenreForFilter).toHaveBeenCalledTimes(1);
 });

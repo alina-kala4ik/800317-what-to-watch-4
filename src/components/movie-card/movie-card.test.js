@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {MovieCard} from "./movie-card.jsx";
+import {Router} from "react-router-dom";
+import history from "./../../history.js";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -16,23 +18,24 @@ const film = {
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  id: 1,
 };
 
 it(`render MoveCard`, () => {
-  const tree = renderer
-    .create(<MovieCard
-      film={film}
-      onFilmTitleClick={()=>{}}
-      onFilmImgClick={()=>{}}
-      isPlaying={false}
-      onMouseEnter={()=>{}}
-      onMouseLeave={()=>{}}
-      setGenreForFilter={()=>{}}
-    />, {
-      createNodeMock: ()=>{
-        return {};
-      }
-    })
+  const tree = renderer.create(
+      <Router history={history}>
+        <MovieCard
+          film={film}
+          isPlaying={false}
+          onMouseEnter={()=>{}}
+          onMouseLeave={()=>{}}
+          setGenreForFilter={()=>{}}
+        />
+      </Router>, {
+        createNodeMock: ()=>{
+          return {};
+        }
+      })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

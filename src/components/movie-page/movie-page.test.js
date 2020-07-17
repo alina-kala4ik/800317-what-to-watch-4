@@ -5,6 +5,8 @@ import configureStore from "redux-mock-store";
 import {Genres} from "./../../utils.js";
 import {Provider} from "react-redux";
 import {NameSpace} from "./../../reducer/name-space.js";
+import {Router} from "react-router-dom";
+import history from "./../../history.js";
 
 const film = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -41,6 +43,7 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 1,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -58,6 +61,7 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 2,
   },
   {
     title: `Macbeth`,
@@ -75,6 +79,7 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 3,
   },
   {
     title: `Aviator`,
@@ -92,6 +97,7 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 4,
   },
   {
     title: `We need to talk about Kevin`,
@@ -109,6 +115,7 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 5,
   },
   {
     title: `What We Do in the Shadows`,
@@ -126,6 +133,7 @@ const films = [
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 6,
   },
   {
     title: `Revenant`,
@@ -143,6 +151,7 @@ const films = [
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 7,
   },
   {
     title: `Johnny English`,
@@ -160,8 +169,15 @@ const films = [
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 8,
   },
 ];
+
+const historyProps = {
+  match: {
+    params: {id: 1}
+  }
+};
 
 const mockStore = configureStore([]);
 
@@ -179,20 +195,20 @@ it(`render MoviePage`, () => {
     }
   });
 
-  const tree = renderer
-    .create(
-        <Provider store={store}>
+  const tree = renderer.create(
+      <Provider store={store}>
+        <Router history={history}>
           <MoviePage
             film={film}
-            onFilmTitleClick={()=>{}}
-            onFilmImgClick={()=>{}}
             onPlayClick={()=>{}}
+            historyProps={historyProps}
           />
-        </Provider>, {
-          createNodeMock: ()=>{
-            return {};
-          }
-        })
+        </Router>
+      </Provider>, {
+        createNodeMock: ()=>{
+          return {};
+        }
+      })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -12,8 +12,6 @@ it(`button show more are clickable`, ()=>{
 
   const catalog = shallow(
       <Catalog
-        onFilmTitleClick={()=>{}}
-        onFilmImgClick={()=>{}}
         countFilms={8}
         onShowMoreClick={onShowMoreClick}
         isButtonDisplayed={true}
