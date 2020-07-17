@@ -46,12 +46,10 @@ store.dispatch(DataOperation.loadFilms());
 store.dispatch(DataOperation.loadPromoFilm());
 store.dispatch(UserOperation.checkAuth());
 
-const AppWrapped = withActiveItem(App);
-
 const init = () => {
   ReactDOM.render(
       <Provider store={store}>
-        <AppWrapped />
+        <App />
       </Provider>,
       document.querySelector(`#root`)
   );
