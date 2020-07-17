@@ -6,7 +6,7 @@ import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
 import {Tabs} from "./../../utils.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
-import {getFilms} from "./../../reducer/data/selector.js";
+import {getFilmById} from "./../../reducer/data/selector.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 
@@ -139,14 +139,9 @@ MoviePage.propTypes = {
 const mapStateToProps = (state, props) => {
   const {historyProps} = props;
   const id = historyProps.match.params.id;
-  const films = getFilms(state);
-
-  const filteredFilms = films.filter((item) => {
-    return item.id === Number(id);
-  });
 
   return {
-    film: filteredFilms[0]
+    film: getFilmById(state, id)
   };
 };
 
