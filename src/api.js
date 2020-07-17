@@ -24,7 +24,7 @@ const createAPI = (onNotFound, onUnauthorized) => {
         onNotFound();
         throw err;
       case Error.UNAUTHORIZED:
-        onUnauthorized();
+        onUnauthorized(response);
         throw err;
     }
 

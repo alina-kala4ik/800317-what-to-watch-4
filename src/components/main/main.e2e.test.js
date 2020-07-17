@@ -7,6 +7,8 @@ import {Provider} from "react-redux";
 import {Genres} from "./../../utils.js";
 import {NameSpace} from "./../../reducer/name-space.js";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import history from "./../../history.js";
+import {Router} from "react-router-dom";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -29,6 +31,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 1,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -45,6 +49,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 2,
   },
   {
     title: `Macbeth`,
@@ -61,6 +67,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 3,
   },
   {
     title: `Aviator`,
@@ -77,6 +85,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 4,
   },
   {
     title: `We need to talk about Kevin`,
@@ -93,6 +103,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 5,
   },
   {
     title: `What We Do in the Shadows`,
@@ -109,6 +121,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 6,
   },
   {
     title: `Revenant`,
@@ -125,6 +139,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 7,
   },
   {
     title: `Johnny English`,
@@ -141,6 +157,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 8,
   },
 ];
 
@@ -168,14 +186,15 @@ it(`Film title click`, () => {
   const onFilmTitleClick = jest.fn();
 
   const main = mount(
-      <Provider store={store}>
-        <Main
-          films={films}
-          onFilmTitleClick={onFilmTitleClick}
-          onFilmImgClick={()=>{}}
-        />
-      </Provider>
-
+      <Router history={history}>
+        <Provider store={store}>
+          <Main
+            films={films}
+            onFilmTitleClick={onFilmTitleClick}
+            onFilmImgClick={()=>{}}
+          />
+        </Provider>
+      </Router>
   );
 
   const filmTitles = main.find(`a.small-movie-card__link`);
@@ -192,14 +211,15 @@ it(`Film image click`, () => {
   const onFilmImgClick = jest.fn();
 
   const main = mount(
-      <Provider store={store}>
-        <Main
-          films={films}
-          onFilmTitleClick={()=>{}}
-          onFilmImgClick={onFilmImgClick}
-        />
-      </Provider>
-
+      <Router history={history}>
+        <Provider store={store}>
+          <Main
+            films={films}
+            onFilmTitleClick={()=>{}}
+            onFilmImgClick={onFilmImgClick}
+          />
+        </Provider>
+      </Router>
   );
 
   const filmImg = main.find(`div.small-movie-card__image`);
@@ -229,14 +249,15 @@ it(`Validates data transmitted through props when clicked on film title`, () => 
   };
 
   const main = mount(
-      <Provider store={store}>
-        <Main
-          films={films}
-          onFilmTitleClick={onFilmTitleClick}
-          onFilmImgClick={()=>{}}
-        />
-      </Provider>
-
+      <Router history={history}>
+        <Provider store={store}>
+          <Main
+            films={films}
+            onFilmTitleClick={onFilmTitleClick}
+            onFilmImgClick={()=>{}}
+          />
+        </Provider>
+      </Router>
   );
 
   const filmOneTitles = main.find(`a.small-movie-card__link`).at(0);

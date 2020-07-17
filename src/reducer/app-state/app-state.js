@@ -12,7 +12,6 @@ const initialState = {
   countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
   playableMovie: null,
   serverStatus: ServerStatus.OK,
-  logIn: false,
 };
 
 const ActionTypes = {
@@ -21,7 +20,6 @@ const ActionTypes = {
   RESET_COUNT_DISPLAYED_FILMS: `RESET_COUNT_DISPLAYED_FILMS`,
   CHOOSE_MOVIE_TO_WATCH: `CHOOSE_MOVIE_TO_WATCH`,
   CHANGE_SERVER_STATUS_ON_ERROR: `CHANGE_SERVER_STATUS_ON_ERROR`,
-  LOG_IN: `LOG_IN`,
 };
 
 const ActionCreator = {
@@ -44,10 +42,6 @@ const ActionCreator = {
   changeServerStatusOnError: ()=>({
     type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
     payload: ServerStatus.ERROR
-  }),
-  logIn: (status)=>({
-    type: ActionTypes.LOG_IN,
-    payload: status
   })
 };
 
@@ -72,10 +66,6 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR:
       return extend(state, {
         serverStatus: action.payload
-      });
-    case ActionTypes.LOG_IN:
-      return extend(state, {
-        logIn: action.payload
       });
   }
   return state;

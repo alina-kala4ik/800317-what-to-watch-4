@@ -1,17 +1,19 @@
 import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
 import PropTypes from 'prop-types';
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import MoviePage from "./../movie-page/movie-page.jsx";
-import mockFilms from "../../mocks/films.js";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
 import withPlayer from "./../../hocs/with-player/with-player.jsx";
-import {getPlayableMovie, gerServerStatus, getLogIn} from "./../../reducer/app-state/selector.js";
+import {getPlayableMovie, gerServerStatus} from "./../../reducer/app-state/selector.js";
 import {ServerStatus} from "./../../reducer/app-state/app-state.js";
 import {getIsFilmsFetching, getIsPromoFilmFetching, getFilms, getPromoFilm} from "./../../reducer/data/selector.js";
 import SignIn from "./../sign-in/sign-in.jsx";
-import AddReview from "./../add-review/add-review.jsx";
+import {Pages} from "./../../utils.js";
+import history from "./../../history.js";
+import {getAuthorizationStatus} from "./../../reducer/user/selector.js";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
@@ -27,7 +29,6 @@ class App extends PureComponent {
       serverStatus,
       isFilmsFetching,
       isPromoFilmFetching,
-      logIn
     } = this.props;
 
     const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
@@ -44,10 +45,6 @@ class App extends PureComponent {
 
     if (serverStatus === ServerStatus.ERROR) {
       return <div style={{backgroundColor: `red`}}>Сервер не доступен</div>;
-    }
-
-    if (logIn) {
-      return <SignIn />;
     }
 
     if (activeFilm === false) {
@@ -72,31 +69,32 @@ class App extends PureComponent {
   }
 
   render() {
-    const {setActiveItem: onFilmOrImgClick} = this.props;
+    const {authorizationStatus, setActiveItem: onFilmOrImgClick} = this.props;
 
-    return <BrowserRouter>
+    return <Router history={history}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={Pages.ROOT}>
           {this._renderApp()}
         </Route>
-        <Route exact path="/movie-page">
-          <MoviePage
-            film={mockFilms[0]}
-            onFilmTitleClick={onFilmOrImgClick}
-            onFilmImgClick={onFilmOrImgClick}
-          />
-        </Route>
-        <Route exact path="/movie">
-          <MovieViewingPageWrapped film={mockFilms[0]} />
-        </Route>
-        <Route exact path="/login">
-          <SignIn />
-        </Route>
-        <Route exact path="/dev-review">
-          <AddReview />
+        <Route
+          exact
+          path={Pages.LOGIN}
+          render={()=>{
+            return authorizationStatus === AuthorizationStatus.NO_AUTH ?
+              <SignIn /> :
+              <Redirect to={
+                <Main
+                  onFilmTitleClick={onFilmOrImgClick}
+                  onFilmImgClick={onFilmOrImgClick}
+                />
+              } />;
+          }}
+        />
+        <Route exact path={Pages.MY_LIST}>
+          <div>WIP</div>
         </Route>
       </Switch>
-    </BrowserRouter>;
+    </Router>;
   }
 }
 
@@ -112,7 +110,7 @@ App.propTypes = {
   isPromoFilmFetching: PropTypes.bool.isRequired,
   films: PropTypes.array,
   promoFilm: PropTypes.object,
-  logIn: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -122,7 +120,7 @@ const mapStateToProps = (state) => ({
   isPromoFilmFetching: getIsPromoFilmFetching(state),
   films: getFilms(state),
   promoFilm: getPromoFilm(state),
-  logIn: getLogIn(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export {App};

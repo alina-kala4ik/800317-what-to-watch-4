@@ -1,5 +1,5 @@
 import {extend} from "./../../utils.js";
-import {ActionCreator as AppStateActionCreator} from "./../app-state/app-state.js";
+import history from "./../../history.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -63,7 +63,7 @@ const Operation = {
 
         dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.addAvatar(avatarUrl));
-        dispatch(AppStateActionCreator.logIn(false));
+        history.goBack();
       })
       .catch((err)=>{
         throw err;

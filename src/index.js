@@ -11,13 +11,24 @@ import {Operation as DataOperation} from "./reducer/data/data.js";
 import {ActionCreator as AppStateActionCreator} from "./reducer/app-state/app-state.js";
 import {ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {Operation as UserOperation} from "./reducer/user/user.js";
+import history from "./history.js";
+import {Pages} from "./utils.js";
+
 
 const onNotFound = () => {
   store.dispatch(AppStateActionCreator.changeServerStatusOnError());
 };
 
-const onUnauthorized = () => {
+const onUnauthorized = (response) => {
+  const {config} = response;
+  const {method, url} = config;
+  const getLoginURL = /\/login/;
+  const isGetLoginURLRequest = getLoginURL.test(url);
+
   store.dispatch(UserActionCreator.requiredAuthorization(AuthorizationStatus.NO_AUTH));
+  if (!isGetLoginURLRequest && method !== `get`) {
+    history.push(Pages.LOGIN);
+  }
 };
 
 const api = createAPI(onNotFound, onUnauthorized);

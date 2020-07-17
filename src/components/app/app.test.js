@@ -24,6 +24,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 1,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -40,6 +42,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 2,
   },
   {
     title: `Macbeth`,
@@ -56,6 +60,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 3,
   },
   {
     title: `Aviator`,
@@ -72,6 +78,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 4,
   },
   {
     title: `We need to talk about Kevin`,
@@ -88,6 +96,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 5,
   },
   {
     title: `What We Do in the Shadows`,
@@ -104,6 +114,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 6,
   },
   {
     title: `Revenant`,
@@ -120,6 +132,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 7,
   },
   {
     title: `Johnny English`,
@@ -136,6 +150,8 @@ const films = [
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    isFavorite: false,
+    id: 8,
   },
 ];
 
@@ -148,7 +164,6 @@ it(`render App without server error`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.OK,
-      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -193,7 +208,6 @@ it(`render App with server error`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.ERROR,
-      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -238,7 +252,6 @@ it(`render App when films null`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.OK,
-      logIn: false
     },
     [NameSpace.DATA]: {
       films: null,
@@ -283,7 +296,6 @@ it(`render App when promoFilm null`, () => {
       countDisplayedFilms: 8,
       playableMovie: null,
       serverStatus: ServerStatus.OK,
-      logIn: false
     },
     [NameSpace.DATA]: {
       films,
@@ -311,52 +323,6 @@ it(`render App when promoFilm null`, () => {
             isPromoFilmFetching={false}
             films={films}
             promoFilm={null}
-          />
-        </Provider>, {
-          createNodeMock: ()=>{
-            return {};
-          }
-        })
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it(`render logIn`, () => {
-  const store = mockStore({
-    [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
-      countDisplayedFilms: 8,
-      playableMovie: null,
-      serverStatus: ServerStatus.OK,
-      logIn: true
-    },
-    [NameSpace.DATA]: {
-      films,
-      promoFilm: films[0],
-      allFilms: films,
-      isFilmsFetching: false,
-      isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
-    },
-    [NameSpace.USER]: {
-      authorizationStatus: AuthorizationStatus.AUTH,
-      avatar: `img/avatar.jpg`
-    }
-  });
-
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App
-            activeItem={false}
-            setActiveItem={()=>{}}
-            playableMovie={null}
-            serverStatus={ServerStatus.OK}
-            isFilmsFetching={false}
-            isPromoFilmFetching={false}
-            films={films}
-            promoFilm={null}
-            logIn={true}
           />
         </Provider>, {
           createNodeMock: ()=>{
