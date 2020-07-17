@@ -21,8 +21,6 @@ class App extends PureComponent {
 
   _renderApp() {
     const {
-      activeItem: activeFilm,
-      setActiveItem: onFilmOrImgClick,
       playableMovie,
       films,
       promoFilm,
@@ -47,29 +45,16 @@ class App extends PureComponent {
       return <div style={{backgroundColor: `red`}}>Сервер не доступен</div>;
     }
 
-    if (activeFilm === false) {
-      return <React.Fragment>
-        {modal}
-        <Main
-          onFilmTitleClick={onFilmOrImgClick}
-          onFilmImgClick={onFilmOrImgClick}
-        />
-      </React.Fragment>;
-    }
-
     return <React.Fragment>
       {modal}
-      <MoviePage
-        film={activeFilm}
-        onFilmTitleClick={onFilmOrImgClick}
-        onFilmImgClick={onFilmOrImgClick}
-      />
+      <Main />
     </React.Fragment>;
+
 
   }
 
   render() {
-    const {authorizationStatus, setActiveItem: onFilmOrImgClick} = this.props;
+    const {authorizationStatus} = this.props;
 
     return <Router history={history}>
       <Switch>
@@ -83,15 +68,24 @@ class App extends PureComponent {
             return authorizationStatus === AuthorizationStatus.NO_AUTH ?
               <SignIn /> :
               <Redirect to={
-                <Main
-                  onFilmTitleClick={onFilmOrImgClick}
-                  onFilmImgClick={onFilmOrImgClick}
-                />
+                <Main />
               } />;
           }}
         />
         <Route exact path={Pages.MY_LIST}>
           <div>WIP</div>
+        </Route>
+        <Route
+          exact
+          path={`${Pages.FILM}:id?`}
+          render={(props)=>{
+            return <MoviePage
+              historyProps={props}
+            />;
+          }}
+        />
+        <Route>
+          <div>404 not found</div>
         </Route>
       </Switch>
     </Router>;
@@ -99,11 +93,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  activeItem: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.object,
-  ]).isRequired,
-  setActiveItem: PropTypes.func.isRequired,
   playableMovie: PropTypes.object,
   serverStatus: PropTypes.string.isRequired,
   isFilmsFetching: PropTypes.bool.isRequired,

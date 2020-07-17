@@ -6,13 +6,19 @@ import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
 import {Tabs} from "./../../utils.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
+import {getFilms} from "./../../reducer/data/selector.js";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 
 const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
 
 const MoviePage = (props) => {
-  const {film, onFilmTitleClick, onFilmImgClick, onPlayClick} = props;
+  const {film, onPlayClick} = props;
+
+  if (!film) {
+    return null;
+  }
+
   const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor} = film;
 
   return <React.Fragment>
@@ -94,8 +100,6 @@ const MoviePage = (props) => {
 
         <div className="catalog__movies-list">
           <MovieList
-            onFilmTitleClick={onFilmTitleClick}
-            onFilmImgClick={onFilmImgClick}
             countFilms={DISPLAYED_NUMBER_OF_FILMS}
           />
         </div>
@@ -127,10 +131,23 @@ MoviePage.propTypes = {
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.number.isRequired,
     backgroundColor: PropTypes.string.isRequired,
-  }).isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmImgClick: PropTypes.func.isRequired,
+  }),
   onPlayClick: PropTypes.func.isRequired,
+  historyProps: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state, props) => {
+  const {historyProps} = props;
+  const id = historyProps.match.params.id;
+  const films = getFilms(state);
+
+  const filteredFilms = films.filter((item) => {
+    return item.id === Number(id);
+  });
+
+  return {
+    film: filteredFilms[0]
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -140,5 +157,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {MoviePage};
-export default connect(null, mapDispatchToProps)(MoviePage);
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
 

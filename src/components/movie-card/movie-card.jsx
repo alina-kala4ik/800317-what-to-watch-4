@@ -1,44 +1,57 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import VideoPlayer from "./../video-player/video-player.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/data/data.js";
+import {Pages} from "./../../utils.js";
+import {Link} from "react-router-dom";
 
-const MovieCard = (props) => {
-  const {film, onFilmTitleClick, onFilmImgClick, isPlaying, onMouseEnter, onMouseLeave, setGenreForFilter} = props;
-  const {title, screenshotSrc, previewVideoLink, genre} = film;
+class MovieCard extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  return <article
-    className="small-movie-card catalog__movies-card"
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-  >
-    <div
-      className="small-movie-card__image"
-      onClick={()=>{
-        onFilmImgClick(film);
-        setGenreForFilter(genre);
-      }}
+    this.handleImgOrTitleClick = this.handleImgOrTitleClick.bind(this);
+  }
+
+  handleImgOrTitleClick() {
+    const {setGenreForFilter, film} = this.props;
+    const {genre} = film;
+
+    setGenreForFilter(genre);
+  }
+
+  render() {
+    const {film, isPlaying, onMouseEnter, onMouseLeave} = this.props;
+    const {title, screenshotSrc, previewVideoLink, id} = film;
+
+    return <article
+      className="small-movie-card catalog__movies-card"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
-      <VideoPlayer
-        src={previewVideoLink}
-        poster={screenshotSrc}
-        isPlaying={isPlaying}
-      />
-    </div>
-    <h3 className="small-movie-card__title">
-      <a
-        onClick={(evt)=>{
-          evt.preventDefault();
-          onFilmTitleClick(film);
-          setGenreForFilter(genre);
-        }}
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >{title}</a>
-    </h3>
-  </article>;
-};
+      <Link
+        className="small-movie-card__image"
+        onClick={this.handleImgOrTitleClick}
+        to={`${Pages.FILM}${id}`}
+      >
+        <VideoPlayer
+          src={previewVideoLink}
+          poster={screenshotSrc}
+          isPlaying={isPlaying}
+        />
+      </Link>
+      <h3 className="small-movie-card__title">
+        <Link
+          to={`${Pages.FILM}${id}`}
+          onClick={this.handleImgOrTitleClick}
+          className="small-movie-card__link"
+        >
+          {title}
+        </Link>
+      </h3>
+    </article>;
+  }
+}
 
 MovieCard.propTypes = {
   film: PropTypes.shape({
@@ -46,9 +59,8 @@ MovieCard.propTypes = {
     screenshotSrc: PropTypes.string.isRequired,
     previewVideoLink: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmImgClick: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,

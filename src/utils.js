@@ -25,6 +25,7 @@ const Pages = {
   ROOT: `/`,
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
+  FILM: `/films/`
 };
 
 export {extend, Genres, Tabs, Pages};
