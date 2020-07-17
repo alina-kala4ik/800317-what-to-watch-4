@@ -1,11 +1,9 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import Catalog from "../catalog/catalog.jsx";
 import GenresList from "./../genres-list/genres-list.jsx";
 import Promo from "./../promo/promo.jsx";
 
-const Main = (props) => {
-  const {onFilmTitleClick, onFilmImgClick} = props;
+const Main = () => {
 
   return <React.Fragment>
     <Promo />
@@ -15,10 +13,7 @@ const Main = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <GenresList />
-        <Catalog
-          onFilmTitleClick={onFilmTitleClick}
-          onFilmImgClick={onFilmImgClick}
-        />
+        <Catalog />
       </section>
 
       <footer className="page-footer">
@@ -36,11 +31,6 @@ const Main = (props) => {
       </footer>
     </div>
   </React.Fragment>;
-};
-
-Main.propTypes = {
-  onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmImgClick: PropTypes.func.isRequired,
 };
 
 

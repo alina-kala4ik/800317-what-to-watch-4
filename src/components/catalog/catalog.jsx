@@ -8,13 +8,11 @@ import {getFilteredFilms} from "./../../reducer/data/selector.js";
 
 
 const Catalog = (props) => {
-  const {onFilmTitleClick, onFilmImgClick, countFilms, onShowMoreClick, isButtonDisplayed} = props;
+  const {countFilms, onShowMoreClick, isButtonDisplayed} = props;
 
   return <React.Fragment>
     <div className="catalog__movies-list">
       {<MovieList
-        onFilmTitleClick={onFilmTitleClick}
-        onFilmImgClick={onFilmImgClick}
         countFilms={countFilms}
       />}
     </div>
@@ -34,8 +32,6 @@ const Catalog = (props) => {
 };
 
 Catalog.propTypes = {
-  onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmImgClick: PropTypes.func.isRequired,
   countFilms: PropTypes.number.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
   isButtonDisplayed: PropTypes.bool.isRequired,

@@ -8,23 +8,18 @@ import withPlayingCard from "./../../hocs/with-playing-card/with-playing-card.js
 const MovieCardWrapped = withPlayingCard(MovieCard);
 
 const MovieList = (props) => {
-  const {films, onFilmTitleClick, onFilmImgClick} = props;
+  const {films} = props;
 
   return films.map((film) =>
     <MovieCardWrapped
       key={film.title}
       film={film}
-      onFilmTitleClick={onFilmTitleClick}
-      onFilmImgClick={onFilmImgClick}
     />);
 };
 
 MovieList.propTypes = {
   films: PropTypes.array.isRequired,
-  genre: PropTypes.string,
   countFilms: PropTypes.number.isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmImgClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => {
