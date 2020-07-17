@@ -7,6 +7,7 @@ import {Tabs} from "./../../utils.js";
 import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import {getFilmById} from "./../../reducer/data/selector.js";
+import {Link} from "react-router-dom";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 
@@ -19,7 +20,7 @@ const MoviePage = (props) => {
     return null;
   }
 
-  const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor} = film;
+  const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor, id} = film;
 
   return <React.Fragment>
     <section
@@ -76,7 +77,12 @@ const MoviePage = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              <Link
+                to={`/films/${id}/review`}
+                className="btn movie-card__button"
+              >
+                Add review
+              </Link>
             </div>
           </div>
         </div>
@@ -131,6 +137,7 @@ MoviePage.propTypes = {
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.number.isRequired,
     backgroundColor: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }),
   onPlayClick: PropTypes.func.isRequired,
   historyProps: PropTypes.object.isRequired,
