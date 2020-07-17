@@ -20,15 +20,15 @@ const onNotFound = () => {
 };
 
 const onUnauthorized = (response) => {
-  const {url} = response.config;
+  const {config} = response;
+  const {method, url} = config;
   const getLoginURL = /\/login/;
   const isGetLoginURLRequest = getLoginURL.test(url);
 
   store.dispatch(UserActionCreator.requiredAuthorization(AuthorizationStatus.NO_AUTH));
-  if (isGetLoginURLRequest) {
-    return;
+  if (!isGetLoginURLRequest && method !== `get`) {
+    history.push(Pages.LOGIN);
   }
-  history.push(Pages.LOGIN);
 };
 
 const api = createAPI(onNotFound, onUnauthorized);
