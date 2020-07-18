@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withPlayer from "./with-player.jsx";
+import {withPlayer} from "./with-player.jsx";
 import PropTypes from "prop-types";
 
 Enzyme.configure({
@@ -24,6 +24,14 @@ const film = {
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
+
+
+const historyProps = {
+  match: {
+    params: {id: 1}
+  }
+};
+
 
 const MockComponent = (props) => {
   const {children, onPauseClick, onPlayClick, onFullScreenClick} = props;
@@ -53,6 +61,7 @@ it(`Testing pause`, ()=>{
   const wrapper = mount(
       <MockComponentWrapped
         film={film}
+        historyProps={historyProps}
       />
   );
 
@@ -70,6 +79,7 @@ it(`Testing play`, ()=>{
   const wrapper = mount(
       <MockComponentWrapped
         film={film}
+        historyProps={historyProps}
       />
   );
 
@@ -86,11 +96,12 @@ it(`Testing play`, ()=>{
   expect(_videoRef.current.play).toHaveBeenCalledTimes(1);
 });
 
-it(`Should change state isFullScreenMode when the player opens in full screen`, ()=>{
+it(`Should change state isFullScreenMode when the player open player in full screen mode`, ()=>{
 
   const wrapper = mount(
       <MockComponentWrapped
         film={film}
+        historyProps={historyProps}
       />
   );
 

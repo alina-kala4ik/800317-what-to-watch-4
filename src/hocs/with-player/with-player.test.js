@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import withPlayer from "./with-player.jsx";
+import {withPlayer} from "./with-player.jsx";
 import PropTypes from "prop-types";
 
 const film = {
@@ -20,6 +20,12 @@ const film = {
   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
+const historyProps = {
+  match: {
+    params: {id: 1}
+  }
+};
+
 const MockComponent = (props) => {
   const {children} = props;
 
@@ -36,7 +42,10 @@ const MockComponentWrapped = withPlayer(MockComponent);
 
 it(`render withPlayer`, ()=>{
   const tree = renderer.create(
-      <MockComponentWrapped film={film}>
+      <MockComponentWrapped
+        film={film}
+        historyProps={historyProps}
+      >
         <video />
       </MockComponentWrapped>, {
         createNodeMock: () => {

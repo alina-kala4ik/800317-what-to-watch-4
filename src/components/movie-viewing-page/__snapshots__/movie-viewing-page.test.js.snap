@@ -7,6 +7,7 @@ exports[`render MovieViewingPage render MovieViewingPage with during pause 1`] =
   <video />
   <button
     className="player__exit"
+    onClick={[Function]}
     type="button"
   >
     Exit
@@ -98,6 +99,7 @@ exports[`render MovieViewingPage render MovieViewingPage with during play 1`] = 
   <video />
   <button
     className="player__exit"
+    onClick={[Function]}
     type="button"
   >
     Exit
