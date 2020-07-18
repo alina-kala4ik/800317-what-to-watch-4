@@ -26,7 +26,7 @@ class Promo extends PureComponent {
   }
 
   render() {
-    const {onPlayClick, film} = this.props;
+    const {film} = this.props;
     const {title, posterSrc, movieCoverSrc, genre, yearRelease, isFavorite} = film;
 
     const myListIcon = isFavorite ?
@@ -62,9 +62,6 @@ class Promo extends PureComponent {
               <button
                 className="btn btn--play movie-card__button"
                 type="button"
-                onClick={()=>{
-                  onPlayClick(film);
-                }}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s" />
@@ -90,7 +87,6 @@ class Promo extends PureComponent {
 
 
 Promo.propTypes = {
-  onPlayClick: PropTypes.func.isRequired,
   film: PropTypes.shape({
     title: PropTypes.string.isRequired,
     posterSrc: PropTypes.string.isRequired,
@@ -112,9 +108,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onPlayClick(film) {
-    dispatch(ActionCreator.chooseMovieToWatch(film));
-  },
   onMyListClick(filmId, status) {
     dispatch(Operation.changeFlagIsFavorite(filmId, status));
   }

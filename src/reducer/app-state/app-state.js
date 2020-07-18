@@ -10,7 +10,6 @@ const ServerStatus = {
 const initialState = {
   genre: Genres.ALL,
   countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
-  playableMovie: null,
   serverStatus: ServerStatus.OK,
 };
 
@@ -18,7 +17,6 @@ const ActionTypes = {
   CHANGE_GENRE: `CHANGE_GENRE`,
   INCREASE_COUNT_DISPLAYED_FILMS: `INCREASE_COUNT_DISPLAYED_FILMS`,
   RESET_COUNT_DISPLAYED_FILMS: `RESET_COUNT_DISPLAYED_FILMS`,
-  CHOOSE_MOVIE_TO_WATCH: `CHOOSE_MOVIE_TO_WATCH`,
   CHANGE_SERVER_STATUS_ON_ERROR: `CHANGE_SERVER_STATUS_ON_ERROR`,
 };
 
@@ -34,10 +32,6 @@ const ActionCreator = {
   resetCountDisplayedFilms: ()=>({
     type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
     payload: DISPLAYED_NUMBER_OF_FILMS
-  }),
-  chooseMovieToWatch: (film)=>({
-    type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
-    payload: film
   }),
   changeServerStatusOnError: ()=>({
     type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
@@ -58,10 +52,6 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.RESET_COUNT_DISPLAYED_FILMS:
       return extend(state, {
         countDisplayedFilms: action.payload
-      });
-    case ActionTypes.CHOOSE_MOVIE_TO_WATCH:
-      return extend(state, {
-        playableMovie: action.payload
       });
     case ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR:
       return extend(state, {

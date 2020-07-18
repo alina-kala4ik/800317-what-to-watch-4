@@ -16,7 +16,7 @@ const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
 const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
 
 const MoviePage = (props) => {
-  const {film, onPlayClick} = props;
+  const {film} = props;
 
   if (!film) {
     return null;
@@ -53,9 +53,6 @@ const MoviePage = (props) => {
               <button
                 className="btn btn--play movie-card__button"
                 type="button"
-                onClick={()=>{
-                  onPlayClick(film);
-                }}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
@@ -130,7 +127,6 @@ MoviePage.propTypes = {
     backgroundColor: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }),
-  onPlayClick: PropTypes.func.isRequired,
   historyProps: PropTypes.object.isRequired,
 };
 
@@ -143,12 +139,6 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onPlayClick(film) {
-    dispatch(ActionCreator.chooseMovieToWatch(film));
-  }
-});
-
 export {MoviePage};
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);
+export default connect(mapStateToProps)(MoviePage);
 

@@ -6,7 +6,7 @@ import MoviePage from "./../movie-page/movie-page.jsx";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
 import withPlayer from "./../../hocs/with-player/with-player.jsx";
-import {getPlayableMovie, gerServerStatus} from "./../../reducer/app-state/selector.js";
+import {gerServerStatus} from "./../../reducer/app-state/selector.js";
 import {ServerStatus} from "./../../reducer/app-state/app-state.js";
 import {getIsFilmsFetching, getIsPromoFilmFetching, getFilms, getPromoFilm} from "./../../reducer/data/selector.js";
 import SignIn from "./../sign-in/sign-in.jsx";
@@ -22,15 +22,12 @@ class App extends PureComponent {
 
   _renderApp() {
     const {
-      playableMovie,
       films,
       promoFilm,
       serverStatus,
       isFilmsFetching,
       isPromoFilmFetching,
     } = this.props;
-
-    const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
 
     const isFetching = (isFilmsFetching && isPromoFilmFetching);
 
@@ -47,7 +44,6 @@ class App extends PureComponent {
     }
 
     return <React.Fragment>
-      {modal}
       <Main />
     </React.Fragment>;
 
@@ -101,7 +97,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  playableMovie: PropTypes.object,
   serverStatus: PropTypes.string.isRequired,
   isFilmsFetching: PropTypes.bool.isRequired,
   isPromoFilmFetching: PropTypes.bool.isRequired,
@@ -111,7 +106,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  playableMovie: getPlayableMovie(state),
   serverStatus: gerServerStatus(state),
   isFilmsFetching: getIsFilmsFetching(state),
   isPromoFilmFetching: getIsPromoFilmFetching(state),
