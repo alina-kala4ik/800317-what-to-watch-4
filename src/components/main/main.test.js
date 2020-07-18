@@ -164,7 +164,6 @@ it(`render Main`, () => {
     [NameSpace.APP_STATE]: {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
     },
     [NameSpace.DATA]: {
       films,

@@ -40,7 +40,6 @@ it(`render Promo when promo film checked as unfavored`, ()=>{
       <Provider store={store}>
         <Router history={history}>
           <Promo
-            onPlayClick={()=>{}}
             film={film}
             onMyListClick={()=>{}}
           />
@@ -74,7 +73,6 @@ it(`render Promo when promo film checked as favorite`, ()=>{
       <Provider store={store}>
         <Router history={history}>
           <Promo
-            onPlayClick={()=>{}}
             film={favoriteFilm}
             onMyListClick={()=>{}}
           />

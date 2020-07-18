@@ -188,7 +188,6 @@ it(`render MoviePage`, () => {
     [NameSpace.APP_STATE]: {
       genre: Genres.ALL,
       countDisplayedFilms: 4,
-      playableMovie: null,
     },
     [NameSpace.DATA]: {
       films,
@@ -206,7 +205,6 @@ it(`render MoviePage`, () => {
         <Router history={history}>
           <MoviePage
             film={film}
-            onPlayClick={()=>{}}
             historyProps={historyProps}
           />
         </Router>

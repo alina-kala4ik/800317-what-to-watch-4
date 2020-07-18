@@ -162,7 +162,6 @@ it(`render App without server error`, () => {
     [NameSpace.APP_STATE]: {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {
@@ -183,7 +182,6 @@ it(`render App without server error`, () => {
     .create(
         <Provider store={store}>
           <App
-            playableMovie={null}
             serverStatus={ServerStatus.OK}
             isFilmsFetching={false}
             isPromoFilmFetching={false}
@@ -204,7 +202,6 @@ it(`render App with server error`, () => {
     [NameSpace.APP_STATE]: {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.ERROR,
     },
     [NameSpace.DATA]: {
@@ -225,7 +222,6 @@ it(`render App with server error`, () => {
     .create(
         <Provider store={store}>
           <App
-            playableMovie={null}
             serverStatus={ServerStatus.ERROR}
             isFilmsFetching={false}
             isPromoFilmFetching={false}
@@ -246,7 +242,6 @@ it(`render App when films null`, () => {
     [NameSpace.APP_STATE]: {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {
@@ -267,7 +262,6 @@ it(`render App when films null`, () => {
     .create(
         <Provider store={store}>
           <App
-            playableMovie={null}
             serverStatus={ServerStatus.OK}
             isFilmsFetching={false}
             isPromoFilmFetching={false}
@@ -288,7 +282,6 @@ it(`render App when promoFilm null`, () => {
     [NameSpace.APP_STATE]: {
       genre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {
@@ -309,7 +302,6 @@ it(`render App when promoFilm null`, () => {
     .create(
         <Provider store={store}>
           <App
-            playableMovie={null}
             serverStatus={ServerStatus.OK}
             isFilmsFetching={false}
             isPromoFilmFetching={false}

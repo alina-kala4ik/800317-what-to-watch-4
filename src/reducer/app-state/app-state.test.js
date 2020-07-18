@@ -132,7 +132,6 @@ describe(`testing app-state reducer`, ()=>{
     expect(reducer(undefined, {})).toEqual({
       genre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.OK,
     });
   });
@@ -173,28 +172,6 @@ describe(`testing app-state reducer`, ()=>{
     });
   });
 
-  it(`adds a movie to watch`, ()=>{
-    expect(reducer({
-      playableMovie: null,
-    }, {
-      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
-      payload: films[0],
-    })).toEqual({
-      playableMovie: films[0]
-    });
-  });
-
-  it(`deletes the viewed movie`, ()=>{
-    expect(reducer({
-      playableMovie: films[0],
-    }, {
-      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
-      payload: null,
-    })).toEqual({
-      playableMovie: null
-    });
-  });
-
   it(`change server status on error`, ()=>{
     expect(reducer({
       serverStatus: ServerStatus.OK
@@ -227,13 +204,6 @@ describe(`Action creators in app-state work correctly`, ()=>{
     expect(ActionCreator.resetCountDisplayedFilms()).toEqual({
       type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
       payload: DISPLAYED_NUMBER_OF_FILMS
-    });
-  });
-
-  it(`Action creators choose movie to watch`, ()=>{
-    expect(ActionCreator.chooseMovieToWatch(films[0])).toEqual({
-      type: ActionTypes.CHOOSE_MOVIE_TO_WATCH,
-      payload: films[0]
     });
   });
 

@@ -103,7 +103,6 @@ exports[`render Promo when promo film checked as favorite 1`] = `
         >
           <button
             className="btn btn--play movie-card__button"
-            onClick={[Function]}
             type="button"
           >
             <svg
@@ -247,7 +246,6 @@ exports[`render Promo when promo film checked as unfavored 1`] = `
         >
           <button
             className="btn btn--play movie-card__button"
-            onClick={[Function]}
             type="button"
           >
             <svg

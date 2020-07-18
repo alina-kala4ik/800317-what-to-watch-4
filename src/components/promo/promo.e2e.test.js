@@ -29,25 +29,6 @@ const film = {
 const REMOVE_FROM_MY_LIST = 0;
 const ADD_TO_MY_LIST = 1;
 
-it(`The onPlayClick function is called when a user clicks on play and transmits movie data`, ()=>{
-  const onPlayClick = jest.fn();
-
-  const promo = shallow(
-      <Promo
-        onPlayClick={onPlayClick}
-        film={film}
-        authorizationStatus={AuthorizationStatus.AUTH}
-        avatar={`img/avatar.jpg`}
-        onMyListClick={()=>{}}
-      />
-  );
-
-  const playButton = promo.find(`button.btn--play`);
-  playButton.simulate(`click`);
-
-  expect(onPlayClick).toHaveBeenCalledTimes(1);
-  expect(onPlayClick.mock.calls[0][0]).toMatchObject(film);
-});
 
 it(`Button add to my list are clickable`, ()=>{
   const onMyListClick = jest.fn();
