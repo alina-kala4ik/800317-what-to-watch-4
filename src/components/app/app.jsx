@@ -80,7 +80,9 @@ class App extends PureComponent {
           exact
           path={`/films/:id?/review`}
           render={(props)=>{
-            return <AddReview historyProps={props} />;
+            return authorizationStatus === AuthorizationStatus.NO_AUTH ?
+            <SignIn /> :
+            <AddReview historyProps={props} />;
           }}
         />
         <Route
