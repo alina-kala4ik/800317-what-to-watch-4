@@ -1,10 +1,10 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import PropTypes from "prop-types";
 import {getPromoFilm} from "./../../reducer/data/selector.js";
 import {Operation} from "./../../reducer/data/data.js";
 import Header from "./../header/header.jsx";
+import {Link} from "react-router-dom";
 
 const REMOVE_FROM_MY_LIST = 0;
 const ADD_TO_MY_LIST = 1;
@@ -27,7 +27,7 @@ class Promo extends PureComponent {
 
   render() {
     const {film} = this.props;
-    const {title, posterSrc, movieCoverSrc, genre, yearRelease, isFavorite} = film;
+    const {title, posterSrc, movieCoverSrc, genre, yearRelease, isFavorite, id} = film;
 
     const myListIcon = isFavorite ?
       <svg viewBox="0 0 18 14" width="18" height="14"><use xlinkHref="#in-list"></use></svg> :
@@ -59,15 +59,16 @@ class Promo extends PureComponent {
             </p>
 
             <div className="movie-card__buttons">
-              <button
+              <Link
                 className="btn btn--play movie-card__button"
                 type="button"
+                to={`/films/${id}/player`}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s" />
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
               <button
                 className="btn btn--list movie-card__button"
                 type="button"

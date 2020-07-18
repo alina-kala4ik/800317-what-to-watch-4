@@ -1,5 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getFilmById} from "./../../reducer/data/selector.js";
+import {compose} from "redux";
 
 const withPlayer = (Component) =>{
   class WithPlayer extends PureComponent {
@@ -39,31 +42,43 @@ const withPlayer = (Component) =>{
     }
 
     componentDidMount() {
-      const video = this._videoRef.current;
+      const {film} = this.props;
 
-      video.onloadedmetadata = () => {
-        video.ontimeupdate = () =>
-          this.setState({
-            progress: (Math.floor(video.currentTime) * 100) / video.duration,
-            timeLeft: this.secondsToTime(video.duration - video.currentTime),
-          });
-      };
+      if (film) {
+        const video = this._videoRef.current;
+
+        video.onloadedmetadata = () => {
+          video.ontimeupdate = () =>
+            this.setState({
+              progress: (Math.floor(video.currentTime) * 100) / video.duration,
+              timeLeft: this.secondsToTime(video.duration - video.currentTime),
+            });
+        };
+      }
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
-      video.onloadedmetadata = null;
-      video.ontimeupdate = null;
+      const {film} = this.props;
+
+      if (film) {
+        const video = this._videoRef.current;
+        video.onloadedmetadata = null;
+        video.ontimeupdate = null;
+      }
     }
 
     componentDidUpdate() {
-      const {isPlaying} = this.state;
-      const video = this._videoRef.current;
+      const {film} = this.props;
 
-      if (isPlaying && !video.ended) {
-        video.play();
-      } else {
-        video.pause();
+      if (film) {
+        const {isPlaying} = this.state;
+        const video = this._videoRef.current;
+
+        if (isPlaying && !video.ended) {
+          video.play();
+        } else {
+          video.pause();
+        }
       }
     }
 
@@ -77,6 +92,11 @@ const withPlayer = (Component) =>{
     render() {
       const {isPlaying, progress, timeLeft, isFullScreenMode} = this.state;
       const {film} = this.props;
+
+      if (!film) {
+        return null;
+      }
+
       const {videoSrc, screenshotSrc} = film;
 
       return <Component
@@ -122,4 +142,20 @@ const withPlayer = (Component) =>{
   return WithPlayer;
 };
 
-export default withPlayer;
+const mapStateToProps = (state, props) => {
+  const {historyProps} = props;
+  const id = historyProps.match.params.id;
+
+  return {
+    film: getFilmById(state, id),
+  };
+};
+
+const composedHoc = compose(
+    connect(mapStateToProps),
+    withPlayer
+);
+
+export {withPlayer};
+
+export default composedHoc;

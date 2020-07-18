@@ -5,7 +5,6 @@ import AboutFilm from "./../about-film/about-film.jsx";
 import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
 import {Tabs} from "./../../utils.js";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import {getFilmById} from "./../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import Header from "./../header/header.jsx";
@@ -50,15 +49,16 @@ const MoviePage = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button
+              <Link
                 className="btn btn--play movie-card__button"
                 type="button"
+                to={`/films/${id}/player`}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
               <button className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>

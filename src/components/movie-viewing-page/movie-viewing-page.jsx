@@ -1,6 +1,6 @@
 import React, {Component, createRef} from "react";
-import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import history from "./../../history.js";
 
 class MovieViewingPage extends Component {
   constructor(props) {
@@ -14,6 +14,10 @@ class MovieViewingPage extends Component {
   handleFullScreenClick() {
     const {onFullScreenClick} = this.props;
     onFullScreenClick();
+  }
+
+  handleExitClick() {
+    history.goBack();
   }
 
   componentDidUpdate(prevProps) {
@@ -41,6 +45,7 @@ class MovieViewingPage extends Component {
       <button
         type="button"
         className="player__exit"
+        onClick={this.handleExitClick}
       >
         Exit
       </button>
@@ -114,5 +119,4 @@ MovieViewingPage.propTypes = {
 };
 
 export default MovieViewingPage;
-
 

@@ -77,8 +77,15 @@ class App extends PureComponent {
           path={`/films/:id?/review`}
           render={(props)=>{
             return authorizationStatus === AuthorizationStatus.NO_AUTH ?
-            <SignIn /> :
-            <AddReview historyProps={props} />;
+              <SignIn /> :
+              <AddReview historyProps={props} />;
+          }}
+        />
+        <Route
+          exact
+          path="/films/:id?/player"
+          render={(props)=>{
+            return <MovieViewingPageWrapped historyProps={props} />;
           }}
         />
         <Route
