@@ -19,6 +19,7 @@ const ActionTypes = {
   SET_GENRE_FOR_FILTER: `SET_GENRE_FOR_FILTER`,
   CHANGE_FLAG_COMMENT_PUBLISHING: `CHANGE_FLAG_IS_COMMENT_PUBLISHING`,
   CHANGE_FLAG_COMMENT_SENDING_ERROR: `CHANGE_FLAG_COMMENT_SENDING_ERROR`,
+  UPDATE_FILM: `UPDATE_FILM`,
 };
 
 const ActionCreator = {
@@ -45,6 +46,10 @@ const ActionCreator = {
   loadFavoriteFilms: (films)=>({
     type: ActionTypes.LOAD_FAVORITE_FILMS,
     payload: films
+  }),
+  updateFilm: (film)=>({
+    type: ActionTypes.UPDATE_FILM,
+    payload: film
   })
 };
 
@@ -77,11 +82,16 @@ const Operation = {
         dispatch(ActionCreator.changeFlagCommentSendingError(true));
       });
   },
-  changeFlagIsFavorite: (filmId, status)=>(dispatch, getState, api)=>{
+  changeFlagIsFavorite: (filmId, status, isProvoFilms)=>(dispatch, getState, api)=>{
     return api.post(`/favorite/${filmId}/${status}`)
       .then((response)=>{
-        const promoFilm = adapter(response.data);
-        dispatch(ActionCreator.loadPromoFilm(promoFilm));
+        const film = adapter(response.data);
+
+        if (isProvoFilms) {
+          dispatch(ActionCreator.loadPromoFilm(film));
+        } else {
+          dispatch(ActionCreator.updateFilm(film));
+        }
       });
   },
   loadFavoriteFilms: ()=>(dispatch, getState, api)=>{
@@ -120,6 +130,19 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.LOAD_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: action.payload
+      });
+    case ActionTypes.UPDATE_FILM:
+      const newFilm = action.payload;
+      const allFilms = state.films;
+
+      const films = allFilms.map((film) => {
+        if (film.id === newFilm.id) {
+          film = Object.assign({}, film, {isFavorite: !film.isFavorite});
+        }
+        return film;
+      });
+      return extend(state, {
+        films
       });
   }
   return state;
