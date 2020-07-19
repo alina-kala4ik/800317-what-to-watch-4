@@ -13,8 +13,6 @@ import ButtonMyList from "../button-my-list/button-my-list.jsx";
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
 
-const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
-
 const MoviePage = (props) => {
   const {film} = props;
 
@@ -23,6 +21,8 @@ const MoviePage = (props) => {
   }
 
   const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor, id, isFavorite} = film;
+
+  const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
 
   return <React.Fragment>
     <section
