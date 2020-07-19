@@ -18,6 +18,8 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
+    id: 1,
+    isFavorite: false
   },
   {
     title: `Bohemian Rhapsody`,
@@ -33,6 +35,8 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
+    id: 2,
+    isFavorite: false
   },
   {
     title: `Macbeth`,
@@ -48,6 +52,8 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
+    id: 3,
+    isFavorite: false
   },
   {
     title: `Aviator`,
@@ -63,6 +69,8 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
+    id: 4,
+    isFavorite: false
   },
   {
     title: `We need to talk about Kevin`,
@@ -78,6 +86,8 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     runTime: 99,
+    id: 5,
+    isFavorite: false
   },
   {
     title: `What We Do in the Shadows`,
@@ -93,6 +103,8 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     runTime: 99,
+    id: 6,
+    isFavorite: false
   },
   {
     title: `Revenant`,
@@ -108,6 +120,8 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     runTime: 99,
+    id: 7,
+    isFavorite: false
   },
   {
     title: `Johnny English`,
@@ -123,6 +137,8 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     runTime: 99,
+    id: 8,
+    isFavorite: false
   },
 ];
 
@@ -208,6 +224,173 @@ describe(`testing reducer`, ()=>{
     });
   });
 
+  it(`update film`, ()=>{
+    const newFilm = {
+      title: `Fantastic Beasts: The Crimes of Grindelwald`,
+      screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+      posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+      movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+      genre: `Drama`,
+      yearRelease: 2017,
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+      rating: 5.6,
+      numberVotes: 278,
+      producer: `Wes Andreson`,
+      actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+      videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      runTime: 99,
+      id: 1,
+      isFavorite: true
+    };
+    const newFilms = [
+      {
+        title: `Fantastic Beasts: The Crimes of Grindelwald`,
+        screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Drama`,
+        yearRelease: 2017,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 5.6,
+        numberVotes: 278,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        runTime: 99,
+        id: 1,
+        isFavorite: true
+      },
+      {
+        title: `Bohemian Rhapsody`,
+        screenshotSrc: `img/bohemian-rhapsody.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Documentary`,
+        yearRelease: 2017,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 5.6,
+        numberVotes: 278,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        runTime: 99,
+        id: 2,
+        isFavorite: false
+      },
+      {
+        title: `Macbeth`,
+        screenshotSrc: `img/macbeth.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Horror`,
+        yearRelease: 2017,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 5.6,
+        numberVotes: 278,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        runTime: 99,
+        id: 3,
+        isFavorite: false
+      },
+      {
+        title: `Aviator`,
+        screenshotSrc: `img/aviator.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Comedies`,
+        yearRelease: 2017,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 5.6,
+        numberVotes: 278,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        runTime: 99,
+        id: 4,
+        isFavorite: false
+      },
+      {
+        title: `We need to talk about Kevin`,
+        screenshotSrc: `img/we-need-to-talk-about-kevin.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Drama`,
+        yearRelease: 2017,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 5.6,
+        numberVotes: 278,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        runTime: 99,
+        id: 5,
+        isFavorite: false
+      },
+      {
+        title: `What We Do in the Shadows`,
+        screenshotSrc: `img/what-we-do-in-the-shadows.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Sci-Fi`,
+        yearRelease: 2017,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 5.6,
+        numberVotes: 278,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        runTime: 99,
+        id: 6,
+        isFavorite: false
+      },
+      {
+        title: `Revenant`,
+        screenshotSrc: `img/revenant.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Drama`,
+        yearRelease: 2017,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 5.6,
+        numberVotes: 278,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        runTime: 99,
+        id: 7,
+        isFavorite: false
+      },
+      {
+        title: `Johnny English`,
+        screenshotSrc: `img/johnny-english.jpg`,
+        posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
+        movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+        genre: `Thrillers`,
+        yearRelease: 2017,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        rating: 5.6,
+        numberVotes: 278,
+        producer: `Wes Andreson`,
+        actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+        videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        runTime: 99,
+        id: 8,
+        isFavorite: false
+      },
+    ];
+
+    expect(reducer({
+      films
+    }, {
+      type: ActionTypes.UPDATE_FILM,
+      payload: newFilm
+    })).toEqual({
+      films: newFilms
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, ()=>{
@@ -247,10 +430,17 @@ describe(`Action creators work correctly`, ()=>{
     });
   });
 
-  it(`ActionCreators load favorite films`, ()=>{
+  it(`Action creators load favorite films`, ()=>{
     expect(ActionCreator.loadFavoriteFilms(films)).toEqual({
       type: ActionTypes.LOAD_FAVORITE_FILMS,
       payload: films
+    });
+  });
+
+  it(`Action creators update film`, ()=>{
+    expect(ActionCreator.updateFilm(films[0])).toEqual({
+      type: ActionTypes.UPDATE_FILM,
+      payload: films[0]
     });
   });
 
@@ -394,7 +584,25 @@ describe(`Operation work correctly`, ()=>{
       });
   });
 
-  it(`change flag is favorite`, ()=>{
+  it(`change flag is favorite in promo film`, ()=>{
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const changeFlagIsFavorite = Operation.changeFlagIsFavorite(1, 1, true);
+
+    return changeFlagIsFavorite(dispatch, ()=>{}, api)
+      .then(()=>{
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionTypes.LOAD_PROMO_FILM,
+          payload: adaptedFilm
+        });
+      });
+  });
+
+  it(`change flag is favorite in film`, ()=>{
     apiMock
       .onPost(`/favorite/1/1`)
       .reply(`200`, [{fake: true}]);
@@ -406,7 +614,7 @@ describe(`Operation work correctly`, ()=>{
       .then(()=>{
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionTypes.LOAD_PROMO_FILM,
+          type: ActionTypes.UPDATE_FILM,
           payload: adaptedFilm
         });
       });
