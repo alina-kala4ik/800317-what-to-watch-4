@@ -15,6 +15,7 @@ import history from "./../../history.js";
 import {getAuthorizationStatus} from "./../../reducer/user/selector.js";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
 import AddReview from "./../add-review/add-review.jsx";
+import MyList from "./../my-list/my-list.jsx";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
@@ -69,9 +70,13 @@ class App extends PureComponent {
               } />;
           }}
         />
-        <Route exact path={Pages.MY_LIST}>
-          <div>WIP</div>
-        </Route>
+        <Route
+          exact
+          path={Pages.MY_LIST}
+          render={()=>{
+            return <MyList />;
+          }}
+        />
         <Route
           exact
           path={`/films/:id?/review`}
