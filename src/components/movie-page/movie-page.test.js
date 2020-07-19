@@ -47,6 +47,7 @@ const films = [
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: 1,
+    isFavorite: false
   },
   {
     title: `Bohemian Rhapsody`,
@@ -65,6 +66,7 @@ const films = [
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: 2,
+    isFavorite: false
   },
   {
     title: `Macbeth`,
@@ -83,6 +85,7 @@ const films = [
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: 3,
+    isFavorite: false
   },
   {
     title: `Aviator`,
@@ -101,6 +104,7 @@ const films = [
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: 4,
+    isFavorite: false
   },
   {
     title: `We need to talk about Kevin`,
@@ -119,6 +123,7 @@ const films = [
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: 5,
+    isFavorite: false
   },
   {
     title: `What We Do in the Shadows`,
@@ -137,6 +142,7 @@ const films = [
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: 6,
+    isFavorite: false
   },
   {
     title: `Revenant`,
@@ -155,6 +161,7 @@ const films = [
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: 7,
+    isFavorite: false
   },
   {
     title: `Johnny English`,
@@ -173,6 +180,7 @@ const films = [
     backgroundColor: `#ffffff`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: 8,
+    isFavorite: false
   },
 ];
 

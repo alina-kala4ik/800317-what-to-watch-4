@@ -133,6 +133,7 @@ it(`Genre items are clickable`, () => {
         genre={Genres.ALL}
         onClick={onClick}
         films={films}
+        onLoad={()=>{}}
       />
   );
 
@@ -157,6 +158,7 @@ it(`When clicked, a function with the correct answer is called`, () => {
         genre={Genres.ALL}
         onClick={onClick}
         films={films}
+        onLoad={()=>{}}
       />
   );
 
