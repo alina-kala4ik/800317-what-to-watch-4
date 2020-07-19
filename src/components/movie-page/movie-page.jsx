@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {getFilmById} from "./../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import Header from "./../header/header.jsx";
+import ButtonMyList from "../button-my-list/button-my-list.jsx";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
@@ -21,7 +22,7 @@ const MoviePage = (props) => {
     return null;
   }
 
-  const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor, id} = film;
+  const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor, id, isFavorite} = film;
 
   return <React.Fragment>
     <section
@@ -59,12 +60,10 @@ const MoviePage = (props) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
+              <ButtonMyList
+                id={id}
+                isFavorite={isFavorite}
+              />
               <Link
                 to={`/films/${id}/review`}
                 className="btn movie-card__button"
@@ -126,6 +125,7 @@ MoviePage.propTypes = {
     yearRelease: PropTypes.number.isRequired,
     backgroundColor: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
   }),
   historyProps: PropTypes.object.isRequired,
 };
