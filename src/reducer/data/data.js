@@ -4,6 +4,7 @@ import {adapter, adapterForArray} from "./../../adapters/films.js";
 const initialState = {
   films: [],
   promoFilm: null,
+  favoriteFilms: [],
   isFilmsFetching: true,
   isPromoFilmFetching: true,
   genreForFilter: Genres.ALL,
@@ -14,6 +15,7 @@ const initialState = {
 const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
+  LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   SET_GENRE_FOR_FILTER: `SET_GENRE_FOR_FILTER`,
   CHANGE_FLAG_COMMENT_PUBLISHING: `CHANGE_FLAG_IS_COMMENT_PUBLISHING`,
   CHANGE_FLAG_COMMENT_SENDING_ERROR: `CHANGE_FLAG_COMMENT_SENDING_ERROR`,
@@ -39,6 +41,10 @@ const ActionCreator = {
   changeFlagCommentSendingError: (status)=>({
     type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
     payload: status
+  }),
+  loadFavoriteFilms: (films)=>({
+    type: ActionTypes.LOAD_FAVORITE_FILMS,
+    payload: films
   })
 };
 
@@ -77,6 +83,13 @@ const Operation = {
         const promoFilm = adapter(response.data);
         dispatch(ActionCreator.loadPromoFilm(promoFilm));
       });
+  },
+  loadFavoriteFilms: ()=>(dispatch, getState, api)=>{
+    return api.get(`/favorite`)
+      .then((response)=>{
+        const films = adapterForArray(response.data);
+        dispatch(ActionCreator.loadFavoriteFilms(films));
+      });
   }
 };
 
@@ -103,6 +116,10 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR:
       return extend(state, {
         isCommentSendingError: action.payload
+      });
+    case ActionTypes.LOAD_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: action.payload
       });
   }
   return state;

@@ -51,6 +51,10 @@ const getFilmById = createSelector(
     }
 );
 
+const getFavoriteFilms = (state) => {
+  return state[NameSpace.DATA].favoriteFilms;
+};
+
 
 export {
   getFilms,
@@ -60,5 +64,6 @@ export {
   getIsPromoFilmFetching,
   getFlagCommentPublishing,
   getFlagCommentSendingError,
-  getFilmById
+  getFilmById,
+  getFavoriteFilms
 };

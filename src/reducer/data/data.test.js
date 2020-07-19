@@ -136,6 +136,7 @@ describe(`testing reducer`, ()=>{
       genreForFilter: Genres.ALL,
       isCommentPublishing: false,
       isCommentSendingError: false,
+      favoriteFilms: [],
     });
   });
 
@@ -196,6 +197,17 @@ describe(`testing reducer`, ()=>{
     });
   });
 
+  it(`load favorite films`, ()=>{
+    expect(reducer({
+      favoriteFilms: []
+    }, {
+      type: ActionTypes.LOAD_FAVORITE_FILMS,
+      payload: films
+    })).toEqual({
+      favoriteFilms: films
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, ()=>{
@@ -232,6 +244,13 @@ describe(`Action creators work correctly`, ()=>{
     expect(ActionCreator.changeFlagCommentSendingError(true)).toEqual({
       type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
       payload: true
+    });
+  });
+
+  it(`ActionCreators load favorite films`, ()=>{
+    expect(ActionCreator.loadFavoriteFilms(films)).toEqual({
+      type: ActionTypes.LOAD_FAVORITE_FILMS,
+      payload: films
     });
   });
 
@@ -391,6 +410,46 @@ describe(`Operation work correctly`, ()=>{
           payload: adaptedFilm
         });
       });
+  });
+
+  it(`load favorite films`, ()=>{
+    const adaptedFilms = [
+      {
+        "actors": undefined,
+        "backgroundColor": undefined,
+        "description": undefined,
+        "genre": undefined,
+        "id": undefined,
+        "isFavorite": undefined,
+        "movieCoverSrc": undefined,
+        "numberVotes": undefined,
+        "posterSrc": undefined,
+        "previewVideoLink": undefined,
+        "producer": undefined,
+        "rating": undefined,
+        "runTime": undefined,
+        "screenshotSrc": undefined,
+        "title": undefined,
+        "videoSrc": undefined,
+        "yearRelease": undefined,
+      },
+    ];
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const loadFavoriteFilms = Operation.loadFavoriteFilms();
+
+    return loadFavoriteFilms(dispatch, ()=>{}, api)
+    .then(()=>{
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionTypes.LOAD_FAVORITE_FILMS,
+        payload: adaptedFilms
+      });
+    });
   });
 
 });
