@@ -16,6 +16,7 @@ import {getAuthorizationStatus} from "./../../reducer/user/selector.js";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
 import AddReview from "./../add-review/add-review.jsx";
 import MyList from "./../my-list/my-list.jsx";
+import PrivateRoute from "./../private-route/private-route.jsx";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
@@ -65,25 +66,21 @@ class App extends PureComponent {
           render={()=>{
             return authorizationStatus === AuthorizationStatus.NO_AUTH ?
               <SignIn /> :
-              <Redirect to={
-                <Main />
-              } />;
+              <Redirect to={Pages.ROOT} />;
           }}
         />
-        <Route
+        <PrivateRoute
           exact
           path={Pages.MY_LIST}
           render={()=>{
             return <MyList />;
           }}
         />
-        <Route
+        <PrivateRoute
           exact
           path={`/films/:id?/review`}
           render={(props)=>{
-            return authorizationStatus === AuthorizationStatus.NO_AUTH ?
-              <SignIn /> :
-              <AddReview historyProps={props} />;
+            return <AddReview historyProps={props} />;
           }}
         />
         <Route
