@@ -13,10 +13,10 @@ const PrivateRoute = (props) => {
     <Route
       path={path}
       exact={exact}
-      render={() => {
+      render={(historyProps) => {
         return (
           authorizationStatus === AuthorizationStatus.AUTH
-            ? render()
+            ? render(historyProps)
             : <Redirect to={Pages.LOGIN} />
         );
       }}
