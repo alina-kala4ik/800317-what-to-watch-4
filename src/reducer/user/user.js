@@ -9,6 +9,7 @@ const AuthorizationStatus = {
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   avatar: null,
+  isFetchingAuthStatus: true,
 };
 
 
@@ -32,7 +33,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.REQUIRED_AUTHORIZATION:
       return extend(state, {
-        authorizationStatus: action.payload
+        authorizationStatus: action.payload,
+        isFetchingAuthStatus: false
       });
     case ActionTypes.ADD_AVATAR:
       return extend(state, {

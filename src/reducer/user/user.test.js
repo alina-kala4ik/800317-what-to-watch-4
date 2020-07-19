@@ -7,17 +7,20 @@ describe(`testing user reducer`, ()=>{
     expect(reducer(undefined, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       avatar: null,
+      isFetchingAuthStatus: true
     });
   });
 
   it(`change authorization status`, ()=>{
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
+      isFetchingAuthStatus: true
     }, {
       type: ActionTypes.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH
     })).toEqual({
-      authorizationStatus: AuthorizationStatus.AUTH
+      authorizationStatus: AuthorizationStatus.AUTH,
+      isFetchingAuthStatus: false
     });
   });
 

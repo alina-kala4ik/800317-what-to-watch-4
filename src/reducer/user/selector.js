@@ -8,5 +8,9 @@ const getAvatar = (state) => {
   return state[NameSpace.USER].avatar;
 };
 
+const getFlagIsFetchingAuthStatus = (state) => {
+  return state[NameSpace.USER].isFetchingAuthStatus;
+};
 
-export {getAuthorizationStatus, getAvatar};
+
+export {getAuthorizationStatus, getAvatar, getFlagIsFetchingAuthStatus};
