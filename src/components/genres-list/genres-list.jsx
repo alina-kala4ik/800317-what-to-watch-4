@@ -5,6 +5,7 @@ import {ActionCreator as appStateActionCreator} from "./../../reducer/app-state/
 import {ActionCreator as dataActionCreator} from "./../../reducer/data/data.js";
 import {getGenre} from "./../../reducer/app-state/selector.js";
 import {getFilms} from "./../../reducer/data/selector.js";
+import {Genres} from "./../../utils.js";
 
 const MAX_NUMBER_GENRES = 10;
 
@@ -13,6 +14,8 @@ class GenresList extends PureComponent {
     super(props);
 
     this.allFilms = this.props.films;
+
+    this.props.onLoad();
 
     this.getGenresList = this.getGenresList.bind(this);
   }
@@ -66,6 +69,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(appStateActionCreator.changeGenre(genre));
     dispatch(appStateActionCreator.resetCountDisplayedFilms());
     dispatch(dataActionCreator.setGenreForFilter(genre));
+  },
+  onLoad() {
+    dispatch(appStateActionCreator.changeGenre(Genres.ALL));
+    dispatch(appStateActionCreator.resetCountDisplayedFilms());
+    dispatch(dataActionCreator.setGenreForFilter(Genres.ALL));
   }
 });
 
