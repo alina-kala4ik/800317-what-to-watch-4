@@ -11,15 +11,15 @@ const Header = (props) => {
 
   const logo = isActiveLogoLink ?
     <Link
-    className="logo__link"
-    to={Pages.ROOT}
+      className="logo__link"
+      to={Pages.ROOT}
     >
       <span className="logo__letter logo__letter--1">W</span>
       <span className="logo__letter logo__letter--2">T</span>
       <span className="logo__letter logo__letter--3">W</span>
     </Link> :
     <a
-    className="logo__link"
+      className="logo__link"
     >
       <span className="logo__letter logo__letter--1">W</span>
       <span className="logo__letter logo__letter--2">T</span>

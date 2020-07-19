@@ -45,10 +45,7 @@ class App extends PureComponent {
       return <div style={{backgroundColor: `red`}}>Сервер не доступен</div>;
     }
 
-    return <React.Fragment>
-      <Main />
-    </React.Fragment>;
-
+    return <Main />;
 
   }
 

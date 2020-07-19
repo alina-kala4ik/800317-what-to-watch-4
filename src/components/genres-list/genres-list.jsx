@@ -57,6 +57,7 @@ GenresList.propTypes = {
   genre: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   films: PropTypes.array,
+  onLoad: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

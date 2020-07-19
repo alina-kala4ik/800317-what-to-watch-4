@@ -4,7 +4,6 @@ import App from "./components/app/app.jsx";
 import {createStore, applyMiddleware, compose} from "redux";
 import reducer from "./reducer/reducer.js";
 import {Provider} from "react-redux";
-import withActiveItem from "./hocs/with-active-item/with-active-item.jsx";
 import thunk from "redux-thunk";
 import {createAPI} from "./api.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
