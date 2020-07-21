@@ -1,10 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MovieList from "./movie-list.jsx";
-import configureStore from "redux-mock-store";
 import {Genres} from "./../../utils.js";
-import {Provider} from "react-redux";
-import {NameSpace} from "./../../reducer/name-space.js";
 import {Router} from "react-router-dom";
 import history from "./../../history.js";
 
@@ -139,30 +136,15 @@ const films = [
   },
 ];
 
-const mockStore = configureStore([]);
-
 it(`render MovieList`, () => {
-  const store = mockStore({
-    [NameSpace.APP_STATE]: {
-      activeGenre: Genres.ALL,
-    },
-    [NameSpace.DATA]: {
-      films,
-      allFilms: films,
-    }
-  });
 
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <Router history={history}>
-            <MovieList
-              films={films}
-              countFilms={8}
-              genre={Genres.ALL}
-            />
-          </Router>
-        </Provider>, {
+        <Router history={history}>
+          <MovieList
+            films={films}
+          />
+        </Router>, {
           createNodeMock: () => {
             return {};
           }

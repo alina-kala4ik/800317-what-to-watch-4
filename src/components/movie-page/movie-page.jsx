@@ -9,8 +9,10 @@ import {getFilmById} from "./../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import Header from "./../header/header.jsx";
 import MyListButton from "../my-list-button/my-list-button.jsx";
+import withFilteredFilms from "./../../hocs/with-filtered-films/with-filtered-films.jsx";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
+const MovieListWrapped = withFilteredFilms(MovieList);
 
 const MoviePage = (props) => {
   const {film} = props;
@@ -91,7 +93,7 @@ const MoviePage = (props) => {
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__movies-list">
-          <MovieList
+          <MovieListWrapped
             countFilms={DISPLAYED_NUMBER_OF_FILMS}
             genre={genre}
           />

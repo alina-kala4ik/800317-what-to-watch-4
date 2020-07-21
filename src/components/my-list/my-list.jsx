@@ -4,6 +4,9 @@ import MovieList from "./../movie-list/movie-list.jsx";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data";
 import PropTypes from "prop-types";
+import withFavoriteFilms from "./../../hocs/with-favorite-films/with-favorite-films.jsx";
+
+const MovieListWrapped = withFavoriteFilms(MovieList);
 
 class MyList extends PureComponent {
   constructor(props) {
@@ -26,10 +29,7 @@ class MyList extends PureComponent {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__movies-list">
-          <MovieList
-            countFilms={`all`}
-            myList={true}
-          />
+          <MovieListWrapped />
         </div>
       </section>
 

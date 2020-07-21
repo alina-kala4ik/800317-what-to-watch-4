@@ -5,14 +5,16 @@ import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
 import {getCountDisplayedFilms, getActiveGenre} from "./../../reducer/app-state/selector.js";
 import {getFilteredFilms} from "./../../reducer/data/selector.js";
+import withFilteredFilms from "./../../hocs/with-filtered-films/with-filtered-films.jsx";
 
+const MovieListWrapped = withFilteredFilms(MovieList);
 
 const Catalog = (props) => {
   const {countFilms, onShowMoreClick, isButtonDisplayed, genre} = props;
 
   return <React.Fragment>
     <div className="catalog__movies-list">
-      {<MovieList
+      {<MovieListWrapped
         countFilms={countFilms}
         genre={genre}
       />}
