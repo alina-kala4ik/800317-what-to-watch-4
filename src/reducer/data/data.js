@@ -1,4 +1,4 @@
-import {extend, Genres} from "./../../utils.js";
+import {extend} from "./../../utils.js";
 import {adapter, adapterForArray} from "./../../adapters/films.js";
 
 const initialState = {
@@ -7,7 +7,6 @@ const initialState = {
   favoriteFilms: [],
   isFilmsFetching: true,
   isPromoFilmFetching: true,
-  genreForFilter: Genres.ALL,
   isCommentPublishing: false,
   isCommentSendingError: false,
 };
@@ -16,7 +15,6 @@ const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
-  SET_GENRE_FOR_FILTER: `SET_GENRE_FOR_FILTER`,
   CHANGE_FLAG_COMMENT_PUBLISHING: `CHANGE_FLAG_IS_COMMENT_PUBLISHING`,
   CHANGE_FLAG_COMMENT_SENDING_ERROR: `CHANGE_FLAG_COMMENT_SENDING_ERROR`,
   UPDATE_FILM: `UPDATE_FILM`,
@@ -30,10 +28,6 @@ const ActionCreator = {
   loadPromoFilm: (film) => ({
     type: ActionTypes.LOAD_PROMO_FILM,
     payload: film
-  }),
-  setGenreForFilter: (genre) => ({
-    type: ActionTypes.SET_GENRE_FOR_FILTER,
-    payload: genre
   }),
   changeFlagCommentPublishing: (status) => ({
     type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
@@ -114,10 +108,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         promoFilm: action.payload,
         isPromoFilmFetching: false
-      });
-    case ActionTypes.SET_GENRE_FOR_FILTER:
-      return extend(state, {
-        genreForFilter: action.payload
       });
     case ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING:
       return extend(state, {

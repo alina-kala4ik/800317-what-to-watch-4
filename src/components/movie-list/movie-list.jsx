@@ -31,13 +31,13 @@ MovieList.propTypes = {
 };
 
 const mapStateToProps = (state, props) => {
-  let {countFilms, myList} = props;
+  let {countFilms, myList, genre} = props;
 
   let films;
   if (myList) {
     films = getFavoriteFilms(state);
   } else {
-    films = getFilteredFilms(state);
+    films = getFilteredFilms(state, genre);
   }
 
   if (countFilms === `all`) {

@@ -94,6 +94,7 @@ const MoviePage = (props) => {
         <div className="catalog__movies-list">
           <MovieList
             countFilms={DISPLAYED_NUMBER_OF_FILMS}
+            genre={genre}
           />
         </div>
       </section>

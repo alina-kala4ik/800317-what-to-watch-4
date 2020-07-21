@@ -1,23 +1,12 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import VideoPlayer from "./../video-player/video-player.jsx";
-import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer/data/data.js";
 import {Pages} from "./../../utils.js";
 import {Link} from "react-router-dom";
 
 class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.handleImgOrTitleClick = this.handleImgOrTitleClick.bind(this);
-  }
-
-  handleImgOrTitleClick() {
-    const {setGenreForFilter, film} = this.props;
-    const {genre} = film;
-
-    setGenreForFilter(genre);
   }
 
   render() {
@@ -31,7 +20,6 @@ class MovieCard extends PureComponent {
     >
       <Link
         className="small-movie-card__image"
-        onClick={this.handleImgOrTitleClick}
         to={Pages.FILM.replace(`:id`, id)}
       >
         <VideoPlayer
@@ -43,7 +31,6 @@ class MovieCard extends PureComponent {
       <h3 className="small-movie-card__title">
         <Link
           to={Pages.FILM.replace(`:id`, id)}
-          onClick={this.handleImgOrTitleClick}
           className="small-movie-card__link"
         >
           {title}
@@ -64,14 +51,6 @@ MovieCard.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
-  setGenreForFilter: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setGenreForFilter(genre) {
-    dispatch(ActionCreator.setGenreForFilter(genre));
-  }
-});
-
-export {MovieCard};
-export default connect(null, mapDispatchToProps)(MovieCard);
+export default MovieCard;

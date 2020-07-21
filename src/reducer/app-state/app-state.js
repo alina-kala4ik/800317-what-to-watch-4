@@ -8,21 +8,21 @@ const ServerStatus = {
 };
 
 const initialState = {
-  genre: Genres.ALL,
+  activeGenre: Genres.ALL,
   countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
   serverStatus: ServerStatus.OK,
 };
 
 const ActionTypes = {
-  CHANGE_GENRE: `CHANGE_GENRE`,
+  CHANGE_ACTIVE_GENRE: `CHANGE_ACTIVE_GENRE`,
   INCREASE_COUNT_DISPLAYED_FILMS: `INCREASE_COUNT_DISPLAYED_FILMS`,
   RESET_COUNT_DISPLAYED_FILMS: `RESET_COUNT_DISPLAYED_FILMS`,
   CHANGE_SERVER_STATUS_ON_ERROR: `CHANGE_SERVER_STATUS_ON_ERROR`,
 };
 
 const ActionCreator = {
-  changeGenre: (genre) => ({
-    type: ActionTypes.CHANGE_GENRE,
+  changeActiveGenre: (genre) => ({
+    type: ActionTypes.CHANGE_ACTIVE_GENRE,
     payload: genre
   }),
   increaseCountDisplayedFilms: () => ({
@@ -41,9 +41,9 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.CHANGE_GENRE:
+    case ActionTypes.CHANGE_ACTIVE_GENRE:
       return extend(state, {
-        genre: action.payload
+        activeGenre: action.payload
       });
     case ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS:
       return extend(state, {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator as appStateActionCreator} from "./../../reducer/app-state/app-state.js";
 import {ActionCreator as dataActionCreator} from "./../../reducer/data/data.js";
-import {getGenre} from "./../../reducer/app-state/selector.js";
+import {getActiveGenre} from "./../../reducer/app-state/selector.js";
 import {getFilms} from "./../../reducer/data/selector.js";
 import {Genres} from "./../../utils.js";
 
@@ -65,20 +65,18 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  genre: getGenre(state),
+  genre: getActiveGenre(state),
   films: getFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
-    dispatch(appStateActionCreator.changeGenre(genre));
+    dispatch(appStateActionCreator.changeActiveGenre(genre));
     dispatch(appStateActionCreator.resetCountDisplayedFilms());
-    dispatch(dataActionCreator.setGenreForFilter(genre));
   },
   onReset() {
-    dispatch(appStateActionCreator.changeGenre(Genres.ALL));
+    dispatch(appStateActionCreator.changeActiveGenre(Genres.ALL));
     dispatch(appStateActionCreator.resetCountDisplayedFilms());
-    dispatch(dataActionCreator.setGenreForFilter(Genres.ALL));
   }
 });
 
