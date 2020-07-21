@@ -5,6 +5,7 @@ import {getPromoFilm} from "./../../reducer/data/selector.js";
 import Header from "./../header/header.jsx";
 import {Link} from "react-router-dom";
 import ButtonMyList from "../button-my-list/button-my-list.jsx";
+import {Pages} from "../../utils.js";
 
 const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
 
@@ -46,7 +47,7 @@ class Promo extends PureComponent {
               <Link
                 className="btn btn--play movie-card__button"
                 type="button"
-                to={`/films/${id}/player`}
+                to={Pages.PLAYER.replace(`:id?`, id)}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s" />

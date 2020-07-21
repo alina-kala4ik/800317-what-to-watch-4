@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MovieList from "./../movie-list/movie-list.jsx";
 import AboutFilm from "./../about-film/about-film.jsx";
 import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
-import {Tabs} from "./../../utils.js";
+import {Tabs, Pages} from "./../../utils.js";
 import {connect} from "react-redux";
 import {getFilmById} from "./../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
@@ -53,7 +53,7 @@ const MoviePage = (props) => {
               <Link
                 className="btn btn--play movie-card__button"
                 type="button"
-                to={`/films/${id}/player`}
+                to={Pages.PLAYER.replace(`:id?`, id)}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
@@ -65,7 +65,7 @@ const MoviePage = (props) => {
                 isFavorite={isFavorite}
               />
               <Link
-                to={`/films/${id}/review`}
+                to={Pages.REVIEW.replace(`:id?`, id)}
                 className="btn movie-card__button"
               >
                 Add review

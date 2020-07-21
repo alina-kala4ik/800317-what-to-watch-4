@@ -75,21 +75,21 @@ class App extends PureComponent {
         />
         <PrivateRoute
           exact
-          path={`/films/:id?/review`}
+          path={Pages.REVIEW}
           render={(props)=>{
             return <AddReview historyProps={props} />;
           }}
         />
         <Route
           exact
-          path="/films/:id?/player"
+          path={Pages.PLAYER}
           render={(props)=>{
             return <MovieViewingPageWrapped historyProps={props} />;
           }}
         />
         <Route
           exact
-          path={`${Pages.FILM}:id?`}
+          path={Pages.FILM}
           render={(props)=>{
             return <MoviePage historyProps={props} />;
           }}
