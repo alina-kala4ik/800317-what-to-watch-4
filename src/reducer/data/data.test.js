@@ -1,5 +1,4 @@
 import {reducer, ActionCreator, ActionTypes, Operation} from "./data.js";
-import {Genres} from "./../../utils.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "./../../api.js";
 

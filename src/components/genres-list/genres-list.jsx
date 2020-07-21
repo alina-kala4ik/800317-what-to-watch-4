@@ -2,7 +2,6 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator as appStateActionCreator} from "./../../reducer/app-state/app-state.js";
-import {ActionCreator as dataActionCreator} from "./../../reducer/data/data.js";
 import {getActiveGenre} from "./../../reducer/app-state/selector.js";
 import {getFilms} from "./../../reducer/data/selector.js";
 import {Genres} from "./../../utils.js";
