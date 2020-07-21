@@ -9,21 +9,21 @@ import PropTypes from "prop-types";
 const Header = (props) => {
   const {authorizationStatus, avatar, children, uniqueClasses, isActiveLogoLink} = props;
 
-  const logo = isActiveLogoLink ?
+  const logo = <React.Fragment>
+    <span className="logo__letter logo__letter--1">W</span>
+    <span className="logo__letter logo__letter--2">T</span>
+    <span className="logo__letter logo__letter--3">W</span>
+  </React.Fragment>;
+
+  const logoLink = isActiveLogoLink ?
     <Link
       className="logo__link"
       to={Pages.ROOT}
     >
-      <span className="logo__letter logo__letter--1">W</span>
-      <span className="logo__letter logo__letter--2">T</span>
-      <span className="logo__letter logo__letter--3">W</span>
+      {logo}
     </Link> :
-    <a
-      className="logo__link"
-    >
-      <span className="logo__letter logo__letter--1">W</span>
-      <span className="logo__letter logo__letter--2">T</span>
-      <span className="logo__letter logo__letter--3">W</span>
+    <a className="logo__link">
+      {logo}
     </a>;
 
   const userBlock = authorizationStatus === AuthorizationStatus.AUTH ?
@@ -40,7 +40,7 @@ const Header = (props) => {
 
   return <header className={`page-header ${uniqueClasses}`}>
     <div className="logo">
-      {logo}
+      {logoLink}
     </div>
 
     {children}
