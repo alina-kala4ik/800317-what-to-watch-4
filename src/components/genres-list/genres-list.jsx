@@ -15,9 +15,13 @@ class GenresList extends PureComponent {
 
     this.allFilms = this.props.films;
 
-    this.props.onLoad();
-
     this.getGenresList = this.getGenresList.bind(this);
+  }
+
+  componentWillUnmount() {
+    const {onReset} = this.props;
+
+    onReset();
   }
 
   getGenresList() {
@@ -57,7 +61,7 @@ GenresList.propTypes = {
   genre: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   films: PropTypes.array,
-  onLoad: PropTypes.func.isRequired
+  onReset: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -71,7 +75,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(appStateActionCreator.resetCountDisplayedFilms());
     dispatch(dataActionCreator.setGenreForFilter(genre));
   },
-  onLoad() {
+  onReset() {
     dispatch(appStateActionCreator.changeGenre(Genres.ALL));
     dispatch(appStateActionCreator.resetCountDisplayedFilms());
     dispatch(dataActionCreator.setGenreForFilter(Genres.ALL));
