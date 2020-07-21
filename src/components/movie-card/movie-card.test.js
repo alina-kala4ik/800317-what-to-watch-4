@@ -27,12 +27,12 @@ it(`render MoveCard`, () => {
         <MovieCard
           film={film}
           isPlaying={false}
-          onMouseEnter={()=>{}}
-          onMouseLeave={()=>{}}
-          setGenreForFilter={()=>{}}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          setGenreForFilter={() => {}}
         />
       </Router>, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       })

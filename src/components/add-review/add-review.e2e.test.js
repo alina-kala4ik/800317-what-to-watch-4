@@ -46,7 +46,7 @@ const store = mockStore({
   }
 });
 
-it(`callbacks are working`, ()=>{
+it(`callbacks are working`, () => {
 
   const onSubmit = jest.fn();
 

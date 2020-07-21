@@ -60,7 +60,7 @@ class App extends PureComponent {
         <Route
           exact
           path={Pages.LOGIN}
-          render={()=>{
+          render={() => {
             return authorizationStatus === AuthorizationStatus.NO_AUTH ?
               <SignIn /> :
               <Redirect to={Pages.ROOT} />;
@@ -69,28 +69,28 @@ class App extends PureComponent {
         <PrivateRoute
           exact
           path={Pages.MY_LIST}
-          render={()=>{
+          render={() => {
             return <MyList />;
           }}
         />
         <PrivateRoute
           exact
           path={Pages.REVIEW}
-          render={(props)=>{
+          render={(props) => {
             return <AddReview historyProps={props} />;
           }}
         />
         <Route
           exact
           path={Pages.PLAYER}
-          render={(props)=>{
+          render={(props) => {
             return <MovieViewingPageWrapped historyProps={props} />;
           }}
         />
         <Route
           exact
           path={Pages.FILM}
-          render={(props)=>{
+          render={(props) => {
             return <MoviePage historyProps={props} />;
           }}
         />

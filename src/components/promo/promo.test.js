@@ -35,7 +35,7 @@ const store = mockStore({
   }
 });
 
-it(`render Promo`, ()=>{
+it(`render Promo`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <Router history={history}>

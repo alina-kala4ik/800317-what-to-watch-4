@@ -21,19 +21,19 @@ const ActionTypes = {
 };
 
 const ActionCreator = {
-  changeGenre: (genre)=>({
+  changeGenre: (genre) => ({
     type: ActionTypes.CHANGE_GENRE,
     payload: genre
   }),
-  increaseCountDisplayedFilms: ()=>({
+  increaseCountDisplayedFilms: () => ({
     type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
     payload: DISPLAYED_NUMBER_OF_FILMS
   }),
-  resetCountDisplayedFilms: ()=>({
+  resetCountDisplayedFilms: () => ({
     type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
     payload: DISPLAYED_NUMBER_OF_FILMS
   }),
-  changeServerStatusOnError: ()=>({
+  changeServerStatusOnError: () => ({
     type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
     payload: ServerStatus.ERROR
   })

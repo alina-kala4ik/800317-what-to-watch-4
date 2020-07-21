@@ -7,7 +7,7 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`button show more are clickable`, ()=>{
+it(`button show more are clickable`, () => {
   const onShowMoreClick = jest.fn();
 
   const catalog = shallow(

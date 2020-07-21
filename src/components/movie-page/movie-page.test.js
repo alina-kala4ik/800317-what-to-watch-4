@@ -218,7 +218,7 @@ it(`render MoviePage`, () => {
           />
         </Router>
       </Provider>, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       })

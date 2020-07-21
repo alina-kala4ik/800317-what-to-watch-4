@@ -27,13 +27,13 @@ const mockComponent = () => <div />;
 
 const MockComponentWrapped = withPlayingCard(mockComponent);
 
-it(`Should change prop isPlaying`, ()=>{
+it(`Should change prop isPlaying`, () => {
   const wrapper = shallow(
       <MockComponentWrapped
         key={film.title}
         film={film}
-        onFilmTitleClick={()=>{}}
-        onFilmImgClick={()=>{}}
+        onFilmTitleClick={() => {}}
+        onFilmImgClick={() => {}}
       />
   );
 

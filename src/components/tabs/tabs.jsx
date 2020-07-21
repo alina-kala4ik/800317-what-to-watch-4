@@ -12,7 +12,7 @@ const Tabs = (props) => {
         <a
           href="#"
           className="movie-nav__link"
-          onClick={(evt)=>{
+          onClick={(evt) => {
             evt.preventDefault();
             onTabClick(tab);
           }}

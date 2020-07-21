@@ -25,7 +25,7 @@ it(`render AboutFilm`, () => {
     .create(
         <AboutFilm
           activeItem={Tabs.OVERVIEW}
-          setActiveItem={()=>{}}
+          setActiveItem={() => {}}
           film={film}
         />)
     .toJSON();

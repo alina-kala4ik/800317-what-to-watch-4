@@ -10,13 +10,13 @@ Enzyme.configure({
 const mockComponent = () => <div />;
 
 
-it(`Should change active item`, ()=>{
+it(`Should change active item`, () => {
   const MockComponentWrapped = withActiveItem(mockComponent);
 
   const wrapper = shallow(
       <MockComponentWrapped
         activeItem={false}
-        setActiveItem={()=>{}}
+        setActiveItem={() => {}}
       />
   );
 

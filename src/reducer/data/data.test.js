@@ -142,8 +142,8 @@ const films = [
   },
 ];
 
-describe(`testing reducer`, ()=>{
-  it(`Returns initial state at application start`, ()=>{
+describe(`testing reducer`, () => {
+  it(`Returns initial state at application start`, () => {
     expect(reducer(undefined, {})).toEqual({
       films: [],
       promoFilm: null,
@@ -156,7 +156,7 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`uploads films`, ()=>{
+  it(`uploads films`, () => {
     expect(reducer({
       films: []
     }, {
@@ -168,7 +168,7 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`uploads promo film`, ()=>{
+  it(`uploads promo film`, () => {
     expect(reducer({
       promoFilm: null
     }, {
@@ -180,7 +180,7 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`set genre for filter`, ()=>{
+  it(`set genre for filter`, () => {
     expect(reducer({
       genreForFilter: Genres.ALL,
     }, {
@@ -191,7 +191,7 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`change flag comment publishing`, ()=>{
+  it(`change flag comment publishing`, () => {
     expect(reducer({
       isCommentPublishing: false
     }, {
@@ -202,7 +202,7 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`change flag comment sending error`, ()=>{
+  it(`change flag comment sending error`, () => {
     expect(reducer({
       isCommentSendingError: false
     }, {
@@ -213,7 +213,7 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`load favorite films`, ()=>{
+  it(`load favorite films`, () => {
     expect(reducer({
       favoriteFilms: []
     }, {
@@ -224,7 +224,7 @@ describe(`testing reducer`, ()=>{
     });
   });
 
-  it(`update film`, ()=>{
+  it(`update film`, () => {
     const newFilm = {
       title: `Fantastic Beasts: The Crimes of Grindelwald`,
       screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -393,51 +393,51 @@ describe(`testing reducer`, ()=>{
 
 });
 
-describe(`Action creators work correctly`, ()=>{
+describe(`Action creators work correctly`, () => {
 
-  it(`Action creators load films`, ()=>{
+  it(`Action creators load films`, () => {
     expect(ActionCreator.loadFilms(films)).toEqual({
       type: ActionTypes.LOAD_FILMS,
       payload: films
     });
   });
 
-  it(`Action creators load promo films`, ()=>{
+  it(`Action creators load promo films`, () => {
     expect(ActionCreator.loadPromoFilm(films[0])).toEqual({
       type: ActionTypes.LOAD_PROMO_FILM,
       payload: films[0]
     });
   });
 
-  it(`Action creators set genre for filter`, ()=>{
+  it(`Action creators set genre for filter`, () => {
     expect(ActionCreator.setGenreForFilter(Genres.DOCUMENTARY)).toEqual({
       type: ActionTypes.SET_GENRE_FOR_FILTER,
       payload: Genres.DOCUMENTARY
     });
   });
 
-  it(`Action creators change flag comment publishing`, ()=>{
+  it(`Action creators change flag comment publishing`, () => {
     expect(ActionCreator.changeFlagCommentPublishing(true)).toEqual({
       type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
       payload: true
     });
   });
 
-  it(`Action creators change flag comment sending error`, ()=>{
+  it(`Action creators change flag comment sending error`, () => {
     expect(ActionCreator.changeFlagCommentSendingError(true)).toEqual({
       type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
       payload: true
     });
   });
 
-  it(`Action creators load favorite films`, ()=>{
+  it(`Action creators load favorite films`, () => {
     expect(ActionCreator.loadFavoriteFilms(films)).toEqual({
       type: ActionTypes.LOAD_FAVORITE_FILMS,
       payload: films
     });
   });
 
-  it(`Action creators update film`, ()=>{
+  it(`Action creators update film`, () => {
     expect(ActionCreator.updateFilm(films[0])).toEqual({
       type: ActionTypes.UPDATE_FILM,
       payload: films[0]
@@ -446,7 +446,7 @@ describe(`Action creators work correctly`, ()=>{
 
 });
 
-describe(`Operation work correctly`, ()=>{
+describe(`Operation work correctly`, () => {
 
   const onNotFound = () => {};
 
@@ -473,7 +473,7 @@ describe(`Operation work correctly`, ()=>{
     "yearRelease": undefined,
   };
 
-  it(`load films`, ()=>{
+  it(`load films`, () => {
     const adaptedFilms = [
       {
         "actors": undefined,
@@ -503,8 +503,8 @@ describe(`Operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const filmsLoader = Operation.loadFilms();
 
-    return filmsLoader(dispatch, ()=>{}, api)
-      .then(()=>{
+    return filmsLoader(dispatch, () => {}, api)
+      .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionTypes.LOAD_FILMS,
@@ -513,7 +513,7 @@ describe(`Operation work correctly`, ()=>{
       });
   });
 
-  it(`load promoFilm`, ()=>{
+  it(`load promoFilm`, () => {
 
     apiMock
       .onGet(`/films/promo`)
@@ -522,8 +522,8 @@ describe(`Operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const promoFilmLoader = Operation.loadPromoFilm();
 
-    return promoFilmLoader(dispatch, ()=>{}, api)
-      .then(()=>{
+    return promoFilmLoader(dispatch, () => {}, api)
+      .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionTypes.LOAD_PROMO_FILM,
@@ -532,7 +532,7 @@ describe(`Operation work correctly`, ()=>{
       });
   });
 
-  it(`comment post success`, ()=>{
+  it(`comment post success`, () => {
 
     const commentData = {
       rating: ``,
@@ -549,16 +549,16 @@ describe(`Operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const commentPost = Operation.commentPost(1, commentData);
 
-    return commentPost(dispatch, ()=>{}, api)
-      .then(()=>{
+    return commentPost(dispatch, () => {}, api)
+      .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
       })
-      .catch(()=>{
+      .catch(() => {
         expect(dispatch).toHaveBeenCalledTimes(0);
       });
   });
 
-  it(`comment post error`, ()=>{
+  it(`comment post error`, () => {
 
     const commentData = {
       rating: ``,
@@ -575,16 +575,16 @@ describe(`Operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const commentPost = Operation.commentPost(1, commentData);
 
-    return commentPost(dispatch, ()=>{}, api)
-      .then(()=>{
+    return commentPost(dispatch, () => {}, api)
+      .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(0);
       })
-      .catch(()=>{
+      .catch(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
       });
   });
 
-  it(`change flag is favorite in promo film`, ()=>{
+  it(`change flag is favorite in promo film`, () => {
     apiMock
       .onPost(`/favorite/1/1`)
       .reply(`200`, [{fake: true}]);
@@ -592,8 +592,8 @@ describe(`Operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const changeFlagIsFavorite = Operation.changeFlagIsFavorite(1, 1, true);
 
-    return changeFlagIsFavorite(dispatch, ()=>{}, api)
-      .then(()=>{
+    return changeFlagIsFavorite(dispatch, () => {}, api)
+      .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionTypes.LOAD_PROMO_FILM,
@@ -602,7 +602,7 @@ describe(`Operation work correctly`, ()=>{
       });
   });
 
-  it(`change flag is favorite in film`, ()=>{
+  it(`change flag is favorite in film`, () => {
     apiMock
       .onPost(`/favorite/1/1`)
       .reply(`200`, [{fake: true}]);
@@ -610,8 +610,8 @@ describe(`Operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const changeFlagIsFavorite = Operation.changeFlagIsFavorite(1, 1);
 
-    return changeFlagIsFavorite(dispatch, ()=>{}, api)
-      .then(()=>{
+    return changeFlagIsFavorite(dispatch, () => {}, api)
+      .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionTypes.UPDATE_FILM,
@@ -620,7 +620,7 @@ describe(`Operation work correctly`, ()=>{
       });
   });
 
-  it(`load favorite films`, ()=>{
+  it(`load favorite films`, () => {
     const adaptedFilms = [
       {
         "actors": undefined,
@@ -650,8 +650,8 @@ describe(`Operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const loadFavoriteFilms = Operation.loadFavoriteFilms();
 
-    return loadFavoriteFilms(dispatch, ()=>{}, api)
-    .then(()=>{
+    return loadFavoriteFilms(dispatch, () => {}, api)
+    .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionTypes.LOAD_FAVORITE_FILMS,

@@ -5,7 +5,7 @@ import {AuthorizationStatus} from "./../../reducer/user/user.js";
 import {Router} from "react-router-dom";
 import history from "./../../history.js";
 
-it(`render Header when user authorized`, ()=>{
+it(`render Header when user authorized`, () => {
   const tree = renderer.create(
       <Router history={history}>
         <Header
@@ -19,7 +19,7 @@ it(`render Header when user authorized`, ()=>{
   expect(tree).toMatchSnapshot();
 });
 
-it(`render Header when user unauthorized`, ()=>{
+it(`render Header when user unauthorized`, () => {
   const tree = renderer.create(
       <Router history={history}>
         <Header
@@ -33,7 +33,7 @@ it(`render Header when user unauthorized`, ()=>{
   expect(tree).toMatchSnapshot();
 });
 
-it(`render Header with children`, ()=>{
+it(`render Header with children`, () => {
   const tree = renderer.create(
       <Router history={history}>
         <Header
@@ -49,7 +49,7 @@ it(`render Header with children`, ()=>{
   expect(tree).toMatchSnapshot();
 });
 
-it(`render Header with active logo and unique classes from header`, ()=>{
+it(`render Header with active logo and unique classes from header`, () => {
   const tree = renderer.create(
       <Router history={history}>
         <Header

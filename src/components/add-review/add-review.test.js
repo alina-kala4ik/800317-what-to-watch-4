@@ -8,7 +8,7 @@ import {Provider} from "react-redux";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
 import {NameSpace} from "./../../reducer/name-space.js";
 
-beforeAll(()=>{
+beforeAll(() => {
   jest.setAttribute = () => {};
 });
 
@@ -45,20 +45,20 @@ const store = mockStore({
   }
 });
 
-it(`render AddReview without sending error and disabled form`, ()=>{
+it(`render AddReview without sending error and disabled form`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <Router history={history}>
           <AddReview
             isCommentPublishing={false}
-            onSubmit={()=>{}}
+            onSubmit={() => {}}
             isCommentSendingError={false}
             historyProps={historyProps}
             film={film}
           />
         </Router>
       </Provider>, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       }
@@ -67,20 +67,20 @@ it(`render AddReview without sending error and disabled form`, ()=>{
   expect(tree).toMatchSnapshot();
 });
 
-it(`render AddReview with sending error and disabled form`, ()=>{
+it(`render AddReview with sending error and disabled form`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <Router history={history}>
           <AddReview
             isCommentPublishing={true}
-            onSubmit={()=>{}}
+            onSubmit={() => {}}
             isCommentSendingError={true}
             historyProps={historyProps}
             film={film}
           />
         </Router>
       </Provider>, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       }

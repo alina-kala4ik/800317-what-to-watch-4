@@ -23,7 +23,7 @@ const TabDetails = (props) => {
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Starring</strong>
         <span className="movie-card__details-value">
-          {actors.map((actor, i, arr)=>{
+          {actors.map((actor, i, arr) => {
             return <React.Fragment
               key={actor}>
               {actor}{i === arr.length - 1 ? `` : `,`} <br />

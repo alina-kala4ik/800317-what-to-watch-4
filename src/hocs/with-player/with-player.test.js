@@ -40,7 +40,7 @@ MockComponent.propTypes = {
 
 const MockComponentWrapped = withPlayer(MockComponent);
 
-it(`render withPlayer`, ()=>{
+it(`render withPlayer`, () => {
   const tree = renderer.create(
       <MockComponentWrapped
         film={film}

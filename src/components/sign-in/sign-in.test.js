@@ -3,12 +3,12 @@ import renderer from "react-test-renderer";
 import {SignIn} from "./sign-in.jsx";
 
 
-it(`render SignIn`, ()=>{
+it(`render SignIn`, () => {
   const tree = renderer.create(
       <SignIn
-        onSignInClick={()=>{}}
+        onSignInClick={() => {}}
       />, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       }

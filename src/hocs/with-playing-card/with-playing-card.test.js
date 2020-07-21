@@ -22,13 +22,13 @@ const mockComponent = () => <div />;
 
 const MockComponentWrapped = withPlayingCard(mockComponent);
 
-it(`render withPlayingCard`, ()=>{
+it(`render withPlayingCard`, () => {
   const tree = renderer.create(
       <MockComponentWrapped
         key={film.title}
         film={film}
-        onFilmTitleClick={()=>{}}
-        onFilmImgClick={()=>{}}
+        onFilmTitleClick={() => {}}
+        onFilmImgClick={() => {}}
       />
   ).toJSON();
 

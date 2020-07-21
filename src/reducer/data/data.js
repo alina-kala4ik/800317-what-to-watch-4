@@ -23,68 +23,68 @@ const ActionTypes = {
 };
 
 const ActionCreator = {
-  loadFilms: (films)=>({
+  loadFilms: (films) => ({
     type: ActionTypes.LOAD_FILMS,
     payload: films
   }),
-  loadPromoFilm: (film)=>({
+  loadPromoFilm: (film) => ({
     type: ActionTypes.LOAD_PROMO_FILM,
     payload: film
   }),
-  setGenreForFilter: (genre)=>({
+  setGenreForFilter: (genre) => ({
     type: ActionTypes.SET_GENRE_FOR_FILTER,
     payload: genre
   }),
-  changeFlagCommentPublishing: (status)=>({
+  changeFlagCommentPublishing: (status) => ({
     type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
     payload: status
   }),
-  changeFlagCommentSendingError: (status)=>({
+  changeFlagCommentSendingError: (status) => ({
     type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
     payload: status
   }),
-  loadFavoriteFilms: (films)=>({
+  loadFavoriteFilms: (films) => ({
     type: ActionTypes.LOAD_FAVORITE_FILMS,
     payload: films
   }),
-  updateFilm: (film)=>({
+  updateFilm: (film) => ({
     type: ActionTypes.UPDATE_FILM,
     payload: film
   })
 };
 
 const Operation = {
-  loadFilms: ()=>(dispatch, getState, api) => {
+  loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
-      .then((response)=>{
+      .then((response) => {
         const films = adapterForArray(response.data);
         dispatch(ActionCreator.loadFilms(films));
       });
   },
-  loadPromoFilm: ()=>(dispatch, getState, api) => {
+  loadPromoFilm: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
-      .then((response)=>{
+      .then((response) => {
         const promoFilm = adapter(response.data);
         dispatch(ActionCreator.loadPromoFilm(promoFilm));
       });
   },
-  commentPost: (filmId, commentData)=>(dispatch, getState, api)=> {
+  commentPost: (filmId, commentData) => (dispatch, getState, api) => {
     return api.post(`comments/${filmId}`, {
       rating: commentData.rating,
       comment: commentData.comment
     })
-      .then(()=>{
+      .then(() => {
         dispatch(ActionCreator.changeFlagCommentPublishing(false));
         dispatch(ActionCreator.changeFlagCommentSendingError(false));
       })
-      .catch(()=>{
+      .catch(() => {
         dispatch(ActionCreator.changeFlagCommentPublishing(false));
         dispatch(ActionCreator.changeFlagCommentSendingError(true));
       });
   },
-  changeFlagIsFavorite: (filmId, status, isPromoFilm)=>(dispatch, getState, api)=>{
+  changeFlagIsFavorite: (filmId, status, isPromoFilm) => (dispatch, getState, api) => {
     return api.post(`/favorite/${filmId}/${status}`)
-      .then((response)=>{
+      .then((response) => {
         const film = adapter(response.data);
 
         if (isPromoFilm) {
@@ -94,9 +94,9 @@ const Operation = {
         }
       });
   },
-  loadFavoriteFilms: ()=>(dispatch, getState, api)=>{
+  loadFavoriteFilms: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
-      .then((response)=>{
+      .then((response) => {
         const films = adapterForArray(response.data);
         dispatch(ActionCreator.loadFavoriteFilms(films));
       });

@@ -9,7 +9,7 @@ it(`render Tabs`, () => {
     .create(<Tabs
       activeTab={`Overview`}
       listTabs={listTabs}
-      onTabClick={()=>{}}
+      onTabClick={() => {}}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

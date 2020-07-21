@@ -152,16 +152,16 @@ const store = mockStore({
 });
 
 
-it(`render MyList`, ()=>{
+it(`render MyList`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <Router history={history}>
           <MyList
-            onLoad={()=>{}}
+            onLoad={() => {}}
           />
         </Router>
       </Provider>, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       }

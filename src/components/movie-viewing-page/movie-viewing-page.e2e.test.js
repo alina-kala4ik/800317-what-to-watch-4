@@ -7,9 +7,9 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-describe(`All callbacks are working`, ()=>{
+describe(`All callbacks are working`, () => {
 
-  it(`Callback onPauseClick are working`, ()=>{
+  it(`Callback onPauseClick are working`, () => {
     const onPauseClick = jest.fn();
 
     const movieViewingPage = mount(
@@ -17,9 +17,9 @@ describe(`All callbacks are working`, ()=>{
           isPlaying={true}
           progress={0}
           timeLeft={`01:00:00`}
-          onPlayClick={()=>{}}
+          onPlayClick={() => {}}
           onPauseClick={onPauseClick}
-          onFullScreenClick={()=>{}}
+          onFullScreenClick={() => {}}
           isFullScreenMode={false}
         >
           <video />
@@ -31,7 +31,7 @@ describe(`All callbacks are working`, ()=>{
     expect(onPauseClick).toHaveBeenCalledTimes(1);
   });
 
-  it(`Callback onPlayClick are working`, ()=>{
+  it(`Callback onPlayClick are working`, () => {
     const onPlayClick = jest.fn();
 
     const movieViewingPage = mount(
@@ -40,8 +40,8 @@ describe(`All callbacks are working`, ()=>{
           progress={0}
           timeLeft={`01:00:00`}
           onPlayClick={onPlayClick}
-          onPauseClick={()=>{}}
-          onFullScreenClick={()=>{}}
+          onPauseClick={() => {}}
+          onFullScreenClick={() => {}}
           isFullScreenMode={false}
         >
           <video />

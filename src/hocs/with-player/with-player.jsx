@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {getFilmById} from "./../../reducer/data/selector.js";
 import {compose} from "redux";
 
-const withPlayer = (Component) =>{
+const withPlayer = (Component) => {
   class WithPlayer extends PureComponent {
     constructor(props) {
       super(props);
@@ -36,7 +36,7 @@ const withPlayer = (Component) =>{
     }
 
     handleFullScreenClick() {
-      this.setState((prevState)=>({
+      this.setState((prevState) => ({
         isFullScreenMode: !prevState.isFullScreenMode
       }));
     }

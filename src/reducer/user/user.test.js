@@ -2,8 +2,8 @@ import {ActionCreator, reducer, Operation, AuthorizationStatus, ActionTypes} fro
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "./../../api.js";
 
-describe(`testing user reducer`, ()=>{
-  it(`Returns initial state at application start`, ()=>{
+describe(`testing user reducer`, () => {
+  it(`Returns initial state at application start`, () => {
     expect(reducer(undefined, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       avatar: null,
@@ -11,7 +11,7 @@ describe(`testing user reducer`, ()=>{
     });
   });
 
-  it(`change authorization status`, ()=>{
+  it(`change authorization status`, () => {
     expect(reducer({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       isFetchingAuthStatus: true
@@ -24,7 +24,7 @@ describe(`testing user reducer`, ()=>{
     });
   });
 
-  it(`add avatar`, ()=>{
+  it(`add avatar`, () => {
     expect(reducer({
       avatar: null,
     }, {
@@ -37,16 +37,16 @@ describe(`testing user reducer`, ()=>{
 
 });
 
-describe(`user action creators work correctly`, ()=>{
+describe(`user action creators work correctly`, () => {
 
-  it(`Action creators add avatar`, ()=>{
+  it(`Action creators add avatar`, () => {
     expect(ActionCreator.addAvatar(``)).toEqual({
       type: ActionTypes.ADD_AVATAR,
       payload: ``
     });
   });
 
-  it(`Action creators change authorization status`, ()=>{
+  it(`Action creators change authorization status`, () => {
     expect(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH)).toEqual({
       type: ActionTypes.REQUIRED_AUTHORIZATION,
       payload: AuthorizationStatus.AUTH
@@ -55,14 +55,14 @@ describe(`user action creators work correctly`, ()=>{
 
 });
 
-describe(`user operation work correctly`, ()=>{
+describe(`user operation work correctly`, () => {
 
   const onNotFound = () => {};
   const onUnauthorized = () => {};
 
   const api = createAPI(onNotFound, onUnauthorized);
 
-  it(`Operation check auth`, ()=>{
+  it(`Operation check auth`, () => {
     const apiMock = new MockAdapter(api);
     apiMock
       .onGet(`/login`)
@@ -71,8 +71,8 @@ describe(`user operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const checkAuth = Operation.checkAuth();
 
-    return checkAuth(dispatch, ()=>{}, api)
-      .then(()=>{
+    return checkAuth(dispatch, () => {}, api)
+      .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionTypes.REQUIRED_AUTHORIZATION,
@@ -81,7 +81,7 @@ describe(`user operation work correctly`, ()=>{
       });
   });
 
-  it(`Operation login`, ()=>{
+  it(`Operation login`, () => {
     const authData = {
       email: `foo@gmail.com`,
       password: `foo`
@@ -95,8 +95,8 @@ describe(`user operation work correctly`, ()=>{
     const dispatch = jest.fn();
     const login = Operation.login(authData);
 
-    return login(dispatch, ()=>{}, api)
-      .then(()=>{
+    return login(dispatch, () => {}, api)
+      .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
       });
   });

@@ -127,8 +127,8 @@ const films = [
   },
 ];
 
-describe(`testing app-state reducer`, ()=>{
-  it(`Returns initial state at application start`, ()=>{
+describe(`testing app-state reducer`, () => {
+  it(`Returns initial state at application start`, () => {
     expect(reducer(undefined, {})).toEqual({
       genre: Genres.ALL,
       countDisplayedFilms: 8,
@@ -136,7 +136,7 @@ describe(`testing app-state reducer`, ()=>{
     });
   });
 
-  it(`Change genre`, ()=>{
+  it(`Change genre`, () => {
     expect(reducer({
       genre: Genres.ALL,
       films,
@@ -149,7 +149,7 @@ describe(`testing app-state reducer`, ()=>{
     });
   });
 
-  it(`Increase count displayed films`, ()=>{
+  it(`Increase count displayed films`, () => {
     expect(reducer({
       countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
     }, {
@@ -160,7 +160,7 @@ describe(`testing app-state reducer`, ()=>{
     });
   });
 
-  it(`reset count displayed films`, ()=>{
+  it(`reset count displayed films`, () => {
     expect(reducer({
       countDisplayedFilms: 16
     },
@@ -172,7 +172,7 @@ describe(`testing app-state reducer`, ()=>{
     });
   });
 
-  it(`change server status on error`, ()=>{
+  it(`change server status on error`, () => {
     expect(reducer({
       serverStatus: ServerStatus.OK
     }, {
@@ -185,29 +185,29 @@ describe(`testing app-state reducer`, ()=>{
 
 });
 
-describe(`Action creators in app-state work correctly`, ()=>{
-  it(`Action creators change genre`, ()=>{
+describe(`Action creators in app-state work correctly`, () => {
+  it(`Action creators change genre`, () => {
     expect(ActionCreator.changeGenre(Genres.COMEDIES)).toEqual({
       type: ActionTypes.CHANGE_GENRE,
       payload: Genres.COMEDIES,
     });
   });
 
-  it(`Action creators increase count displayed films`, ()=>{
+  it(`Action creators increase count displayed films`, () => {
     expect(ActionCreator.increaseCountDisplayedFilms()).toEqual({
       type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
       payload: DISPLAYED_NUMBER_OF_FILMS
     });
   });
 
-  it(`Action creators reset count displayed films`, ()=>{
+  it(`Action creators reset count displayed films`, () => {
     expect(ActionCreator.resetCountDisplayedFilms()).toEqual({
       type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
       payload: DISPLAYED_NUMBER_OF_FILMS
     });
   });
 
-  it(`Action creators change server status on error`, ()=>{
+  it(`Action creators change server status on error`, () => {
     expect(ActionCreator.changeServerStatusOnError()).toEqual({
       type: ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR,
       payload: ServerStatus.ERROR

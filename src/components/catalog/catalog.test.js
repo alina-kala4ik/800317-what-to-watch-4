@@ -305,7 +305,7 @@ const countFilms9 = [
 
 const mockStore = configureStore([]);
 
-it(`render Catalog without button`, ()=>{
+it(`render Catalog without button`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       countDisplayedFilms: 8,
@@ -323,12 +323,12 @@ it(`render Catalog without button`, ()=>{
         <Router history={history}>
           <Catalog
             countFilms={8}
-            onShowMoreClick={()=>{}}
+            onShowMoreClick={() => {}}
             isButtonDisplayed={false}
           />
         </Router>
       </Provider>, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       }).toJSON();
@@ -337,7 +337,7 @@ it(`render Catalog without button`, ()=>{
 });
 
 
-it(`render Catalog with button`, ()=>{
+it(`render Catalog with button`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       countDisplayedFilms: 8,
@@ -355,12 +355,12 @@ it(`render Catalog with button`, ()=>{
         <Router history={history}>
           <Catalog
             countFilms={8}
-            onShowMoreClick={()=>{}}
+            onShowMoreClick={() => {}}
             isButtonDisplayed={true}
           />
         </Router>
       </Provider>, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       }).toJSON();

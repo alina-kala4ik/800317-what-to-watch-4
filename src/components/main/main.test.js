@@ -184,7 +184,7 @@ it(`render Main`, () => {
             <Main />
           </Provider>
         </Router>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })

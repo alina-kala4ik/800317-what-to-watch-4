@@ -9,7 +9,7 @@ it(`render VideoPlayer`, () => {
       poster={`img/fantastic-beasts-the-crimes-of-grindelwald.jpg`}
       isPlaying={false}
     />, {
-      createNodeMock: ()=>{
+      createNodeMock: () => {
         return {};
       }
     })

@@ -163,7 +163,7 @@ it(`render MovieList`, () => {
             />
           </Router>
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })

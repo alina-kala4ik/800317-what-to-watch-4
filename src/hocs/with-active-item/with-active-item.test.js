@@ -6,7 +6,7 @@ const mockComponent = () => <div />;
 
 const MockComponentWrapped = withActiveItem(mockComponent);
 
-it(`render`, ()=>{
+it(`render`, () => {
   const tree = renderer.create(
       <MockComponentWrapped />
   ).toJSON();

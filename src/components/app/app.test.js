@@ -189,7 +189,7 @@ it(`render App without server error`, () => {
             promoFilm={films[0]}
           />
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })
@@ -229,7 +229,7 @@ it(`render App with server error`, () => {
             promoFilm={films[0]}
           />
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })
@@ -269,7 +269,7 @@ it(`render App when films null`, () => {
             promoFilm={films[0]}
           />
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })
@@ -309,7 +309,7 @@ it(`render App when promoFilm null`, () => {
             promoFilm={null}
           />
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })

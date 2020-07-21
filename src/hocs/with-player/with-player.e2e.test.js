@@ -56,7 +56,7 @@ const MockComponentWrapped = withPlayer(MockComponent);
 window.HTMLMediaElement.prototype.play = () => {};
 window.HTMLMediaElement.prototype.pause = () => {};
 
-it(`Testing pause`, ()=>{
+it(`Testing pause`, () => {
 
   const wrapper = mount(
       <MockComponentWrapped
@@ -74,7 +74,7 @@ it(`Testing pause`, ()=>{
   expect(_videoRef.current.pause).toHaveBeenCalledTimes(1);
 });
 
-it(`Testing play`, ()=>{
+it(`Testing play`, () => {
 
   const wrapper = mount(
       <MockComponentWrapped
@@ -96,7 +96,7 @@ it(`Testing play`, ()=>{
   expect(_videoRef.current.play).toHaveBeenCalledTimes(1);
 });
 
-it(`Should change state isFullScreenMode when the player open player in full screen mode`, ()=>{
+it(`Should change state isFullScreenMode when the player open player in full screen mode`, () => {
 
   const wrapper = mount(
       <MockComponentWrapped

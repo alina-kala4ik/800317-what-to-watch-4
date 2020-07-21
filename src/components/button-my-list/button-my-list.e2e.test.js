@@ -10,7 +10,7 @@ Enzyme.configure({
 const REMOVE_FROM_MY_LIST = 0;
 const ADD_TO_MY_LIST = 1;
 
-it(`Button add to my list are clickable`, ()=>{
+it(`Button add to my list are clickable`, () => {
   const onMyListClick = jest.fn();
 
   const buttonMyList = shallow(
@@ -26,7 +26,7 @@ it(`Button add to my list are clickable`, ()=>{
   expect(onMyListClick).toHaveBeenNthCalledWith(1, 1, ADD_TO_MY_LIST, undefined);
 });
 
-it(`Button remove from my list are clickable`, ()=>{
+it(`Button remove from my list are clickable`, () => {
 
   const onMyListClick = jest.fn();
 

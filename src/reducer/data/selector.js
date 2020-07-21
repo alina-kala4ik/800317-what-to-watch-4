@@ -44,7 +44,7 @@ const getFlagCommentSendingError = (state) => {
 
 const getFilmById = createSelector(
     getFilms,
-    (state, id)=>id,
+    (state, id) => id,
     (films, id) => {
       const filteredFilms = films.filter((film) => film.id === Number(id));
       return filteredFilms[0];
