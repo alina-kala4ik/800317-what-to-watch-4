@@ -130,22 +130,20 @@ const films = [
 describe(`testing app-state reducer`, () => {
   it(`Returns initial state at application start`, () => {
     expect(reducer(undefined, {})).toEqual({
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
       serverStatus: ServerStatus.OK,
     });
   });
 
-  it(`Change genre`, () => {
+  it(`Change active genre`, () => {
     expect(reducer({
-      genre: Genres.ALL,
-      films,
+      activeGenre: Genres.ALL,
     }, {
-      type: ActionTypes.CHANGE_GENRE,
+      type: ActionTypes.CHANGE_ACTIVE_GENRE,
       payload: Genres.CRIME
     })).toEqual({
-      genre: Genres.CRIME,
-      films,
+      activeGenre: Genres.CRIME,
     });
   });
 
@@ -187,8 +185,8 @@ describe(`testing app-state reducer`, () => {
 
 describe(`Action creators in app-state work correctly`, () => {
   it(`Action creators change genre`, () => {
-    expect(ActionCreator.changeGenre(Genres.COMEDIES)).toEqual({
-      type: ActionTypes.CHANGE_GENRE,
+    expect(ActionCreator.changeActiveGenre(Genres.COMEDIES)).toEqual({
+      type: ActionTypes.CHANGE_ACTIVE_GENRE,
       payload: Genres.COMEDIES,
     });
   });

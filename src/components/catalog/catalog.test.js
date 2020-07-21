@@ -309,12 +309,11 @@ it(`render Catalog without button`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       countDisplayedFilms: 8,
-      genre: Genres.ALL
+      activeGenre: Genres.ALL
     },
     [NameSpace.DATA]: {
       films: countFilms8,
       allFilms: countFilms8,
-      genreForFilter: Genres.ALL,
     }
   });
 
@@ -325,6 +324,7 @@ it(`render Catalog without button`, () => {
             countFilms={8}
             onShowMoreClick={() => {}}
             isButtonDisplayed={false}
+            genre={Genres.ALL}
           />
         </Router>
       </Provider>, {
@@ -341,12 +341,11 @@ it(`render Catalog with button`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       countDisplayedFilms: 8,
-      genre: Genres.ALL
+      activeGenre: Genres.ALL
     },
     [NameSpace.DATA]: {
       films: countFilms9,
       allFilms: countFilms9,
-      genreForFilter: Genres.ALL
     }
   });
 
@@ -357,6 +356,7 @@ it(`render Catalog with button`, () => {
             countFilms={8}
             onShowMoreClick={() => {}}
             isButtonDisplayed={true}
+            genre={Genres.ALL}
           />
         </Router>
       </Provider>, {

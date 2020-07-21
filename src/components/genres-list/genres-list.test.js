@@ -125,7 +125,7 @@ it(`render GenresList`, () => {
           genre={Genres.ALL}
           onClick={() => {}}
           films={films}
-          onLoad={() => {}}
+          onReset={() => {}}
         />)
     .toJSON();
   expect(tree).toMatchSnapshot();

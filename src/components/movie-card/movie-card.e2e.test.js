@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {MovieCard} from "./movie-card.jsx";
+import MovieCard from "./movie-card.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -35,7 +35,6 @@ it(`testing MouseEnter`, () => {
         isPlaying={false}
         onMouseEnter={onMouseEnter}
         onMouseLeave={() => {}}
-        setGenreForFilter={() => {}}
       />
   );
 
@@ -55,7 +54,6 @@ it(`testing MouseLeave`, () => {
         isPlaying={false}
         onMouseEnter={() => {}}
         onMouseLeave={onMouseLeave}
-        setGenreForFilter={() => {}}
       />
   );
 
@@ -65,40 +63,3 @@ it(`testing MouseLeave`, () => {
   expect(onMouseLeave).toHaveBeenCalledTimes(1);
 });
 
-it(`Film title click`, () => {
-
-  const setGenreForFilter = jest.fn();
-
-  const movieCard = shallow(
-      <MovieCard
-        film={film}
-        isPlaying={false}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
-        setGenreForFilter={setGenreForFilter}
-      />
-  );
-
-  movieCard.find(`.small-movie-card__link`).simulate(`click`);
-
-  expect(setGenreForFilter).toHaveBeenCalledTimes(1);
-});
-
-it(`Film image click`, () => {
-
-  const setGenreForFilter = jest.fn();
-
-  const movieCard = shallow(
-      <MovieCard
-        film={film}
-        isPlaying={false}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
-        setGenreForFilter={setGenreForFilter}
-      />
-  );
-
-  movieCard.find(`.small-movie-card__image`).simulate(`click`);
-
-  expect(setGenreForFilter).toHaveBeenCalledTimes(1);
-});

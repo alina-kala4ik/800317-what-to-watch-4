@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {MovieCard} from "./movie-card.jsx";
+import MovieCard from "./movie-card.jsx";
 import {Router} from "react-router-dom";
 import history from "./../../history.js";
 
@@ -29,7 +29,6 @@ it(`render MoveCard`, () => {
           isPlaying={false}
           onMouseEnter={() => {}}
           onMouseLeave={() => {}}
-          setGenreForFilter={() => {}}
         />
       </Router>, {
         createNodeMock: () => {

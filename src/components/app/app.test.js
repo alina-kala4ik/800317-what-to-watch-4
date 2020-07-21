@@ -160,7 +160,7 @@ const mockStore = configureStore([]);
 it(`render App without server error`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
       serverStatus: ServerStatus.OK,
     },
@@ -170,7 +170,6 @@ it(`render App without server error`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -200,7 +199,7 @@ it(`render App without server error`, () => {
 it(`render App with server error`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
       serverStatus: ServerStatus.ERROR,
     },
@@ -210,7 +209,6 @@ it(`render App with server error`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -240,7 +238,7 @@ it(`render App with server error`, () => {
 it(`render App when films null`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
       serverStatus: ServerStatus.OK,
     },
@@ -250,7 +248,6 @@ it(`render App when films null`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -280,7 +277,7 @@ it(`render App when films null`, () => {
 it(`render App when promoFilm null`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
       serverStatus: ServerStatus.OK,
     },
@@ -290,7 +287,6 @@ it(`render App when promoFilm null`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,

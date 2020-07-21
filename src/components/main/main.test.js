@@ -162,14 +162,13 @@ const mockStore = configureStore([]);
 it(`render Main`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
     },
     [NameSpace.DATA]: {
       films,
       promoFilm: films[0],
       allFilms: films,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,

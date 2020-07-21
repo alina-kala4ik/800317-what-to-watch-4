@@ -144,12 +144,11 @@ const mockStore = configureStore([]);
 it(`render MovieList`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
     },
     [NameSpace.DATA]: {
       films,
       allFilms: films,
-      genreForFilter: Genres.ALL
     }
   });
 
@@ -160,6 +159,7 @@ it(`render MovieList`, () => {
             <MovieList
               films={films}
               countFilms={8}
+              genre={Genres.ALL}
             />
           </Router>
         </Provider>, {
