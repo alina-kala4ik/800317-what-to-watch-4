@@ -38,7 +38,7 @@ const MoviePage = (props) => {
         <h1 className="visually-hidden">WTW</h1>
 
         <Header
-          uniqueClasses={`movie-card__head`}
+          uniqueClasses="movie-card__head"
           isActiveLogoLink
         />
 

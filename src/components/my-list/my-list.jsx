@@ -20,7 +20,7 @@ class MyList extends PureComponent {
     return <div className="user-page">
       <Header
         isActiveLogoLink={true}
-        uniqueClasses={`user-page__head`}
+        uniqueClasses="user-page__head"
       >
         <h1 className="page-title user-page__title">My list</h1>
       </Header>

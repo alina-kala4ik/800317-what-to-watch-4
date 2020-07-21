@@ -56,7 +56,7 @@ it(`render Header with active logo and unique classes from header`, () => {
           authorizationStatus={AuthorizationStatus.NO_AUTH}
           avatar={``}
           isActiveLogoLink={true}
-          uniqueClasses={`uniqueClasses`}
+          uniqueClasses="uniqueClasses"
         >
           <div></div>
         </Header>
