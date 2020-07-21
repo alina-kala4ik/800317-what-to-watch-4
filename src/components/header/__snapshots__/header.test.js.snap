@@ -2,7 +2,7 @@
 
 exports[`render Header when user authorized 1`] = `
 <header
-  className="page-header undefined"
+  className="page-header "
 >
   <div
     className="logo"
@@ -48,7 +48,7 @@ exports[`render Header when user authorized 1`] = `
 
 exports[`render Header when user unauthorized 1`] = `
 <header
-  className="page-header undefined"
+  className="page-header "
 >
   <div
     className="logo"
@@ -133,7 +133,7 @@ exports[`render Header with active logo and unique classes from header 1`] = `
 
 exports[`render Header with children 1`] = `
 <header
-  className="page-header undefined"
+  className="page-header "
 >
   <div
     className="logo"

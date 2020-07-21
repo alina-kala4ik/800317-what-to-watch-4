@@ -7,7 +7,7 @@ import {AuthorizationStatus} from "./../../reducer/user/user.js";
 import PropTypes from "prop-types";
 
 const Header = (props) => {
-  const {authorizationStatus, avatar, children, uniqueClasses, isActiveLogoLink} = props;
+  const {authorizationStatus, avatar, children, uniqueClasses = ``, isActiveLogoLink} = props;
 
   const logo = <React.Fragment>
     <span className="logo__letter logo__letter--1">W</span>
