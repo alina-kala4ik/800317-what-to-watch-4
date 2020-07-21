@@ -46,8 +46,7 @@ const getFilmById = createSelector(
     getFilms,
     (state, id) => id,
     (films, id) => {
-      const filteredFilms = films.filter((film) => film.id === Number(id));
-      return filteredFilms[0];
+      return films.find((film) => film.id === Number(id));
     }
 );
 
