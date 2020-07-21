@@ -5,8 +5,6 @@ import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data";
 import PropTypes from "prop-types";
 
-const UNIQUE_CLASSES_FROM_HEADER = `user-page__head`;
-
 class MyList extends PureComponent {
   constructor(props) {
     super(props);
@@ -19,7 +17,7 @@ class MyList extends PureComponent {
     return <div className="user-page">
       <Header
         isActiveLogoLink={true}
-        uniqueClasses={UNIQUE_CLASSES_FROM_HEADER}
+        uniqueClasses={`user-page__head`}
       >
         <h1 className="page-title user-page__title">My list</h1>
       </Header>

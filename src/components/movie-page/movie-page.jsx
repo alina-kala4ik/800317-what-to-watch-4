@@ -11,7 +11,6 @@ import Header from "./../header/header.jsx";
 import MyListButton from "../my-list-button/my-list-button.jsx";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
-const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
 
 const MoviePage = (props) => {
   const {film} = props;
@@ -37,7 +36,7 @@ const MoviePage = (props) => {
         <h1 className="visually-hidden">WTW</h1>
 
         <Header
-          uniqueClasses={UNIQUE_CLASSES_FROM_HEADER}
+          uniqueClasses={`movie-card__head`}
           isActiveLogoLink
         />
 

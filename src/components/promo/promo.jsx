@@ -7,8 +7,6 @@ import {Link} from "react-router-dom";
 import MyListButton from "../my-list-button/my-list-button.jsx";
 import {Pages} from "../../utils.js";
 
-const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
-
 class Promo extends PureComponent {
   constructor(props) {
     super(props);
@@ -26,7 +24,7 @@ class Promo extends PureComponent {
       <h1 className="visually-hidden">WTW</h1>
 
       <Header
-        uniqueClasses={UNIQUE_CLASSES_FROM_HEADER}
+        uniqueClasses={`movie-card__head`}
         isActiveLogoLink={false}
       />
 
