@@ -32,7 +32,7 @@ class MovieCard extends PureComponent {
       <Link
         className="small-movie-card__image"
         onClick={this.handleImgOrTitleClick}
-        to={Pages.FILM.replace(`:id?`, id)}
+        to={Pages.FILM.replace(`:id`, id)}
       >
         <VideoPlayer
           src={previewVideoLink}
@@ -42,7 +42,7 @@ class MovieCard extends PureComponent {
       </Link>
       <h3 className="small-movie-card__title">
         <Link
-          to={Pages.FILM.replace(`:id?`, id)}
+          to={Pages.FILM.replace(`:id`, id)}
           onClick={this.handleImgOrTitleClick}
           className="small-movie-card__link"
         >

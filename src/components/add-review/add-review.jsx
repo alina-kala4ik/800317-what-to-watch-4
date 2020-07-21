@@ -75,7 +75,7 @@ class AddReview extends PureComponent {
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <Link
-                  to={Pages.FILM.replace(`:id?`, id)}
+                  to={Pages.FILM.replace(`:id`, id)}
                   className="breadcrumbs__link"
                 >
                   {title}
