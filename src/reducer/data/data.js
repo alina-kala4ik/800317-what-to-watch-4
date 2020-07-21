@@ -82,12 +82,12 @@ const Operation = {
         dispatch(ActionCreator.changeFlagCommentSendingError(true));
       });
   },
-  changeFlagIsFavorite: (filmId, status, isProvoFilms)=>(dispatch, getState, api)=>{
+  changeFlagIsFavorite: (filmId, status, isPromoFilm)=>(dispatch, getState, api)=>{
     return api.post(`/favorite/${filmId}/${status}`)
       .then((response)=>{
         const film = adapter(response.data);
 
-        if (isProvoFilms) {
+        if (isPromoFilm) {
           dispatch(ActionCreator.loadPromoFilm(film));
         } else {
           dispatch(ActionCreator.updateFilm(film));
