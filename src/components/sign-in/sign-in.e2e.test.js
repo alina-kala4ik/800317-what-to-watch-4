@@ -7,7 +7,7 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`Button SignIn are clickable`, ()=>{
+it(`Button SignIn are clickable`, () => {
   const onSignInClick = jest.fn();
   const prevDefaultFn = jest.fn();
 
@@ -15,7 +15,7 @@ it(`Button SignIn are clickable`, ()=>{
       <SignIn
         onSignInClick={onSignInClick}
       />, {
-        createNodeMock: ()=>{
+        createNodeMock: () => {
           return {};
         }
       }

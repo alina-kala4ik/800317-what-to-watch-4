@@ -6,7 +6,7 @@ import MoviePage from "./../movie-page/movie-page.jsx";
 import MovieViewingPage from "./../movie-viewing-page/movie-viewing-page.jsx";
 import {connect} from "react-redux";
 import withPlayer from "./../../hocs/with-player/with-player.jsx";
-import {getPlayableMovie, gerServerStatus} from "./../../reducer/app-state/selector.js";
+import {gerServerStatus} from "./../../reducer/app-state/selector.js";
 import {ServerStatus} from "./../../reducer/app-state/app-state.js";
 import {getIsFilmsFetching, getIsPromoFilmFetching, getFilms, getPromoFilm} from "./../../reducer/data/selector.js";
 import SignIn from "./../sign-in/sign-in.jsx";
@@ -14,6 +14,9 @@ import {Pages} from "./../../utils.js";
 import history from "./../../history.js";
 import {getAuthorizationStatus} from "./../../reducer/user/selector.js";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
+import AddReview from "./../add-review/add-review.jsx";
+import MyList from "./../my-list/my-list.jsx";
+import PrivateRoute from "./../private-route/private-route.jsx";
 
 const MovieViewingPageWrapped = withPlayer(MovieViewingPage);
 
@@ -21,17 +24,12 @@ class App extends PureComponent {
 
   _renderApp() {
     const {
-      activeItem: activeFilm,
-      setActiveItem: onFilmOrImgClick,
-      playableMovie,
       films,
       promoFilm,
       serverStatus,
       isFilmsFetching,
       isPromoFilmFetching,
     } = this.props;
-
-    const modal = playableMovie ? (<MovieViewingPageWrapped film={playableMovie}/>) : null;
 
     const isFetching = (isFilmsFetching && isPromoFilmFetching);
 
@@ -47,29 +45,12 @@ class App extends PureComponent {
       return <div style={{backgroundColor: `red`}}>Сервер не доступен</div>;
     }
 
-    if (activeFilm === false) {
-      return <React.Fragment>
-        {modal}
-        <Main
-          onFilmTitleClick={onFilmOrImgClick}
-          onFilmImgClick={onFilmOrImgClick}
-        />
-      </React.Fragment>;
-    }
-
-    return <React.Fragment>
-      {modal}
-      <MoviePage
-        film={activeFilm}
-        onFilmTitleClick={onFilmOrImgClick}
-        onFilmImgClick={onFilmOrImgClick}
-      />
-    </React.Fragment>;
+    return <Main />;
 
   }
 
   render() {
-    const {authorizationStatus, setActiveItem: onFilmOrImgClick} = this.props;
+    const {authorizationStatus} = this.props;
 
     return <Router history={history}>
       <Switch>
@@ -79,19 +60,42 @@ class App extends PureComponent {
         <Route
           exact
           path={Pages.LOGIN}
-          render={()=>{
+          render={() => {
             return authorizationStatus === AuthorizationStatus.NO_AUTH ?
               <SignIn /> :
-              <Redirect to={
-                <Main
-                  onFilmTitleClick={onFilmOrImgClick}
-                  onFilmImgClick={onFilmOrImgClick}
-                />
-              } />;
+              <Redirect to={Pages.ROOT} />;
           }}
         />
-        <Route exact path={Pages.MY_LIST}>
-          <div>WIP</div>
+        <PrivateRoute
+          exact
+          path={Pages.MY_LIST}
+          render={() => {
+            return <MyList />;
+          }}
+        />
+        <PrivateRoute
+          exact
+          path={Pages.REVIEW}
+          render={(props) => {
+            return <AddReview historyProps={props} />;
+          }}
+        />
+        <Route
+          exact
+          path={Pages.PLAYER}
+          render={(props) => {
+            return <MovieViewingPageWrapped historyProps={props} />;
+          }}
+        />
+        <Route
+          exact
+          path={Pages.FILM}
+          render={(props) => {
+            return <MoviePage historyProps={props} />;
+          }}
+        />
+        <Route>
+          <div>404 not found</div>
         </Route>
       </Switch>
     </Router>;
@@ -99,12 +103,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  activeItem: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.object,
-  ]).isRequired,
-  setActiveItem: PropTypes.func.isRequired,
-  playableMovie: PropTypes.object,
   serverStatus: PropTypes.string.isRequired,
   isFilmsFetching: PropTypes.bool.isRequired,
   isPromoFilmFetching: PropTypes.bool.isRequired,
@@ -114,7 +112,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  playableMovie: getPlayableMovie(state),
   serverStatus: gerServerStatus(state),
   isFilmsFetching: getIsFilmsFetching(state),
   isPromoFilmFetching: getIsPromoFilmFetching(state),

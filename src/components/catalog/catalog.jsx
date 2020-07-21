@@ -3,19 +3,20 @@ import PropTypes from "prop-types";
 import MovieList from "./../movie-list/movie-list.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
-import {getCountDisplayedFilms} from "./../../reducer/app-state/selector.js";
+import {getCountDisplayedFilms, getActiveGenre} from "./../../reducer/app-state/selector.js";
 import {getFilteredFilms} from "./../../reducer/data/selector.js";
+import withFilteredFilms from "./../../hocs/with-filtered-films/with-filtered-films.jsx";
 
+const MovieListWrapped = withFilteredFilms(MovieList);
 
 const Catalog = (props) => {
-  const {onFilmTitleClick, onFilmImgClick, countFilms, onShowMoreClick, isButtonDisplayed} = props;
+  const {countFilms, onShowMoreClick, isButtonDisplayed, genre} = props;
 
   return <React.Fragment>
     <div className="catalog__movies-list">
-      {<MovieList
-        onFilmTitleClick={onFilmTitleClick}
-        onFilmImgClick={onFilmImgClick}
+      {<MovieListWrapped
         countFilms={countFilms}
+        genre={genre}
       />}
     </div>
 
@@ -34,22 +35,23 @@ const Catalog = (props) => {
 };
 
 Catalog.propTypes = {
-  onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmImgClick: PropTypes.func.isRequired,
   countFilms: PropTypes.number.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
   isButtonDisplayed: PropTypes.bool.isRequired,
+  genre: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => {
+  const genre = getActiveGenre(state);
   const countDisplayedFilms = getCountDisplayedFilms(state);
-  const films = getFilteredFilms(state);
+  const films = getFilteredFilms(state, genre);
 
   const isButtonDisplayed = films.length > countDisplayedFilms ? true : false;
 
   return {
     isButtonDisplayed,
-    countFilms: countDisplayedFilms
+    countFilms: countDisplayedFilms,
+    genre,
   };
 };
 

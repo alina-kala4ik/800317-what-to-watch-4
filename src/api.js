@@ -12,7 +12,7 @@ const createAPI = (onNotFound, onUnauthorized) => {
     withCredentials: true,
   });
 
-  const onSuccess = (response) =>{
+  const onSuccess = (response) => {
     return response;
   };
 

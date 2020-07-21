@@ -3,17 +3,27 @@ import PropTypes from 'prop-types';
 import MovieList from "./../movie-list/movie-list.jsx";
 import AboutFilm from "./../about-film/about-film.jsx";
 import withActiveItem from "./../../hocs/with-active-item/with-active-item.jsx";
-import {Tabs} from "./../../utils.js";
+import {Tabs, Pages} from "./../../utils.js";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer/app-state/app-state.js";
+import {getFilmById} from "./../../reducer/data/selector.js";
+import {Link} from "react-router-dom";
+import Header from "./../header/header.jsx";
+import MyListButton from "../my-list-button/my-list-button.jsx";
+import withFilteredFilms from "./../../hocs/with-filtered-films/with-filtered-films.jsx";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
-
-const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
+const MovieListWrapped = withFilteredFilms(MovieList);
 
 const MoviePage = (props) => {
-  const {film, onFilmTitleClick, onFilmImgClick, onPlayClick} = props;
-  const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor} = film;
+  const {film} = props;
+
+  if (!film) {
+    return null;
+  }
+
+  const {title, posterSrc, movieCoverSrc, genre, yearRelease, backgroundColor, id, isFavorite} = film;
+
+  const AboutFilmWrapped = withActiveItem(AboutFilm, Tabs.OVERVIEW);
 
   return <React.Fragment>
     <section
@@ -27,21 +37,10 @@ const MoviePage = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <Header
+          uniqueClasses="movie-card__head"
+          isActiveLogoLink
+        />
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
@@ -52,25 +51,26 @@ const MoviePage = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button
+              <Link
                 className="btn btn--play movie-card__button"
                 type="button"
-                onClick={()=>{
-                  onPlayClick(film);
-                }}
+                to={Pages.PLAYER.replace(`:id`, id)}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              </Link>
+              <MyListButton
+                id={id}
+                isFavorite={isFavorite}
+              />
+              <Link
+                to={Pages.REVIEW.replace(`:id`, id)}
+                className="btn movie-card__button"
+              >
+                Add review
+              </Link>
             </div>
           </div>
         </div>
@@ -93,10 +93,9 @@ const MoviePage = (props) => {
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__movies-list">
-          <MovieList
-            onFilmTitleClick={onFilmTitleClick}
-            onFilmImgClick={onFilmImgClick}
+          <MovieListWrapped
             countFilms={DISPLAYED_NUMBER_OF_FILMS}
+            genre={genre}
           />
         </div>
       </section>
@@ -127,18 +126,21 @@ MoviePage.propTypes = {
     genre: PropTypes.string.isRequired,
     yearRelease: PropTypes.number.isRequired,
     backgroundColor: PropTypes.string.isRequired,
-  }).isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmImgClick: PropTypes.func.isRequired,
-  onPlayClick: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }),
+  historyProps: PropTypes.object.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onPlayClick(film) {
-    dispatch(ActionCreator.chooseMovieToWatch(film));
-  }
-});
+const mapStateToProps = (state, props) => {
+  const {historyProps} = props;
+  const id = historyProps.match.params.id;
+
+  return {
+    film: getFilmById(state, id)
+  };
+};
 
 export {MoviePage};
-export default connect(null, mapDispatchToProps)(MoviePage);
+export default connect(mapStateToProps)(MoviePage);
 

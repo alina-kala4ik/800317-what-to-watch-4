@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {MovieCard} from "./movie-card.jsx";
+import MovieCard from "./movie-card.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -21,20 +21,20 @@ const film = {
   actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  id: 1,
 };
 
-it(`testing MouseEnter`, ()=>{
+it(`testing MouseEnter`, () => {
   const onMouseEnter = jest.fn();
 
   const movieCard = shallow(
       <MovieCard
         film={film}
-        onFilmTitleClick={()=>{}}
-        onFilmImgClick={()=>{}}
+        onFilmTitleClick={() => {}}
+        onFilmImgClick={() => {}}
         isPlaying={false}
         onMouseEnter={onMouseEnter}
-        onMouseLeave={()=>{}}
-        setGenreForFilter={()=>{}}
+        onMouseLeave={() => {}}
       />
   );
 
@@ -45,18 +45,15 @@ it(`testing MouseEnter`, ()=>{
   expect(onMouseEnter).toHaveBeenCalledTimes(1);
 });
 
-it(`testing MouseLeave`, ()=>{
+it(`testing MouseLeave`, () => {
   const onMouseLeave = jest.fn();
 
   const movieCard = shallow(
       <MovieCard
         film={film}
-        onFilmTitleClick={()=>{}}
-        onFilmImgClick={()=>{}}
         isPlaying={false}
-        onMouseEnter={()=>{}}
+        onMouseEnter={() => {}}
         onMouseLeave={onMouseLeave}
-        setGenreForFilter={()=>{}}
       />
   );
 
@@ -65,3 +62,4 @@ it(`testing MouseLeave`, ()=>{
 
   expect(onMouseLeave).toHaveBeenCalledTimes(1);
 });
+

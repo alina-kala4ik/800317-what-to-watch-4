@@ -1,19 +1,12 @@
 import React from "react";
-import Enzyme, {mount} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import Main from "./main.jsx";
+import renderer from "react-test-renderer";
+import {MyList} from "./my-list.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import {Genres} from "./../../utils.js";
 import {NameSpace} from "./../../reducer/name-space.js";
-import {AuthorizationStatus} from "./../../reducer/user/user.js";
-import history from "./../../history.js";
 import {Router} from "react-router-dom";
-
-Enzyme.configure({
-  adapter: new Adapter()
-});
-
+import history from "./../../history.js";
+import {AuthorizationStatus} from "./../../reducer/user/user.js";
 
 const films = [
   {
@@ -29,9 +22,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    isFavorite: false,
     id: 1,
   },
   {
@@ -47,9 +38,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    isFavorite: false,
     id: 2,
   },
   {
@@ -65,9 +54,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    isFavorite: false,
     id: 3,
   },
   {
@@ -83,9 +70,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    isFavorite: false,
     id: 4,
   },
   {
@@ -101,9 +86,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    isFavorite: false,
     id: 5,
   },
   {
@@ -119,9 +102,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    isFavorite: false,
     id: 6,
   },
   {
@@ -137,9 +118,7 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    isFavorite: false,
     id: 7,
   },
   {
@@ -155,25 +134,16 @@ const films = [
     producer: `Wes Andreson`,
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    runTime: 99,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    isFavorite: false,
     id: 8,
   },
 ];
 
 const mockStore = configureStore([]);
+
 const store = mockStore({
-  [NameSpace.APP_STATE]: {
-    genre: Genres.ALL,
-    countDisplayedFilms: 8,
-    playableMovie: null,
-  },
   [NameSpace.DATA]: {
-    films,
-    promoFilm: films[0],
-    allFilms: films,
-    genreForFilter: Genres.ALL
+    favoriteFilms: films
   },
   [NameSpace.USER]: {
     authorizationStatus: AuthorizationStatus.AUTH,
@@ -181,88 +151,22 @@ const store = mockStore({
   }
 });
 
-it(`Film title click`, () => {
 
-  const onFilmTitleClick = jest.fn();
-
-  const main = mount(
-      <Router history={history}>
-        <Provider store={store}>
-          <Main
-            films={films}
-            onFilmTitleClick={onFilmTitleClick}
-            onFilmImgClick={()=>{}}
+it(`render MyList`, () => {
+  const tree = renderer.create(
+      <Provider store={store}>
+        <Router history={history}>
+          <MyList
+            onLoad={() => {}}
           />
-        </Provider>
-      </Router>
-  );
+        </Router>
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
+  ).toJSON();
 
-  const filmTitles = main.find(`a.small-movie-card__link`);
-
-  filmTitles.forEach((title) =>
-    title.simulate(`click`)
-  );
-
-  expect(onFilmTitleClick).toHaveBeenCalledTimes(8);
+  expect(tree).toMatchSnapshot();
 });
 
-it(`Film image click`, () => {
-
-  const onFilmImgClick = jest.fn();
-
-  const main = mount(
-      <Router history={history}>
-        <Provider store={store}>
-          <Main
-            films={films}
-            onFilmTitleClick={()=>{}}
-            onFilmImgClick={onFilmImgClick}
-          />
-        </Provider>
-      </Router>
-  );
-
-  const filmImg = main.find(`div.small-movie-card__image`);
-
-  filmImg.forEach((img) =>
-    img.simulate(`click`)
-  );
-
-  expect(onFilmImgClick).toHaveBeenCalledTimes(8);
-});
-
-it(`Validates data transmitted through props when clicked on film title`, () => {
-
-  const onFilmTitleClick = jest.fn();
-  const expectedData = {
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    screenshotSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    posterSrc: `img/bg-the-grand-budapest-hotel.jpg`,
-    movieCoverSrc: `img/the-grand-budapest-hotel-poster.jpg`,
-    genre: `Drama`,
-    yearRelease: 2017,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-    rating: 5.6,
-    numberVotes: 278,
-    producer: `Wes Andreson`,
-    actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
-  };
-
-  const main = mount(
-      <Router history={history}>
-        <Provider store={store}>
-          <Main
-            films={films}
-            onFilmTitleClick={onFilmTitleClick}
-            onFilmImgClick={()=>{}}
-          />
-        </Provider>
-      </Router>
-  );
-
-  const filmOneTitles = main.find(`a.small-movie-card__link`).at(0);
-
-  filmOneTitles.simulate(`click`);
-
-  expect(onFilmTitleClick.mock.calls[0][0]).toMatchObject(expectedData);
-});

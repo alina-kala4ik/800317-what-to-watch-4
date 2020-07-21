@@ -10,14 +10,9 @@ const getPromoFilm = (state) => {
   return state[NameSpace.DATA].promoFilm;
 };
 
-
-const getGenreForFilter = (state) => {
-  return state[NameSpace.DATA].genreForFilter;
-};
-
 const getFilteredFilms = createSelector(
     getFilms,
-    getGenreForFilter,
+    (state, genre) => genre,
     (films, genre) => {
       if (genre === Genres.ALL) {
         return films;
@@ -42,5 +37,27 @@ const getFlagCommentSendingError = (state) => {
   return state[NameSpace.DATA].isCommentSendingError;
 };
 
+const getFilmById = createSelector(
+    getFilms,
+    (state, id) => id,
+    (films, id) => {
+      return films.find((film) => film.id === Number(id));
+    }
+);
 
-export {getFilms, getPromoFilm, getFilteredFilms, getIsFilmsFetching, getIsPromoFilmFetching, getFlagCommentPublishing, getFlagCommentSendingError};
+const getFavoriteFilms = (state) => {
+  return state[NameSpace.DATA].favoriteFilms;
+};
+
+
+export {
+  getFilms,
+  getPromoFilm,
+  getFilteredFilms,
+  getIsFilmsFetching,
+  getIsPromoFilmFetching,
+  getFlagCommentPublishing,
+  getFlagCommentSendingError,
+  getFilmById,
+  getFavoriteFilms
+};

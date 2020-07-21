@@ -160,9 +160,8 @@ const mockStore = configureStore([]);
 it(`render App without server error`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {
@@ -171,7 +170,6 @@ it(`render App without server error`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -183,9 +181,6 @@ it(`render App without server error`, () => {
     .create(
         <Provider store={store}>
           <App
-            activeItem={false}
-            setActiveItem={()=>{}}
-            playableMovie={null}
             serverStatus={ServerStatus.OK}
             isFilmsFetching={false}
             isPromoFilmFetching={false}
@@ -193,7 +188,7 @@ it(`render App without server error`, () => {
             promoFilm={films[0]}
           />
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })
@@ -204,9 +199,8 @@ it(`render App without server error`, () => {
 it(`render App with server error`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.ERROR,
     },
     [NameSpace.DATA]: {
@@ -215,7 +209,6 @@ it(`render App with server error`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -227,9 +220,6 @@ it(`render App with server error`, () => {
     .create(
         <Provider store={store}>
           <App
-            activeItem={false}
-            setActiveItem={()=>{}}
-            playableMovie={null}
             serverStatus={ServerStatus.ERROR}
             isFilmsFetching={false}
             isPromoFilmFetching={false}
@@ -237,7 +227,7 @@ it(`render App with server error`, () => {
             promoFilm={films[0]}
           />
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })
@@ -248,9 +238,8 @@ it(`render App with server error`, () => {
 it(`render App when films null`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {
@@ -259,7 +248,6 @@ it(`render App when films null`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -271,9 +259,6 @@ it(`render App when films null`, () => {
     .create(
         <Provider store={store}>
           <App
-            activeItem={false}
-            setActiveItem={()=>{}}
-            playableMovie={null}
             serverStatus={ServerStatus.OK}
             isFilmsFetching={false}
             isPromoFilmFetching={false}
@@ -281,7 +266,7 @@ it(`render App when films null`, () => {
             promoFilm={films[0]}
           />
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })
@@ -292,9 +277,8 @@ it(`render App when films null`, () => {
 it(`render App when promoFilm null`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {
@@ -303,7 +287,6 @@ it(`render App when promoFilm null`, () => {
       allFilms: films,
       isFilmsFetching: false,
       isPromoFilmFetching: false,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -315,9 +298,6 @@ it(`render App when promoFilm null`, () => {
     .create(
         <Provider store={store}>
           <App
-            activeItem={false}
-            setActiveItem={()=>{}}
-            playableMovie={null}
             serverStatus={ServerStatus.OK}
             isFilmsFetching={false}
             isPromoFilmFetching={false}
@@ -325,7 +305,7 @@ it(`render App when promoFilm null`, () => {
             promoFilm={null}
           />
         </Provider>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })

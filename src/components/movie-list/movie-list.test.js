@@ -1,10 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MovieList from "./movie-list.jsx";
-import configureStore from "redux-mock-store";
-import {Genres} from "./../../utils.js";
-import {Provider} from "react-redux";
-import {NameSpace} from "./../../reducer/name-space.js";
+import {Router} from "react-router-dom";
+import history from "./../../history.js";
 
 const films = [
   {
@@ -21,6 +19,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 1,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -36,6 +35,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 2,
   },
   {
     title: `Macbeth`,
@@ -51,6 +51,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 3,
   },
   {
     title: `Aviator`,
@@ -66,6 +67,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 4,
   },
   {
     title: `We need to talk about Kevin`,
@@ -81,6 +83,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 5,
   },
   {
     title: `What We Do in the Shadows`,
@@ -96,6 +99,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 6,
   },
   {
     title: `Revenant`,
@@ -111,6 +115,7 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 7,
   },
   {
     title: `Johnny English`,
@@ -126,34 +131,20 @@ const films = [
     actors: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    id: 8,
   },
 ];
 
-const mockStore = configureStore([]);
-
 it(`render MovieList`, () => {
-  const store = mockStore({
-    [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
-    },
-    [NameSpace.DATA]: {
-      films,
-      allFilms: films,
-      genreForFilter: Genres.ALL
-    }
-  });
 
   const tree = renderer
     .create(
-        <Provider store={store}>
+        <Router history={history}>
           <MovieList
             films={films}
-            onFilmTitleClick={()=>{}}
-            onFilmImgClick={()=>{}}
-            countFilms={8}
           />
-        </Provider>, {
-          createNodeMock: ()=>{
+        </Router>, {
+          createNodeMock: () => {
             return {};
           }
         })

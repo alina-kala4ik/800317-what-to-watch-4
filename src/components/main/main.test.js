@@ -162,15 +162,13 @@ const mockStore = configureStore([]);
 it(`render Main`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      genre: Genres.ALL,
+      activeGenre: Genres.ALL,
       countDisplayedFilms: 8,
-      playableMovie: null,
     },
     [NameSpace.DATA]: {
       films,
       promoFilm: films[0],
       allFilms: films,
-      genreForFilter: Genres.ALL
     },
     [NameSpace.USER]: {
       authorizationStatus: AuthorizationStatus.AUTH,
@@ -182,14 +180,10 @@ it(`render Main`, () => {
     .create(
         <Router history={history}>
           <Provider store={store}>
-            <Main
-              films={films}
-              onFilmTitleClick={()=>{}}
-              onFilmImgClick={()=>{}}
-            />
+            <Main />
           </Provider>
         </Router>, {
-          createNodeMock: ()=>{
+          createNodeMock: () => {
             return {};
           }
         })

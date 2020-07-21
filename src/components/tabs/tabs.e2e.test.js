@@ -23,7 +23,7 @@ it(`All Tabs are clickable width PreventDefault`, () => {
 
   const TabsLinks = tabs.find(`a.movie-nav__link`);
 
-  TabsLinks.forEach((tab)=>{
+  TabsLinks.forEach((tab) => {
     tab.simulate(`click`, {
       preventDefault: tabPreventDefault
     });
@@ -34,7 +34,7 @@ it(`All Tabs are clickable width PreventDefault`, () => {
 });
 
 
-it(`When you click on the tab, the expected information is transmitted`, ()=>{
+it(`When you click on the tab, the expected information is transmitted`, () => {
   const onTabClick = jest.fn();
   const expectedAnswer = `Overview`;
 

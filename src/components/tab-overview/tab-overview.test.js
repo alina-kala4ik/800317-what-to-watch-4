@@ -18,7 +18,7 @@ const film = {
   videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
-it(`render TabOverview`, ()=>{
+it(`render TabOverview`, () => {
   const tree = renderer.create(
       <TabOverview film={film}/>
   ).toJSON();

@@ -9,6 +9,7 @@ const AuthorizationStatus = {
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   avatar: null,
+  isFetchingAuthStatus: true,
 };
 
 
@@ -18,11 +19,11 @@ const ActionTypes = {
 };
 
 const ActionCreator = {
-  requiredAuthorization: (status)=>({
+  requiredAuthorization: (status) => ({
     type: ActionTypes.REQUIRED_AUTHORIZATION,
     payload: status,
   }),
-  addAvatar: (url)=>({
+  addAvatar: (url) => ({
     type: ActionTypes.ADD_AVATAR,
     payload: url
   }),
@@ -32,7 +33,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.REQUIRED_AUTHORIZATION:
       return extend(state, {
-        authorizationStatus: action.payload
+        authorizationStatus: action.payload,
+        isFetchingAuthStatus: false
       });
     case ActionTypes.ADD_AVATAR:
       return extend(state, {
@@ -45,10 +47,10 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(()=>{
+      .then(() => {
         dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
       })
-      .catch((err)=>{
+      .catch((err) => {
         throw err;
       });
   },
@@ -58,14 +60,14 @@ const Operation = {
       email: authData.email,
       password: authData.password
     })
-      .then((response)=>{
+      .then((response) => {
         const {avatar_url: avatarUrl} = response.data;
 
         dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.addAvatar(avatarUrl));
         history.goBack();
       })
-      .catch((err)=>{
+      .catch((err) => {
         throw err;
       });
   }

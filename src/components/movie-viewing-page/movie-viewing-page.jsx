@@ -1,31 +1,23 @@
 import React, {Component, createRef} from "react";
-import ReactDOM from "react-dom";
-import {ActionCreator} from "./../../reducer/app-state/app-state.js";
-import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import history from "./../../history.js";
 
 class MovieViewingPage extends Component {
   constructor(props) {
     super(props);
-    this.element = document.createElement(`div`);
-    this.modalRoot = document.getElementById(`modal-root`);
 
     this.playerRef = createRef();
 
     this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
   }
 
-  componentDidMount() {
-    this.modalRoot.appendChild(this.element);
-  }
-
-  componentWillUnmount() {
-    this.modalRoot.removeChild(this.element);
-  }
-
   handleFullScreenClick() {
     const {onFullScreenClick} = this.props;
     onFullScreenClick();
+  }
+
+  handleExitClick() {
+    history.goBack();
   }
 
   componentDidUpdate(prevProps) {
@@ -42,9 +34,9 @@ class MovieViewingPage extends Component {
   }
 
   render() {
-    const {onExitClick, isPlaying, progress, timeLeft, children, onPlayClick, onPauseClick} = this.props;
+    const {isPlaying, progress, timeLeft, children, onPlayClick, onPauseClick} = this.props;
 
-    return ReactDOM.createPortal(<div
+    return <div
       className="player"
       ref={this.playerRef}
     >
@@ -53,7 +45,7 @@ class MovieViewingPage extends Component {
       <button
         type="button"
         className="player__exit"
-        onClick={onExitClick}
+        onClick={this.handleExitClick}
       >
         Exit
       </button>
@@ -111,13 +103,11 @@ class MovieViewingPage extends Component {
         </div>
       </div>
 
-    </div>,
-    this.element);
+    </div>;
   }
 }
 
 MovieViewingPage.propTypes = {
-  onExitClick: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   progress: PropTypes.number.isRequired,
   timeLeft: PropTypes.string,
@@ -128,13 +118,5 @@ MovieViewingPage.propTypes = {
   isFullScreenMode: PropTypes.bool.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onExitClick() {
-    dispatch(ActionCreator.chooseMovieToWatch(null));
-  }
-});
-
-export {MovieViewingPage};
-export default connect(null, mapDispatchToProps)(MovieViewingPage);
-
+export default MovieViewingPage;
 
