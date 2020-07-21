@@ -68,9 +68,7 @@ class AddReview extends PureComponent {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header
-          isActiveLogoLink={true}
-        >
+        <Header isActiveLogoLink>
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">

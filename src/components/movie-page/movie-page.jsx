@@ -38,7 +38,7 @@ const MoviePage = (props) => {
 
         <Header
           uniqueClasses={UNIQUE_CLASSES_FROM_HEADER}
-          isActiveLogoLink={true}
+          isActiveLogoLink
         />
 
         <div className="movie-card__wrap">
