@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MovieList from "./movie-list.jsx";
-import {Genres} from "./../../utils.js";
 import {Router} from "react-router-dom";
 import history from "./../../history.js";
 
