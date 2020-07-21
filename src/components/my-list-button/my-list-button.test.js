@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {ButtonMyList} from "./button-my-list.jsx";
+import {MyListButton} from "./my-list-button.jsx";
 
-it(`render favorite ButtonMyList`, () => {
+it(`render favorite MyListButton`, () => {
   const tree = renderer.create(
-      <ButtonMyList
+      <MyListButton
         isFavorite={true}
         id={1}
         onMyListClick={() => {}}
@@ -14,9 +14,9 @@ it(`render favorite ButtonMyList`, () => {
   expect(tree).toMatchSnapshot();
 });
 
-it(`render unfavored ButtonMyList`, () => {
+it(`render unfavored MyListButton`, () => {
   const tree = renderer.create(
-      <ButtonMyList
+      <MyListButton
         isFavorite={false}
         id={1}
         onMyListClick={() => {}}

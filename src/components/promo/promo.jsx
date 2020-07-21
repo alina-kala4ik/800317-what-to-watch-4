@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {getPromoFilm} from "./../../reducer/data/selector.js";
 import Header from "./../header/header.jsx";
 import {Link} from "react-router-dom";
-import ButtonMyList from "../button-my-list/button-my-list.jsx";
+import MyListButton from "../my-list-button/my-list-button.jsx";
 import {Pages} from "../../utils.js";
 
 const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
@@ -54,7 +54,7 @@ class Promo extends PureComponent {
                 </svg>
                 <span>Play</span>
               </Link>
-              <ButtonMyList
+              <MyListButton
                 id={id}
                 isFavorite={isFavorite}
                 isPromoFilm={true}

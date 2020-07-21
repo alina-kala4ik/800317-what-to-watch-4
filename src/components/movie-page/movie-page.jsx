@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import {getFilmById} from "./../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import Header from "./../header/header.jsx";
-import ButtonMyList from "../button-my-list/button-my-list.jsx";
+import MyListButton from "../my-list-button/my-list-button.jsx";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 const UNIQUE_CLASSES_FROM_HEADER = `movie-card__head`;
@@ -60,7 +60,7 @@ const MoviePage = (props) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              <ButtonMyList
+              <MyListButton
                 id={id}
                 isFavorite={isFavorite}
               />

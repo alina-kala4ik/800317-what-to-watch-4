@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const REMOVE_FROM_MY_LIST = 0;
 const ADD_TO_MY_LIST = 1;
 
-class ButtonMyList extends PureComponent {
+class MyListButton extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -39,7 +39,7 @@ class ButtonMyList extends PureComponent {
   }
 }
 
-ButtonMyList.propTypes = {
+MyListButton.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   id: PropTypes.number.isRequired,
   onMyListClick: PropTypes.func.isRequired,
@@ -52,5 +52,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export {ButtonMyList};
-export default connect(null, mapDispatchToProps)(ButtonMyList);
+export {MyListButton};
+export default connect(null, mapDispatchToProps)(MyListButton);
