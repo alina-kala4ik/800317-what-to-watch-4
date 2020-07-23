@@ -66,4 +66,20 @@ it(`render Header with active logo and unique classes from header`, () => {
   expect(tree).toMatchSnapshot();
 });
 
+it(`render Header without user block`, () => {
+  const tree = renderer.create(
+      <Router history={history}>
+        <Header
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          isActiveLogoLink={true}
+          uniqueClasses="uniqueClasses"
+          isUserBlochShowing={false}
+        >
+          <div></div>
+        </Header>
+      </Router>
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
 
