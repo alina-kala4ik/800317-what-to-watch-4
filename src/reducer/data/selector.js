@@ -49,6 +49,14 @@ const getFavoriteFilms = (state) => {
   return state[NameSpace.DATA].favoriteFilms;
 };
 
+const getReviews = (state) => {
+  return state[NameSpace.DATA].reviews;
+};
+
+const getFlagReviewsFetching = (state) => {
+  return state[NameSpace.DATA].isReviewsFetching;
+};
+
 
 export {
   getFilms,
@@ -59,5 +67,7 @@ export {
   getFlagCommentPublishing,
   getFlagCommentSendingError,
   getFilmById,
-  getFavoriteFilms
+  getFavoriteFilms,
+  getReviews,
+  getFlagReviewsFetching
 };

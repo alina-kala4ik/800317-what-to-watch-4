@@ -8,6 +8,7 @@ import {Tabs} from "./../../utils.js";
 
 const AboutFilm = (props) => {
   const {activeItem: activeTab, setActiveItem: onTabClick, film} = props;
+  const {id} = film;
   const listTabs = Object.values(Tabs);
 
   return <div className="movie-card__desc">
@@ -28,7 +29,7 @@ const AboutFilm = (props) => {
     }
 
     {activeTab === Tabs.REVIEWS &&
-    <TabReviews />
+    <TabReviews filmId={id} />
     }
 
   </div>;
@@ -37,7 +38,9 @@ const AboutFilm = (props) => {
 AboutFilm.propTypes = {
   activeItem: PropTypes.string.isRequired,
   setActiveItem: PropTypes.func.isRequired,
-  film: PropTypes.object.isRequired,
+  film: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default AboutFilm;

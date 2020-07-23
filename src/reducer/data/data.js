@@ -1,5 +1,6 @@
 import {extend} from "./../../utils.js";
 import {adapter, adapterForArray} from "./../../adapters/films.js";
+import history from "./../../history.js";
 
 const initialState = {
   films: [],
@@ -9,6 +10,8 @@ const initialState = {
   isPromoFilmFetching: true,
   isCommentPublishing: false,
   isCommentSendingError: false,
+  reviews: [],
+  isReviewsFetching: true,
 };
 
 const ActionTypes = {
@@ -18,6 +21,8 @@ const ActionTypes = {
   CHANGE_FLAG_COMMENT_PUBLISHING: `CHANGE_FLAG_IS_COMMENT_PUBLISHING`,
   CHANGE_FLAG_COMMENT_SENDING_ERROR: `CHANGE_FLAG_COMMENT_SENDING_ERROR`,
   UPDATE_FILM: `UPDATE_FILM`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
+  CHANGE_FLAG_REVIEWS_FETCHING: `CHANGE_FLAG_REVIEWS_FETCHING`,
 };
 
 const ActionCreator = {
@@ -44,7 +49,15 @@ const ActionCreator = {
   updateFilm: (film) => ({
     type: ActionTypes.UPDATE_FILM,
     payload: film
-  })
+  }),
+  loadReviews: (reviews) => ({
+    type: ActionTypes.LOAD_REVIEWS,
+    payload: reviews
+  }),
+  changeFlagReviewsFetching: (status) => ({
+    type: ActionTypes.CHANGE_FLAG_REVIEWS_FETCHING,
+    payload: status
+  }),
 };
 
 const Operation = {
@@ -70,6 +83,7 @@ const Operation = {
       .then(() => {
         dispatch(ActionCreator.changeFlagCommentPublishing(false));
         dispatch(ActionCreator.changeFlagCommentSendingError(false));
+        history.goBack();
       })
       .catch(() => {
         dispatch(ActionCreator.changeFlagCommentPublishing(false));
@@ -93,6 +107,13 @@ const Operation = {
       .then((response) => {
         const films = adapterForArray(response.data);
         dispatch(ActionCreator.loadFavoriteFilms(films));
+      });
+  },
+  loadReviews: (filmId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${filmId}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadReviews(response.data));
+        dispatch(ActionCreator.changeFlagReviewsFetching(false));
       });
   }
 };
@@ -133,6 +154,14 @@ const reducer = (state = initialState, action) => {
       });
       return extend(state, {
         films
+      });
+    case ActionTypes.LOAD_REVIEWS:
+      return extend(state, {
+        reviews: action.payload,
+      });
+    case ActionTypes.CHANGE_FLAG_REVIEWS_FETCHING:
+      return extend(state, {
+        isReviewsFetching: action.payload
       });
   }
   return state;

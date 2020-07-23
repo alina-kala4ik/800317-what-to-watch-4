@@ -141,6 +141,17 @@ const films = [
   },
 ];
 
+const reviews = [{
+  id: 1,
+  user: {
+    id: 4,
+    name: `Kate Muir`
+  },
+  rating: 8.9,
+  comment: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+  date: `2019-05-08T14:13:56.569Z`,
+}];
+
 describe(`testing reducer`, () => {
   it(`Returns initial state at application start`, () => {
     expect(reducer(undefined, {})).toEqual({
@@ -151,6 +162,8 @@ describe(`testing reducer`, () => {
       isCommentPublishing: false,
       isCommentSendingError: false,
       favoriteFilms: [],
+      reviews: [],
+      isReviewsFetching: true,
     });
   });
 
@@ -378,6 +391,28 @@ describe(`testing reducer`, () => {
     });
   });
 
+  it(`load reviews`, () => {
+    expect(reducer({
+      reviews: [],
+    }, {
+      type: ActionTypes.LOAD_REVIEWS,
+      payload: reviews
+    })).toEqual({
+      reviews
+    });
+  });
+
+  it(`change flag reviews fetching`, () => {
+    expect(reducer({
+      isReviewsFetching: true
+    }, {
+      type: ActionTypes.CHANGE_FLAG_REVIEWS_FETCHING,
+      payload: false
+    })).toEqual({
+      isReviewsFetching: false
+    });
+  });
+
 });
 
 describe(`Action creators work correctly`, () => {
@@ -421,6 +456,20 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.updateFilm(films[0])).toEqual({
       type: ActionTypes.UPDATE_FILM,
       payload: films[0]
+    });
+  });
+
+  it(`Action creators load reviews`, () => {
+    expect(ActionCreator.loadReviews(reviews)).toEqual({
+      type: ActionTypes.LOAD_REVIEWS,
+      payload: reviews
+    });
+  });
+
+  it(`Action creators change flag reviews fetching`, () => {
+    expect(ActionCreator.changeFlagReviewsFetching(false)).toEqual({
+      type: ActionTypes.CHANGE_FLAG_REVIEWS_FETCHING,
+      payload: false
     });
   });
 
@@ -638,6 +687,20 @@ describe(`Operation work correctly`, () => {
         payload: adaptedFilms
       });
     });
+  });
+
+  it(`load reviews`, () => {
+    apiMock
+      .onGet(`/comments/1`)
+      .reply(`200`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const loadReviews = Operation.loadReviews(1);
+
+    return loadReviews(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+      });
   });
 
 });
