@@ -23,24 +23,6 @@ const withPlayer = (Component) => {
       this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
     }
 
-    handlePlayClick() {
-      this.setState({
-        isPlaying: true
-      });
-    }
-
-    handlePauseClick() {
-      this.setState({
-        isPlaying: false
-      });
-    }
-
-    handleFullScreenClick() {
-      this.setState((prevState) => ({
-        isFullScreenMode: !prevState.isFullScreenMode
-      }));
-    }
-
     componentDidMount() {
       const {film} = this.props;
 
@@ -87,6 +69,24 @@ const withPlayer = (Component) => {
       date.setSeconds(seconds);
       const timeString = date.toISOString().substr(11, 8);
       return timeString;
+    }
+
+    handlePlayClick() {
+      this.setState({
+        isPlaying: true
+      });
+    }
+
+    handlePauseClick() {
+      this.setState({
+        isPlaying: false
+      });
+    }
+
+    handleFullScreenClick() {
+      this.setState((prevState) => ({
+        isFullScreenMode: !prevState.isFullScreenMode
+      }));
     }
 
     render() {
