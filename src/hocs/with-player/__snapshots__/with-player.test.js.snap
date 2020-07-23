@@ -3,7 +3,7 @@
 exports[`render withPlayer 1`] = `
 <div>
   <video
-    autoPlay={true}
+    autoPlay={false}
     className="player__video"
     loop={false}
     poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"

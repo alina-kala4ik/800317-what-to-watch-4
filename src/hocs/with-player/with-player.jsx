@@ -12,7 +12,7 @@ const withPlayer = (Component) => {
       this.videoRef = React.createRef();
 
       this.state = {
-        isPlaying: true,
+        isPlaying: false,
         progress: 0,
         timeLeft: `00:00:00`,
         isFullScreenMode: false
@@ -113,7 +113,7 @@ const withPlayer = (Component) => {
           src={videoSrc}
           className="player__video"
           poster={screenshotSrc}
-          autoPlay={true}
+          autoPlay={false}
           loop={false}
           ref={this.videoRef}
         />

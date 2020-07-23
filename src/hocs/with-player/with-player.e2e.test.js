@@ -65,6 +65,10 @@ it(`Testing pause`, () => {
       />
   );
 
+  wrapper.setState({
+    isPlaying: true
+  });
+
   const {videoRef} = wrapper.instance();
   jest.spyOn(videoRef.current, `pause`);
   wrapper.instance().componentDidMount();
@@ -82,10 +86,6 @@ it(`Testing play`, () => {
         historyProps={historyProps}
       />
   );
-
-  wrapper.setState({
-    isPlaying: false
-  });
 
   const {videoRef} = wrapper.instance();
   jest.spyOn(videoRef.current, `play`);
