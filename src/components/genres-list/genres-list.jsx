@@ -3,18 +3,12 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator as appStateActionCreator} from "./../../reducer/app-state/app-state.js";
 import {getActiveGenre} from "./../../reducer/app-state/selector.js";
-import {getFilms} from "./../../reducer/data/selector.js";
+import {getGenresList} from "./../../reducer/data/selector.js";
 import {Genres} from "./../../utils.js";
-
-const MAX_NUMBER_GENRES = 10;
 
 class GenresList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.allFilms = this.props.films;
-
-    this.getGenresList = this.getGenresList.bind(this);
   }
 
   componentWillUnmount() {
@@ -23,19 +17,8 @@ class GenresList extends PureComponent {
     onReset();
   }
 
-  getGenresList() {
-    const genres = new Set();
-    genres.add(`All genres`);
-    this.allFilms.forEach((film) => {
-      genres.add(film.genre);
-    });
-    const genresList = Array.from(genres).slice(0, MAX_NUMBER_GENRES);
-    return genresList;
-  }
-
   render() {
-    const {genre, onClick} = this.props;
-    const genresList = this.getGenresList();
+    const {genre, onClick, genresList} = this.props;
 
     return <ul className="catalog__genres-list">
       {genresList.map((item) => {
@@ -59,13 +42,15 @@ class GenresList extends PureComponent {
 GenresList.propTypes = {
   genre: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  films: PropTypes.array,
-  onReset: PropTypes.func.isRequired
+  onReset: PropTypes.func.isRequired,
+  genresList: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   genre: getActiveGenre(state),
-  films: getFilms(state),
+  genresList: getGenresList(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

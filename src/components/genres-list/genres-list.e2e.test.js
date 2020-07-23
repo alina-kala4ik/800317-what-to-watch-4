@@ -123,21 +123,24 @@ const films = [
   },
 ];
 
+const genresList = [`All genres`, `Drama`, `Documentary`, `Horror`, `Comedies`, `Sci-Fi`, `Thrillers`];
+
 
 it(`Genre items are clickable`, () => {
   const onClick = jest.fn();
   const itemPreventDefoult = jest.fn();
 
-  const genresList = shallow(
+  const genresListComponent = shallow(
       <GenresList
         genre={Genres.ALL}
         onClick={onClick}
         films={films}
         onReset={() => {}}
+        genresList={genresList}
       />
   );
 
-  const genreItems = genresList.find(`li.catalog__genres-item`);
+  const genreItems = genresListComponent.find(`li.catalog__genres-item`);
 
   genreItems.forEach((item) => {
     item.simulate(`click`, ({
@@ -153,16 +156,17 @@ it(`When clicked, a function with the correct answer is called`, () => {
   const onClick = jest.fn();
   const expectedAnswer = Genres.DRAMA;
 
-  const genresList = shallow(
+  const genresListComponent = shallow(
       <GenresList
         genre={Genres.ALL}
         onClick={onClick}
         films={films}
+        genresList={genresList}
         onReset={() => {}}
       />
   );
 
-  const dramaItem = genresList.find(`li.catalog__genres-item`).at(1);
+  const dramaItem = genresListComponent.find(`li.catalog__genres-item`).at(1);
 
   dramaItem.simulate(`click`, {preventDefault() {}});
 

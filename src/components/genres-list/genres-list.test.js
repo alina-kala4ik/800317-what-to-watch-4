@@ -118,6 +118,8 @@ const films = [
   },
 ];
 
+const genresList = [`All genres`, `Drama`, `Documentary`, `Horror`, `Comedies`, `Sci-Fi`, `Thrillers`];
+
 it(`render GenresList`, () => {
   const tree = renderer
     .create(
@@ -126,6 +128,7 @@ it(`render GenresList`, () => {
           onClick={() => {}}
           films={films}
           onReset={() => {}}
+          genresList={genresList}
         />)
     .toJSON();
   expect(tree).toMatchSnapshot();
