@@ -9,7 +9,7 @@ const withPlayer = (Component) => {
     constructor(props) {
       super(props);
 
-      this._videoRef = React.createRef();
+      this.videoRef = React.createRef();
 
       this.state = {
         isPlaying: true,
@@ -45,7 +45,7 @@ const withPlayer = (Component) => {
       const {film} = this.props;
 
       if (film) {
-        const video = this._videoRef.current;
+        const video = this.videoRef.current;
 
         video.onloadedmetadata = () => {
           video.ontimeupdate = () =>
@@ -61,7 +61,7 @@ const withPlayer = (Component) => {
       const {film} = this.props;
 
       if (film) {
-        const video = this._videoRef.current;
+        const video = this.videoRef.current;
         video.onloadedmetadata = null;
         video.ontimeupdate = null;
       }
@@ -72,7 +72,7 @@ const withPlayer = (Component) => {
 
       if (film) {
         const {isPlaying} = this.state;
-        const video = this._videoRef.current;
+        const video = this.videoRef.current;
 
         if (isPlaying && !video.ended) {
           video.play();
@@ -115,7 +115,7 @@ const withPlayer = (Component) => {
           poster={screenshotSrc}
           autoPlay={true}
           loop={false}
-          ref={this._videoRef}
+          ref={this.videoRef}
         />
       </Component>;
     }

@@ -5,32 +5,32 @@ class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._videoRef = React.createRef();
-    this._videoTimer = null;
+    this.videoRef = React.createRef();
+    this.videoTimer = null;
   }
 
   componentDidMount() {
-    const video = this._videoRef.current;
+    const video = this.videoRef.current;
     video.muted = true;
   }
 
   componentDidUpdate() {
-    const video = this._videoRef.current;
+    const video = this.videoRef.current;
 
     if (this.props.isPlaying) {
       this.onPlay();
     } else {
-      clearTimeout(this._videoTimer);
+      clearTimeout(this.videoTimer);
       video.load();
     }
   }
 
   onPlay() {
-    const video = this._videoRef.current;
+    const video = this.videoRef.current;
     const videoPlay = () => {
       video.play();
     };
-    this._videoTimer = setTimeout(videoPlay, 1000);
+    this.videoTimer = setTimeout(videoPlay, 1000);
   }
 
   render() {
@@ -44,7 +44,7 @@ class VideoPlayer extends PureComponent {
       autoPlay={false}
       src={src}
       poster={poster}
-      ref={this._videoRef}
+      ref={this.videoRef}
     />;
   }
 }
