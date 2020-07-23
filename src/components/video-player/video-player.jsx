@@ -14,14 +14,6 @@ class VideoPlayer extends PureComponent {
     video.muted = true;
   }
 
-  onPlay() {
-    const video = this._videoRef.current;
-    const videoPlay = () => {
-      video.play();
-    };
-    this._videoTimer = setTimeout(videoPlay, 1000);
-  }
-
   componentDidUpdate() {
     const video = this._videoRef.current;
 
@@ -31,6 +23,14 @@ class VideoPlayer extends PureComponent {
       clearTimeout(this._videoTimer);
       video.load();
     }
+  }
+
+  onPlay() {
+    const video = this._videoRef.current;
+    const videoPlay = () => {
+      video.play();
+    };
+    this._videoTimer = setTimeout(videoPlay, 1000);
   }
 
   render() {
