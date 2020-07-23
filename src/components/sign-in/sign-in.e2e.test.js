@@ -1,7 +1,9 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {SignIn} from "./sign-in.jsx";
+import {Router} from "react-router-dom";
+import history from "./../../history.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -11,10 +13,12 @@ it(`Button SignIn are clickable`, () => {
   const onSignInClick = jest.fn();
   const prevDefaultFn = jest.fn();
 
-  const signIn = shallow(
-      <SignIn
-        onSignInClick={onSignInClick}
-      />, {
+  const signIn = mount(
+      <Router history={history}>
+        <SignIn
+          onSignInClick={onSignInClick}
+        />
+      </Router>, {
         createNodeMock: () => {
           return {};
         }
