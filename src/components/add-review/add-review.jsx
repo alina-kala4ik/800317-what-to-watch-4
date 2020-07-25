@@ -22,6 +22,11 @@ class AddReview extends PureComponent {
     this.handleInput = this.handleInput.bind(this);
   }
 
+  componentDidMount() {
+    const submitButton = this.submitRef.current;
+    submitButton.setAttribute(`disabled`, `disabled`);
+  }
+
   handleSubmit(evt) {
     const {onSubmit} = this.props;
     const form = this.formRef.current;
