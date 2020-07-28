@@ -7,8 +7,12 @@ import PropTypes from "prop-types";
 class TabReviews extends PureComponent {
   constructor(props) {
     super(props);
+  }
 
-    this.props.onLoad(this.props.filmId);
+  componentDidMount() {
+    const {onLoad, filmId} = this.props;
+
+    onLoad(filmId);
   }
 
   componentWillUnmount() {
