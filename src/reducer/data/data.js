@@ -8,7 +8,6 @@ const initialState = {
   favoriteFilms: [],
   isFilmsFetching: true,
   isPromoFilmFetching: true,
-  isCommentPublishing: false,
   isCommentSendingError: false,
   reviews: [],
   isReviewsFetching: true,
@@ -18,7 +17,6 @@ const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
-  CHANGE_FLAG_COMMENT_PUBLISHING: `CHANGE_FLAG_IS_COMMENT_PUBLISHING`,
   CHANGE_FLAG_COMMENT_SENDING_ERROR: `CHANGE_FLAG_COMMENT_SENDING_ERROR`,
   UPDATE_FILM: `UPDATE_FILM`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
@@ -33,10 +31,6 @@ const ActionCreator = {
   loadPromoFilm: (film) => ({
     type: ActionTypes.LOAD_PROMO_FILM,
     payload: film
-  }),
-  changeFlagCommentPublishing: (status) => ({
-    type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
-    payload: status
   }),
   changeFlagCommentSendingError: (status) => ({
     type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
@@ -81,12 +75,10 @@ const Operation = {
       comment: commentData.comment
     })
       .then(() => {
-        dispatch(ActionCreator.changeFlagCommentPublishing(false));
         dispatch(ActionCreator.changeFlagCommentSendingError(false));
         history.goBack();
       })
       .catch(() => {
-        dispatch(ActionCreator.changeFlagCommentPublishing(false));
         dispatch(ActionCreator.changeFlagCommentSendingError(true));
       });
   },
@@ -129,10 +121,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         promoFilm: action.payload,
         isPromoFilmFetching: false
-      });
-    case ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING:
-      return extend(state, {
-        isCommentPublishing: action.payload
       });
     case ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR:
       return extend(state, {

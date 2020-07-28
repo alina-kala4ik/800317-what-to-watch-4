@@ -47,7 +47,6 @@ it(`render AddReview without sending error and disabled form`, () => {
       <Provider store={store}>
         <Router history={history}>
           <AddReview
-            isCommentPublishing={false}
             onSubmit={() => {}}
             isCommentSendingError={false}
             historyProps={historyProps}
@@ -55,12 +54,7 @@ it(`render AddReview without sending error and disabled form`, () => {
           />
         </Router>
       </Provider>, {
-        createNodeMock: (element) => {
-          if (element.type === `button`) {
-            return {
-              setAttribute: () => {}
-            };
-          }
+        createNodeMock: () => {
           return {};
         }
       }
@@ -74,7 +68,6 @@ it(`render AddReview with sending error and disabled form`, () => {
       <Provider store={store}>
         <Router history={history}>
           <AddReview
-            isCommentPublishing={true}
             onSubmit={() => {}}
             isCommentSendingError={true}
             historyProps={historyProps}
@@ -82,12 +75,7 @@ it(`render AddReview with sending error and disabled form`, () => {
           />
         </Router>
       </Provider>, {
-        createNodeMock: (element) => {
-          if (element.type === `button`) {
-            return {
-              setAttribute: () => {}
-            };
-          }
+        createNodeMock: () => {
           return {};
         }
       }

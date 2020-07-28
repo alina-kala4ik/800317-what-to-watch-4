@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Operation, ActionCreator} from "./../../reducer/data/data.js";
-import {getFlagCommentPublishing, getFlagCommentSendingError, getFilmById} from "./../../reducer/data/selector.js";
+import {getFlagCommentSendingError, getFilmById} from "./../../reducer/data/selector.js";
 import {Link} from "react-router-dom";
 import {Pages} from "./../../utils.js";
 import Header from "./../header/header.jsx";
@@ -17,20 +17,28 @@ class AddReview extends PureComponent {
     this.formRef = createRef();
     this.commentRef = createRef();
     this.submitRef = createRef();
+    this.formFieldset = createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
-  componentDidMount() {
-    const submitButton = this.submitRef.current;
-    submitButton.setAttribute(`disabled`, `disabled`);
+  componentDidUpdate() {
+    const {isCommentSendingError} = this.props;
+
+    if (isCommentSendingError) {
+      const formFieldset = this.formFieldset.current;
+      formFieldset.removeAttribute(`disabled`);
+    }
   }
 
   handleSubmit(evt) {
     const {onSubmit} = this.props;
     const form = this.formRef.current;
     const formData = new FormData(form);
+    const formFieldset = this.formFieldset.current;
+
+    formFieldset.setAttribute(`disabled`, `disabled`);
 
     evt.preventDefault();
     onSubmit({
@@ -52,15 +60,13 @@ class AddReview extends PureComponent {
   }
 
   render() {
-    const {isCommentPublishing, isCommentSendingError, film} = this.props;
+    const {isCommentSendingError, film} = this.props;
 
     if (!film) {
       return null;
     }
 
     const {movieCoverSrc, title, posterSrc, backgroundColor, id} = film;
-
-    const disabledFormFlag = isCommentPublishing ? `disabled` : false;
 
     return <section
       className="movie-card movie-card--full"
@@ -97,97 +103,93 @@ class AddReview extends PureComponent {
       </div>
 
       <div className="add-review">
-        <form
-          action="#"
-          className="add-review__form"
-          onSubmit={this.handleSubmit}
-          ref={this.formRef}
-        >
-          <div className="rating">
-            <div className="rating__stars">
-              <input
-                className="rating__input"
-                id="star-1"
-                type="radio"
-                name="rating"
-                value="1"
-                disabled={disabledFormFlag}
-              />
-              <label className="rating__label" htmlFor="star-1">Rating 1</label>
+        <fieldset ref={this.formFieldset}>
+          <form
+            action="#"
+            className="add-review__form"
+            onSubmit={this.handleSubmit}
+            ref={this.formRef}
+          >
+            <div className="rating">
+              <div className="rating__stars">
+                <input
+                  className="rating__input"
+                  id="star-1"
+                  type="radio"
+                  name="rating"
+                  value="1"
+                />
+                <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
-              <input
-                className="rating__input"
-                id="star-2"
-                type="radio"
-                name="rating"
-                value="2"
-                disabled={disabledFormFlag}
-              />
-              <label className="rating__label" htmlFor="star-2">Rating 2</label>
+                <input
+                  className="rating__input"
+                  id="star-2"
+                  type="radio"
+                  name="rating"
+                  value="2"
+                />
+                <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-              <input
-                className="rating__input"
-                id="star-3"
-                type="radio"
-                name="rating"
-                value="3"
-                defaultChecked
-                disabled={disabledFormFlag}
-              />
-              <label className="rating__label" htmlFor="star-3">Rating 3</label>
+                <input
+                  className="rating__input"
+                  id="star-3"
+                  type="radio"
+                  name="rating"
+                  value="3"
+                  defaultChecked
+                />
+                <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
-              <input
-                className="rating__input"
-                id="star-4"
-                type="radio"
-                name="rating"
-                value="4"
-                disabled={disabledFormFlag}
-              />
-              <label className="rating__label" htmlFor="star-4">Rating 4</label>
+                <input
+                  className="rating__input"
+                  id="star-4"
+                  type="radio"
+                  name="rating"
+                  value="4"
+                />
+                <label className="rating__label" htmlFor="star-4">Rating 4</label>
 
-              <input
-                className="rating__input"
-                id="star-5"
-                type="radio"
-                name="rating"
-                value="5"
-                disabled={disabledFormFlag}
-              />
-              <label className="rating__label" htmlFor="star-5">Rating 5</label>
+                <input
+                  className="rating__input"
+                  id="star-5"
+                  type="radio"
+                  name="rating"
+                  value="5"
+                />
+                <label className="rating__label" htmlFor="star-5">Rating 5</label>
+              </div>
             </div>
-          </div>
 
-          <div className="add-review__text">
-            <textarea
-              className="add-review__textarea"
-              name="review-text"
-              id="review-text"
-              placeholder="Review text"
-              minLength={minCommentLength}
-              maxLength={maxCommentLength}
-              disabled={disabledFormFlag}
-              onInput={this.handleInput}
-              ref={this.commentRef}
-            >
-            </textarea>
-            <div className="add-review__submit">
-              <button
-                className="add-review__btn"
-                type="submit"
-                disabled={disabledFormFlag}
-                ref={this.submitRef}
+            <div className="add-review__text">
+              <textarea
+                className="add-review__textarea"
+                name="review-text"
+                id="review-text"
+                placeholder="Review text"
+                minLength={minCommentLength}
+                maxLength={maxCommentLength}
+                onInput={this.handleInput}
+                ref={this.commentRef}
               >
-                Post
-              </button>
+              </textarea>
+              <div className="add-review__submit">
+                <button
+                  className="add-review__btn"
+                  type="submit"
+                  disabled="disabled"
+                  ref={this.submitRef}
+                >
+                  Post
+                </button>
+              </div>
+
             </div>
+            {isCommentSendingError &&
+              <div style={{color: `red`}}>Ошибка отправки отзыва</div>
+            }
 
-          </div>
-          {isCommentSendingError &&
-            <div style={{color: `red`}}>Ошибка отправки отзыва, мы сами в шоке О_о</div>
-          }
-
-        </form>
+          </form>
+        </fieldset>
       </div>
 
     </section>;
@@ -196,7 +198,6 @@ class AddReview extends PureComponent {
 }
 
 AddReview.propTypes = {
-  isCommentPublishing: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
   isCommentSendingError: PropTypes.bool.isRequired,
   historyProps: PropTypes.object.isRequired,
@@ -214,7 +215,6 @@ const mapStateToProps = (state, props) => {
   const id = historyProps.match.params.id;
 
   return {
-    isCommentPublishing: getFlagCommentPublishing(state),
     isCommentSendingError: getFlagCommentSendingError(state),
     film: getFilmById(state, id),
   };
@@ -222,8 +222,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(commentData) {
-    dispatch(ActionCreator.changeFlagCommentPublishing(true));
     dispatch(Operation.commentPost(1, commentData));
+    dispatch(ActionCreator.changeFlagCommentSendingError(false));
   }
 });
 

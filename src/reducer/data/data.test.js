@@ -159,7 +159,6 @@ describe(`testing reducer`, () => {
       promoFilm: null,
       isFilmsFetching: true,
       isPromoFilmFetching: true,
-      isCommentPublishing: false,
       isCommentSendingError: false,
       favoriteFilms: [],
       reviews: [],
@@ -188,17 +187,6 @@ describe(`testing reducer`, () => {
     })).toEqual({
       promoFilm: films[0],
       isPromoFilmFetching: false,
-    });
-  });
-
-  it(`change flag comment publishing`, () => {
-    expect(reducer({
-      isCommentPublishing: false
-    }, {
-      type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
-      payload: true
-    })).toEqual({
-      isCommentPublishing: true
     });
   });
 
@@ -431,13 +419,6 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
-  it(`Action creators change flag comment publishing`, () => {
-    expect(ActionCreator.changeFlagCommentPublishing(true)).toEqual({
-      type: ActionTypes.CHANGE_FLAG_COMMENT_PUBLISHING,
-      payload: true
-    });
-  });
-
   it(`Action creators change flag comment sending error`, () => {
     expect(ActionCreator.changeFlagCommentSendingError(true)).toEqual({
       type: ActionTypes.CHANGE_FLAG_COMMENT_SENDING_ERROR,
@@ -580,7 +561,7 @@ describe(`Operation work correctly`, () => {
 
     return commentPost(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(1);
       })
       .catch(() => {
         expect(dispatch).toHaveBeenCalledTimes(0);
@@ -609,7 +590,7 @@ describe(`Operation work correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(0);
       })
       .catch(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(1);
       });
   });
 
