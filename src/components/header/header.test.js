@@ -73,7 +73,7 @@ it(`render Header without user block`, () => {
           authorizationStatus={AuthorizationStatus.NO_AUTH}
           isActiveLogoLink={true}
           uniqueClasses="uniqueClasses"
-          isUserBlochShowing={false}
+          isUserBlockShowing={false}
         >
           <div></div>
         </Header>

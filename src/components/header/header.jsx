@@ -13,7 +13,7 @@ const Header = (props) => {
     children,
     uniqueClasses = ``,
     isActiveLogoLink,
-    isUserBlochShowing = true
+    isUserBlockShowing = true
   } = props;
 
   const logo = <React.Fragment>
@@ -52,7 +52,7 @@ const Header = (props) => {
 
     {children}
 
-    {isUserBlochShowing &&
+    {isUserBlockShowing &&
         <div className="user-block">
           {userBlock}
         </div>
@@ -72,7 +72,7 @@ Header.propTypes = {
   children: PropTypes.node,
   uniqueClasses: PropTypes.string,
   isActiveLogoLink: PropTypes.bool.isRequired,
-  isUserBlochShowing: PropTypes.bool
+  isUserBlockShowing: PropTypes.bool
 };
 
 export {Header};

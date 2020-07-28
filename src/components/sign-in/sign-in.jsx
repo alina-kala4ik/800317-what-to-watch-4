@@ -32,7 +32,7 @@ class SignIn extends PureComponent {
       <Header
         uniqueClasses="user-page__head"
         isActiveLogoLink
-        isUserBlochShowing={false}
+        isUserBlockShowing={false}
       >
         <h1 className="page-title user-page__title">Sign in</h1>
       </Header>
