@@ -223,7 +223,7 @@ exports[`render AddReview with sending error and disabled form 1`] = `
             }
           }
         >
-          Ошибка отправки отзыва, мы сами в шоке О_о
+          Ошибка отправки отзыва
         </div>
       </form>
     </fieldset>
