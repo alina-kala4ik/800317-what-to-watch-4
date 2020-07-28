@@ -10,6 +10,7 @@ import {Link} from "react-router-dom";
 import Header from "./../header/header.jsx";
 import MyListButton from "../my-list-button/my-list-button.jsx";
 import withFilteredFilms from "./../../hocs/with-filtered-films/with-filtered-films.jsx";
+import Footer from "./../footer/footer.jsx";
 
 const DISPLAYED_NUMBER_OF_FILMS = 4;
 const MovieListWrapped = withFilteredFilms(MovieList);
@@ -100,19 +101,8 @@ const MoviePage = (props) => {
         </div>
       </section>
 
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+      <Footer isActiveLogoLink />
 
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
     </div>
   </React.Fragment>;
 };

@@ -38,11 +38,11 @@ it(`Testing load`, () => {
       />
   );
 
-  const {_videoRef} = videoPlayer.instance();
-  jest.spyOn(_videoRef.current, `load`);
+  const {videoRef} = videoPlayer.instance();
+  jest.spyOn(videoRef.current, `load`);
   videoPlayer.instance().componentDidMount();
 
   videoPlayer.setProps({isPlaying: false});
 
-  expect(_videoRef.current.load).toHaveBeenCalledTimes(1);
+  expect(videoRef.current.load).toHaveBeenCalledTimes(1);
 });

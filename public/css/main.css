@@ -199,7 +199,8 @@ button:-moz-focusring,
  * Correct the padding in Firefox.
  */
 fieldset {
-  padding: 0.35em 0.75em 0.625em; }
+  padding: 0.35em 0.75em 0.625em;
+  border: 0 none; }
 
 /**
  * 1. Correct the text wrapping in Edge and IE.

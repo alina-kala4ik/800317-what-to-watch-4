@@ -9,10 +9,10 @@ const withPlayer = (Component) => {
     constructor(props) {
       super(props);
 
-      this._videoRef = React.createRef();
+      this.videoRef = React.createRef();
 
       this.state = {
-        isPlaying: true,
+        isPlaying: false,
         progress: 0,
         timeLeft: `00:00:00`,
         isFullScreenMode: false
@@ -21,6 +21,54 @@ const withPlayer = (Component) => {
       this.handlePlayClick = this.handlePlayClick.bind(this);
       this.handlePauseClick = this.handlePauseClick.bind(this);
       this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
+    }
+
+    componentDidMount() {
+      const {film} = this.props;
+
+      if (film) {
+        const video = this.videoRef.current;
+
+        video.onloadedmetadata = () => {
+          video.ontimeupdate = () =>
+            this.setState({
+              progress: (Math.floor(video.currentTime) * 100) / video.duration,
+              timeLeft: this.secondsToTime(video.duration - video.currentTime),
+            });
+        };
+      }
+    }
+
+    componentWillUnmount() {
+      const {film} = this.props;
+
+      if (film) {
+        const video = this.videoRef.current;
+        video.onloadedmetadata = null;
+        video.ontimeupdate = null;
+      }
+    }
+
+    componentDidUpdate() {
+      const {film} = this.props;
+
+      if (film) {
+        const {isPlaying} = this.state;
+        const video = this.videoRef.current;
+
+        if (isPlaying && !video.ended) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+    }
+
+    secondsToTime(seconds) {
+      const date = new Date(0);
+      date.setSeconds(seconds);
+      const timeString = date.toISOString().substr(11, 8);
+      return timeString;
     }
 
     handlePlayClick() {
@@ -39,54 +87,6 @@ const withPlayer = (Component) => {
       this.setState((prevState) => ({
         isFullScreenMode: !prevState.isFullScreenMode
       }));
-    }
-
-    componentDidMount() {
-      const {film} = this.props;
-
-      if (film) {
-        const video = this._videoRef.current;
-
-        video.onloadedmetadata = () => {
-          video.ontimeupdate = () =>
-            this.setState({
-              progress: (Math.floor(video.currentTime) * 100) / video.duration,
-              timeLeft: this.secondsToTime(video.duration - video.currentTime),
-            });
-        };
-      }
-    }
-
-    componentWillUnmount() {
-      const {film} = this.props;
-
-      if (film) {
-        const video = this._videoRef.current;
-        video.onloadedmetadata = null;
-        video.ontimeupdate = null;
-      }
-    }
-
-    componentDidUpdate() {
-      const {film} = this.props;
-
-      if (film) {
-        const {isPlaying} = this.state;
-        const video = this._videoRef.current;
-
-        if (isPlaying && !video.ended) {
-          video.play();
-        } else {
-          video.pause();
-        }
-      }
-    }
-
-    secondsToTime(seconds) {
-      const date = new Date(0);
-      date.setSeconds(seconds);
-      const timeString = date.toISOString().substr(11, 8);
-      return timeString;
     }
 
     render() {
@@ -113,9 +113,9 @@ const withPlayer = (Component) => {
           src={videoSrc}
           className="player__video"
           poster={screenshotSrc}
-          autoPlay={true}
+          autoPlay={false}
           loop={false}
-          ref={this._videoRef}
+          ref={this.videoRef}
         />
       </Component>;
     }

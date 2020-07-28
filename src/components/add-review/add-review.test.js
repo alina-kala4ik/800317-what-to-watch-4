@@ -8,10 +8,6 @@ import {Provider} from "react-redux";
 import {AuthorizationStatus} from "./../../reducer/user/user.js";
 import {NameSpace} from "./../../reducer/name-space.js";
 
-beforeAll(() => {
-  jest.setAttribute = () => {};
-});
-
 const historyProps = {
   match: {
     params: {id: 1}
@@ -46,11 +42,11 @@ const store = mockStore({
 });
 
 it(`render AddReview without sending error and disabled form`, () => {
+
   const tree = renderer.create(
       <Provider store={store}>
         <Router history={history}>
           <AddReview
-            isCommentPublishing={false}
             onSubmit={() => {}}
             isCommentSendingError={false}
             historyProps={historyProps}
@@ -72,7 +68,6 @@ it(`render AddReview with sending error and disabled form`, () => {
       <Provider store={store}>
         <Router history={history}>
           <AddReview
-            isCommentPublishing={true}
             onSubmit={() => {}}
             isCommentSendingError={true}
             historyProps={historyProps}

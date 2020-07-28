@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {TabReviews} from "./tab-reviews.jsx";
+import Reviews from "./reviews.jsx";
 
 const reviews = [{
   id: 1,
@@ -13,14 +13,10 @@ const reviews = [{
   date: `2019-05-08T14:13:56.569Z`,
 }];
 
-it(`render TabReviews`, () => {
+it(`render Reviews`, () => {
   const tree = renderer.create(
-      <TabReviews
-        onLoad={() => {}}
-        onReset={() => {}}
+      <Reviews
         reviews={reviews}
-        filmId={1}
-        isReviewsFetching={false}
       />
   ).toJSON();
 

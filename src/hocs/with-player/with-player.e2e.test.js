@@ -65,13 +65,17 @@ it(`Testing pause`, () => {
       />
   );
 
-  const {_videoRef} = wrapper.instance();
-  jest.spyOn(_videoRef.current, `pause`);
+  wrapper.setState({
+    isPlaying: true
+  });
+
+  const {videoRef} = wrapper.instance();
+  jest.spyOn(videoRef.current, `pause`);
   wrapper.instance().componentDidMount();
 
 
   wrapper.find(`button.pause`).simulate(`click`);
-  expect(_videoRef.current.pause).toHaveBeenCalledTimes(1);
+  expect(videoRef.current.pause).toHaveBeenCalledTimes(1);
 });
 
 it(`Testing play`, () => {
@@ -83,17 +87,13 @@ it(`Testing play`, () => {
       />
   );
 
-  wrapper.setState({
-    isPlaying: false
-  });
-
-  const {_videoRef} = wrapper.instance();
-  jest.spyOn(_videoRef.current, `play`);
+  const {videoRef} = wrapper.instance();
+  jest.spyOn(videoRef.current, `play`);
   wrapper.instance().componentDidMount();
 
 
   wrapper.find(`button.play`).simulate(`click`);
-  expect(_videoRef.current.play).toHaveBeenCalledTimes(1);
+  expect(videoRef.current.play).toHaveBeenCalledTimes(1);
 });
 
 it(`Should change state isFullScreenMode when the player open player in full screen mode`, () => {

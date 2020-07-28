@@ -1,25 +1,18 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {getFilteredFilms} from "./../../reducer/data/selector.js";
 
 const withFilteredFilms = (Component) => {
-  class WithFilteredFilms extends PureComponent {
-    constructor(props) {
-      super(props);
-    }
+  const WithFilteredFilms = (props) => {
+    const {films} = props;
 
-    render() {
-      const {films} = this.props;
-
-      return <Component
-        {...this.props}
-        films={films}
-      />;
-    }
-
-  }
+    return <Component
+      {...props}
+      films={films}
+    />;
+  };
 
   WithFilteredFilms.propTypes = {
     films: PropTypes.array.isRequired,

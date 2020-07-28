@@ -11,15 +11,6 @@ class MovieViewingPage extends Component {
     this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
   }
 
-  handleFullScreenClick() {
-    const {onFullScreenClick} = this.props;
-    onFullScreenClick();
-  }
-
-  handleExitClick() {
-    history.goBack();
-  }
-
   componentDidUpdate(prevProps) {
     const {isFullScreenMode} = this.props;
     const player = this.playerRef.current;
@@ -31,6 +22,15 @@ class MovieViewingPage extends Component {
         document.exitFullscreen();
       }
     }
+  }
+
+  handleFullScreenClick() {
+    const {onFullScreenClick} = this.props;
+    onFullScreenClick();
+  }
+
+  handleExitClick() {
+    history.goBack();
   }
 
   render() {

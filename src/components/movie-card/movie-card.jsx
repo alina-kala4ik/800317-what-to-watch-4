@@ -1,44 +1,38 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import VideoPlayer from "./../video-player/video-player.jsx";
 import {Pages} from "./../../utils.js";
 import {Link} from "react-router-dom";
 
-class MovieCard extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MovieCard = (props) => {
+  const {film, isPlaying, onMouseEnter, onMouseLeave} = props;
+  const {title, screenshotSrc, previewVideoLink, id} = film;
 
-  render() {
-    const {film, isPlaying, onMouseEnter, onMouseLeave} = this.props;
-    const {title, screenshotSrc, previewVideoLink, id} = film;
-
-    return <article
-      className="small-movie-card catalog__movies-card"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+  return <article
+    className="small-movie-card catalog__movies-card"
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+  >
+    <Link
+      className="small-movie-card__image"
+      to={Pages.FILM.replace(`:id`, id)}
     >
+      <VideoPlayer
+        src={previewVideoLink}
+        poster={screenshotSrc}
+        isPlaying={isPlaying}
+      />
+    </Link>
+    <h3 className="small-movie-card__title">
       <Link
-        className="small-movie-card__image"
         to={Pages.FILM.replace(`:id`, id)}
+        className="small-movie-card__link"
       >
-        <VideoPlayer
-          src={previewVideoLink}
-          poster={screenshotSrc}
-          isPlaying={isPlaying}
-        />
+        {title}
       </Link>
-      <h3 className="small-movie-card__title">
-        <Link
-          to={Pages.FILM.replace(`:id`, id)}
-          className="small-movie-card__link"
-        >
-          {title}
-        </Link>
-      </h3>
-    </article>;
-  }
-}
+    </h3>
+  </article>;
+};
 
 MovieCard.propTypes = {
   film: PropTypes.shape({

@@ -1,64 +1,75 @@
-import React from "react";
+import React, {PureComponent} from "react";
+import {connect} from "react-redux";
+import {getReviews, getFlagReviewsFetching} from "./../../reducer/data/selector.js";
+import {Operation, ActionCreator} from "./../../reducer/data/data.js";
+import PropTypes from "prop-types";
+import Reviews from "./../reviews/reviews.jsx";
 
-const TabReviews = () => {
+class TabReviews extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return <div className="movie-card__reviews movie-card__row">
-    <div className="movie-card__reviews-col">
-      <div className="review">
-        <blockquote className="review__quote">
-          <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed movies in years.</p>
+  componentDidMount() {
+    const {onLoad, filmId} = this.props;
 
-          <footer className="review__details">
-            <cite className="review__author">Kate Muir</cite>
-            <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
-          </footer>
-        </blockquote>
+    onLoad(filmId);
+  }
 
-        <div className="review__rating">8,9</div>
+  componentWillUnmount() {
+    const {onReset} = this.props;
+    onReset();
+  }
+
+  render() {
+    const {reviews, isReviewsFetching} = this.props;
+
+    if (isReviewsFetching) {
+      return null;
+    }
+
+    const halfOfReviews = Math.ceil(reviews.length / 2);
+
+    const firstHalfOfReviews = reviews.slice(0, halfOfReviews);
+    const secondHalfOfReviews = reviews.slice(halfOfReviews);
+
+    return <div className="movie-card__reviews movie-card__row">
+      <div className="movie-card__reviews-col">
+
+        <Reviews reviews={firstHalfOfReviews} />
+
       </div>
+      <div className="movie-card__reviews-col">
 
-      <div className="review">
-        <blockquote className="review__quote">
-          <p className="review__text">Anderson&apos;s films are too precious for some, but for those of us willing to lose ourselves in them, they&apos;re a delight. &quot;The Grand Budapest Hotel&quot; is no different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
+        <Reviews reviews={secondHalfOfReviews} />
 
-          <footer className="review__details">
-            <cite className="review__author">Bill Goodykoontz</cite>
-            <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
-          </footer>
-        </blockquote>
-
-        <div className="review__rating">8,0</div>
       </div>
+    </div>;
+  }
 
-      <div className="review">
-        <blockquote className="review__quote">
-          <p className="review__text">I didn&apos;t find it amusing, and while I can appreciate the creativity, it&apos;s an hour and 40 minutes I wish I could take back.</p>
+}
 
-          <footer className="review__details">
-            <cite className="review__author">Amanda Greever</cite>
-            <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
-          </footer>
-        </blockquote>
-
-        <div className="review__rating">8,0</div>
-      </div>
-    </div>
-    <div className="movie-card__reviews-col">
-      <div className="review">
-        <blockquote className="review__quote">
-          <p className="review__text">The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.</p>
-
-          <footer className="review__details">
-            <cite className="review__author">Matthew Lickona</cite>
-            <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-          </footer>
-        </blockquote>
-
-        <div className="review__rating">7,2</div>
-      </div>
-
-    </div>
-  </div>;
+TabReviews.propTypes = {
+  onLoad: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+  reviews: PropTypes.array,
+  filmId: PropTypes.number.isRequired,
+  isReviewsFetching: PropTypes.bool.isRequired,
 };
 
-export default TabReviews;
+const mapStateToProps = (state) => ({
+  reviews: getReviews(state),
+  isReviewsFetching: getFlagReviewsFetching(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoad(filmId) {
+    dispatch(Operation.loadReviews(filmId));
+  },
+  onReset() {
+    dispatch(ActionCreator.changeFlagReviewsFetching(true));
+  }
+});
+
+export {TabReviews};
+export default connect(mapStateToProps, mapDispatchToProps)(TabReviews);
