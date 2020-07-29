@@ -59,7 +59,7 @@ exports[`render AboutFilm 1`] = `
       <span
         className="movie-rating__level"
       >
-        Normal
+        Good
       </span>
       <span
         className="movie-rating__count"
