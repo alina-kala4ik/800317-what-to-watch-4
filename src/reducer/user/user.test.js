@@ -75,10 +75,10 @@ describe(`user action creators work correctly`, () => {
 
 describe(`user operation work correctly`, () => {
 
-  const onNotFound = () => {};
+  const onServerError = () => {};
   const onUnauthorized = () => {};
 
-  const api = createAPI(onNotFound, onUnauthorized);
+  const api = createAPI(onServerError, onUnauthorized);
 
   it(`Operation check auth`, () => {
     const apiMock = new MockAdapter(api);

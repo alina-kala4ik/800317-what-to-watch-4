@@ -14,7 +14,7 @@ import history from "./history.js";
 import {Pages} from "./utils.js";
 
 
-const onNotFound = () => {
+const onServerError = () => {
   store.dispatch(AppStateActionCreator.changeServerStatusOnError());
 };
 
@@ -30,7 +30,7 @@ const onUnauthorized = (response) => {
   }
 };
 
-const api = createAPI(onNotFound, onUnauthorized);
+const api = createAPI(onServerError, onUnauthorized);
 
 const store = createStore(
     reducer,

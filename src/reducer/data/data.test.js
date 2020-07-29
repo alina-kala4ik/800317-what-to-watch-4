@@ -458,9 +458,9 @@ describe(`Action creators work correctly`, () => {
 
 describe(`Operation work correctly`, () => {
 
-  const onNotFound = () => {};
+  const onServerError = () => {};
 
-  const api = createAPI(onNotFound);
+  const api = createAPI(onServerError);
   const apiMock = new MockAdapter(api);
 
   const adaptedFilm = {

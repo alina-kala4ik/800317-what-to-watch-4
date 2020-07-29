@@ -2,10 +2,11 @@ import axios from "axios";
 
 const Error = {
   UNAUTHORIZED: 401,
+  INTERNAL_SERVER_ERROR: 500,
   NOT_FOUND: 404
 };
 
-const createAPI = (onNotFound, onUnauthorized) => {
+const createAPI = (onServerError, onUnauthorized) => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/wtw`,
     timeout: 5000,
@@ -21,10 +22,13 @@ const createAPI = (onNotFound, onUnauthorized) => {
 
     switch (response.status) {
       case Error.NOT_FOUND:
-        onNotFound();
+        onServerError();
         throw err;
       case Error.UNAUTHORIZED:
         onUnauthorized(response);
+        throw err;
+      case Error.INTERNAL_SERVER_ERROR:
+        onServerError();
         throw err;
     }
 
