@@ -10,12 +10,14 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   avatar: null,
   isFetchingAuthStatus: true,
+  isLoginDataValid: true,
 };
 
 
 const ActionTypes = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   ADD_AVATAR: `ADD_AVATAR`,
+  CHANGE_FLAG_LOGIN_DATA_VALID: `CHANGE_FLAG_LOGIN_DATA_VALID`,
 };
 
 const ActionCreator = {
@@ -27,6 +29,10 @@ const ActionCreator = {
     type: ActionTypes.ADD_AVATAR,
     payload: url
   }),
+  changeFlagLoginDataValid: (status) => ({
+    type: ActionTypes.CHANGE_FLAG_LOGIN_DATA_VALID,
+    payload: status
+  })
 };
 
 const reducer = (state = initialState, action) => {
@@ -39,6 +45,10 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.ADD_AVATAR:
       return extend(state, {
         avatar: action.payload
+      });
+    case ActionTypes.CHANGE_FLAG_LOGIN_DATA_VALID:
+      return extend(state, {
+        isLoginDataValid: action.payload
       });
   }
   return state;
@@ -65,10 +75,11 @@ const Operation = {
 
         dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.addAvatar(avatarUrl));
+        dispatch(ActionCreator.changeFlagLoginDataValid(true));
         history.goBack();
       })
-      .catch((err) => {
-        throw err;
+      .catch(() => {
+        dispatch(ActionCreator.changeFlagLoginDataValid(false));
       });
   }
 };

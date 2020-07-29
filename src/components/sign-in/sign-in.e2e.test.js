@@ -30,6 +30,7 @@ it(`Button SignIn are clickable`, () => {
         <Provider store={store} >
           <SignIn
             onSignInClick={onSignInClick}
+            isLoginDataValid={true}
           />
         </Provider>
       </Router>, {
