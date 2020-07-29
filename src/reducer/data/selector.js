@@ -14,12 +14,12 @@ const getPromoFilm = (state) => {
 
 const getFilteredFilms = createSelector(
     getFilms,
-    (state, genre) => genre,
-    (films, genre) => {
+    (state, genre, filmId) => [genre, filmId],
+    (films, [genre, filmId]) => {
       if (genre === Genres.ALL) {
         return films;
       }
-      return films.filter((film) => film.genre === genre);
+      return films.filter((film) => film.genre === genre && film.id !== filmId);
     }
 );
 

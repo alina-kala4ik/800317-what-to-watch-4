@@ -18,15 +18,16 @@ const withFilteredFilms = (Component) => {
     films: PropTypes.array.isRequired,
     countFilms: PropTypes.number.isRequired,
     genre: PropTypes.string.isRequired,
+    filmId: PropTypes.number
   };
 
   return WithFilteredFilms;
 };
 
 const mapStateToProps = (state, props) => {
-  const {countFilms, genre} = props;
+  const {countFilms, genre, filmId} = props;
 
-  const films = getFilteredFilms(state, genre);
+  const films = getFilteredFilms(state, genre, filmId);
 
   const displayedNumberOfFilms = films.slice(0, countFilms);
 
