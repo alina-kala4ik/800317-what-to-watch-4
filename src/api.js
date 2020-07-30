@@ -23,7 +23,7 @@ const createAPI = (onServerError, onUnauthorized) => {
     switch (response.status) {
       case Error.NOT_FOUND:
         onServerError();
-        throw err;
+        break;
       case Error.UNAUTHORIZED:
         onUnauthorized(response);
         throw err;
@@ -31,7 +31,6 @@ const createAPI = (onServerError, onUnauthorized) => {
 
     if (response.status >= Error.INTERNAL_SERVER_ERROR) {
       onServerError();
-      throw err;
     }
 
     throw err;
