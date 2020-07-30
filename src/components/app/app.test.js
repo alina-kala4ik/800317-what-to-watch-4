@@ -161,7 +161,7 @@ it(`render App without server error`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       activeGenre: Genres.ALL,
-      countDisplayedFilms: 8,
+      displayedFilmsCount: 8,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {
@@ -200,7 +200,7 @@ it(`render App with server error`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       activeGenre: Genres.ALL,
-      countDisplayedFilms: 8,
+      displayedFilmsCount: 8,
       serverStatus: ServerStatus.ERROR,
     },
     [NameSpace.DATA]: {
@@ -239,7 +239,7 @@ it(`render App when films null`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       activeGenre: Genres.ALL,
-      countDisplayedFilms: 8,
+      displayedFilmsCount: 8,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {
@@ -278,7 +278,7 @@ it(`render App when promoFilm null`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       activeGenre: Genres.ALL,
-      countDisplayedFilms: 8,
+      displayedFilmsCount: 8,
       serverStatus: ServerStatus.OK,
     },
     [NameSpace.DATA]: {

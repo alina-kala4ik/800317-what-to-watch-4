@@ -173,7 +173,7 @@ const mockStore = configureStore([]);
 
 const store = mockStore({
   [NameSpace.APP_STATE]: {
-    countDisplayedFilms: 8,
+    displayedFilmsCount: 8,
     activeGenre: Genres.ALL
   },
   [NameSpace.DATA]: {

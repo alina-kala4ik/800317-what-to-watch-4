@@ -163,7 +163,7 @@ it(`render Main`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
       activeGenre: Genres.ALL,
-      countDisplayedFilms: 8,
+      displayedFilmsCount: 8,
     },
     [NameSpace.DATA]: {
       films,

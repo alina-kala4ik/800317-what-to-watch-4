@@ -8,7 +8,7 @@ describe(`testing app-state reducer`, () => {
   it(`Returns initial state at application start`, () => {
     expect(reducer(undefined, {})).toEqual({
       activeGenre: Genres.ALL,
-      countDisplayedFilms: 8,
+      displayedFilmsCount: 8,
       serverStatus: ServerStatus.OK,
     });
   });
@@ -26,24 +26,24 @@ describe(`testing app-state reducer`, () => {
 
   it(`Increase count displayed films`, () => {
     expect(reducer({
-      countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
+      displayedFilmsCount: DISPLAYED_NUMBER_OF_FILMS,
     }, {
       type: ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS,
       payload: DISPLAYED_NUMBER_OF_FILMS
     })).toEqual({
-      countDisplayedFilms: 16
+      displayedFilmsCount: 16
     });
   });
 
   it(`reset count displayed films`, () => {
     expect(reducer({
-      countDisplayedFilms: 16
+      displayedFilmsCount: 16
     },
     {
       type: ActionTypes.RESET_COUNT_DISPLAYED_FILMS,
       payload: DISPLAYED_NUMBER_OF_FILMS
     })).toEqual({
-      countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS
+      displayedFilmsCount: DISPLAYED_NUMBER_OF_FILMS
     });
   });
 

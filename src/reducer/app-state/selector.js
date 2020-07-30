@@ -1,7 +1,7 @@
 import {NameSpace} from "./../name-space.js";
 
-const getCountDisplayedFilms = (state) => {
-  return state[NameSpace.APP_STATE].countDisplayedFilms;
+const getDisplayedFilmsCount = (state) => {
+  return state[NameSpace.APP_STATE].displayedFilmsCount;
 };
 
 const getActiveGenre = (state) => {
@@ -13,5 +13,5 @@ const gerServerStatus = (state) => {
 };
 
 
-export {getCountDisplayedFilms, getActiveGenre, gerServerStatus};
+export {getDisplayedFilmsCount, getActiveGenre, gerServerStatus};
 
