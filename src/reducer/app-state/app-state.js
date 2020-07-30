@@ -9,7 +9,7 @@ const ServerStatus = {
 
 const initialState = {
   activeGenre: Genres.ALL,
-  countDisplayedFilms: DISPLAYED_NUMBER_OF_FILMS,
+  displayedFilmsCount: DISPLAYED_NUMBER_OF_FILMS,
   serverStatus: ServerStatus.OK,
 };
 
@@ -47,11 +47,11 @@ const reducer = (state = initialState, action) => {
       });
     case ActionTypes.INCREASE_COUNT_DISPLAYED_FILMS:
       return extend(state, {
-        countDisplayedFilms: state.countDisplayedFilms + action.payload
+        displayedFilmsCount: state.displayedFilmsCount + action.payload
       });
     case ActionTypes.RESET_COUNT_DISPLAYED_FILMS:
       return extend(state, {
-        countDisplayedFilms: action.payload
+        displayedFilmsCount: action.payload
       });
     case ActionTypes.CHANGE_SERVER_STATUS_ON_ERROR:
       return extend(state, {

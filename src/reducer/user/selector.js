@@ -12,5 +12,8 @@ const getFlagIsFetchingAuthStatus = (state) => {
   return state[NameSpace.USER].isFetchingAuthStatus;
 };
 
+const getFlagLoginDataValid = (state) => {
+  return state[NameSpace.USER].isLoginDataValid;
+};
 
-export {getAuthorizationStatus, getAvatar, getFlagIsFetchingAuthStatus};
+export {getAuthorizationStatus, getAvatar, getFlagIsFetchingAuthStatus, getFlagLoginDataValid};

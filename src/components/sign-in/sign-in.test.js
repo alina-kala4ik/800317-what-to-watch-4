@@ -22,6 +22,26 @@ it(`render SignIn`, () => {
         <Router history={history}>
           <SignIn
             onSignInClick={() => {}}
+            isLoginDataValid={true}
+          />
+        </Router>
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`render SignIn with error`, () => {
+  const tree = renderer.create(
+      <Provider store={store}>
+        <Router history={history}>
+          <SignIn
+            onSignInClick={() => {}}
+            isLoginDataValid={false}
           />
         </Router>
       </Provider>, {

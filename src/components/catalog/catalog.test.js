@@ -308,7 +308,7 @@ const mockStore = configureStore([]);
 it(`render Catalog without button`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      countDisplayedFilms: 8,
+      displayedFilmsCount: 8,
       activeGenre: Genres.ALL
     },
     [NameSpace.DATA]: {
@@ -340,7 +340,7 @@ it(`render Catalog without button`, () => {
 it(`render Catalog with button`, () => {
   const store = mockStore({
     [NameSpace.APP_STATE]: {
-      countDisplayedFilms: 8,
+      displayedFilmsCount: 8,
       activeGenre: Genres.ALL
     },
     [NameSpace.DATA]: {

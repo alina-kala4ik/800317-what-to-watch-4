@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Operation} from "./../../reducer/user/user.js";
 import Footer from "./../footer/footer.jsx";
 import Header from "./../header/header.jsx";
+import {getFlagLoginDataValid} from "./../../reducer/user/selector.js";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -27,6 +28,8 @@ class SignIn extends PureComponent {
   }
 
   render() {
+    const {isLoginDataValid} = this.props;
+
     return <div className="user-page">
 
       <Header
@@ -70,6 +73,11 @@ class SignIn extends PureComponent {
               Sign in
             </button>
           </div>
+
+          {!isLoginDataValid &&
+            <div style={{backgroundColor: `red`}}>Ошибка авторизации</div>
+          }
+
         </form>
       </div>
 
@@ -82,7 +90,12 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onSignInClick: PropTypes.func.isRequired,
+  isLoginDataValid: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isLoginDataValid: getFlagLoginDataValid(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onSignInClick(authData) {
@@ -91,4 +104,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {SignIn};
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

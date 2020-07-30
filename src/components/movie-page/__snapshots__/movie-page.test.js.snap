@@ -221,7 +221,7 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Normal
+                Good
               </span>
               <span
                 className="movie-rating__count"
@@ -272,38 +272,6 @@ Array [
       <div
         className="catalog__movies-list"
       >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <a
-            className="small-movie-card__image"
-            href="/films/1"
-            onClick={[Function]}
-          >
-            <video
-              autoPlay={false}
-              height="175"
-              loop={true}
-              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              preload="none"
-              src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-              width="280"
-            />
-          </a>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="/films/1"
-              onClick={[Function]}
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
         <article
           className="small-movie-card catalog__movies-card"
           onMouseEnter={[Function]}
@@ -397,6 +365,38 @@ Array [
               onClick={[Function]}
             >
               Aviator
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <a
+            className="small-movie-card__image"
+            href="/films/5"
+            onClick={[Function]}
+          >
+            <video
+              autoPlay={false}
+              height="175"
+              loop={true}
+              poster="img/we-need-to-talk-about-kevin.jpg"
+              preload="none"
+              src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+              width="280"
+            />
+          </a>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="/films/5"
+              onClick={[Function]}
+            >
+              We need to talk about Kevin
             </a>
           </h3>
         </article>

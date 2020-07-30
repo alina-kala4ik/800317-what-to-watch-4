@@ -97,6 +97,7 @@ const MoviePage = (props) => {
           <MovieListWrapped
             countFilms={DISPLAYED_NUMBER_OF_FILMS}
             genre={genre}
+            filmId={id}
           />
         </div>
       </section>

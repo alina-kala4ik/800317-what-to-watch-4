@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import MovieList from "./../movie-list/movie-list.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "./../../reducer/app-state/app-state.js";
-import {getCountDisplayedFilms, getActiveGenre} from "./../../reducer/app-state/selector.js";
+import {getDisplayedFilmsCount, getActiveGenre} from "./../../reducer/app-state/selector.js";
 import {getFilteredFilms} from "./../../reducer/data/selector.js";
 import withFilteredFilms from "./../../hocs/with-filtered-films/with-filtered-films.jsx";
 
@@ -43,14 +43,14 @@ Catalog.propTypes = {
 
 const mapStateToProps = (state) => {
   const genre = getActiveGenre(state);
-  const countDisplayedFilms = getCountDisplayedFilms(state);
+  const displayedFilmsCount = getDisplayedFilmsCount(state);
   const films = getFilteredFilms(state, genre);
 
-  const isButtonDisplayed = films.length > countDisplayedFilms ? true : false;
+  const isButtonDisplayed = films.length > displayedFilmsCount ? true : false;
 
   return {
     isButtonDisplayed,
-    countFilms: countDisplayedFilms,
+    countFilms: displayedFilmsCount,
     genre,
   };
 };

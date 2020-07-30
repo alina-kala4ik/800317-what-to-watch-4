@@ -7,7 +7,8 @@ describe(`testing user reducer`, () => {
     expect(reducer(undefined, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       avatar: null,
-      isFetchingAuthStatus: true
+      isFetchingAuthStatus: true,
+      isLoginDataValid: true,
     });
   });
 
@@ -35,6 +36,16 @@ describe(`testing user reducer`, () => {
     });
   });
 
+  it(`change flag login data valid`, () => {
+    expect(reducer({
+      isLoginDataValid: true
+    }, {
+      type: ActionTypes.CHANGE_FLAG_LOGIN_DATA_VALID,
+      payload: false
+    })).toEqual({
+      isLoginDataValid: false
+    });
+  });
 });
 
 describe(`user action creators work correctly`, () => {
@@ -53,14 +64,21 @@ describe(`user action creators work correctly`, () => {
     });
   });
 
+  it(`Action creators change flag login data valid`, () => {
+    expect(ActionCreator.changeFlagLoginDataValid(false)).toEqual({
+      type: ActionTypes.CHANGE_FLAG_LOGIN_DATA_VALID,
+      payload: false
+    });
+  });
+
 });
 
 describe(`user operation work correctly`, () => {
 
-  const onNotFound = () => {};
+  const onServerError = () => {};
   const onUnauthorized = () => {};
 
-  const api = createAPI(onNotFound, onUnauthorized);
+  const api = createAPI(onServerError, onUnauthorized);
 
   it(`Operation check auth`, () => {
     const apiMock = new MockAdapter(api);
@@ -97,7 +115,33 @@ describe(`user operation work correctly`, () => {
 
     return login(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
+      })
+      .catch(() => {
+        expect(dispatch).toHaveBeenCalledTimes(0);
+      });
+  });
+
+  it(`Operation login with error`, () => {
+    const authData = {
+      email: `foo@gmail.com`,
+      password: `foo`
+    };
+
+    const apiMock = new MockAdapter(api);
+    apiMock
+      .onPost(`/login`)
+      .reply(`400`, [{fake: true}]);
+
+    const dispatch = jest.fn();
+    const login = Operation.login(authData);
+
+    return login(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(0);
+      })
+      .catch(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
       });
   });
 
