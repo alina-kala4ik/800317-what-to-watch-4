@@ -27,9 +27,11 @@ const createAPI = (onServerError, onUnauthorized) => {
       case Error.UNAUTHORIZED:
         onUnauthorized(response);
         throw err;
-      case Error.INTERNAL_SERVER_ERROR:
-        onServerError();
-        throw err;
+    }
+
+    if (response.status >= Error.INTERNAL_SERVER_ERROR) {
+      onServerError();
+      throw err;
     }
 
     throw err;
