@@ -14,8 +14,9 @@ const getPromoFilm = (state) => {
 
 const getFilteredFilms = createSelector(
     getFilms,
-    (state, genre, filmId) => [genre, filmId],
-    (films, [genre, filmId]) => {
+    (state, genre) => genre,
+    (state, genre, filmId) => filmId,
+    (films, genre, filmId) => {
       if (genre === Genres.ALL) {
         return films;
       }
