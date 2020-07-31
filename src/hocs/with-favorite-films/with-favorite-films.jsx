@@ -15,7 +15,7 @@ const withFavoriteFilms = (Component) => {
   };
 
   WithFavoriteFilms.propTypes = {
-    films: PropTypes.array.isRequired
+    films: PropTypes.arrayOf(PropTypes.object).isRequired
   };
 
   return WithFavoriteFilms;

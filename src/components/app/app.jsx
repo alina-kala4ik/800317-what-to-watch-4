@@ -106,7 +106,7 @@ App.propTypes = {
   serverStatus: PropTypes.string.isRequired,
   isFilmsFetching: PropTypes.bool.isRequired,
   isPromoFilmFetching: PropTypes.bool.isRequired,
-  films: PropTypes.array,
+  films: PropTypes.arrayOf(PropTypes.object),
   promoFilm: PropTypes.object,
   authorizationStatus: PropTypes.string.isRequired,
 };

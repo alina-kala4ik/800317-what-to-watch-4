@@ -15,7 +15,7 @@ const withFilteredFilms = (Component) => {
   };
 
   WithFilteredFilms.propTypes = {
-    films: PropTypes.array.isRequired,
+    films: PropTypes.arrayOf(PropTypes.object).isRequired,
     countFilms: PropTypes.number.isRequired,
     genre: PropTypes.string.isRequired,
     filmId: PropTypes.number

@@ -52,7 +52,7 @@ class TabReviews extends PureComponent {
 TabReviews.propTypes = {
   onLoad: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
-  reviews: PropTypes.array,
+  reviews: PropTypes.arrayOf(PropTypes.object),
   filmId: PropTypes.number.isRequired,
   isReviewsFetching: PropTypes.bool.isRequired,
 };
