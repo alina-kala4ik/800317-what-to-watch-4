@@ -88,6 +88,11 @@ exports[`render AddReview with sending error and disabled form 1`] = `
           className="user-block__avatar"
           href="/mylist"
           onClick={[Function]}
+          style={
+            Object {
+              "display": "block",
+            }
+          }
         >
           <img
             alt="User avatar"
@@ -319,6 +324,11 @@ exports[`render AddReview without sending error and disabled form 1`] = `
           className="user-block__avatar"
           href="/mylist"
           onClick={[Function]}
+          style={
+            Object {
+              "display": "block",
+            }
+          }
         >
           <img
             alt="User avatar"

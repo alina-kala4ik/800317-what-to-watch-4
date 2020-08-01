@@ -34,6 +34,11 @@ exports[`render Header when user authorized 1`] = `
       className="user-block__avatar"
       href="/mylist"
       onClick={[Function]}
+      style={
+        Object {
+          "display": "block",
+        }
+      }
     >
       <img
         alt="User avatar"

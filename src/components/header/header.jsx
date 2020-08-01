@@ -36,7 +36,8 @@ const Header = (props) => {
   const userBlock = authorizationStatus === AuthorizationStatus.AUTH ?
     <Link
       className="user-block__avatar"
-      to={Pages.MY_LIST}>
+      to={Pages.MY_LIST}
+      style={{display: `block`}}>
       <img src={avatar} alt="User avatar" width="63" height="63"/>
     </Link> :
     <Link
