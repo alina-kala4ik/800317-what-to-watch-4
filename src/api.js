@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const SERVER_ADDRESS = `https://4.react.pages.academy`;
+
 const Error = {
   UNAUTHORIZED: 401,
   INTERNAL_SERVER_ERROR: 500,
@@ -8,7 +10,7 @@ const Error = {
 
 const createAPI = (onServerError, onUnauthorized) => {
   const api = axios.create({
-    baseURL: `https://4.react.pages.academy/wtw`,
+    baseURL: `${SERVER_ADDRESS}/wtw`,
     timeout: 5000,
     withCredentials: true,
   });
@@ -35,4 +37,4 @@ const createAPI = (onServerError, onUnauthorized) => {
   return api;
 };
 
-export {createAPI};
+export {createAPI, SERVER_ADDRESS};

@@ -1,6 +1,7 @@
 import {ActionCreator, reducer, Operation, AuthorizationStatus, ActionTypes} from "./user.js";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "./../../api.js";
+import {SERVER_ADDRESS} from "./../../api.js";
 
 describe(`testing user reducer`, () => {
   it(`Returns initial state at application start`, () => {
@@ -51,9 +52,9 @@ describe(`testing user reducer`, () => {
 describe(`user action creators work correctly`, () => {
 
   it(`Action creators add avatar`, () => {
-    expect(ActionCreator.addAvatar(``)).toEqual({
+    expect(ActionCreator.addAvatar(`/img`)).toEqual({
       type: ActionTypes.ADD_AVATAR,
-      payload: ``
+      payload: `${SERVER_ADDRESS}/img`
     });
   });
 
@@ -84,14 +85,14 @@ describe(`user operation work correctly`, () => {
     const apiMock = new MockAdapter(api);
     apiMock
       .onGet(`/login`)
-      .reply(`200`);
+      .reply(`200`, [{fake: true}]);
 
     const dispatch = jest.fn();
     const checkAuth = Operation.checkAuth();
 
     return checkAuth(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionTypes.REQUIRED_AUTHORIZATION,
           payload: AuthorizationStatus.AUTH

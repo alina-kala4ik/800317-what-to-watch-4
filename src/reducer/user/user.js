@@ -1,5 +1,6 @@
 import {extend} from "./../../utils.js";
 import history from "./../../history.js";
+import {SERVER_ADDRESS} from "./../../api.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -27,7 +28,7 @@ const ActionCreator = {
   }),
   addAvatar: (url) => ({
     type: ActionTypes.ADD_AVATAR,
-    payload: url
+    payload: `${SERVER_ADDRESS}${url}`
   }),
   changeFlagLoginDataValid: (status) => ({
     type: ActionTypes.CHANGE_FLAG_LOGIN_DATA_VALID,
@@ -57,8 +58,11 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
+      .then((response) => {
+        const {avatar_url: avatarUrl} = response.data;
+
         dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.addAvatar(avatarUrl));
       })
       .catch((err) => {
         throw err;
